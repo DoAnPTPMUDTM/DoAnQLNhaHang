@@ -145,3 +145,4 @@ C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAnQLNhaHang\QLNhaHang\QLNhaHa
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\ja\DevExpress.Office.v20.1.Core.resources.dll
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\ru\DevExpress.Office.v20.1.Core.resources.dll
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmGoiMonTaiQuay.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmGoiMonTaiBan.resources

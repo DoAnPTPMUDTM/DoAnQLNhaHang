@@ -50,5 +50,11 @@ namespace QLNhaHang
             frm.Name = "frmGoiMonTaiQuay";
             showForm(frm);
         }
+
+        private void barBtnGoiMonTaiBan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmGoiMonTaiBan frmGoiMonTaiBan = new frmGoiMonTaiBan();
+            frmGoiMonTaiBan.ShowDialog(this);
+        }
     }
 }

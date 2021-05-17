@@ -43,6 +43,8 @@ namespace QLNhaHang
             this.barBtnNguoiDung = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnNhomNguoiDung = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnManHinh = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnThemNDNhom = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnPhanQuyen = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -57,14 +59,12 @@ namespace QLNhaHang
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barBtnThemNDNhom = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barBtnPhanQuyen = new DevExpress.XtraBars.BarButtonItem();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
@@ -125,6 +125,7 @@ namespace QLNhaHang
             this.barBtnGoiMonTaiBan.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnGoiMonTaiBan.LargeWidth = 110;
             this.barBtnGoiMonTaiBan.Name = "barBtnGoiMonTaiBan";
+            this.barBtnGoiMonTaiBan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnGoiMonTaiBan_ItemClick);
             // 
             // barButtonQLMonAn
             // 
@@ -169,8 +170,8 @@ namespace QLNhaHang
             // 
             this.barBtnTKDoanhThu.Caption = "Doanh Thu";
             this.barBtnTKDoanhThu.Id = 9;
-            this.barBtnTKDoanhThu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.Image")));
-            this.barBtnTKDoanhThu.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.LargeImage")));
+            this.barBtnTKDoanhThu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnTKDoanhThu.ImageOptions.Image")));
+            this.barBtnTKDoanhThu.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnTKDoanhThu.ImageOptions.LargeImage")));
             this.barBtnTKDoanhThu.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barBtnTKDoanhThu.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnTKDoanhThu.LargeWidth = 80;
@@ -180,8 +181,8 @@ namespace QLNhaHang
             // 
             this.barBtnTaiKhoan.Caption = "Thông Tin Tài Khoản";
             this.barBtnTaiKhoan.Id = 10;
-            this.barBtnTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem8.ImageOptions.Image")));
-            this.barBtnTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem8.ImageOptions.LargeImage")));
+            this.barBtnTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnTaiKhoan.ImageOptions.Image")));
+            this.barBtnTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnTaiKhoan.ImageOptions.LargeImage")));
             this.barBtnTaiKhoan.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barBtnTaiKhoan.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnTaiKhoan.LargeWidth = 130;
@@ -191,8 +192,8 @@ namespace QLNhaHang
             // 
             this.barBtnNguoiDung.Caption = "Người Dùng";
             this.barBtnNguoiDung.Id = 11;
-            this.barBtnNguoiDung.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem9.ImageOptions.Image")));
-            this.barBtnNguoiDung.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem9.ImageOptions.LargeImage")));
+            this.barBtnNguoiDung.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnNguoiDung.ImageOptions.Image")));
+            this.barBtnNguoiDung.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnNguoiDung.ImageOptions.LargeImage")));
             this.barBtnNguoiDung.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barBtnNguoiDung.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnNguoiDung.LargeWidth = 80;
@@ -202,8 +203,8 @@ namespace QLNhaHang
             // 
             this.barBtnNhomNguoiDung.Caption = "Nhóm Người Dùng";
             this.barBtnNhomNguoiDung.Id = 12;
-            this.barBtnNhomNguoiDung.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem10.ImageOptions.Image")));
-            this.barBtnNhomNguoiDung.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem10.ImageOptions.LargeImage")));
+            this.barBtnNhomNguoiDung.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnNhomNguoiDung.ImageOptions.Image")));
+            this.barBtnNhomNguoiDung.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnNhomNguoiDung.ImageOptions.LargeImage")));
             this.barBtnNhomNguoiDung.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barBtnNhomNguoiDung.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnNhomNguoiDung.LargeWidth = 160;
@@ -218,6 +219,28 @@ namespace QLNhaHang
             this.barBtnManHinh.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnManHinh.LargeWidth = 80;
             this.barBtnManHinh.Name = "barBtnManHinh";
+            // 
+            // barBtnThemNDNhom
+            // 
+            this.barBtnThemNDNhom.Caption = "Thêm người dùng vào nhóm";
+            this.barBtnThemNDNhom.Id = 14;
+            this.barBtnThemNDNhom.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnThemNDNhom.ImageOptions.Image")));
+            this.barBtnThemNDNhom.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnThemNDNhom.ImageOptions.LargeImage")));
+            this.barBtnThemNDNhom.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barBtnThemNDNhom.ItemAppearance.Normal.Options.UseFont = true;
+            this.barBtnThemNDNhom.LargeWidth = 170;
+            this.barBtnThemNDNhom.Name = "barBtnThemNDNhom";
+            // 
+            // barBtnPhanQuyen
+            // 
+            this.barBtnPhanQuyen.Caption = "Phân Quyền";
+            this.barBtnPhanQuyen.Id = 15;
+            this.barBtnPhanQuyen.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnPhanQuyen.ImageOptions.Image")));
+            this.barBtnPhanQuyen.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnPhanQuyen.ImageOptions.LargeImage")));
+            this.barBtnPhanQuyen.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barBtnPhanQuyen.ItemAppearance.Normal.Options.UseFont = true;
+            this.barBtnPhanQuyen.LargeWidth = 80;
+            this.barBtnPhanQuyen.Name = "barBtnPhanQuyen";
             // 
             // ribbonPage1
             // 
@@ -323,6 +346,18 @@ namespace QLNhaHang
             this.ribbonPageGroup12.Name = "ribbonPageGroup12";
             this.ribbonPageGroup12.Text = "ribbonPageGroup12";
             // 
+            // ribbonPageGroup13
+            // 
+            this.ribbonPageGroup13.ItemLinks.Add(this.barBtnThemNDNhom);
+            this.ribbonPageGroup13.Name = "ribbonPageGroup13";
+            this.ribbonPageGroup13.Text = "ribbonPageGroup13";
+            // 
+            // ribbonPageGroup14
+            // 
+            this.ribbonPageGroup14.ItemLinks.Add(this.barBtnPhanQuyen);
+            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
+            this.ribbonPageGroup14.Text = "ribbonPageGroup14";
+            // 
             // ribbonPage4
             // 
             this.ribbonPage4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -351,40 +386,6 @@ namespace QLNhaHang
             // 
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "ribbonPageGroup5";
-            // 
-            // ribbonPageGroup13
-            // 
-            this.ribbonPageGroup13.ItemLinks.Add(this.barBtnThemNDNhom);
-            this.ribbonPageGroup13.Name = "ribbonPageGroup13";
-            this.ribbonPageGroup13.Text = "ribbonPageGroup13";
-            // 
-            // barBtnThemNDNhom
-            // 
-            this.barBtnThemNDNhom.Caption = "Thêm người dùng vào nhóm";
-            this.barBtnThemNDNhom.Id = 14;
-            this.barBtnThemNDNhom.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem12.ImageOptions.Image")));
-            this.barBtnThemNDNhom.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem12.ImageOptions.LargeImage")));
-            this.barBtnThemNDNhom.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.barBtnThemNDNhom.ItemAppearance.Normal.Options.UseFont = true;
-            this.barBtnThemNDNhom.LargeWidth = 170;
-            this.barBtnThemNDNhom.Name = "barBtnThemNDNhom";
-            // 
-            // ribbonPageGroup14
-            // 
-            this.ribbonPageGroup14.ItemLinks.Add(this.barBtnPhanQuyen);
-            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
-            this.ribbonPageGroup14.Text = "ribbonPageGroup14";
-            // 
-            // barBtnPhanQuyen
-            // 
-            this.barBtnPhanQuyen.Caption = "Phân Quyền";
-            this.barBtnPhanQuyen.Id = 15;
-            this.barBtnPhanQuyen.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem13.ImageOptions.Image")));
-            this.barBtnPhanQuyen.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem13.ImageOptions.LargeImage")));
-            this.barBtnPhanQuyen.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.barBtnPhanQuyen.ItemAppearance.Normal.Options.UseFont = true;
-            this.barBtnPhanQuyen.LargeWidth = 80;
-            this.barBtnPhanQuyen.Name = "barBtnPhanQuyen";
             // 
             // xtraTabbedMdiManager1
             // 

@@ -63,6 +63,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGoiMonTaiBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoiMonTaiBan.Designer.cs">
+      <DependentUpon>frmGoiMonTaiBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGoiMonTaiQuay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGoiMonTaiBan.resx">
+      <DependentUpon>frmGoiMonTaiBan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGoiMonTaiQuay.resx">
       <DependentUpon>frmGoiMonTaiQuay.cs</DependentUpon>
