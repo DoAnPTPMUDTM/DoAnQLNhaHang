@@ -64,10 +64,11 @@ CREATE TABLE NguoiDung
 	Email VARCHAR(50),
 	TenDN NVARCHAR(50),
 	MatKhau NVARCHAR(50),
-	HoatDong INT,
+	HoatDong BIT NOT NULL,
 	CONSTRAINT PK_NguoiDung PRIMARY KEY(MaND)
 
 )
+
 CREATE TABLE HoaDon
 (
 	MaHD INT IDENTITY(1,1),
@@ -429,4 +430,6 @@ INSERT INTO GoiMonTaiBan(MaBan, MaMon, SoLuong) VALUES (1,4,1);
 INSERT INTO GoiMonTaiBan(MaBan, MaMon, SoLuong) VALUES (3,2,1);
 INSERT INTO GoiMonTaiBan(MaBan, MaMon, SoLuong) VALUES (3,4,1);
 select * from GoiMonTaiBan
+------------------------------------------------------------------------------------
+SELECT * FROM NguoiDung
 ------------------------------------------------------------------------------------END------------------------------------------------------------------------------------
