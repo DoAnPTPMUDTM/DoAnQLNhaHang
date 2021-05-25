@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BLLDAL">
+      <HintPath>..\BLLDAL\bin\Debug\BLLDAL.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -42,6 +45,8 @@
     <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -76,6 +81,12 @@
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDoiBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoiBan.Designer.cs">
+      <DependentUpon>frmDoiBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGoiMonTaiBan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,11 +99,23 @@
     <Compile Include="frmGoiMonTaiQuay.Designer.cs">
       <DependentUpon>frmGoiMonTaiQuay.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGopBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGopBan.Designer.cs">
+      <DependentUpon>frmGopBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThanhToan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThanhToan.Designer.cs">
+      <DependentUpon>frmThanhToan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,14 +128,23 @@
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDoiBan.resx">
+      <DependentUpon>frmDoiBan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGoiMonTaiBan.resx">
       <DependentUpon>frmGoiMonTaiBan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGoiMonTaiQuay.resx">
       <DependentUpon>frmGoiMonTaiQuay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGopBan.resx">
+      <DependentUpon>frmGopBan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThanhToan.resx">
+      <DependentUpon>frmThanhToan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

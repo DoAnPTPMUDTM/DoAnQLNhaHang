@@ -75,9 +75,10 @@ CREATE TABLE HoaDon
 	MaBan INT,
 	MaNV INT,
 	MaKH INT NULL,
-	HoTen NVARCHAR(50),
-	Ngay DATE,
+	Ngay DATETIME,
 	TongTien DECIMAL(18,0),
+	TienGiam DECIMAL(18,0),
+	ThanhTien DECIMAL(18,0),
 	TienNhan DECIMAL(18,0),
 	TienThua DECIMAL(18,0),
 	TinhTrang INT,
@@ -86,6 +87,7 @@ CREATE TABLE HoaDon
 	CONSTRAINT FK_HoaDon_NguoiDung FOREIGN KEY(MaNV) REFERENCES NguoiDung(MaND),
 	CONSTRAINT FK_HoaDon_KhachHang FOREIGN KEY(MaKH) REFERENCES KhachHang(MaKH)
 )
+
 CREATE TABLE CTHD
 (
 	MaHD INT,
@@ -206,6 +208,33 @@ BEGIN
 		SET GiaKM = GiaGoc - (GiaGoc*((SELECT TyLe FROM KhuyenMai WHERE MaKM = (SELECT MaKM FROM inserted))))
 		WHERE MaMon = (SELECT MaMon FROM inserted)
 END
+---------------------------------------------
+GO
+CREATE TRIGGER CapNhatTTCTHD
+ON CTHD
+FOR INSERT
+AS
+BEGIN
+	UPDATE CTHD
+	SET ThanhTien = (SELECT SoLuong FROM inserted) * (SELECT DonGia FROM inserted)
+	WHERE MaHD = (SELECT MaHD FROM inserted) AND MaMon = (SELECT MaMon FROM inserted)
+END
+GO
+-------------------------------------------------
+GO
+CREATE TRIGGER CapNhatSLCTHD
+ON CTHD
+FOR UPDATE
+AS
+BEGIN
+	IF UPDATE(SoLuong)
+	BEGIN
+		UPDATE CTHD
+		SET ThanhTien = (SELECT SoLuong FROM inserted) * (SELECT DonGia FROM inserted)
+		WHERE MaHD = (SELECT MaHD FROM inserted) AND MaMon = (SELECT MaMon FROM inserted)
+	END
+END
+GO
 --Procedure
 
 GO
@@ -232,6 +261,7 @@ AS
 		INTO @MaMon,@GiaGoc,@MaKM
 	END
 CLOSE CS_MonKM
+
 -----------------------------------------------------------------------------------
 --BẢNG KHUYẾN MÃI(MaKM, TenKM, TyLe, NgayBD, NgayKT)
 SET DATEFORMAT DMY;
@@ -282,6 +312,14 @@ INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (1,N'Bàn 01',N'Tầng 1
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (2,N'Bàn 02',N'Tầng 1',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (3,N'Bàn 03',N'Tầng 2',1);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (4,N'Bàn 04',N'Tầng 2',0);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (5,N'Bàn 05',N'Tầng 1',1);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (6,N'Bàn 06',N'Tầng 1',0);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (7,N'Bàn 07',N'Tầng 2',0);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (8,N'Bàn 08',N'Tầng 2',0);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (9,N'Bàn 09',N'Tầng 1',1);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (10,N'Bàn 10',N'Tầng 1',0);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (11,N'Bàn 11',N'Tầng 2',0);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (12,N'Bàn 12',N'Tầng 2',0);
 SET IDENTITY_INSERT Ban OFF
 select * from Ban
 ------------------------------------------------------------------------------------
@@ -290,6 +328,7 @@ SET IDENTITY_INSERT KhachHang ON
 INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(1,N'Thanh Mai','TPHCM','0901682813',1000000,100); 
 INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(2,N'Anh Thư','TPHCM','0901682813',600000,60);
 INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(3,N'Khánh Vân','TPHCM','0901682813',300000,30); 
+INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(0,N'Khách Vãng Lai',NULL,NULL,NULL,NULL); 
 SET IDENTITY_INSERT KhachHang OFF
 select * from KhachHang
 ------------------------------------------------------------------------------------
@@ -303,8 +342,8 @@ select * from NguoiDung
 ------------------------------------------------------------------------------------
 --HÓA ĐƠN(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien, TienNhan, TienThua, TinhTrang) --0: Đã thanh toán/1: Chưa Thanh Toán
 SET IDENTITY_INSERT HoaDon ON
-INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien, TienNhan, TienThua) VALUES(1,1,2,1,N'Thanh Mai',GETDATE(),136500,500000,363500); -- ĂN MÓN SỐ 1 VÀ SỐ 4
-INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien, TienNhan, TienThua) VALUES(2,3,2,3,N'Khánh Vân',GETDATE(),147000,147000,0); --ĂN MÓN SỐ 2 VÀ SỐ 4
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien,TienGiam,ThanhTien, TienNhan, TienThua,TinhTrang) VALUES(1,1,2,1,N'Thanh Mai',GETDATE(),136500,0,136500,500000,363500,1); -- ĂN MÓN SỐ 1 VÀ SỐ 4
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien, TienGiam,ThanhTien,TienNhan, TienThua,TinhTrang) VALUES(2,3,2,3,N'Khánh Vân',GETDATE(),147000,0,147000,147000,0,1); --ĂN MÓN SỐ 2 VÀ SỐ 4
 SET IDENTITY_INSERT HoaDon OFF
 select * from HoaDon
 ------------------------------------------------------------------------------------
@@ -384,19 +423,20 @@ select * from CTPN
 ------------------------------------------------------------------------------------
 --BẢNG MÀN HÌNH(MaMH, TenMH)
 SET IDENTITY_INSERT ManHinh  ON
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(1,N'Gọi món');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(2,N'Quản lý khách hàng');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(3,N'Quản lý món ăn');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(4,N'Quản lý khuyến mãi');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(5,N'Quản lý bàn ăn');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(6,N'Thống kê doanh thu');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(7,N'Quản lý người dùng');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(8,N'Quản lý nhóm người dùng');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(9,N'Quản lý màn hình');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(10,N'Thêm người dùng vào nhóm');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(11,N'Phân quyền');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(12,N'Sao lưu dữ liệu');
-INSERT INTO ManHinh(MaMH, TenMH) VALUES(13,N'Quản lý tài khoản');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(1,N'Gọi món tại quầy');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(2,N'Gọi món tại bàn');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(3,N'Quản lý khách hàng');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(4,N'Quản lý món ăn, nhóm món ăn');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(5,N'Quản lý khuyến mãi');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(6,N'Quản lý bàn ăn');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(7,N'Thống kê doanh thu');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(8,N'Quản lý người dùng');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(9,N'Quản lý nhóm người dùng');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(10,N'Quản lý màn hình');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(11,N'Thêm người dùng vào nhóm');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(12,N'Phân quyền');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(13,N'Sao lưu dữ liệu');
+INSERT INTO ManHinh(MaMH, TenMH) VALUES(14,N'Thông tin tài khoản');
 SET IDENTITY_INSERT ManHinh  OFF
 select * from ManHinh
 ------------------------------------------------------------------------------------
@@ -433,3 +473,36 @@ select * from GoiMonTaiBan
 ------------------------------------------------------------------------------------
 SELECT * FROM NguoiDung
 ------------------------------------------------------------------------------------END------------------------------------------------------------------------------------
+
+SELECT * FROM NhomMon
+
+---------------------------Command Test Code
+SELECT * FROM Mon
+SELECT * FROM Ban
+SELECT * FROM HoaDon
+SELECT * FROM CTHD
+	SELECT * FROM KhachHang
+SELECT * FROM Ban
+
+-------------------------------
+INSERT INTO CTHD VALUES (3,1,1,45000,45000,NULL)
+INSERT INTO CTHD VALUES (3,4,1,120000,120000,NULL)
+INSERT INTO CTHD VALUES (3,2,1,60000,60000,NULL)
+
+INSERT INTO CTHD VALUES (4,1,1,45000,45000,NULL)
+INSERT INTO CTHD VALUES (4,4,1,120000,120000,NULL)
+
+INSERT INTO CTHD VALUES (5,2,1,60000,60000,NULL)
+INSERT INTO CTHD VALUES (5,4,2,60000,120000,NULL)
+INSERT INTO CTHD VALUES (5,1,5,45000,225000,NULL)
+INSERT INTO CTHD VALUES (5,6,5,10000,225000,NULL)
+
+UPDATE CTHD
+set SoLuong = 4
+where mahd = 5 and mamon = 2
+UPdate KhachHang
+set DiaChi = N'' , SDT = '',TongThanhTien = 0,DiemTichLuy = 0
+Where MaKH = 0
+
+DELEte from CTHD
+DELEte from HoaDon

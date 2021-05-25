@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLNhaHang", "QLNhaHang\QLNhaHang.csproj", "{4A9FB579-0356-4BE8-AD97-4B4E0EAECAE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLDAL", "BLLDAL\BLLDAL.csproj", "{5D8F07E3-405F-4E6A-95B1-463DCDE4B01B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4A9FB579-0356-4BE8-AD97-4B4E0EAECAE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A9FB579-0356-4BE8-AD97-4B4E0EAECAE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A9FB579-0356-4BE8-AD97-4B4E0EAECAE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D8F07E3-405F-4E6A-95B1-463DCDE4B01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8F07E3-405F-4E6A-95B1-463DCDE4B01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8F07E3-405F-4E6A-95B1-463DCDE4B01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8F07E3-405F-4E6A-95B1-463DCDE4B01B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

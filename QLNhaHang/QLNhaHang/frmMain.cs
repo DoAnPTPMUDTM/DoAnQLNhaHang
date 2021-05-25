@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using BLLDAL;
 namespace QLNhaHang
 {
     public partial class frmMain : Form
     {
+        
         public frmMain()
         {
             InitializeComponent();
@@ -28,7 +29,6 @@ namespace QLNhaHang
         }
         private bool IsFormActived(Form form)
         {
-
             bool IsOpenend = false;
             if (MdiChildren.Count() > 0)
             {
@@ -54,6 +54,7 @@ namespace QLNhaHang
         private void barBtnGoiMonTaiBan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmGoiMonTaiBan frmGoiMonTaiBan = new frmGoiMonTaiBan();
+            frmGoiMonTaiBan.Name = "frmGoiMonTaiBan";
             frmGoiMonTaiBan.ShowDialog(this);
         }
     }

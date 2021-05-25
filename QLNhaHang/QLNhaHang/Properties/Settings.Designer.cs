@@ -34,5 +34,29 @@ namespace QLNhaHang.Properties {
                 this["ChuoiKetNoi"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
+        public int DiemTich {
+            get {
+                return ((int)(this["DiemTich"]));
+            }
+            set {
+                this["DiemTich"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public double DiemDoi {
+            get {
+                return ((double)(this["DiemDoi"]));
+            }
+            set {
+                this["DiemDoi"] = value;
+            }
+        }
     }
 }

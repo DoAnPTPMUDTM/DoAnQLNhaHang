@@ -1,0 +1,6 @@
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\bin\Debug\BLLDAL.dll.config
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\bin\Debug\BLLDAL.dll
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\bin\Debug\BLLDAL.pdb
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.csproj.CoreCompileInputs.cache
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.dll
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.pdb
