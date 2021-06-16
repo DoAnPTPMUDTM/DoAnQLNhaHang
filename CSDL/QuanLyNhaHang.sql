@@ -300,7 +300,7 @@ INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (9
 INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (10,4,N'Lẩu cá chép',N'Nồi','10.png',450000,450000,2);
 INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (11,4,N'Lẩu Lươn',N'Nồi','11.png',450000,450000,2);
 INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (12,5,N'Bò Húc',N'Lon','12.jpg',14000,14000,1);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (13,5,N'Bò Húc',N'Lon','13.jpg',13000,13000,1);
+INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (13,5,N'Bia 333',N'Lon','13.jpg',13000,13000,1);
 INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (14,6,N'Panna Cotta',N'Cái','14.jpg',25000,25000,1);
 INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (15,6,N'Đá bào mật trái cây',N'Hủ','15.png',20000,20000,1);
 SET IDENTITY_INSERT Mon OFF
@@ -308,15 +308,15 @@ select * from Mon
 ------------------------------------------------------------------------------------
 --BẢNG BÀN(MaBan, TenBan, ViTri, TrangThai) 0 là chưa/ 1 là đặt
 SET IDENTITY_INSERT Ban ON
-INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (1,N'Bàn 01',N'Tầng 1',1);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (1,N'Bàn 01',N'Tầng 1',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (2,N'Bàn 02',N'Tầng 1',0);
-INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (3,N'Bàn 03',N'Tầng 2',1);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (3,N'Bàn 03',N'Tầng 2',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (4,N'Bàn 04',N'Tầng 2',0);
-INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (5,N'Bàn 05',N'Tầng 1',1);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (5,N'Bàn 05',N'Tầng 1',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (6,N'Bàn 06',N'Tầng 1',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (7,N'Bàn 07',N'Tầng 2',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (8,N'Bàn 08',N'Tầng 2',0);
-INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (9,N'Bàn 09',N'Tầng 1',1);
+INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (9,N'Bàn 09',N'Tầng 1',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (10,N'Bàn 10',N'Tầng 1',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (11,N'Bàn 11',N'Tầng 2',0);
 INSERT INTO Ban(MaBan, TenBan, ViTri, TrangThai) VALUES (12,N'Bàn 12',N'Tầng 2',0);
@@ -325,9 +325,9 @@ select * from Ban
 ------------------------------------------------------------------------------------
 --BẢNG KHÁCH HÀNG(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) ---100K ĐƯỢC 10 ĐIỂM?
 SET IDENTITY_INSERT KhachHang ON
-INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(1,N'Thanh Mai','TPHCM','0901682813',1000000,100); 
-INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(2,N'Anh Thư','TPHCM','0901682813',600000,60);
-INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(3,N'Khánh Vân','TPHCM','0901682813',300000,30); 
+INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(1,N'Nguyễn Đức Thanh Mai','TPHCM','0901682813',1000000,100); 
+INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(2,N'Nguyễn Kim Anh Thư','TPHCM','0901682813',600000,60);
+INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(3,N'Tô Khánh Vân','TPHCM','0901682813',300000,30); 
 INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(0,N'Khách Vãng Lai',NULL,NULL,NULL,NULL); 
 SET IDENTITY_INSERT KhachHang OFF
 select * from KhachHang
@@ -342,8 +342,8 @@ select * from NguoiDung
 ------------------------------------------------------------------------------------
 --HÓA ĐƠN(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien, TienNhan, TienThua, TinhTrang) --0: Đã thanh toán/1: Chưa Thanh Toán
 SET IDENTITY_INSERT HoaDon ON
-INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien,TienGiam,ThanhTien, TienNhan, TienThua,TinhTrang) VALUES(1,1,2,1,N'Thanh Mai',GETDATE(),136500,0,136500,500000,363500,1); -- ĂN MÓN SỐ 1 VÀ SỐ 4
-INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien, TienGiam,ThanhTien,TienNhan, TienThua,TinhTrang) VALUES(2,3,2,3,N'Khánh Vân',GETDATE(),147000,0,147000,147000,0,1); --ĂN MÓN SỐ 2 VÀ SỐ 4
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien, TienNhan, TienThua,TinhTrang) VALUES(1,1,2,1,GETDATE(),136500,0,136500,500000,363500,1); -- ĂN MÓN SỐ 1 VÀ SỐ 4
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien, TienGiam,ThanhTien,TienNhan, TienThua,TinhTrang) VALUES(2,3,2,3,GETDATE(),147000,0,147000,147000,0,1); --ĂN MÓN SỐ 2 VÀ SỐ 4
 SET IDENTITY_INSERT HoaDon OFF
 select * from HoaDon
 ------------------------------------------------------------------------------------
@@ -356,9 +356,9 @@ select * from CTHD
 ------------------------------------------------------------------------------------
 --NHÀ CUNG CẤP(MaNCC, TenNCC, DiaChi, SDT)
 SET IDENTITY_INSERT NhaCungCap ON
-INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SDT) VALUES (1,N'Hồng Nhung',N'TPHCM','0367695027');
-INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SDT) VALUES (2,N'Thanh Trúc',N'TPHCM','0367695027');
-INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SDT) VALUES (3,N'Kim Út',N'TPHCM','0367695027');
+INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SDT) VALUES (1,N'Phạm Hồng Nhung',N'TPHCM','0367695027');
+INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SDT) VALUES (2,N'Nguyễn Thanh Trúc',N'TPHCM','0367695027');
+INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SDT) VALUES (3,N'Phạm Kim Út',N'TPHCM','0367695027');
 SET IDENTITY_INSERT NhaCungCap OFF
 select * from NhaCungCap
 ------------------------------------------------------------------------------------

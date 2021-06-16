@@ -57,5 +57,40 @@ namespace QLNhaHang
             frmGoiMonTaiBan.Name = "frmGoiMonTaiBan";
             frmGoiMonTaiBan.ShowDialog(this);
         }
+
+        private void barBtnNguoiDung_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmNguoiDung frmNguoiDung = new frmNguoiDung();
+            frmNguoiDung.Name = "frmNguoiDung";
+            showForm(frmNguoiDung);
+        }
+
+        private void barBtnNhomNguoiDung_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmNhomNguoiDung frmNhomNguoiDung = new frmNhomNguoiDung();
+            frmNhomNguoiDung.Name = "frmNhomNguoiDung";
+            showForm(frmNhomNguoiDung);
+        }
+
+        private void barBtnManHinh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmManHinh frmManHinh = new frmManHinh();
+            frmManHinh.Name = "frmManHinh";
+            showForm(frmManHinh);
+        }
+
+        private void barBtnThemNDNhom_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmThemNguoiDungVaoNhom frmThemNguoiDungVaoNhom = new frmThemNguoiDungVaoNhom();
+            frmThemNguoiDungVaoNhom.Name = "frmThemNguoiDungVaoNhom";
+            showForm(frmThemNguoiDungVaoNhom);
+        }
+
+        private void barBtnPhanQuyen_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmPhanQuyen frmPhanQuyen = new frmPhanQuyen();
+            frmPhanQuyen.Name = "frmPhanQuyen";
+            showForm(frmPhanQuyen);
+        }
     }
 }

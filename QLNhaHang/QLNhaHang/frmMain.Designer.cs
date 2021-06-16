@@ -198,6 +198,7 @@ namespace QLNhaHang
             this.barBtnNguoiDung.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnNguoiDung.LargeWidth = 80;
             this.barBtnNguoiDung.Name = "barBtnNguoiDung";
+            this.barBtnNguoiDung.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnNguoiDung_ItemClick);
             // 
             // barBtnNhomNguoiDung
             // 
@@ -209,6 +210,7 @@ namespace QLNhaHang
             this.barBtnNhomNguoiDung.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnNhomNguoiDung.LargeWidth = 160;
             this.barBtnNhomNguoiDung.Name = "barBtnNhomNguoiDung";
+            this.barBtnNhomNguoiDung.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnNhomNguoiDung_ItemClick);
             // 
             // barBtnManHinh
             // 
@@ -219,6 +221,7 @@ namespace QLNhaHang
             this.barBtnManHinh.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnManHinh.LargeWidth = 80;
             this.barBtnManHinh.Name = "barBtnManHinh";
+            this.barBtnManHinh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnManHinh_ItemClick);
             // 
             // barBtnThemNDNhom
             // 
@@ -230,6 +233,7 @@ namespace QLNhaHang
             this.barBtnThemNDNhom.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnThemNDNhom.LargeWidth = 170;
             this.barBtnThemNDNhom.Name = "barBtnThemNDNhom";
+            this.barBtnThemNDNhom.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnThemNDNhom_ItemClick);
             // 
             // barBtnPhanQuyen
             // 
@@ -241,6 +245,7 @@ namespace QLNhaHang
             this.barBtnPhanQuyen.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnPhanQuyen.LargeWidth = 80;
             this.barBtnPhanQuyen.Name = "barBtnPhanQuyen";
+            this.barBtnPhanQuyen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnPhanQuyen_ItemClick);
             // 
             // ribbonPage1
             // 
