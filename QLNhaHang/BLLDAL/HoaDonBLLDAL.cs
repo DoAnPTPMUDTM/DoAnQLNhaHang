@@ -13,6 +13,10 @@ namespace BLLDAL
         {
 
         }
+        public List<HoaDon> getDataHoaDon()
+        {
+            return db.HoaDons.ToList<HoaDon>();
+        }
         public void themHoaDon(HoaDon hoaDon)
         {
             db.HoaDons.InsertOnSubmit(hoaDon);

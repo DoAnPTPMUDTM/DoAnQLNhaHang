@@ -92,5 +92,19 @@ namespace QLNhaHang
             frmPhanQuyen.Name = "frmPhanQuyen";
             showForm(frmPhanQuyen);
         }
+
+        private void barButtonQLMonAn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmNhomMonMonAn frmNhomMonMonAn = new frmNhomMonMonAn();
+            frmNhomMonMonAn.Name = "frmNhomMonMonAn";
+            showForm(frmNhomMonMonAn);
+        }
+
+        private void barBtnQLKhachHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmKhachHang frmKhachHang = new frmKhachHang();
+            frmKhachHang.Name = "frmKhachHang";
+            showForm(frmKhachHang);
+        }
     }
 }

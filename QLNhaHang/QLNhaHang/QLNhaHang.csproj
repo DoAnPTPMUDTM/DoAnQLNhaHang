@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ConfigImage.cs" />
     <Compile Include="Classes\QL_NguoiDung.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -109,6 +110,12 @@
     <Compile Include="frmGopBan.Designer.cs">
       <DependentUpon>frmGopBan.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKhachHang.Designer.cs">
+      <DependentUpon>frmKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +134,12 @@
     <Compile Include="frmNguoiDung.Designer.cs">
       <DependentUpon>frmNguoiDung.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNhomMonMonAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhomMonMonAn.Designer.cs">
+      <DependentUpon>frmNhomMonMonAn.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNhomNguoiDung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,17 +152,41 @@
     <Compile Include="frmPhanQuyen.Designer.cs">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSuaMonAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuaMonAn.Designer.cs">
+      <DependentUpon>frmSuaMonAn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSuaNhomMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuaNhomMon.Designer.cs">
+      <DependentUpon>frmSuaNhomMon.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmThanhToan.Designer.cs">
       <DependentUpon>frmThanhToan.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThemMonAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemMonAn.Designer.cs">
+      <DependentUpon>frmThemMonAn.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmThemNguoiDungVaoNhom.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmThemNguoiDungVaoNhom.Designer.cs">
       <DependentUpon>frmThemNguoiDungVaoNhom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemNhomMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemNhomMon.Designer.cs">
+      <DependentUpon>frmThemNhomMon.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,6 +211,9 @@
     <EmbeddedResource Include="frmGopBan.resx">
       <DependentUpon>frmGopBan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmKhachHang.resx">
+      <DependentUpon>frmKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,17 +223,32 @@
     <EmbeddedResource Include="frmNguoiDung.resx">
       <DependentUpon>frmNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNhomMonMonAn.resx">
+      <DependentUpon>frmNhomMonMonAn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNhomNguoiDung.resx">
       <DependentUpon>frmNhomNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPhanQuyen.resx">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSuaMonAn.resx">
+      <DependentUpon>frmSuaMonAn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSuaNhomMon.resx">
+      <DependentUpon>frmSuaNhomMon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmThanhToan.resx">
       <DependentUpon>frmThanhToan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmThemMonAn.resx">
+      <DependentUpon>frmThemMonAn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmThemNguoiDungVaoNhom.resx">
       <DependentUpon>frmThemNguoiDungVaoNhom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemNhomMon.resx">
+      <DependentUpon>frmThemNhomMon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -249,6 +304,12 @@
   <ItemGroup>
     <None Include="Resources\manhinh.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\android.jpg" />
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\MonAn\1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

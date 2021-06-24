@@ -46,6 +46,7 @@
     <Compile Include="CTHDBLLDAL.cs" />
     <Compile Include="HoaDonBLLDAL.cs" />
     <Compile Include="KhachHangBLLDAL.cs" />
+    <Compile Include="KhuyenMaiBLLDAL.cs" />
     <Compile Include="ManHinhBLLDAL.cs" />
     <Compile Include="MonBLLDAL.cs" />
     <Compile Include="NguoiDungBLLDAL.cs" />

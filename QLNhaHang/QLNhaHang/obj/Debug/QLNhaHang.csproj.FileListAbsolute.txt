@@ -353,7 +353,6 @@ D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\de\DevExpress.Office.v
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\es\DevExpress.Office.v20.1.Core.resources.dll
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\ja\DevExpress.Office.v20.1.Core.resources.dll
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\ru\DevExpress.Office.v20.1.Core.resources.dll
-D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.csprojAssemblyReference.cache
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.Form1.resources
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmCauHinh.resources
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmDangNhap.resources
@@ -375,3 +374,10 @@ D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmNhomNguoi
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmManHinh.resources
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmPhanQuyen.resources
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmThemNguoiDungVaoNhom.resources
+D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmKhachHang.resources
+D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmNhomMonMonAn.resources
+D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmThemNhomMon.resources
+D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmSuaNhomMon.resources
+D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmThemMonAn.resources
+D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmSuaMonAn.resources
+D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.csprojAssemblyReference.cache

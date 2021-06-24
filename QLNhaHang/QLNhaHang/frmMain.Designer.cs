@@ -135,6 +135,7 @@ namespace QLNhaHang
             this.barButtonQLMonAn.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barButtonQLMonAn.ItemAppearance.Normal.Options.UseFont = true;
             this.barButtonQLMonAn.Name = "barButtonQLMonAn";
+            this.barButtonQLMonAn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonQLMonAn_ItemClick);
             // 
             // barBtnQLBanAn
             // 
@@ -165,6 +166,7 @@ namespace QLNhaHang
             this.barBtnQLKhachHang.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnQLKhachHang.LargeWidth = 80;
             this.barBtnQLKhachHang.Name = "barBtnQLKhachHang";
+            this.barBtnQLKhachHang.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnQLKhachHang_ItemClick);
             // 
             // barBtnTKDoanhThu
             // 
