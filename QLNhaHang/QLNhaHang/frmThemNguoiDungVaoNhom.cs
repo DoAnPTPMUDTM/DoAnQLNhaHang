@@ -61,7 +61,7 @@ namespace QLNhaHang
             var nhomNguoiDungs = from ndnnd in nguoiDungNhomNguoiDungBLLDAL.getNhomNguoiDungByMaNhom(maNhom)
                                  select new
                                  {
-                                     TenDN = ndnnd.TenDN,
+                                     TenDN = ndnnd.NguoiDung.TenDN,
                                      MaNhom = ndnnd.MaNhom,
                                      GhiChu = ndnnd.GhiChu
                                  };
@@ -97,7 +97,7 @@ namespace QLNhaHang
                 {
                     
                     NguoiDungNhomNguoiDung nguoiDungNhomNguoiDung = new NguoiDungNhomNguoiDung();
-                    nguoiDungNhomNguoiDung.TenDN = row.TenDN;
+                    //nguoiDungNhomNguoiDung.TenDN = row.TenDN;
                     nguoiDungNhomNguoiDung.MaNhom = maNhom;
                     nguoiDungNhomNguoiDung.GhiChu = "";
                     nguoiDungNhomNguoiDungBLLDAL.insertnguoiDungNhomNguoiDung(nguoiDungNhomNguoiDung);
@@ -130,7 +130,7 @@ namespace QLNhaHang
                         return;
                     }    
                     string tenDN = item.Cells[0].Value.ToString();
-                    nguoiDungNhomNguoiDungBLLDAL.deleteNguoiDungNhomNguoiDung(tenDN);
+                    //nguoiDungNhomNguoiDungBLLDAL.deleteNguoiDungNhomNguoiDung(tenDN);
                     demND--;
                 }
                 loadDataNguoiDung();

@@ -313,6 +313,7 @@ namespace QLNhaHang
             this.gridViewMonAn.TabIndex = 4;
             this.gridViewMonAn.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
+            this.gridViewMonAn.Click += new System.EventHandler(this.gridViewMonAn_Click);
             // 
             // gridView2
             // 

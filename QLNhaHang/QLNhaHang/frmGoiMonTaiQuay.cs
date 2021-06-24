@@ -285,7 +285,7 @@ namespace QLNhaHang
                                               MaHD = cthd.MaHD,
                                               MaMon = cthd.MaMon,
                                               TenMon = cthd.Mon.TenMon,
-                                              DVT = cthd.Mon.DVT,
+                                              DVT = cthd.Mon.DonViTinh.TenDVT,
                                               GhiChu = cthd.GhiChu,
                                               SoLuong = cthd.SoLuong,
                                               DonGia = cthd.DonGia,
@@ -420,7 +420,7 @@ namespace QLNhaHang
                                            {
                                                MaMon = mon.MaMon,
                                                TenMon = mon.TenMon,
-                                               DVT = mon.DVT,
+                                               DVT = mon.DonViTinh.TenDVT,
                                                GiaGoc = mon.GiaGoc,
                                                GiaKM = mon.GiaKM
                                            }).ToList();
@@ -436,7 +436,7 @@ namespace QLNhaHang
                                                {
                                                    MaMon = mon.MaMon,
                                                    TenMon = mon.TenMon,
-                                                   DVT = mon.DVT,
+                                                   DVT = mon.DonViTinh.TenDVT,
                                                    GiaGoc = mon.GiaGoc,
                                                    GiaKM = mon.GiaKM
                                                }).ToList();
@@ -452,7 +452,7 @@ namespace QLNhaHang
                                                    {
                                                        MaMon = mon.MaMon,
                                                        TenMon = mon.TenMon,
-                                                       DVT = mon.DVT,
+                                                       DVT = mon.DonViTinh.TenDVT,
                                                        GiaGoc = mon.GiaGoc,
                                                        GiaKM = mon.GiaKM
                                                    }).ToList();
@@ -467,7 +467,7 @@ namespace QLNhaHang
                                                    {
                                                        MaMon = mon.MaMon,
                                                        TenMon = mon.TenMon,
-                                                       DVT = mon.DVT,
+                                                       DVT = mon.DonViTinh.TenDVT,
                                                        GiaGoc = mon.GiaGoc,
                                                        GiaKM = mon.GiaKM
                                                    }).ToList();

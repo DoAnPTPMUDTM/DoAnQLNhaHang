@@ -103,7 +103,6 @@ namespace QLNhaHang
             kh.DiaChi = mmeDiaChi.Text;
             kh.SDT = txtSDT.Text;
             kh.DiemTichLuy = 0;
-            kh.TongThanhTien = 0;
             khachHangBLLDAL.insertKhachHang(kh);
             MessageBox.Show("Thêm khách hàng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             loadDataKhachHang();

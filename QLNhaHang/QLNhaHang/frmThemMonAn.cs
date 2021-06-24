@@ -19,8 +19,9 @@ namespace QLNhaHang
         MonBLLDAL monBLLDAL = new MonBLLDAL();
         NhomMonBLLDAL nhomMonBLLDAL = new NhomMonBLLDAL();
         KhuyenMaiBLLDAL khuyenMaiBLLDAL = new KhuyenMaiBLLDAL();
+        DonViTinhBLLDAL donViTinhBLLDAL = new DonViTinhBLLDAL();
         ConfigImage configImage = new ConfigImage();
-        string imgMonAn = "";
+        string imgNameMonAn = "";
         string filePathLocalMonAn = "";
         string appPathLocalMonAn = "";
         //tên món ăn, nhóm món, khuyến mãi, giá gốc, giá km, đvt, ảnh món.
@@ -31,23 +32,13 @@ namespace QLNhaHang
             InitializeComponent();
         }
         //
-        public frmThemMonAn(string tenMon, string nhomMon, string khuyenMai, double giaGoc, double giaKM, string donViTinh, string imgMonAn)
-        {
-            InitializeComponent();
-            this.tenMon = tenMon;
-            this.nhomMon = nhomMon;
-            this.khuyenMai = khuyenMai;
-            this.giaGoc = giaGoc;
-            this.giaKM = giaKM;
-            this.donViTinh = donViTinh;
-            this.imgMonAn = imgMonAn;
-        }
-        public delegate void StatusUpdateHandler(object sender, EventArgs eventArgs, string tenMon, string nhomMon, string khuyenMai, double giaGoc, double giaKM, string donViTinh, string imgMonAn);
+
+        public delegate void StatusUpdateHandler(object sender, EventArgs eventArgs, Mon mon, string fileLocal, string fileApp);
         public event StatusUpdateHandler OnUpdateMonAn;
-        private void UpdateStatus(string tenMon, string nhomMon, string khuyenMai, double giaGoc, double giaKM, string donViTinh, string imgMonAn)
+        private void UpdateStatus(Mon mon, string fileLocal, string fileApp)
         {
             EventArgs eventArgs = new EventArgs();
-            OnUpdateMonAn?.Invoke(this, eventArgs, tenMon, nhomMon, khuyenMai, giaGoc, giaKM, donViTinh, imgMonAn);
+            OnUpdateMonAn?.Invoke(this, eventArgs, mon, fileLocal, fileApp);
         }
         private void frmThemMonAn_Load(object sender, EventArgs e)
         {
@@ -82,32 +73,52 @@ namespace QLNhaHang
                 MessageBox.Show("Vui lòng chọn khuyến mãi!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (int.Parse(khuyenMai) != 0)
-            {
-                if (khuyenMaiBLLDAL.kTraKhuyenMai(int.Parse(khuyenMai)))
-                {
-                    MessageBox.Show("Khuyến mãi này đã hết hạn", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-            }
+            
 
             if (string.IsNullOrEmpty(txtGiaGoc.Text))
             {
                 MessageBox.Show("Giá món ăn không được để trống!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (cbbDVT.SelectedIndex < 0)
-            {
-                MessageBox.Show("Đơn vị tính không được để trống!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+            //if (cbbDVT.SelectedIndex < 0)
+            //{
+            //    MessageBox.Show("Đơn vị tính không được để trống!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
             if (picImgAnhMon.Image == null)
             {
                 MessageBox.Show("Bạn chưa chọn hình ảnh cho món ăn!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            File.Copy(filePathLocalMonAn, appPathLocalMonAn);
-            UpdateStatus(txtTenMon.Text, cbbNhomMon.EditValue.ToString(), cbbKhuyenMai.EditValue.ToString(), double.Parse(txtGiaGoc.Text), double.Parse(txtGiaKM.Text), cbbDVT.SelectedItem.ToString(), imgMonAn);
+            if(string.IsNullOrEmpty(filePathLocalMonAn) || string.IsNullOrEmpty(appPathLocalMonAn) || string.IsNullOrEmpty(imgNameMonAn))
+            {
+                MessageBox.Show("Hệ thống chưa ghi nhận được ảnh món ăn. Vui lòng chọn lại!");
+                picImgAnhMon.Image = null;
+                return;
+            }
+            //? Coi check tất cả dữ liệu đã hợp lệ chưa
+            //
+            string appPath = configImage.GetProjectLinkDirectory() + configImage.imgAnhMon;
+            string imgRename = monBLLDAL.getMaMonContinue().ToString() + Path.GetExtension(imgNameMonAn);
+            appPathLocalMonAn = appPath + imgRename;
+            MessageBox.Show("FileLocal: " + filePathLocalMonAn + " - " + "FileApp: " + appPathLocalMonAn);
+            //
+            int maNhom = int.Parse(cbbNhomMon.EditValue.ToString());
+            int maDVT = 1;//? Chọn mã đơn vị tính
+            string tenMon = txtTenMon.Text;
+            decimal giaGoc = decimal.Parse(txtGiaGoc.Text);
+            decimal giaKM = decimal.Parse(txtGiaKM.Text);
+            int maKM = int.Parse(cbbKhuyenMai.EditValue.ToString());
+            Mon mon = new Mon();
+            mon.TenMon = tenMon;
+            mon.MaDVT = 1;
+            mon.MaNhom = maNhom;
+            mon.Anh = imgRename;
+            mon.GiaGoc = giaGoc;
+            mon.GiaKM = giaKM;
+            mon.MaKM = maKM;
+            
+            UpdateStatus(mon,filePathLocalMonAn, appPathLocalMonAn);
             this.Close();
 
         }
@@ -173,53 +184,8 @@ namespace QLNhaHang
             //}
         }
 
-        private void loadDataKhuyenMai()
+        private void picImgAnhMon_DoubleClick(object sender, EventArgs e)
         {
-            //KhuyenMai km = new KhuyenMai();
-            //km.MaKM = 0;
-            //km.TenKM = "Không khuyến mãi";
-            ////km.TyLe = 0;
-            //List<KhuyenMai> lstKhuyenMai = khuyenMaiBLLDAL.getDataKhuyenMai();
-            //lstKhuyenMai.Insert(0, km);
-            //cbbKhuyenMai.Properties.DataSource = lstKhuyenMai;
-            //cbbKhuyenMai.Properties.DisplayMember = "TenKM";
-            //cbbKhuyenMai.Properties.ValueMember = "MaKM";
-
-            KhuyenMai km = new KhuyenMai();
-            km.MaKM = 0;
-            km.TenKM = "Không khuyến mãi";
-            km.TyLe = 0;
-            List<KhuyenMai> lstKhuyenMai = khuyenMaiBLLDAL.getDataKhuyenMai();
-            lstKhuyenMai.Insert(0, km);
-            cbbKhuyenMai.Properties.DataSource = lstKhuyenMai;
-            // cbbKhuyenMai.Properties.DataSource = khuyenMaiBLLDAL.getDataKhuyenMai();
-
-            cbbKhuyenMai.Properties.DisplayMember = "TenKM";
-            cbbKhuyenMai.Properties.ValueMember = "MaKM";
-            cbbKhuyenMai.Properties.NullText = "Chọn khuyến mãi";
-        }
-        private void loadDataDVT()
-        {
-            cbbDVT.Properties.Items.Add("Bát");
-            cbbDVT.Properties.Items.Add("Đĩa");
-            cbbDVT.Properties.Items.Add("Nồi");
-            cbbDVT.Properties.Items.Add("Lon");
-            cbbDVT.Properties.Items.Add("Hủ");
-        }
-
-        private void cbbDVT_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbbDVT.SelectedIndex < 0)
-            {
-                return;
-            }
-            //MessageBox.Show(cbbDVT.SelectedItem.ToString());
-
-        }
-
-        private void picImgAnhMon_Click(object sender, EventArgs e)
-        {
-            //int stt = 0;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select a image";
             openFileDialog.Filter = "jpg files (*.jpg)|*.jpg|All files(*.*)|*.*";
@@ -235,7 +201,7 @@ namespace QLNhaHang
                     string iName = openFileDialog.SafeFileName;
                     filePathLocalMonAn = openFileDialog.FileName;
                     appPathLocalMonAn = appPath + iName;
-                    imgMonAn = iName;
+                    imgNameMonAn = iName;
                     picImgAnhMon.Image = new Bitmap(openFileDialog.OpenFile());
                 }
                 catch (Exception ex)
@@ -247,6 +213,72 @@ namespace QLNhaHang
             {
                 openFileDialog.Dispose();
             }
+        }
+
+        private void loadDataKhuyenMai()
+        {
+            //KhuyenMai km = new KhuyenMai();
+            //km.MaKM = 0;
+            //km.TenKM = "Không khuyến mãi";
+            ////km.TyLe = 0;
+            //List<KhuyenMai> lstKhuyenMai = khuyenMaiBLLDAL.getDataKhuyenMai();
+            //lstKhuyenMai.Insert(0, km);
+            //cbbKhuyenMai.Properties.DataSource = lstKhuyenMai;
+            //cbbKhuyenMai.Properties.DisplayMember = "TenKM";
+            //cbbKhuyenMai.Properties.ValueMember = "MaKM";
+
+            
+            cbbKhuyenMai.Properties.DataSource = khuyenMaiBLLDAL.getDataKhuyenMai();
+
+            cbbKhuyenMai.Properties.DisplayMember = "TenKM";
+            cbbKhuyenMai.Properties.ValueMember = "MaKM";
+            cbbKhuyenMai.Properties.NullText = "Chọn khuyến mãi";
+        }
+        private void loadDataDVT()
+        {
+            //?.Viết load cbb đơn vị tính
+        }
+
+        private void cbbDVT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbDVT.SelectedIndex < 0)
+            {
+                return;
+            }
+            //MessageBox.Show(cbbDVT.SelectedItem.ToString());
+
+        }
+
+        private void picImgAnhMon_Click(object sender, EventArgs e)
+        {
+            //int stt = 0;
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Title = "Select a image";
+            //openFileDialog.Filter = "jpg files (*.jpg)|*.jpg|All files(*.*)|*.*";
+            //string appPath = configImage.GetProjectLinkDirectory() + configImage.imgAnhMon;
+            //if (Directory.Exists(appPath) == false)
+            //{
+            //    Directory.CreateDirectory(appPath);
+            //}
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    try
+            //    {
+            //        string iName = openFileDialog.SafeFileName;
+            //        filePathLocalMonAn = openFileDialog.FileName;
+            //        appPathLocalMonAn = appPath + iName;
+            //        imgMonAn = iName;
+            //        picImgAnhMon.Image = new Bitmap(openFileDialog.OpenFile());
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Unable to open file" + ex.Message);
+            //    }
+            //}
+            //else
+            //{
+            //    openFileDialog.Dispose();
+            //}
         }
     }
 }

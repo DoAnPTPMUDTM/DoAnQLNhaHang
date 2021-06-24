@@ -11,8 +11,6 @@ CREATE TABLE KhuyenMai
 	MaKM INT IDENTITY(1,1),
 	TenKM NVARCHAR(100),
 	TyLe FLOAT,
-	NgayBD DATE,
-	NgayKT DATE,
 	CONSTRAINT PL_KhuyenMai PRIMARY KEY(MAKM)
 )
 CREATE TABLE NhomMon
@@ -22,19 +20,27 @@ CREATE TABLE NhomMon
 	Anh VARCHAR(50) NULL,
 	CONSTRAINT PK_NhomMon PRIMARY KEY(MaNhom)
 )
+CREATE TABLE DonViTinh
+(
+	MaDVT INT IDENTITY(1,1),
+	TenDVT NVARCHAR(100),
+	GhiChu NVARCHAR(MAX) NULL,
+	CONSTRAINT PK_DonViTinh PRIMARY KEY(MaDVT)
+)
 CREATE TABLE Mon
 (
 	MaMon INT IDENTITY(1,1),
 	MaNhom INT,
+	MaDVT INT,
 	TenMon NVARCHAR(100),
-	DVT  NVARCHAR(50),
 	Anh VARCHAR(50),
 	GiaGoc DECIMAL(18, 0),
 	GiaKM DECIMAL(18, 0),
-	MaKM INT NULL,
+	MaKM INT DEFAULT 0,
 	CONSTRAINT PK_Mon PRIMARY KEY(MaMon),
 	CONSTRAINT FK_Mon_KhuyenMai FOREIGN KEY(MaKM) REFERENCES KhuyenMai(MaKM),
-	CONSTRAINT FK_Mon_NhomMon FOREIGN KEY(MaNhom) REFERENCES NhomMon(MaNhom)
+	CONSTRAINT FK_Mon_NhomMon FOREIGN KEY(MaNhom) REFERENCES NhomMon(MaNhom),
+	CONSTRAINT FK_Mon_DonViTinh FOREIGN KEY(MaDVT) REFERENCES DonViTinh(MaDVT)
 )	
 CREATE TABLE Ban
 (
@@ -50,8 +56,7 @@ CREATE TABLE KhachHang
 	TenKH NVARCHAR(50),
 	DiaChi NVARCHAR(50),
 	SDT VARCHAR(11),
-	TongThanhTien DECIMAL(18,0),
-	DiemTichLuy INT,
+	DiemTichLuy INT DEFAULT 0
 	CONSTRAINT PK_KhachHang PRIMARY KEY(MaKH)
 )
 CREATE TABLE NguoiDung
@@ -118,11 +123,12 @@ CREATE TABLE LoaiMatHang
 CREATE TABLE MatHang
 (
 	MaMH INT IDENTITY(1,1),
+	MaDVT INT,
 	TenMH NVARCHAR(50),
-	DVT NVARCHAR(50),
 	MaLoaiMH INT,
 	CONSTRAINT PK_MatHang PRIMARY KEY(MaMH),
-	CONSTRAINT FK_MatHang_LoaiMH FOREIGN KEY(MaLoaiMH) REFERENCES LoaiMatHang(MaLoaiMH)
+	CONSTRAINT FK_MatHang_LoaiMH FOREIGN KEY(MaLoaiMH) REFERENCES LoaiMatHang(MaLoaiMH),
+	CONSTRAINT FK_MatHang_DonViTinh FOREIGN KEY(MaDVT) REFERENCES DonViTinh(MaDVT)
 )
 
 CREATE TABLE PhieuNhap
@@ -162,11 +168,12 @@ CREATE TABLE NhomNguoiDung
 )
 CREATE TABLE NguoiDungNhomNguoiDung
 (
-	TenDN NVARCHAR(50),
+	MaND INT,
 	MaNhom INT,
 	GhiChu NVARCHAR(50),
-	CONSTRAINT PK_NDNhomND PRIMARY KEY(TenDN,MaNhom),
-	CONSTRAINT FK_NDNhomND_NhomND FOREIGN KEY(MaNhom) REFERENCES NhomNguoiDung(MaNhom)
+	CONSTRAINT PK_NDNhomND PRIMARY KEY(MaND,MaNhom),
+	CONSTRAINT FK_NDNhomND_NhomND FOREIGN KEY(MaNhom) REFERENCES NhomNguoiDung(MaNhom),
+	CONSTRAINT FK_NDNhomND_ND FOREIGN KEY(MaND) REFERENCES NguoiDung(MaND)
 )
 CREATE TABLE PhanQuyen
 (
@@ -179,36 +186,59 @@ CREATE TABLE PhanQuyen
 )
 CREATE TABLE GoiMonTaiBan
 (
-	MaBan INT,
+	MaGoiMon INT IDENTITY(1,1),
+	MaHD INT, 
 	MaMon INT,
 	SoLuong INT,
-	CONSTRAINT PK_GoiMonTaiBan PRIMARY KEY(MaBan,MaMon),
-	CONSTRAINT FK_GoiMonTaiBan_Ban FOREIGN KEY(MaBan) REFERENCES Ban(MaBan),
+	TinhTrang INT,
+	CONSTRAINT PK_GoiMonTaiBan PRIMARY KEY(MaGoiMon),
+	CONSTRAINT FK_GoiMonTaiBan_HoaDon FOREIGN KEY(MaHD) REFERENCES HoaDon(MaHD),
 	CONSTRAINT FK_GoiMonTaiBan_Mon FOREIGN KEY(MaMon) REFERENCES Mon(MaMon)
 )
 --Table bổ sung
 
-
 --Trigger
 GO
-CREATE TRIGGER CapNhatKM
+CREATE TRIGGER CapNhatKMUpdate
 ON Mon
 FOR UPDATE
 AS
 IF UPDATE(MaKM)
 BEGIN
 	IF ((SELECT MaKM FROM inserted) IS NULL)
-	BEGIN
-		UPDATE Mon
-		SET GiaKM = GiaGoc
-		WHERE MaMon = (SELECT MaMon FROM inserted)
-	END
+		BEGIN
+			UPDATE Mon
+			SET GiaKM = GiaGoc
+			WHERE MaMon = (SELECT MaMon FROM inserted)
+		END
 	ELSE
-		UPDATE Mon
-		SET GiaKM = GiaGoc - (GiaGoc*((SELECT TyLe FROM KhuyenMai WHERE MaKM = (SELECT MaKM FROM inserted))))
-		WHERE MaMon = (SELECT MaMon FROM inserted)
+		BEGIN
+			UPDATE Mon
+			SET GiaKM = GiaGoc - (GiaGoc*((SELECT TyLe FROM KhuyenMai WHERE MaKM = (SELECT MaKM FROM inserted))))
+			WHERE MaMon = (SELECT MaMon FROM inserted)
+		END
 END
----------------------------------------------
+---------------------------------------------------
+GO
+CREATE TRIGGER CapNhatKMInsert
+ON Mon
+FOR INSERT
+AS
+BEGIN
+	IF ((SELECT MaKM FROM inserted) IS NULL)
+		BEGIN
+			UPDATE Mon
+			SET GiaKM = GiaGoc
+			WHERE MaMon = (SELECT MaMon FROM inserted)
+		END
+	ELSE
+		BEGIN
+			UPDATE Mon
+			SET GiaKM = GiaGoc - (GiaGoc*((SELECT TyLe FROM KhuyenMai WHERE MaKM = (SELECT MaKM FROM inserted))))
+			WHERE MaMon = (SELECT MaMon FROM inserted)
+		END
+END
+---------------------------------------------------
 GO
 CREATE TRIGGER CapNhatTTCTHD
 ON CTHD
@@ -236,7 +266,7 @@ BEGIN
 END
 GO
 --Procedure
-
+/*
 GO
 CREATE PROC CapNhatKMHangNgay
 AS
@@ -261,17 +291,34 @@ AS
 		INTO @MaMon,@GiaGoc,@MaKM
 	END
 CLOSE CS_MonKM
-
+*/
 -----------------------------------------------------------------------------------
 --BẢNG KHUYẾN MÃI(MaKM, TenKM, TyLe, NgayBD, NgayKT)
 SET DATEFORMAT DMY;
 SET IDENTITY_INSERT KhuyenMai ON
-INSERT INTO KhuyenMai(MaKM, TenKM, TyLe, NgayBD, NgayKT) VALUES(1,N'Khuyến mãi giảm 10%',0.1,GETDATE(),'20-6-2021');
-INSERT INTO KhuyenMai(MaKM, TenKM, TyLe, NgayBD, NgayKT) VALUES(2,N'Khuyến mãi giảm 15%',0.15,GETDATE(),'13-5-2021'); 
-INSERT INTO KhuyenMai(MaKM, TenKM, TyLe, NgayBD, NgayKT) VALUES(3,N'Khuyến mãi giảm 20%',0.2,GETDATE(),'16-5-2021');
-INSERT INTO KhuyenMai(MaKM, TenKM, TyLe, NgayBD, NgayKT) VALUES(4,N'Khuyến mãi giảm 5%',0.05,GETDATE(),'20-7-2021');
+INSERT INTO KhuyenMai(MaKM, TenKM, TyLe) VALUES(0,N'Không khuyến mãi',0);
+INSERT INTO KhuyenMai(MaKM, TenKM, TyLe) VALUES(1,N'Khuyến mãi giảm 2%',0.02);
+INSERT INTO KhuyenMai(MaKM, TenKM, TyLe) VALUES(2,N'Khuyến mãi giảm 5%',0.05);
+INSERT INTO KhuyenMai(MaKM, TenKM, TyLe) VALUES(3,N'Khuyến mãi giảm 10%',0.1);
+INSERT INTO KhuyenMai(MaKM, TenKM, TyLe) VALUES(4,N'Khuyến mãi giảm 15%',0.15); 
+INSERT INTO KhuyenMai(MaKM, TenKM, TyLe) VALUES(5,N'Khuyến mãi giảm 20%',0.2);
 SET IDENTITY_INSERT KhuyenMai OFF
 SELECT * FROM KhuyenMai
+-----------------------------------------------------------------------------------
+--BẢNG ĐƠN VỊ TÍNH(MaDVT, TenDVT, GhiChu)
+SET IDENTITY_INSERT DonViTinh ON
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(1,N'Bát');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(2,N'Nồi');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(3,N'Đĩa');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(4,N'Chén');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(5,N'Cái');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(6,N'Lon');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(7,N'Thùng');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(8,N'Chai');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(9,N'Hủ');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(10,N'Bó');
+INSERT INTO DonViTinh(MaDVT, TenDVT) VALUES(11,N'Kg');
+SET IDENTITY_INSERT DonViTinh OFF
 ------------------------------------------------------------------------------------
 --BẢNG NHÓM MÓN(MaNhom, TenNhom, Anh)
 SET IDENTITY_INSERT NhomMon ON
@@ -284,25 +331,25 @@ INSERT INTO NhomMon(MaNhom, TenNhom, Anh) VALUES(6,N'MÓN TRÁNG MIỆNG','6.png
 SET IDENTITY_INSERT NhomMon OFF
 select * from NhomMon
 ------------------------------------------------------------------------------------
---BẢNG MÓN(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM)
+--BẢNG MÓN(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM)
 SET IDENTITY_INSERT Mon ON
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (1,1,N'Súp măng Tây cua',N'Bát','1.jpg',45000,45000,1);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (2,1,N'Súp hải sản Ngọc Bích',N'Bát','2.jpg',60000,60000,2);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (3,1,N'Gỏi tôm kiểu Thái',N'Đĩa','3.jpg',70000,70000,3);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (4,3,N'Gà hầm ngũ quả',N'Nồi','4.jpg',120000,120000,3);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (5,3,N'Gà quay Hương Liễu và bánh bao',N'Đĩa','5.jpg',150000,150000,3);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (1,1,1,N'Súp măng Tây cua','1.jpg',45000,45000,1);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (2,1,1,N'Súp hải sản Ngọc Bích','2.jpg',60000,60000,2);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (3,1,3,N'Gỏi tôm kiểu Thái','3.jpg',70000,70000,3);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (4,3,2,N'Gà hầm ngũ quả','4.jpg',120000,120000,3);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (5,3,3,N'Gà quay Hương Liễu và bánh bao','5.jpg',150000,150000,3);
 ------5 món ăn bên trên là Vy lấy từ hình ở website nhà hàng cưới. còn dưới này là nhà hàng 241 test thử ảnh coi zo form oke hok hé.
 --- thêm 3 món gà, 3 món lẩu, 3 đồ uống, 2 món tráng miệng 
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (6,3,N'Gà tiềm thuốc Bắc',N'Nồi','6.jpg',600000,600000,3);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (7,3,N'Gà nấu Lagu',N'Đĩa','7.jpg',600000,600000,2);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (8,3,N'Gà hấp lá chanh',N'Đĩa','8.png',250000,250000,1);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (9,4,N'Lẩu cá kèo',N'Nồi','9.png',650000,650000,3);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (10,4,N'Lẩu cá chép',N'Nồi','10.png',450000,450000,2);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (11,4,N'Lẩu Lươn',N'Nồi','11.png',450000,450000,2);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (12,5,N'Bò Húc',N'Lon','12.jpg',14000,14000,1);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (13,5,N'Bia 333',N'Lon','13.jpg',13000,13000,1);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (14,6,N'Panna Cotta',N'Cái','14.jpg',25000,25000,1);
-INSERT INTO Mon(MaMon, MaNhom, TenMon, DVT, Anh, GiaGoc, GiaKM, MaKM) VALUES  (15,6,N'Đá bào mật trái cây',N'Hủ','15.png',20000,20000,1);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (6,3,2,N'Gà tiềm thuốc Bắc','6.jpg',600000,600000,3);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (7,3,3,N'Gà nấu Lagu','7.jpg',600000,600000,2);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (8,3,3,N'Gà hấp lá chanh','8.png',250000,250000,1);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (9,4,2,N'Lẩu cá kèo','9.png',650000,650000,3);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (10,4,2,N'Lẩu cá chép','10.png',450000,450000,2);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (11,4,2,N'Lẩu Lươn','11.png',450000,450000,2);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (12,5,6,N'Bò Húc','12.jpg',14000,14000,1);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (13,5,6,N'Bia 333','13.jpg',13000,13000,1);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (14,6,5,N'Panna Cotta','14.jpg',25000,25000,1);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (15,6,8,N'Đá bào mật trái cây','15.png',20000,20000,1);
 SET IDENTITY_INSERT Mon OFF
 select * from Mon
 ------------------------------------------------------------------------------------
@@ -325,10 +372,10 @@ select * from Ban
 ------------------------------------------------------------------------------------
 --BẢNG KHÁCH HÀNG(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) ---100K ĐƯỢC 10 ĐIỂM?
 SET IDENTITY_INSERT KhachHang ON
-INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(1,N'Nguyễn Đức Thanh Mai','TPHCM','0901682813',1000000,100); 
-INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(2,N'Nguyễn Kim Anh Thư','TPHCM','0901682813',600000,60);
-INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(3,N'Tô Khánh Vân','TPHCM','0901682813',300000,30); 
-INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, TongThanhTien, DiemTichLuy) VALUES(0,N'Khách Vãng Lai',NULL,NULL,NULL,NULL); 
+INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, DiemTichLuy) VALUES(0,N'Khách Vãng Lai',NULL,NULL,0); 
+INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, DiemTichLuy) VALUES(1,N'Nguyễn Đức Thanh Mai','TP HCM','0901682813',100); 
+INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, DiemTichLuy) VALUES(2,N'Nguyễn Kim Anh Thư','TP HCM','0901682812',60);
+INSERT INTO KhachHang(MaKH, TenKH, DiaChi, SDT, DiemTichLuy) VALUES(3,N'Tô Khánh Vân','TP HCM','0901682811',30); 
 SET IDENTITY_INSERT KhachHang OFF
 select * from KhachHang
 ------------------------------------------------------------------------------------
@@ -339,7 +386,8 @@ INSERT INTO NguoiDung(MaND, HoTen, GioiTinh, SDT, DiaChi, Email, TenDN, MatKhau,
 SET IDENTITY_INSERT NguoiDung OFF
 select * from NguoiDung
  
-------------------------------------------------------------------------------------
+---------------------------------Không insert cái này nha----------------------------------------------
+/*
 --HÓA ĐƠN(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien, TienNhan, TienThua, TinhTrang) --0: Đã thanh toán/1: Chưa Thanh Toán
 SET IDENTITY_INSERT HoaDon ON
 INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien, TienNhan, TienThua,TinhTrang) VALUES(1,1,2,1,GETDATE(),136500,0,136500,500000,363500,1); -- ĂN MÓN SỐ 1 VÀ SỐ 4
@@ -354,6 +402,7 @@ INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(2,2,1,60000,5100
 INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(2,4,1,120000,96000);
 select * from CTHD
 ------------------------------------------------------------------------------------
+*/
 --NHÀ CUNG CẤP(MaNCC, TenNCC, DiaChi, SDT)
 SET IDENTITY_INSERT NhaCungCap ON
 INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SDT) VALUES (1,N'Phạm Hồng Nhung',N'TPHCM','0367695027');
@@ -391,22 +440,24 @@ INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (13,N'Bò húc',N'Lốc',
 SET IDENTITY_INSERT MatHang OFF
 select * from MatHang
 */
+
 SET IDENTITY_INSERT MatHang  ON
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (1,N'Xà lách','kg',1); --40k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (2,N'Hành tây','kg',1); --21k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (3,N'Cải thìa','kg',1); --25k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (4,N'Cần tây','kg',1); --50k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (5,N'Cà chua','kg',2); --25k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (6,N'Cà rốt','kg',2); --17k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (7,N'Cà tím','kg',2); --30k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (8,N'Mực','kg',3); --250k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (9,N'Tôm','kg',3); --150k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (10,N'Thịt vịt','kg',4); --48k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (11,N'Thịt gà','kg',4); --28k/kg
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (12,N'Bia 333',N'Thùng',5); --235k/thùng
-INSERT INTO MatHang(MaMH, TenMH, DVT, MaLoaiMH) VALUES (13,N'Bò húc',N'Lốc',5); --65k/lốc
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (1,N'Xà lách',11,1); --40k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (2,N'Hành tây',11,1); --21k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (3,N'Cải thìa',11,1); --25k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (4,N'Cần tây',11,1); --50k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (5,N'Cà chua',11,2); --25k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (6,N'Cà rốt',11,2); --17k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (7,N'Cà tím',11,2); --30k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (8,N'Mực',11,3); --250k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (9,N'Tôm',11,3); --150k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (10,N'Thịt vịt',11,4); --48k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (11,N'Thịt gà',11,4); --28k/kg
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (12,N'Bia 333',7,5); --235k/thùng
+INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (13,N'Bò húc',7,5); --65k/lốc
 SET IDENTITY_INSERT MatHang OFF
 select * from MatHang
+/*
 ------------------------------------------------------------------------------------
 --BẢNG PHIẾU NHẬP(MaPN, MaNV, MaNCC, Ngay, TongTien)
 -- Ví dụ nhân viên Vy mã 2 nhập 2 kg xà lách, 3 kg Tôm và 10kg thịt gà
@@ -421,6 +472,7 @@ INSERT INTO CTPN(MaPN, MaMH, SoLuong, DonGia, ThanhTien) VALUES (1,9,3,150000,45
 INSERT INTO CTPN(MaPN, MaMH, SoLuong, DonGia, ThanhTien) VALUES (1,11,10,28000,280000);
 select * from CTPN
 ------------------------------------------------------------------------------------
+*/
 --BẢNG MÀN HÌNH(MaMH, TenMH)
 SET IDENTITY_INSERT ManHinh  ON
 INSERT INTO ManHinh(MaMH, TenMH) VALUES(1,N'Gọi món tại quầy');
@@ -447,36 +499,37 @@ INSERT INTO NhomNguoiDung(MaNhom, TenNhom) VALUES (2,N'Quản lý');
 SET IDENTITY_INSERT NhomNguoiDung  OFF
 select * from NhomNguoiDung
 ------------------------------------------------------------------------------------
---BẢNG NGƯỜI DÙNG NHÓM NGƯỜI DÙNG(TenDN, MaNhom, GhiChu)
-INSERT INTO NguoiDungNhomNguoiDung(TenDN, MaNhom) VALUES ('thanhvy',1);
-INSERT INTO NguoiDungNhomNguoiDung(TenDN, MaNhom) VALUES ('hongson',2);
+--BẢNG NGƯỜI DÙNG NHÓM NGƯỜI DÙNG(MaND, MaNhom, GhiChu)
+INSERT INTO NguoiDungNhomNguoiDung(MaND, MaNhom) VALUES (1,1);
+INSERT INTO NguoiDungNhomNguoiDung(MaND, MaNhom) VALUES (1,2);
 select * from NguoiDungNhomNguoiDung
 ------------------------------------------------------------------------------------
 --BẢNG PHÂN QUYỀN(MaNhom, MaMH, CoQuyen) CoQuyen-- 0: Quản lý, 1: nhân viên
 INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,1,1);
 INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,2,1);
 INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,3,1);
-INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,7,1);
-INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,4,0);
-INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,5,0);
-INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,6,0);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,4,1);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,5,0);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,6,0);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,7,0);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (1,8,0);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,1,1);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,2,1);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,3,1);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,4,1);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,5,1);
+INSERT INTO PhanQuyen(MaNhom, MaMH, CoQuyen) VALUES (2,6,1);
 select * from PhanQuyen
-------------------------------------------------------------------------------------
---BẢNG GỌI MÓN TẠI BÀN(MaBan, MaHD, MaMon, SoLuong)  
--- ĂN MÓN SỐ 1 VÀ SỐ 4, MAHD 1 BÀN 01 
--- ĂN MÓN SỐ 2 VÀ SỐ 4, MAHD 2 BÀN 03 
-INSERT INTO GoiMonTaiBan(MaBan, MaMon, SoLuong) VALUES (1,1,1);
-INSERT INTO GoiMonTaiBan(MaBan, MaMon, SoLuong) VALUES (1,4,1);
-INSERT INTO GoiMonTaiBan(MaBan, MaMon, SoLuong) VALUES (3,2,1);
-INSERT INTO GoiMonTaiBan(MaBan, MaMon, SoLuong) VALUES (3,4,1);
-select * from GoiMonTaiBan
-------------------------------------------------------------------------------------
-SELECT * FROM NguoiDung
+
+
+
 ------------------------------------------------------------------------------------END------------------------------------------------------------------------------------
 
-SELECT * FROM NhomMon
+
 
 ---------------------------Command Test Code
+SELECT * FROM NhomMon
+SELECT * FROM NguoiDung
 SELECT * FROM Mon
 SELECT * FROM Ban
 SELECT * FROM HoaDon
@@ -498,12 +551,7 @@ INSERT INTO CTHD VALUES (5,4,2,60000,120000,NULL)
 INSERT INTO CTHD VALUES (5,1,5,45000,225000,NULL)
 INSERT INTO CTHD VALUES (5,6,5,10000,225000,NULL)
 
-UPDATE CTHD
-set SoLuong = 4
-where mahd = 5 and mamon = 2
-UPdate KhachHang
-set DiaChi = N'' , SDT = '',TongThanhTien = 0,DiemTichLuy = 0
-Where MaKH = 0
+
 
 DELEte from CTHD
 DELEte from HoaDon

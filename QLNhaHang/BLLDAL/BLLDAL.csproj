@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BanBLLDAL.cs" />
     <Compile Include="CTHDBLLDAL.cs" />
+    <Compile Include="DonViTinhBLLDAL.cs" />
     <Compile Include="HoaDonBLLDAL.cs" />
     <Compile Include="KhachHangBLLDAL.cs" />
     <Compile Include="KhuyenMaiBLLDAL.cs" />

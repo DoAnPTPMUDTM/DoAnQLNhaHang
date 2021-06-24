@@ -43,7 +43,7 @@ namespace BLLDAL
             {
                 mon.MaNhom = maNhom;
                 mon.TenMon = tenMon;
-                mon.DVT = donViTinh;
+               // mon.DVT = donViTinh;
                 mon.Anh = anh;
                 mon.GiaGoc = (decimal?)giaGoc;
                 mon.GiaKM = (decimal?)giaKM;
@@ -60,6 +60,15 @@ namespace BLLDAL
                 db.Mons.DeleteOnSubmit(mon);
                 db.SubmitChanges();
             }
+        }
+        public int getMaMonContinue()
+        {
+            int maMon = 1;
+            if (db.Mons.Count() > 0)
+            {
+                maMon = (db.Mons.OrderByDescending(m => m.MaMon).FirstOrDefault()).MaMon + 1;
+            }
+            return maMon;
         }
 
     }

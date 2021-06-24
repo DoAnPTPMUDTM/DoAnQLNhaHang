@@ -381,3 +381,14 @@ D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmSuaNhomMo
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmThemMonAn.resources
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmSuaMonAn.resources
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.csprojAssemblyReference.cache
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmKhachHang.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmManHinh.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmNguoiDung.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmNhomMonMonAn.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmNhomNguoiDung.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmPhanQuyen.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmSuaMonAn.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmSuaNhomMon.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmThemMonAn.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmThemNguoiDungVaoNhom.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmThemNhomMon.resources

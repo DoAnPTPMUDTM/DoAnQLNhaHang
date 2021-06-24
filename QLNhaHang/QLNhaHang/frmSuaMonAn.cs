@@ -136,11 +136,11 @@ namespace QLNhaHang
             MessageBox.Show(maNhom + " - " + maKM + " - " + DVT);
             //đang lỗi chưa sửa đc.
 
-            if (khuyenMaiBLLDAL.kTraKhuyenMai(int.Parse(maKM)))
-            {
-                MessageBox.Show("Khuyến mãi này đã hết hạn", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+            //if (khuyenMaiBLLDAL.kTraKhuyenMai(int.Parse(maKM)))
+            //{
+            //    MessageBox.Show("Khuyến mãi này đã hết hạn", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
             if (string.IsNullOrEmpty(txtTenMon.Text))
             {
                 MessageBox.Show("Tên món không được để trống", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);

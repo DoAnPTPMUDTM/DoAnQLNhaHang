@@ -134,6 +134,7 @@ namespace QLNhaHang
             this.picImgAnhMon.TabIndex = 0;
             this.picImgAnhMon.TabStop = false;
             this.picImgAnhMon.Click += new System.EventHandler(this.picImgAnhMon_Click);
+            this.picImgAnhMon.DoubleClick += new System.EventHandler(this.picImgAnhMon_DoubleClick);
             // 
             // groupControl1
             // 
@@ -242,9 +243,7 @@ namespace QLNhaHang
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbKhuyenMai.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaKM", "Mã KM", 5, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenKM", "Tên KM"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NgayBD", "Ngày bắt đầu"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NgayKT", "Ngày kết thúc")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenKM", "Tên KM")});
             this.cbbKhuyenMai.Size = new System.Drawing.Size(241, 28);
             this.cbbKhuyenMai.StyleController = this.layoutControl2;
             this.cbbKhuyenMai.TabIndex = 6;

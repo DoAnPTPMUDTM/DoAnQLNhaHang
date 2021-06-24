@@ -15,7 +15,7 @@ namespace BLLDAL
         }
         public List<KhuyenMai> getDataKhuyenMai()
         {
-            return db.KhuyenMais.Where(k => k.NgayKT.Value.Date >= DateTime.Now.Date).ToList();
+            return db.KhuyenMais.ToList();
         }
         public double getGiaKhuyenMaiByMaKM(int maKM)
         {
@@ -26,16 +26,7 @@ namespace BLLDAL
             }
             return 1;
         }
-        // ktra ngày khuyến mãi hợp lệ hay k
-        public bool kTraKhuyenMai(int maKM)
-        {
-            KhuyenMai khuyenMai = db.KhuyenMais.Where(t => t.MaKM == maKM).FirstOrDefault();
-            if (khuyenMai.NgayKT < DateTime.Now)
-            {
-                return true;
-            }
-            return false;
-        }
+       
         public KhuyenMai getKhuyeMaiByMaKM(int maKM)
         {
             return db.KhuyenMais.Where(t => t.MaKM == maKM).FirstOrDefault();

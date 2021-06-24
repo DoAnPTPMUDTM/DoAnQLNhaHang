@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,7 +58,7 @@ namespace QLNhaHang
                              MaMon = mon.MaMon,
                              TenMon = mon.TenMon,
                              MaNhom = nhom.TenNhom,
-                             DVT = mon.DVT,
+                             DVT = mon.DonViTinh.TenDVT,
                              Anh = loadImageMon(mon.Anh),//
                              //Anh = mon.Anh,
                              GiaGoc = mon.GiaGoc,
@@ -113,7 +114,7 @@ namespace QLNhaHang
                          {
                              MaMon = mon.MaMon,
                              TenMon = mon.TenMon,
-                             DVT = mon.DVT,
+                             DVT = mon.DonViTinh.TenDVT,
                              Anh = loadImageMon(mon.Anh),
                              MaNhom = nhom.TenNhom,
                              GiaGoc = mon.GiaGoc,
@@ -259,41 +260,73 @@ namespace QLNhaHang
             frmThemMonAn.ShowDialog(this);
         }
 
-        private void FrmThemMonAn_OnUpdateMonAn(object sender, EventArgs eventArgs, string tenMon, string nhomMon, string khuyenMai, double giaGoc, double giaKM, string donViTinh, string imgMonAn)
+        private void FrmThemMonAn_OnUpdateMonAn(object sender, EventArgs eventArgs, Mon mon, string fileLocal, string fileApp)
         {
+            bool checkSaveImg = false;
             try
             {
-                Mon mon = new Mon();
-                mon.TenMon = tenMon;
-                mon.MaNhom = int.Parse(nhomMon);
-                //if (khuyenMai)
-                //{
-                //    mon.MaKM = 0;
-                //}
-                //else
-                //{
-                if(int.Parse(khuyenMai) == 0)
-                {
-                    mon.MaKM = null;
-                }
-                else
-                {
-                    mon.MaKM = int.Parse(khuyenMai);
-                }
-                //}
-                mon.GiaGoc = (decimal)giaGoc;
-                mon.GiaKM = (decimal)giaKM;
-                mon.DVT = donViTinh;
-                mon.Anh = imgMonAn;
-                monBLLDAL.insertMonAn(mon);
-                MessageBox.Show("Thêm món ăn thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                loadDataMonAn();
+                File.Copy(fileLocal, fileApp);
+                checkSaveImg = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Lưu ảnh không thành công: " + ex.Message);
+                return;
+            }
+            if (checkSaveImg)
+            {
+                try
+                {
+                    monBLLDAL.insertMonAn(mon);
+                    loadDataMonAn();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Lưu món không thành công: " + ex.Message);
+                    if (File.Exists(fileApp))
+                    {
+                        File.Delete(fileApp);
+                    }
+                }
             }
         }
+        
+
+        //private void FrmThemMonAn_OnUpdateMonAn(object sender, EventArgs eventArgs, string tenMon, string nhomMon, string khuyenMai, double giaGoc, double giaKM, string donViTinh, string imgMonAn)
+        //{
+        //    try
+        //    {
+        //        Mon mon = new Mon();
+        //        mon.TenMon = tenMon;
+        //        mon.MaNhom = int.Parse(nhomMon);
+        //        //if (khuyenMai)
+        //        //{
+        //        //    mon.MaKM = 0;
+        //        //}
+        //        //else
+        //        //{
+        //        if(int.Parse(khuyenMai) == 0)
+        //        {
+        //            mon.MaKM = null;
+        //        }
+        //        else
+        //        {
+        //            mon.MaKM = int.Parse(khuyenMai);
+        //        }
+        //        //}
+        //        mon.GiaGoc = (decimal)giaGoc;
+        //        mon.GiaKM = (decimal)giaKM;
+        //        //mon.MaDVT = donViTinh;
+        //        mon.Anh = imgMonAn;
+        //        monBLLDAL.insertMonAn(mon);
+        //        MessageBox.Show("Thêm món ăn thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        loadDataMonAn();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
         private void barButtonSuaMon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -311,7 +344,7 @@ namespace QLNhaHang
                     MessageBox.Show("Không tìm thấy món ăn", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                frmSuaMonAn frmSuaMonAn = new frmSuaMonAn(mon.MaMon,mon.TenMon,mon.NhomMon.ToString(),mon.MaKM.ToString(),mon.DVT, (double)mon.GiaGoc, (double)mon.GiaKM,mon.Anh);
+                frmSuaMonAn frmSuaMonAn = new frmSuaMonAn(mon.MaMon,mon.TenMon,mon.NhomMon.ToString(),mon.MaKM.ToString(),"s", (double)mon.GiaGoc, (double)mon.GiaKM,mon.Anh);
                 frmSuaMonAn.OnUpdateMonAn += FrmSuaMonAn_OnUpdateMonAn;
                 frmSuaMonAn.Name = "frmSuaMonAn";
                 frmSuaMonAn.ShowDialog(this);
@@ -364,6 +397,11 @@ namespace QLNhaHang
         private void barButtonRefeshMon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             loadDataMonAn();
+        }
+
+        private void gridViewMonAn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
