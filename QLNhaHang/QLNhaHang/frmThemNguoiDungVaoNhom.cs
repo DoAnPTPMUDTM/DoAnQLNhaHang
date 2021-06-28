@@ -61,6 +61,7 @@ namespace QLNhaHang
             var nhomNguoiDungs = from ndnnd in nguoiDungNhomNguoiDungBLLDAL.getNhomNguoiDungByMaNhom(maNhom)
                                  select new
                                  {
+                                     MaND = ndnnd.MaND,
                                      TenDN = ndnnd.NguoiDung.TenDN,
                                      MaNhom = ndnnd.MaNhom,
                                      GhiChu = ndnnd.GhiChu
@@ -75,7 +76,7 @@ namespace QLNhaHang
             {
                 loadDataNhomNguoiDung(maNhom);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -84,35 +85,42 @@ namespace QLNhaHang
         private void btnThem_Click(object sender, EventArgs e)
         {
             dynamic row = dtgvNguoiDung.CurrentRow.DataBoundItem;
-            if(row == null)
+            if (row == null)
             {
                 return;
             }
-            try
+            //try
+            //{
+            int maNhom;
+            bool result = int.TryParse(cbbNhomNguoiDung.SelectedValue.ToString(), out maNhom);
+            if (maNhom < 0)
             {
-                int maNhom;
-                bool result = int.TryParse(cbbNhomNguoiDung.SelectedValue.ToString(), out maNhom);
-                string tenDN = row.TenDN.ToString();
-                if (!nguoiDungNhomNguoiDungBLLDAL.kTraTrungMaNhom(maNhom, tenDN))
-                {
-                    
-                    NguoiDungNhomNguoiDung nguoiDungNhomNguoiDung = new NguoiDungNhomNguoiDung();
-                    //nguoiDungNhomNguoiDung.TenDN = row.TenDN;
-                    nguoiDungNhomNguoiDung.MaNhom = maNhom;
-                    nguoiDungNhomNguoiDung.GhiChu = "";
-                    nguoiDungNhomNguoiDungBLLDAL.insertnguoiDungNhomNguoiDung(nguoiDungNhomNguoiDung);
-                    MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadDataNhomNguoiDung(maNhom);
-                }
-                else
-                {
-                    MessageBox.Show("Thêm thất bại, trùng mã nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("Vui lòng chọn nhóm người dùng!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            catch(Exception ex)
+            //string tenDN = row.TenDN.ToString();
+            string maND = row.MaND.ToString();
+            if (!nguoiDungNhomNguoiDungBLLDAL.kTraTrungMaNhom(maNhom,int.Parse(maND)))
             {
-                MessageBox.Show(ex.Message);
+
+                NguoiDungNhomNguoiDung nguoiDungNhomNguoiDung = new NguoiDungNhomNguoiDung();
+                //nguoiDungNhomNguoiDung.TenDN = row.TenDN;
+                nguoiDungNhomNguoiDung.MaNhom = maNhom;
+                nguoiDungNhomNguoiDung.MaND = int.Parse(maND);
+                nguoiDungNhomNguoiDung.GhiChu = "";
+                nguoiDungNhomNguoiDungBLLDAL.insertnguoiDungNhomNguoiDung(nguoiDungNhomNguoiDung);
+                MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadDataNhomNguoiDung(maNhom);
             }
+            else
+            {
+                MessageBox.Show("Thêm thất bại, trùng mã nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -120,19 +128,32 @@ namespace QLNhaHang
             int maNhom;
             bool result = int.TryParse(cbbNhomNguoiDung.SelectedValue.ToString(), out maNhom);
             int demND = nguoiDungNhomNguoiDungBLLDAL.getNhomNguoiDungByMaNhom(maNhom).Count();
-            MessageBox.Show(demND.ToString());
+            //MessageBox.Show(demND.ToString());
             try
             {
-                foreach (DataGridViewRow item in dtgvNhomNguoiDung.Rows)
+                //foreach (DataGridViewRow item in dtgvNhomNguoiDung.Rows)
+                //{
+                //    if (demND == 0)
+                //    {
+                //        return;
+                //    }
+                //    string maND = item.Cells[0].Value.ToString();
+                //    //nguoiDungNhomNguoiDungBLLDAL.deleteNguoiDungNhomNguoiDung(int.Parse(maND));
+                //    //MessageBox.Show(item.Cells[0].Value.ToString());
+                //    //demND--;
+                //    //MessageBox.Show(demND--.ToString());
+                //    demND--;
+                //}
+                if (demND == 0)
                 {
-                    if (demND == 0)
-                    {
-                        return;
-                    }    
-                    string tenDN = item.Cells[0].Value.ToString();
-                    //nguoiDungNhomNguoiDungBLLDAL.deleteNguoiDungNhomNguoiDung(tenDN);
-                    demND--;
+                    MessageBox.Show("Không còn người dùng nào trong nhóm để xóa","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    return;
                 }
+                string maND = dtgvNhomNguoiDung.CurrentRow.Cells[0].Value.ToString();
+                nguoiDungNhomNguoiDungBLLDAL.deleteNguoiDungNhomNguoiDung(int.Parse(maND));
+                demND--;
+
+                MessageBox.Show("Xoa thanh cong");
                 loadDataNguoiDung();
                 loadDataNhomNguoiDung(maNhom);
             }
@@ -140,7 +161,7 @@ namespace QLNhaHang
             {
                 MessageBox.Show("Xóa thất bại", "Thông báo");
             }
-            
+
         }
     }
 }

@@ -16,6 +16,8 @@ namespace QLNhaHang
         MonBLLDAL monBLLDAL = new MonBLLDAL();
         ConfigImage configImage = new ConfigImage();
         NhomMonBLLDAL nhomMonBLLDAL = new NhomMonBLLDAL();
+        NguoiDungBLLDAL nguoiDungBLLDAL = new NguoiDungBLLDAL();
+        PhanQuyenBLLDAL phanQuyenBLLDAL = new PhanQuyenBLLDAL();
         public Form1()
         {
             InitializeComponent();
@@ -25,9 +27,30 @@ namespace QLNhaHang
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lookUpEdit1.Properties.DisplayMember = "TenMon";
-            lookUpEdit1.Properties.ValueMember = "MaMon";
-            lookUpEdit1.Properties.DataSource = nhomMonBLLDAL.getDataNhomMon();
+            //lookUpEdit1.Properties.DisplayMember = "TenMon";
+            //lookUpEdit1.Properties.ValueMember = "MaMon";
+            //lookUpEdit1.Properties.DataSource = nhomMonBLLDAL.getDataNhomMon();
+            loadDataNguoiDung();
         }
+        private void loadDataNguoiDung()
+        {
+
+            var NguoiDungs = from nd in nguoiDungBLLDAL.getDataNguoiDung()
+                             select new
+                             {
+                                 MaND = nd.MaND,
+                                 HoTen = nd.HoTen,
+                                 //TenDN = nd.TenDN,
+                                 //MatKhau = nd.MatKhau,
+                                 //GioiTinh = nd.GioiTinh,
+                                 //Email = nd.Email,
+                                 //SDT = nd.SDT,
+                                 //DiaChi = nd.DiaChi,
+                                 HoatDong = nd.HoatDong
+                             };
+            gridControl1.DataSource = NguoiDungs.ToList();
+
+        }
+
     }
 }

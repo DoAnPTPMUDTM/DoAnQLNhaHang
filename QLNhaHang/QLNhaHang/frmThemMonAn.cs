@@ -25,8 +25,8 @@ namespace QLNhaHang
         string filePathLocalMonAn = "";
         string appPathLocalMonAn = "";
         //tên món ăn, nhóm món, khuyến mãi, giá gốc, giá km, đvt, ảnh món.
-        private string tenMon, nhomMon, khuyenMai, donViTinh;
-        private double giaGoc, giaKM;
+        //private string tenMon, nhomMon, khuyenMai, donViTinh;
+        //private double giaGoc, giaKM;
         public frmThemMonAn()
         {
             InitializeComponent();
@@ -42,10 +42,9 @@ namespace QLNhaHang
         }
         private void frmThemMonAn_Load(object sender, EventArgs e)
         {
-            txtGiaKM.Text = "0";
+            //txtGiaKM.Text = "0";
             //txtGiaGoc.Enabled = false;
             loadDataNhomMon();
-            //Ko khuyến mãi Vy chưa viết đc.
             loadDataKhuyenMai();
             loadDataDVT();
         }
@@ -66,31 +65,28 @@ namespace QLNhaHang
             }
             //
             //check Khuyến mãi
-            khuyenMai = cbbKhuyenMai.EditValue.ToString();
-            MessageBox.Show(khuyenMai);
-            if (khuyenMai == null)
+            if (cbbKhuyenMai.EditValue == null)
             {
                 MessageBox.Show("Vui lòng chọn khuyến mãi!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            
 
             if (string.IsNullOrEmpty(txtGiaGoc.Text))
             {
                 MessageBox.Show("Giá món ăn không được để trống!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            //if (cbbDVT.SelectedIndex < 0)
-            //{
-            //    MessageBox.Show("Đơn vị tính không được để trống!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    return;
-            //}
+            if (cbbDVT.EditValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn đơn vị tính!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (picImgAnhMon.Image == null)
             {
                 MessageBox.Show("Bạn chưa chọn hình ảnh cho món ăn!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if(string.IsNullOrEmpty(filePathLocalMonAn) || string.IsNullOrEmpty(appPathLocalMonAn) || string.IsNullOrEmpty(imgNameMonAn))
+            if (string.IsNullOrEmpty(filePathLocalMonAn) || string.IsNullOrEmpty(imgNameMonAn))
             {
                 MessageBox.Show("Hệ thống chưa ghi nhận được ảnh món ăn. Vui lòng chọn lại!");
                 picImgAnhMon.Image = null;
@@ -99,26 +95,26 @@ namespace QLNhaHang
             //? Coi check tất cả dữ liệu đã hợp lệ chưa
             //
             string appPath = configImage.GetProjectLinkDirectory() + configImage.imgAnhMon;
-            string imgRename = monBLLDAL.getMaMonContinue().ToString() + Path.GetExtension(imgNameMonAn);
+            string imgRename = monBLLDAL.getMaMonContinue().ToString() + "_" + DateTime.Now.ToString("ddMMyyhhmmsstt") + Path.GetExtension(imgNameMonAn);
             appPathLocalMonAn = appPath + imgRename;
-            MessageBox.Show("FileLocal: " + filePathLocalMonAn + " - " + "FileApp: " + appPathLocalMonAn);
+            //MessageBox.Show("FileLocal: " + filePathLocalMonAn + " - " + "FileApp: " + appPathLocalMonAn);
             //
             int maNhom = int.Parse(cbbNhomMon.EditValue.ToString());
-            int maDVT = 1;//? Chọn mã đơn vị tính
+            int maDVT = int.Parse(cbbDVT.EditValue.ToString());
             string tenMon = txtTenMon.Text;
             decimal giaGoc = decimal.Parse(txtGiaGoc.Text);
             decimal giaKM = decimal.Parse(txtGiaKM.Text);
             int maKM = int.Parse(cbbKhuyenMai.EditValue.ToString());
             Mon mon = new Mon();
             mon.TenMon = tenMon;
-            mon.MaDVT = 1;
+            mon.MaDVT = maDVT;
             mon.MaNhom = maNhom;
             mon.Anh = imgRename;
             mon.GiaGoc = giaGoc;
             mon.GiaKM = giaKM;
             mon.MaKM = maKM;
-            
-            UpdateStatus(mon,filePathLocalMonAn, appPathLocalMonAn);
+
+            UpdateStatus(mon, filePathLocalMonAn, appPathLocalMonAn);
             this.Close();
 
         }
@@ -135,24 +131,18 @@ namespace QLNhaHang
         {
             //double giaKM = double.Parse(txtGiaKM.Text);
             //string maKM = ;
-            khuyenMai = cbbKhuyenMai.EditValue.ToString();
-            //try
-            //{
-            if (khuyenMai != null)
+            if (string.IsNullOrEmpty(txtGiaGoc.Text))
             {
-
-                if (!string.IsNullOrEmpty(txtGiaGoc.Text))
-                {
-                    txtGiaKM.Text = (double.Parse(txtGiaGoc.Text) - khuyenMaiBLLDAL.getGiaKhuyenMaiByMaKM(int.Parse(cbbKhuyenMai.EditValue.ToString())) * double.Parse(txtGiaGoc.Text)).ToString();
-                }
-                else
-                {
-                    txtGiaKM.Text = "0";
-                }
+                txtGiaKM.Clear();
+                return;
+            }
+            if (cbbKhuyenMai.EditValue == null)
+            {
+                txtGiaKM.Text = txtGiaGoc.Text;
             }
             else
             {
-                txtGiaKM.Text = "0";
+                txtGiaKM.Text = (double.Parse(txtGiaGoc.Text) - khuyenMaiBLLDAL.getGiaKhuyenMaiByMaKM(int.Parse(cbbKhuyenMai.EditValue.ToString())) * double.Parse(txtGiaGoc.Text)).ToString();
             }
             //}
             //catch (Exception ex)
@@ -172,16 +162,23 @@ namespace QLNhaHang
 
         private void cbbKhuyenMai_EditValueChanged(object sender, EventArgs e)
         {
-            //txtGiaGoc.Enabled = true;
-            txtGiaGoc.Clear();
-            txtGiaKM.Text = "0";
-            //double giaGoc = double.Parse(txtGiaGoc.Text);
-            //double giaKM = double.Parse(txtGiaKM.Text);
-            //khuyenMai = cbbKhuyenMai.EditValue.ToString();
-            //if (khuyenMai.Equals("0"))
-            //{
-            //    giaGoc = giaKM;
-            //}
+            try
+            {
+                if (string.IsNullOrEmpty(txtGiaGoc.Text))
+                {
+                    txtGiaGoc.Clear();
+                    return;
+                }
+                if (!string.IsNullOrEmpty(txtGiaGoc.Text))
+                {
+                    txtGiaKM.Text = (double.Parse(txtGiaGoc.Text) - khuyenMaiBLLDAL.getGiaKhuyenMaiByMaKM(int.Parse(cbbKhuyenMai.EditValue.ToString())) * double.Parse(txtGiaGoc.Text)).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void picImgAnhMon_DoubleClick(object sender, EventArgs e)
@@ -200,7 +197,6 @@ namespace QLNhaHang
                 {
                     string iName = openFileDialog.SafeFileName;
                     filePathLocalMonAn = openFileDialog.FileName;
-                    appPathLocalMonAn = appPath + iName;
                     imgNameMonAn = iName;
                     picImgAnhMon.Image = new Bitmap(openFileDialog.OpenFile());
                 }
@@ -227,27 +223,19 @@ namespace QLNhaHang
             //cbbKhuyenMai.Properties.DisplayMember = "TenKM";
             //cbbKhuyenMai.Properties.ValueMember = "MaKM";
 
-            
             cbbKhuyenMai.Properties.DataSource = khuyenMaiBLLDAL.getDataKhuyenMai();
-
             cbbKhuyenMai.Properties.DisplayMember = "TenKM";
             cbbKhuyenMai.Properties.ValueMember = "MaKM";
             cbbKhuyenMai.Properties.NullText = "Chọn khuyến mãi";
         }
         private void loadDataDVT()
         {
-            //?.Viết load cbb đơn vị tính
+            cbbDVT.Properties.DataSource = donViTinhBLLDAL.getDataDVT();
+            cbbDVT.Properties.DisplayMember = "TenDVT";
+            cbbDVT.Properties.ValueMember = "MaDVT";
+            cbbDVT.Properties.NullText = "Chọn đơn vị tính";
         }
 
-        private void cbbDVT_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbbDVT.SelectedIndex < 0)
-            {
-                return;
-            }
-            //MessageBox.Show(cbbDVT.SelectedItem.ToString());
-
-        }
 
         private void picImgAnhMon_Click(object sender, EventArgs e)
         {
@@ -279,6 +267,15 @@ namespace QLNhaHang
             //{
             //    openFileDialog.Dispose();
             //}
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thoát không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

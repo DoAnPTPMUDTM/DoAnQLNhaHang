@@ -29,9 +29,7 @@ namespace QLNhaHang
 
         private void loadDataManHinh()
         {
-            txtMaMH.Enabled = false;
-            btnSua.Enabled = false;
-            btnXoa.Enabled = false;
+            disableControls();
             var manHinhs = from mh in manHinhBLLDAL.getDataManHinh()
                            select new
                            {
@@ -45,6 +43,12 @@ namespace QLNhaHang
             txtMaMH.Clear();
             txtTenMH.Clear();
             txtTenMH.Focus();
+        }
+        private void disableControls()
+        {
+            txtMaMH.Enabled = false;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -132,6 +136,12 @@ namespace QLNhaHang
             {
                 MessageBox.Show("Xóa thất bại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            loadDataManHinh();
+            clearControls();
         }
     }
 }

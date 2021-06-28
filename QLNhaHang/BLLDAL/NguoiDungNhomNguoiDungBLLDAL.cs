@@ -16,8 +16,10 @@ namespace BLLDAL
         public List<NguoiDungNhomNguoiDung> getNhomNguoiDungByMaNhom(int maNhom)
         {
             return db.NguoiDungNhomNguoiDungs.Where(t => t.MaNhom == maNhom).ToList<NguoiDungNhomNguoiDung>();
-
         }
+        //
+        
+        //
         public void insertnguoiDungNhomNguoiDung(NguoiDungNhomNguoiDung ndnnd)
         {
             if(ndnnd != null)
@@ -26,23 +28,24 @@ namespace BLLDAL
                 db.SubmitChanges();
             }
         }
-        public bool kTraTrungMaNhom(int maNhom, string tenDN)
+        public bool kTraTrungMaNhom(int maNhom, int maND)
         {
-            //bool countMaNhom = db.NguoiDungNhomNguoiDungs.Where(t => t.MaNhom == maNhom && t.TenDN == tenDN).Count() > 0;
-            //if (countMaNhom)
-            //{
-                //return true;
-            //}
+            bool countMaNhom = db.NguoiDungNhomNguoiDungs.Where(t => t.MaNhom == maNhom && t.MaND == maND).Count() > 0;
+            if (countMaNhom)
+            {
+                return true;
+            }
             return false;
         }
-        //public void deleteNguoiDungNhomNguoiDung(string tenDN)
-        //{
-            //NguoiDungNhomNguoiDung nguoiDungNhomNguoiDung = db.NguoiDungNhomNguoiDungs.Where(t => t.TenDN == tenDN).FirstOrDefault();
-            //if(nguoiDungNhomNguoiDung != null)
-            //{
-                //db.NguoiDungNhomNguoiDungs.DeleteOnSubmit(nguoiDungNhomNguoiDung);
-                //db.SubmitChanges();
-            //}
-        //}
+        public void deleteNguoiDungNhomNguoiDung(int maND)
+        {
+            NguoiDungNhomNguoiDung nguoiDungNhomNguoiDung = db.NguoiDungNhomNguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
+            if (nguoiDungNhomNguoiDung != null)
+            {
+                db.NguoiDungNhomNguoiDungs.DeleteOnSubmit(nguoiDungNhomNguoiDung);
+                db.SubmitChanges();
+            }
+        }
+
     }
 }

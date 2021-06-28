@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLLDAL;
@@ -35,7 +36,6 @@ namespace QLNhaHang
                                  TenKH = kh.TenKH == null ? "" : kh.TenKH,
                                  DiaChi = kh.DiaChi == null ? "" : kh.DiaChi,
                                  SDT = kh.SDT == null ? "" :  kh.SDT,
-                                 TongThanhTien = 0,
                                  MaHD = khachHangBLLDAL.soHoaDon(kh.MaKH),
                                  DiemTichLuy = kh.DiemTichLuy == null ? 0 : kh.DiemTichLuy.Value
                              };
@@ -47,8 +47,6 @@ namespace QLNhaHang
             txtMaKH.Enabled = false;
             txtDiemTL.Text = "0";
             txtDiemTL.Enabled = false;
-            txtTongTien.Enabled = false;
-            txtTongTien.Text = "0";
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
         }
@@ -85,14 +83,23 @@ namespace QLNhaHang
             //mã kh, tên kh, địa chỉ, sdt, diem tl.
             if (string.IsNullOrEmpty(txtTenKH.Text))
             {
+                MessageBox.Show("Tên khách hàng không được để trống", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (string.IsNullOrEmpty(mmeDiaChi.Text))
             {
+                MessageBox.Show("Địa chỉ không được để trống", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (string.IsNullOrEmpty(txtSDT.Text))
             {
+                MessageBox.Show("Số điện thoại không được để trống", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            Regex regex = new Regex(@"(09|03|07|08|05)+([0-9]{8})");
+            if (!regex.IsMatch(txtSDT.Text))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -174,8 +181,14 @@ namespace QLNhaHang
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            
-            
+            //try
+            //{
+
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Sửa khách hàng thất bại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
             string maKH = gridView1.GetFocusedRowCellValue("MaKH").ToString();
             if(maKH.Equals("0"))
             {

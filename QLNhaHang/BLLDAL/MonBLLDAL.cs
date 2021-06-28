@@ -36,18 +36,33 @@ namespace BLLDAL
         }
         //update
         //mã món, tên món,nhóm món, đvt, anh mon, giá gốc,giá km,maKm
-        public void updateMonAn(int maMon, int maNhom, string tenMon, string donViTinh,string anh, double giaGoc, double giaKM, int maKM)
+        public void updateMonAn(int maMon, int maNhom, string tenMon, int donViTinh,string anh, double giaGoc, double giaKM, int maKM)
         {
             Mon mon = db.Mons.Where(t => t.MaMon == maMon).FirstOrDefault();
-            if(mon != null)
+            //KhuyenMai km = db.KhuyenMais.Where(t => t.MaKM == maKM).FirstOrDefault();
+            if (mon != null)
             {
-                mon.MaNhom = maNhom;
                 mon.TenMon = tenMon;
-               // mon.DVT = donViTinh;
+                mon.MaNhom = maNhom;
+                mon.DonViTinh = db.DonViTinhs.Where(t => t.MaDVT == donViTinh).FirstOrDefault();
                 mon.Anh = anh;
                 mon.GiaGoc = (decimal?)giaGoc;
                 mon.GiaKM = (decimal?)giaKM;
-                mon.MaKM = maKM;
+                mon.KhuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault(); 
+                db.SubmitChanges();
+            }
+        }
+        public void updateMonAnNoImg(int maMon, int maNhom, string tenMon, int donViTinh, double giaGoc, double giaKM, int maKM)
+        {
+            Mon mon = db.Mons.Where(t => t.MaMon == maMon).FirstOrDefault();
+            if (mon != null)
+            {
+                mon.TenMon = tenMon;
+                mon.MaNhom = maNhom;
+                mon.DonViTinh = db.DonViTinhs.Where(t => t.MaDVT == donViTinh).FirstOrDefault(); ;
+                mon.GiaGoc = (decimal?)giaGoc;
+                mon.GiaKM = (decimal?)giaKM;
+                mon.KhuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
                 db.SubmitChanges();
             }
         }

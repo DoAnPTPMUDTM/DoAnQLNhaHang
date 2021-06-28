@@ -34,7 +34,6 @@ namespace QLNhaHang
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.btnRefesh = new DevExpress.XtraEditors.SimpleButton();
-            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.mmeDiaChi = new DevExpress.XtraEditors.MemoEdit();
             this.txtMaKH = new System.Windows.Forms.TextBox();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
@@ -54,7 +53,6 @@ namespace QLNhaHang
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItemDiemTL = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemDiaChi = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItemTongTien = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -64,7 +62,6 @@ namespace QLNhaHang
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -90,7 +87,6 @@ namespace QLNhaHang
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDiemTL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDiaChi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTongTien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -125,16 +121,15 @@ namespace QLNhaHang
             this.groupControl2.AppearanceCaption.Options.UseBorderColor = true;
             this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.Controls.Add(this.layoutControl3);
-            this.groupControl2.Location = new System.Drawing.Point(1097, 12);
+            this.groupControl2.Location = new System.Drawing.Point(1077, 12);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(373, 429);
+            this.groupControl2.Size = new System.Drawing.Size(393, 404);
             this.groupControl2.TabIndex = 5;
             this.groupControl2.Text = "Khách hàng";
             // 
             // layoutControl3
             // 
             this.layoutControl3.Controls.Add(this.btnRefesh);
-            this.layoutControl3.Controls.Add(this.txtTongTien);
             this.layoutControl3.Controls.Add(this.mmeDiaChi);
             this.layoutControl3.Controls.Add(this.txtMaKH);
             this.layoutControl3.Controls.Add(this.btnThem);
@@ -147,7 +142,7 @@ namespace QLNhaHang
             this.layoutControl3.Location = new System.Drawing.Point(2, 28);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(369, 399);
+            this.layoutControl3.Size = new System.Drawing.Size(389, 374);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -155,9 +150,9 @@ namespace QLNhaHang
             // 
             this.btnRefesh.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefesh.Appearance.Options.UseFont = true;
-            this.btnRefesh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnRefesh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRefesh.ImageOptions.Image")));
             this.btnRefesh.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnRefesh.Location = new System.Drawing.Point(280, 315);
+            this.btnRefesh.Location = new System.Drawing.Point(280, 311);
             this.btnRefesh.Name = "btnRefesh";
             this.btnRefesh.Size = new System.Drawing.Size(77, 27);
             this.btnRefesh.StyleController = this.layoutControl3;
@@ -165,26 +160,19 @@ namespace QLNhaHang
             this.btnRefesh.Text = "Refesh";
             this.btnRefesh.Click += new System.EventHandler(this.btnRefesh_Click);
             // 
-            // txtTongTien
-            // 
-            this.txtTongTien.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTongTien.Location = new System.Drawing.Point(152, 266);
-            this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.Size = new System.Drawing.Size(205, 25);
-            this.txtTongTien.TabIndex = 9;
-            // 
             // mmeDiaChi
             // 
             this.mmeDiaChi.Location = new System.Drawing.Point(152, 120);
             this.mmeDiaChi.Name = "mmeDiaChi";
             this.mmeDiaChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mmeDiaChi.Properties.Appearance.Options.UseFont = true;
-            this.mmeDiaChi.Size = new System.Drawing.Size(205, 24);
+            this.mmeDiaChi.Size = new System.Drawing.Size(205, 69);
             this.mmeDiaChi.StyleController = this.layoutControl3;
             this.mmeDiaChi.TabIndex = 3;
             // 
             // txtMaKH
             // 
+            this.txtMaKH.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaKH.Location = new System.Drawing.Point(152, 22);
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.Size = new System.Drawing.Size(205, 25);
@@ -196,7 +184,7 @@ namespace QLNhaHang
             this.btnThem.Appearance.Options.UseFont = true;
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnThem.Location = new System.Drawing.Point(32, 315);
+            this.btnThem.Location = new System.Drawing.Point(32, 311);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(68, 27);
             this.btnThem.StyleController = this.layoutControl3;
@@ -210,7 +198,7 @@ namespace QLNhaHang
             this.btnXoa.Appearance.Options.UseFont = true;
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnXoa.Location = new System.Drawing.Point(202, 315);
+            this.btnXoa.Location = new System.Drawing.Point(202, 311);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(54, 27);
             this.btnXoa.StyleController = this.layoutControl3;
@@ -224,7 +212,7 @@ namespace QLNhaHang
             this.btnSua.Appearance.Options.UseFont = true;
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
             this.btnSua.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSua.Location = new System.Drawing.Point(124, 315);
+            this.btnSua.Location = new System.Drawing.Point(124, 311);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(54, 27);
             this.btnSua.StyleController = this.layoutControl3;
@@ -235,7 +223,7 @@ namespace QLNhaHang
             // txtDiemTL
             // 
             this.txtDiemTL.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiemTL.Location = new System.Drawing.Point(152, 217);
+            this.txtDiemTL.Location = new System.Drawing.Point(152, 262);
             this.txtDiemTL.Name = "txtDiemTL";
             this.txtDiemTL.Size = new System.Drawing.Size(205, 25);
             this.txtDiemTL.TabIndex = 5;
@@ -244,7 +232,7 @@ namespace QLNhaHang
             // txtSDT
             // 
             this.txtSDT.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDT.Location = new System.Drawing.Point(152, 168);
+            this.txtSDT.Location = new System.Drawing.Point(152, 213);
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(205, 25);
             this.txtSDT.TabIndex = 4;
@@ -273,17 +261,16 @@ namespace QLNhaHang
             this.emptySpaceItem5,
             this.layoutControlItemDiemTL,
             this.layoutControlItemDiaChi,
-            this.layoutControlItemTongTien,
             this.emptySpaceItem3,
             this.layoutControlItem3});
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(389, 378);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(389, 374);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSua;
-            this.layoutControlItem7.Location = new System.Drawing.Point(102, 293);
+            this.layoutControlItem7.Location = new System.Drawing.Point(102, 289);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(78, 51);
             this.layoutControlItem7.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
@@ -293,7 +280,7 @@ namespace QLNhaHang
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnXoa;
-            this.layoutControlItem8.Location = new System.Drawing.Point(180, 293);
+            this.layoutControlItem8.Location = new System.Drawing.Point(180, 289);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(78, 51);
             this.layoutControlItem8.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
@@ -303,7 +290,7 @@ namespace QLNhaHang
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnThem;
-            this.layoutControlItem9.Location = new System.Drawing.Point(10, 293);
+            this.layoutControlItem9.Location = new System.Drawing.Point(10, 289);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(92, 51);
             this.layoutControlItem9.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
@@ -328,7 +315,7 @@ namespace QLNhaHang
             this.layoutControlItemSDT.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItemSDT.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItemSDT.Control = this.txtSDT;
-            this.layoutControlItemSDT.Location = new System.Drawing.Point(10, 146);
+            this.layoutControlItemSDT.Location = new System.Drawing.Point(10, 191);
             this.layoutControlItemSDT.Name = "layoutControlItemSDT";
             this.layoutControlItemSDT.Size = new System.Drawing.Size(349, 49);
             this.layoutControlItemSDT.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
@@ -352,7 +339,7 @@ namespace QLNhaHang
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(359, 0);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(10, 344);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(10, 340);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem5
@@ -360,7 +347,7 @@ namespace QLNhaHang
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(10, 344);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(10, 340);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItemDiemTL
@@ -368,7 +355,7 @@ namespace QLNhaHang
             this.layoutControlItemDiemTL.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItemDiemTL.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItemDiemTL.Control = this.txtDiemTL;
-            this.layoutControlItemDiemTL.Location = new System.Drawing.Point(10, 195);
+            this.layoutControlItemDiemTL.Location = new System.Drawing.Point(10, 240);
             this.layoutControlItemDiemTL.Name = "layoutControlItemDiemTL";
             this.layoutControlItemDiemTL.Size = new System.Drawing.Size(349, 49);
             this.layoutControlItemDiemTL.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
@@ -382,27 +369,15 @@ namespace QLNhaHang
             this.layoutControlItemDiaChi.Control = this.mmeDiaChi;
             this.layoutControlItemDiaChi.Location = new System.Drawing.Point(10, 98);
             this.layoutControlItemDiaChi.Name = "layoutControlItemDiaChi";
-            this.layoutControlItemDiaChi.Size = new System.Drawing.Size(349, 48);
+            this.layoutControlItemDiaChi.Size = new System.Drawing.Size(349, 93);
             this.layoutControlItemDiaChi.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItemDiaChi.Text = "Địa chỉ";
             this.layoutControlItemDiaChi.TextSize = new System.Drawing.Size(117, 21);
             // 
-            // layoutControlItemTongTien
-            // 
-            this.layoutControlItemTongTien.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlItemTongTien.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItemTongTien.Control = this.txtTongTien;
-            this.layoutControlItemTongTien.Location = new System.Drawing.Point(10, 244);
-            this.layoutControlItemTongTien.Name = "layoutControlItemTongTien";
-            this.layoutControlItemTongTien.Size = new System.Drawing.Size(349, 49);
-            this.layoutControlItemTongTien.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItemTongTien.Text = "Tổng tiền";
-            this.layoutControlItemTongTien.TextSize = new System.Drawing.Size(117, 21);
-            // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 344);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 340);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(369, 14);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -410,7 +385,7 @@ namespace QLNhaHang
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnRefesh;
-            this.layoutControlItem3.Location = new System.Drawing.Point(258, 293);
+            this.layoutControlItem3.Location = new System.Drawing.Point(258, 289);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(101, 51);
             this.layoutControlItem3.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
@@ -428,7 +403,7 @@ namespace QLNhaHang
             this.groupControl1.Controls.Add(this.gridViewKhachHang);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1081, 629);
+            this.groupControl1.Size = new System.Drawing.Size(1061, 629);
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "Danh sách khách hàng";
             // 
@@ -438,13 +413,15 @@ namespace QLNhaHang
             this.gridViewKhachHang.Location = new System.Drawing.Point(2, 28);
             this.gridViewKhachHang.MainView = this.gridView1;
             this.gridViewKhachHang.Name = "gridViewKhachHang";
-            this.gridViewKhachHang.Size = new System.Drawing.Size(1077, 599);
+            this.gridViewKhachHang.Size = new System.Drawing.Size(1057, 599);
             this.gridViewKhachHang.TabIndex = 0;
             this.gridViewKhachHang.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.FocusedRow.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.FocusedRow.Options.UseFont = true;
             this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
             this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -454,7 +431,6 @@ namespace QLNhaHang
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5,
             this.gridColumn6,
             this.gridColumn7});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
@@ -507,16 +483,6 @@ namespace QLNhaHang
             this.gridColumn4.VisibleIndex = 3;
             this.gridColumn4.Width = 94;
             // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Tổng Tiền";
-            this.gridColumn5.FieldName = "TongThanhTien";
-            this.gridColumn5.MinWidth = 25;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
-            this.gridColumn5.Width = 94;
-            // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Số Hóa Đơn";
@@ -524,7 +490,7 @@ namespace QLNhaHang
             this.gridColumn6.MinWidth = 25;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 4;
             this.gridColumn6.Width = 94;
             // 
             // gridColumn7
@@ -534,7 +500,7 @@ namespace QLNhaHang
             this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.VisibleIndex = 5;
             this.gridColumn7.Width = 94;
             // 
             // Root
@@ -556,25 +522,25 @@ namespace QLNhaHang
             this.layoutControlItem1.Control = this.groupControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1085, 633);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1065, 633);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.groupControl2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(1085, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(1065, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(377, 433);
+            this.layoutControlItem2.Size = new System.Drawing.Size(397, 408);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(1085, 433);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(1065, 408);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(377, 200);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(397, 225);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
@@ -612,7 +578,6 @@ namespace QLNhaHang
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDiemTL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemDiaChi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemTongTien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -641,7 +606,6 @@ namespace QLNhaHang
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
@@ -666,8 +630,6 @@ namespace QLNhaHang
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraEditors.MemoEdit mmeDiaChi;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItemDiaChi;
-        private System.Windows.Forms.TextBox txtTongTien;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItemTongTien;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.SimpleButton btnRefesh;

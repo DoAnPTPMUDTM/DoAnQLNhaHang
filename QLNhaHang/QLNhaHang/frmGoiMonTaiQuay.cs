@@ -74,9 +74,11 @@ namespace QLNhaHang
             {
                 if (soBan >= 0 && banBLLDAL.ktTinhTrangBan(lstBan[soBan].MaBan) == 0)//Mo ban
                 {
+                    MessageBox.Show(lstBan[soBan].MaBan + lstBan[soBan].TenBan);
                     banBLLDAL.capNhatTTMoBan(lstBan[soBan].MaBan);
                     int soBamTemp = soBan;
-                    loadBan();
+                    loadBan();//???? ListboxSelectedChange
+                    MessageBox.Show("Ban temp" + lstBan[soBamTemp].MaBan + lstBan[soBamTemp].TenBan);
                     imgLstBoxBan.SelectedIndex = soBamTemp;
                     soBan = soBamTemp;
                     btnMoBan.Tag = "0";
@@ -171,7 +173,7 @@ namespace QLNhaHang
         }
 
         private void imgLstBoxBan_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {          
             soBan = imgLstBoxBan.SelectedIndex;
             if (soBan >= 0)
             {
@@ -201,10 +203,11 @@ namespace QLNhaHang
                     {
                         return;
                     }
+                    MessageBox.Show(lstBan[soBan].MaBan + lstBan[soBan].TenBan + " MaHD: " + hd.MaHD + " MaBan: " + hd.MaBan);
                     //Load MaHD
                     lbHoaDon.Text = hd.MaHD.ToString();
                     //Load CTHD
-                    loadCTHD(hd.MaHD);
+                    loadCTHD(hd.MaHD);//???
                     //Enabled control CT goi mon = true
                     enabledControlCTGoiMonTrue();
                     //

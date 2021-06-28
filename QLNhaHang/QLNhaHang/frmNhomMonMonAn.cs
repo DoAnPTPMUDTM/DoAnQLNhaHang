@@ -18,6 +18,8 @@ namespace QLNhaHang
     {
         NhomMonBLLDAL nhomMonBLLDAL = new NhomMonBLLDAL();
         MonBLLDAL monBLLDAL = new MonBLLDAL();
+        KhuyenMaiBLLDAL khuyenMaiBLLDAL = new KhuyenMaiBLLDAL();
+        DonViTinhBLLDAL donViTinhBLLDAL = new DonViTinhBLLDAL();
         ConfigImage configImage = new ConfigImage();
         public frmNhomMonMonAn()
         {
@@ -51,19 +53,17 @@ namespace QLNhaHang
         {
             // Mã món, tên món, đvt, giá km, giá gốc, mã km
             var monAns = from mon in monBLLDAL.getDataMon()
-                         from nhom in nhomMonBLLDAL.getDataNhomMon()
-                         where mon.MaNhom == nhom.MaNhom
                          select new
                          {
                              MaMon = mon.MaMon,
                              TenMon = mon.TenMon,
-                             MaNhom = nhom.TenNhom,
+                             MaNhom = mon.NhomMon.TenNhom,
                              DVT = mon.DonViTinh.TenDVT,
                              Anh = loadImageMon(mon.Anh),//
-                             //Anh = mon.Anh,
                              GiaGoc = mon.GiaGoc,
                              GiaKM = mon.GiaKM,
-                             MaKM = mon.KhuyenMai == null ? 0 : mon.KhuyenMai.TyLe.Value
+                             //MaKM = mon.KhuyenMai == null ? 0 : mon.KhuyenMai.TyLe.Value
+                             MaKM = mon.KhuyenMai.TyLe
                          };
             gridViewMonAn.DataSource = monAns.ToList();
         }
@@ -72,7 +72,7 @@ namespace QLNhaHang
         {
             try
             {
-                if(Image.FromFile(configImage.GetProjectLinkDirectory() + configImage.imgAnhMon + fileName) == null)// Kiem tra file not found khong hoat dong?// 
+                if (Image.FromFile(configImage.GetProjectLinkDirectory() + configImage.imgAnhMon + fileName) == null)// Kiem tra file not found khong hoat dong?// 
                 {
                     return QLNhaHang.Properties.Resources.monan;
                 }
@@ -87,23 +87,23 @@ namespace QLNhaHang
             }
         }
 
-        private void gridView2_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
-        {
-            if (e.RowHandle >= 0)
-            {
-                if (e.RowHandle % 2 == 0)
-                {
-                    e.Appearance.BackColor = Color.FromArgb(150, Color.FromArgb(0, 192, 192));
-                    //e.Appearance.BackColor = Color.FromArgb(150, Color.LightBlue);
-                    e.Appearance.BackColor2 = Color.White;
-                }
-                else
-                {
-                    e.Appearance.BackColor = Color.White;
-                }
-            }
+        //private void gridView2_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        //{
+        //    if (e.RowHandle >= 0)
+        //    {
+        //        if (e.RowHandle % 2 == 0)
+        //        {
+        //            e.Appearance.BackColor = Color.FromArgb(150, Color.FromArgb(0, 192, 192));
+        //            //e.Appearance.BackColor = Color.FromArgb(150, Color.LightBlue);
+        //            e.Appearance.BackColor2 = Color.White;
+        //        }
+        //        else
+        //        {
+        //            e.Appearance.BackColor = Color.White;
+        //        }
+        //    }
 
-        }
+        //}
 
         private void loadDataMonAnByMaNhom(int maNhom)
         {
@@ -128,7 +128,6 @@ namespace QLNhaHang
             string maNhom = gridView1.GetFocusedRowCellValue("MaNhom").ToString();
             if (maNhom == null)
             {
-                //MessageBox.Show(gridView1.GetFocusedRowCellValue("MaNhom").ToString());
                 loadDataMonAn();
             }
             else if (maNhom.Equals("0"))
@@ -162,7 +161,7 @@ namespace QLNhaHang
             }
             catch (Exception ex)
             {
-                //Message
+                MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -170,7 +169,6 @@ namespace QLNhaHang
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             loadDataNhomMon();
-
         }
 
         private void barButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -215,7 +213,7 @@ namespace QLNhaHang
                 return;
             }
 
-            
+
             NhomMon nhomMon = nhomMonBLLDAL.getNhomMonByMaMon(int.Parse(maNhom));
             if (nhomMon == null)
             {
@@ -278,11 +276,12 @@ namespace QLNhaHang
                 try
                 {
                     monBLLDAL.insertMonAn(mon);
+                    MessageBox.Show("Thêm món ăn thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadDataMonAn();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Lưu món không thành công: " + ex.Message);
+                    MessageBox.Show("Thêm món không thành công: " + ex.Message);
                     if (File.Exists(fileApp))
                     {
                         File.Delete(fileApp);
@@ -290,7 +289,7 @@ namespace QLNhaHang
                 }
             }
         }
-        
+
 
         //private void FrmThemMonAn_OnUpdateMonAn(object sender, EventArgs eventArgs, string tenMon, string nhomMon, string khuyenMai, double giaGoc, double giaKM, string donViTinh, string imgMonAn)
         //{
@@ -330,49 +329,87 @@ namespace QLNhaHang
 
         private void barButtonSuaMon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string maMon = gridView2.GetFocusedRowCellValue("MaMon").ToString();
+            string maMon = layoutView1.GetFocusedRowCellValue("MaMon").ToString();
             if (maMon == null)
             {
                 loadDataMonAn();
                 return;
             }
-            try
+            //try
+            //{
+            Mon mon = monBLLDAL.getMonByMaMon(int.Parse(maMon));
+            if (mon == null)
             {
-                Mon mon = monBLLDAL.getMonByMaMon(int.Parse(maMon));
-                if (mon == null)
+                MessageBox.Show("Không tìm thấy món ăn", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            frmSuaMonAn frmSuaMonAn = new frmSuaMonAn(mon.MaMon, mon.TenMon, mon.MaNhom.ToString(), mon.MaKM.ToString(), mon.MaDVT.ToString(), (double)mon.GiaGoc, (double)mon.GiaKM, mon.Anh);
+            frmSuaMonAn.OnUpdateMonAn += FrmSuaMonAn_OnUpdateMonAn; ;
+            frmSuaMonAn.Name = "frmSuaMonAn";
+            frmSuaMonAn.ShowDialog(this);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+
+        }
+
+        private void FrmSuaMonAn_OnUpdateMonAn(object sender, EventArgs eventArgs, int maMon, string tenMon, string nhomMon, string khuyenMai, string donViTinh, double giaGoc, double giaKM, string imgMonAn, string fileLocal, string fileApp, bool check)
+        {
+            //MessageBox.Show(maMon + " - " + tenMon + " - " + nhomMon + " - " + khuyenMai + " - " + donViTinh + " - " + giaGoc + " - " + giaKM + " - " + imgMonAn + " - " + fileLocal + " - " + fileApp + " - " + check.ToString());
+            bool checkSaveImg = false;
+            if (check)
+            {
+                try
                 {
-                    MessageBox.Show("Không tìm thấy món ăn", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    File.Copy(fileLocal, fileApp);
+                    checkSaveImg = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lưu ảnh không thành công: " + ex.Message);
                     return;
                 }
-                frmSuaMonAn frmSuaMonAn = new frmSuaMonAn(mon.MaMon,mon.TenMon,mon.NhomMon.ToString(),mon.MaKM.ToString(),"s", (double)mon.GiaGoc, (double)mon.GiaKM,mon.Anh);
-                frmSuaMonAn.OnUpdateMonAn += FrmSuaMonAn_OnUpdateMonAn;
-                frmSuaMonAn.Name = "frmSuaMonAn";
-                frmSuaMonAn.ShowDialog(this);
             }
-            catch (Exception ex)
+            if (check)
             {
-                MessageBox.Show(ex.Message, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (checkSaveImg)
+                {
+                    //try
+                    //{
+                    monBLLDAL.updateMonAn(maMon, int.Parse(nhomMon), tenMon, int.Parse(donViTinh), imgMonAn, giaGoc, giaKM, int.Parse(khuyenMai));
+                    MessageBox.Show("Sửa thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadDataMonAn();
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    // MessageBox.Show("Sửa món không thành công" + ex.Message);
+                    //if (File.Exists(fileApp))
+                    //{
+                    //File.Delete(fileApp);
+                    //}
+                }
             }
-
-        }
-
-        private void FrmSuaMonAn_OnUpdateMonAn(object sender, EventArgs eventArgs, int maMon, string tenMon, string nhomMon, string khuyenMai, string donViTinh, double giaGoc, double giaKM, string imgMonAn)
-        {
-            try
+            else
             {
-                monBLLDAL.updateMonAn(maMon, int.Parse(nhomMon), tenMon, donViTinh, imgMonAn, giaGoc, giaKM, int.Parse(khuyenMai));
+                //try
+                //{
+                monBLLDAL.updateMonAnNoImg(maMon, int.Parse(nhomMon), tenMon, int.Parse(donViTinh), giaGoc, giaKM, int.Parse(khuyenMai));
                 MessageBox.Show("Sửa thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataMonAn();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
+                //catch (Exception ex)
+                //{
+                // MessageBox.Show("Sửa món không thành công" + ex.Message);
+                //}
             }
         }
+
 
         private void barButtonXoaMon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string maMon = gridView2.GetFocusedRowCellValue("MaMon").ToString();
+            string maMon = layoutView1.GetFocusedRowCellValue("MaMon").ToString();
             if (maMon == null)
             {
                 return;
@@ -391,7 +428,7 @@ namespace QLNhaHang
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+
         }
 
         private void barButtonRefeshMon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

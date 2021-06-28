@@ -94,7 +94,11 @@ namespace QLNhaHang
                 MessageBox.Show("Mật khẩu không được để trống", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            //check null?
+            if(rdbNu.Checked == false && rdbNam.Checked == false)
+            {
+                MessageBox.Show("Vui lòng chọn giới tính!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             //Kiểm tra trùng email, tên đn
             if (NguoiDungBLLDAL.ktraTrungTenDN(txtTenDN.Text))
             {

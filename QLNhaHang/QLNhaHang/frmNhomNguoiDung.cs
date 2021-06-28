@@ -27,10 +27,7 @@ namespace QLNhaHang
         }
         private void loadDataNhomNguoiDung()
         {
-            //Disable
-            txtMaNhom.Enabled = false;
-            btnSua.Enabled = false;
-            btnXoa.Enabled = false;
+            disableControls();
             //
             var nguoiDungs = from nd in nhomNguoiDungBLLDAL.getDataNhomNguoiDung()
                              select new
@@ -47,6 +44,13 @@ namespace QLNhaHang
             txtTenNhom.Clear();
             memoEditGhiChu.Text = "";
             txtTenNhom.Focus();
+        }
+        private void disableControls()
+        {
+            //Disable
+            txtMaNhom.Enabled = false;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -147,6 +151,13 @@ namespace QLNhaHang
             {
                 MessageBox.Show("Xóa không thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            loadDataNhomNguoiDung();
+            disableControls();
+            clearControls();
         }
     }
 }
