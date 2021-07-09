@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLLDAL;
+using DevExpress.XtraBars;
+
 namespace QLNhaHang
 {
     public partial class frmMain : Form
     {
-        
+        NguoiDungNhomNguoiDungBLLDAL nguoiDungNhomNguoiDungBLLDAL = new NguoiDungNhomNguoiDungBLLDAL();
+        PhanQuyenBLLDAL phanQuyenBLLDAL = new PhanQuyenBLLDAL();
         public frmMain()
         {
             InitializeComponent();
@@ -106,5 +109,74 @@ namespace QLNhaHang
             frmKhachHang.Name = "frmKhachHang";
             showForm(frmKhachHang);
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            //phanQuyenMenu();
+        }
+
+        private void barBtnQLBanAn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmBanAn frmBanAn = new frmBanAn();
+            frmBanAn.Name = "frmBanAn";
+            frmBanAn.ShowDialog(this);
+        }
+
+        private void barBtnQLGiamGia_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmKhuyenMai frmKhuyenMai = new frmKhuyenMai();
+            frmKhuyenMai.Name = "frmKhuyenMai";
+            showForm(frmKhuyenMai);
+        }
+        public void timKiemMenu(PhanQuyen phanQuyen)
+        {
+            foreach (var item in ribbonControl1.Items)
+            {
+                if (item.GetType() == typeof(BarButtonItem))
+                {
+                    if (((BarButtonItem)item).Tag != null)
+                    {
+                        if (((BarButtonItem)item).Tag.ToString().Equals(phanQuyen.MaMH.ToString()))
+                        {
+                            if(phanQuyen.CoQuyen == 0)
+                            {
+                                ((BarButtonItem)item).Enabled = false;
+                                ((BarButtonItem)item).Visibility = BarItemVisibility.Never;
+                                break;
+                            }
+                            else
+                            {
+                                ((BarButtonItem)item).Enabled = true;
+                                ((BarButtonItem)item).Visibility = BarItemVisibility.Always;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public void phanQuyenMenu()
+        {
+            List<int> lstMaNhomND = nguoiDungNhomNguoiDungBLLDAL.getMaNhomByMaND(1);//Thay sau khi login
+            foreach(int maNhom in lstMaNhomND)
+            {
+                List<PhanQuyen> lstQuyen = phanQuyenBLLDAL.getQuyenByMaNhom(maNhom);
+                foreach(PhanQuyen phanQuyen in lstQuyen)
+                {
+                    timKiemMenu(phanQuyen);
+                }
+            }
+        }
+
+        private void barBtnSaoLuu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmSaoLuu frmSaoLuu = new frmSaoLuu();
+            frmSaoLuu.Name = "frmSaoLuu";
+            frmSaoLuu.ShowDialog(this);
+        }
+        //private void xtraTabbedMdiManager1_SelectedPageChanged(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show("Change");
+        //}
     }
 }

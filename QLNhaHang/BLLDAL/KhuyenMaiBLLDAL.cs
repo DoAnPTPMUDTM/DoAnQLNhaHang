@@ -31,5 +31,36 @@ namespace BLLDAL
         {
             return db.KhuyenMais.Where(t => t.MaKM == maKM).FirstOrDefault();
         }
+        public void insertKhuyenMai(KhuyenMai khuyenMai)
+        {
+            if(khuyenMai != null)
+            {
+                db.KhuyenMais.InsertOnSubmit(khuyenMai);
+                db.SubmitChanges();
+            }
+        }
+        public void updateKhuyenMai(int maKM, KhuyenMai khuyenMai)
+        {
+            KhuyenMai km = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
+            if(km != null)
+            {
+                km.TenKM = khuyenMai.TenKM;
+                km.TyLe = khuyenMai.TyLe;
+                db.SubmitChanges();
+            }
+        }
+        public bool ktKhoaNgoai(int maKM)
+        {
+            return db.Mons.Where(m => m.MaKM == maKM).Count() > 0;
+        }
+        public void deleteKhuyenMai(int maKM)
+        {
+            KhuyenMai khuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
+            if(khuyenMai != null)
+            {
+                db.KhuyenMais.DeleteOnSubmit(khuyenMai);
+                db.SubmitChanges();
+            }
+        }
     }
 }

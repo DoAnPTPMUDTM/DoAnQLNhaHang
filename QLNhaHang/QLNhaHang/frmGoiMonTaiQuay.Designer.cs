@@ -860,6 +860,7 @@ namespace QLNhaHang
             this.btnInCheBien.Size = new System.Drawing.Size(105, 29);
             this.btnInCheBien.TabIndex = 0;
             this.btnInCheBien.Text = "In chế biến";
+            this.btnInCheBien.Click += new System.EventHandler(this.btnInCheBien_Click);
             // 
             // btnThem1SL
             // 
@@ -1185,6 +1186,7 @@ namespace QLNhaHang
             this.Name = "frmGoiMonTaiQuay";
             this.Text = "GoiMonTaiQuay";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGoiMonTaiQuay_FormClosing);
             this.Load += new System.EventHandler(this.frmGoiMonTaiQuay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

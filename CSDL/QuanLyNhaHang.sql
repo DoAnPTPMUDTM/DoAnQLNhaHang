@@ -537,7 +537,8 @@ SELECT * FROM CTHD
 SELECT * FROM KhachHang
 SELECT * FROM Ban
 SELECT * FROM KhuyenMai
-
+SELECT * FROM NguoiDungNhomNguoiDung
+SELECT * FROM ManHinh
 -------------------------------
 INSERT INTO CTHD VALUES (3,1,1,45000,45000,NULL)
 INSERT INTO CTHD VALUES (3,4,1,120000,120000,NULL)
@@ -555,3 +556,7 @@ INSERT INTO CTHD VALUES (5,6,5,10000,225000,NULL)
 
 DELEte from CTHD
 DELEte from HoaDon
+
+-------------
+SELECT ManHinh.TenMH, PhanQuyen.CoQuyen FROM ManHinh, PhanQuyen WHERE ManHinh.MaMH = PhanQuyen.MaMH AND MaNhom = 1
+SELECT ManHinh.TenMH, PhanQuyen.CoQuyen FROM ManHinh, PhanQuyen WHERE ManHinh.MaMH = PhanQuyen.MaMH AND MaNhom = 2

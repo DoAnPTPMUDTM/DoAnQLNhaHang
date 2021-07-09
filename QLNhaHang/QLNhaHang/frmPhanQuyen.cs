@@ -72,7 +72,7 @@ namespace QLNhaHang
             //{
             //    foreach (DataGridViewRow item in dtgvPhanQuyen.Rows)
             //    {
-                   
+
             //    }
 
             //}
@@ -80,6 +80,45 @@ namespace QLNhaHang
             //{
             //    MessageBox.Show(ex.Message);
             //}
+            try
+            {
+                string maNhom = dtgvNhomNguoiDung.CurrentRow.Cells[0].Value.ToString();
+                if (string.IsNullOrEmpty(maNhom))
+                {
+                    return;
+                }
+                foreach (DataGridViewRow row in dtgvPhanQuyen.Rows)
+                {
+                    string maMH = row.Cells[0].Value.ToString();
+                    if (string.IsNullOrEmpty(maMH))
+                    {
+                        continue;
+                    }
+                    DataGridViewCheckBoxCell cell = row.Cells[2] as DataGridViewCheckBoxCell;
+                    int quyen = 0;
+                    if (cell.Value != null)
+                    {
+                        if (Convert.ToBoolean(cell.Value))
+                        {
+                            quyen = 1;
+                        }
+                        else
+                        {
+                            quyen = 0;
+                        }
+                    }
+                    else
+                    {
+                        quyen = 0;
+                    }
+                    phanQuyenBLLDAL.updatePhanQuyen(int.Parse(maNhom), int.Parse(maMH), quyen);
+                }
+                loadDataPhanQuyenByMaNhom(int.Parse(maNhom));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dtgvPhanQuyen_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -118,7 +157,13 @@ namespace QLNhaHang
                 return;
             }
             int maNhom = row.MaNhom;
-            loadDataPhanQuyen(maNhom);
+            //loadDataPhanQuyen(maNhom);
+            loadDataPhanQuyenByMaNhom(maNhom);
+        }
+        public void loadDataPhanQuyenByMaNhom(int maNhom)
+        {
+            dtgvPhanQuyen.DataSource = null;
+            dtgvPhanQuyen.DataSource = phanQuyenBLLDAL.getPhanQuyensByMaNhom(maNhom);
         }
     }
 }

@@ -85,6 +85,15 @@ namespace BLLDAL
             }
             return maMon;
         }
+        public string getTenMonByMaMon(int maMon)
+        {
+            Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
+            if(mon != null)
+            {
+                return mon.TenMon;
+            }
+            return "Trống";
+        }
 
     }
 }

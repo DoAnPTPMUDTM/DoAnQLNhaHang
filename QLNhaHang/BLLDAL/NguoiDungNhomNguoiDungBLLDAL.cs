@@ -46,6 +46,10 @@ namespace BLLDAL
                 db.SubmitChanges();
             }
         }
+        public List<int> getMaNhomByMaND(int maND)
+        {
+            return db.NguoiDungNhomNguoiDungs.Where(n => n.MaND == maND).Select(s => s.MaNhom).ToList();
+        }
 
     }
 }

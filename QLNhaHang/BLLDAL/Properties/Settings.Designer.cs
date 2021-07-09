@@ -59,8 +59,7 @@ namespace BLLDAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI\\SQLEXPRESS;Initial Catalog=QuanLyNhaHang;User ID=sa;Password=0905" +
-            "213883")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=QuanLyNhaHang;User ID=sa;Password=123")]
         public string QuanLyNhaHangConnectionString3 {
             get {
                 return ((string)(this["QuanLyNhaHangConnectionString3"]));

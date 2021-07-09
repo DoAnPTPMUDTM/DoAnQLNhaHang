@@ -43,5 +43,36 @@ namespace BLLDAL
         {
             return db.Bans.Where(b => b.MaBan == maBan).FirstOrDefault();
         }
+        public void insertBan(Ban ban)
+        {
+            if(ban != null)
+            {
+                db.Bans.InsertOnSubmit(ban);
+                db.SubmitChanges();
+            }
+        }
+        public bool ktKhoaNgoai(int maBan)
+        {
+            return db.HoaDons.Where(h => h.MaBan == maBan).Count() > 0;
+        }
+        public void updateBan(int maBan, Ban ban)
+        {
+            Ban banUpdate = db.Bans.Where(b => b.MaBan == maBan).FirstOrDefault();
+            if (banUpdate != null)
+            {
+                banUpdate.TenBan = ban.TenBan;
+                banUpdate.ViTri = ban.ViTri;
+                db.SubmitChanges();
+            }
+        }
+        public void deleteBan(int maBan)
+        {
+            Ban banDelete = db.Bans.Where(b => b.MaBan == maBan).FirstOrDefault();
+            if (banDelete != null)
+            {
+                db.Bans.DeleteOnSubmit(banDelete);
+                db.SubmitChanges();
+            }
+        }
     }
 }

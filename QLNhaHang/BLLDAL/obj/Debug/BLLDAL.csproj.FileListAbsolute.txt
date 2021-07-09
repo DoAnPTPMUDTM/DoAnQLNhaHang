@@ -10,3 +10,4 @@ D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\BLLDAL\bin\Debug\BLLDAL.pdb
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.csproj.CoreCompileInputs.cache
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.dll
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.pdb
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.csprojAssemblyReference.cache

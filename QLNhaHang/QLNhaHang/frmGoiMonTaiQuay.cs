@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLLDAL;
 using DevExpress.XtraGrid.Views.Grid;
+using TableDependency.SqlClient;
+using TableDependency.SqlClient.Base;
 
 namespace QLNhaHang
 {
@@ -22,12 +24,14 @@ namespace QLNhaHang
         CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
         int soBan = -1;
         List<Ban> lstBan;
+        List<InCheBien> lstInCheBien;
         public frmGoiMonTaiQuay()
         {
             InitializeComponent();
             //dataGridView1.ColumnHeadersDefaultCellStyle.Font = (new Font("Tahoma", 10, FontStyle.Regular));
             //dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White;
             lstBan = new List<Ban>();
+            lstInCheBien = new List<InCheBien>();
             lstBan = banBLLDAL.getDataBan();
             loadNhomMon();
             //
@@ -43,6 +47,10 @@ namespace QLNhaHang
             //
             lbQuyDinhTichDiem.Text = String.Format("{0:0,00}", Properties.Settings.Default.DiemTich) + "đ";
             lbQuyDinhDoiDiem.Text = Properties.Settings.Default.DiemDoi.ToString() + "%";
+            //
+            //Control.CheckForIllegalCrossThreadCalls = false;
+            //
+            startListenner();
         }
         public void loadBan()
         {
@@ -70,17 +78,18 @@ namespace QLNhaHang
 
         private void btnMoBan_Click(object sender, EventArgs e)
         {
-            if (btnMoBan.Tag.Equals("1"))
+            if (btnMoBan.Tag.Equals("1"))//Tag = 1 Ban dang dong, Tag = 0 Ban dang mo
             {
                 if (soBan >= 0 && banBLLDAL.ktTinhTrangBan(lstBan[soBan].MaBan) == 0)//Mo ban
                 {
-                    MessageBox.Show(lstBan[soBan].MaBan + lstBan[soBan].TenBan);
+                    //MessageBox.Show("Bàn được chọn: " + lstBan[soBan].MaBan + lstBan[soBan].TenBan);
                     banBLLDAL.capNhatTTMoBan(lstBan[soBan].MaBan);
-                    int soBamTemp = soBan;
-                    loadBan();//???? ListboxSelectedChange
-                    MessageBox.Show("Ban temp" + lstBan[soBamTemp].MaBan + lstBan[soBamTemp].TenBan);
-                    imgLstBoxBan.SelectedIndex = soBamTemp;
-                    soBan = soBamTemp;
+                    //int soBamTemp = soBan;
+                    //loadBan();//???? ListboxSelectedChange
+                    //MessageBox.Show("Ban temp: " + lstBan[soBamTemp].MaBan + lstBan[soBamTemp].TenBan);
+                    //imgLstBoxBan.SelectedIndex = soBamTemp;
+                    //soBan = soBamTemp;
+                    //MessageBox.Show("Sau khi loadBan: " + lstBan[imgLstBoxBan.SelectedIndex].MaBan + lstBan[imgLstBoxBan.SelectedIndex].TenBan);
                     btnMoBan.Tag = "0";
                     btnMoBan.Text = "Đóng bàn";
                     groupDSMonAn.Enabled = true;
@@ -98,6 +107,11 @@ namespace QLNhaHang
                     //Enabled control CT goi mon = true
                     enabledControlCTGoiMonTrue();
                     cbbKhachHang.Enabled = true;
+                    //
+                    int soBamTemp = soBan;
+                    loadBan();
+                    imgLstBoxBan.SelectedIndex = soBamTemp;
+                    soBan = soBamTemp;
                     //}
                     //catch (Exception ex)
                     //{
@@ -192,7 +206,7 @@ namespace QLNhaHang
                     cbbKhachHang.Enabled = false;
                     cbbKhachHang.EditValue = null;
                 }
-                if (trangThai == 1)
+                else if (trangThai == 1)
                 {
                     btnMoBan.Tag = "0";
                     btnMoBan.Text = "Đóng bàn";
@@ -203,11 +217,10 @@ namespace QLNhaHang
                     {
                         return;
                     }
-                    MessageBox.Show(lstBan[soBan].MaBan + lstBan[soBan].TenBan + " MaHD: " + hd.MaHD + " MaBan: " + hd.MaBan);
                     //Load MaHD
                     lbHoaDon.Text = hd.MaHD.ToString();
                     //Load CTHD
-                    loadCTHD(hd.MaHD);//???
+                    loadCTHD(hd.MaHD);
                     //Enabled control CT goi mon = true
                     enabledControlCTGoiMonTrue();
                     //
@@ -544,6 +557,9 @@ namespace QLNhaHang
             }
             //Tinh lai tien
             tinhLaiTien();
+            //Them in che bien
+            InCheBien inCheBien = new InCheBien(lstBan[soBan].MaBan, maMon, monBLLDAL.getTenMonByMaMon(maMon), soLuong, ghiChu);
+            lstInCheBien.Add(inCheBien);
             //}
             //catch (Exception ex)
             //{
@@ -621,6 +637,16 @@ namespace QLNhaHang
                 }
                 //Tinh lai tien
                 tinhLaiTien();
+                //Cap nhat so luong in che bien
+                InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
+                if(inCheBien != null)
+                {
+                    if(inCheBien.SoLuong > 1)
+                    {
+                        int soLuong = inCheBien.SoLuong - 1;
+                        inCheBien.SoLuong = soLuong;
+                    }
+                }
                 //}
                 //catch (Exception ex)
                 //{
@@ -655,6 +681,14 @@ namespace QLNhaHang
                 }
                 //Tinh lai tien
                 tinhLaiTien();
+                //Cap nhat so luong in che bien
+                InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
+                if (inCheBien != null)
+                {
+                    int soLuong = inCheBien.SoLuong + 1;
+                    inCheBien.SoLuong = soLuong;
+                }
+
                 //}
                 //catch (Exception ex)
                 //{
@@ -700,6 +734,12 @@ namespace QLNhaHang
                 }
                 //Tinh lai tien
                 tinhLaiTien();
+                //Xoa in che bien
+                InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
+                if(inCheBien != null)
+                {                    
+                    lstInCheBien.Remove(inCheBien);
+                }
                 //}
                 //catch (Exception ex)
                 //{
@@ -1167,6 +1207,105 @@ namespace QLNhaHang
                 }
             }
 
-        } 
+        }
+
+        private void btnInCheBien_Click(object sender, EventArgs e)
+        {
+            List<InCheBien> lst = lstInCheBien.Where(l => l.MaBan == lstBan[soBan].MaBan).ToList();
+            if(lst.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy thông tin gọi món", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            frmInCheBien frmInCheBien = new frmInCheBien(lst, lstBan[soBan].TenBan);
+            frmInCheBien.ShowDialog(this);
+        }
+        SqlTableDependency<Ban> dep;
+        public void startListenner()
+        {
+            string stringConnection = Properties.Settings.Default.ChuoiKetNoi;
+            var mapper = new ModelToTableMapper<Ban>();
+            mapper.AddMapping(c => c.MaBan, "MaBan");
+
+            dep = new SqlTableDependency<Ban>(stringConnection, "Ban", mapper: mapper);
+            dep.OnChanged += Dep_OnChanged;
+            dep.Start();
+        }
+
+        private void Dep_OnChanged(object sender, TableDependency.SqlClient.Base.EventArgs.RecordChangedEventArgs<Ban> e)
+        {
+            var changedEntity = e.Entity;
+            //var str = new StringBuilder();
+            //str.Append("====================================================" + Environment.NewLine);
+            //str.Append("DML operation: " + e.ChangeType + Environment.NewLine);
+            //str.Append("MaBan: " + changedEntity.MaBan + Environment.NewLine);
+            //str.Append("====================================================");
+            //MessageBox.Show(str.ToString());
+            someMethod();
+           //reloadBan();
+        }
+        private void someMethod()
+        {
+            this.Invoke(new MethodInvoker(delegate () {
+                int banHienTai = imgLstBoxBan.SelectedIndex;
+                lstBan = banBLLDAL.getDataBan();
+                imgLstBoxBan.Items.Clear();
+                ImageList imageList = new ImageList();
+                imageList.ImageSize = new Size(64, 64);
+                this.imgLstBoxBan.ImageList = imageList;
+                int i = 0;
+                foreach (Ban ban in lstBan)
+                {
+                    if (ban.TrangThai == 0)
+                    {
+                        imageList.Images.Add(Properties.Resources.bantrong);
+                    }
+                    else
+                    {
+                        imageList.Images.Add(Properties.Resources.bancokhach);
+                    }
+                    this.imgLstBoxBan.Items.Add(ban.TenBan, i);
+                    i++;
+                }
+                this.imgLstBoxBan.ColumnWidth = 130;
+                if (banHienTai >= 0)
+                {
+                    imgLstBoxBan.SelectedIndex = banHienTai;
+                }
+            }));
+        }
+        public void reloadBan()
+        {
+            int banHienTai = imgLstBoxBan.SelectedIndex;
+            lstBan = banBLLDAL.getDataBan();
+            imgLstBoxBan.Items.Clear();
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = new Size(64, 64);
+            this.imgLstBoxBan.ImageList = imageList;
+            int i = 0;
+            foreach (Ban ban in lstBan)
+            {
+                if (ban.TrangThai == 0)
+                {
+                    imageList.Images.Add(Properties.Resources.bantrong);
+                }
+                else
+                {
+                    imageList.Images.Add(Properties.Resources.bancokhach);
+                }
+                this.imgLstBoxBan.Items.Add(ban.TenBan, i);
+                i++;
+            }
+            this.imgLstBoxBan.ColumnWidth = 130;
+            if (banHienTai >= 0)
+            {
+                imgLstBoxBan.SelectedIndex = banHienTai;
+            }
+        }
+
+        private void frmGoiMonTaiQuay_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dep.Stop();
+        }
     }
 }
