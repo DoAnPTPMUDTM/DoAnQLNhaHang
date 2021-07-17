@@ -174,6 +174,20 @@ namespace QLNhaHang
             frmSaoLuu.Name = "frmSaoLuu";
             frmSaoLuu.ShowDialog(this);
         }
+
+        private void barBtnTaiKhoan_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmTTTaiKhoan frmTTTaiKhoan = new frmTTTaiKhoan();
+            frmTTTaiKhoan.Name = "frmTTTaiKhoan";
+            showForm(frmTTTaiKhoan);
+        }
+
+        private void barBtnQLNhapKho_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmQLNhapHang frmQLNhapHang = new frmQLNhapHang();
+            frmQLNhapHang.Name = "frmQLNhapHang";
+            showForm(frmQLNhapHang);
+        }
         //private void xtraTabbedMdiManager1_SelectedPageChanged(object sender, EventArgs e)
         //{
         //    MessageBox.Show("Change");

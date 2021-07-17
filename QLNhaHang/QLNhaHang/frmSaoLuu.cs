@@ -23,7 +23,7 @@ namespace QLNhaHang
         private void frmSaoLuu_Load(object sender, EventArgs e)
         {
             //string stringConnection = Properties.Settings.Default.ChuoiKetNoi;
-            string stringConnection = "";
+            string stringConnection = "Data Source=MSI\\SQLEXPRESS;Initial Catalog=QuanLyNhaHang;User ID=sa;Password=0905213883";
             if (String.IsNullOrEmpty(stringConnection))
             {
                 MessageBox.Show("Không tìm thấy chuỗi kết nối", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -56,7 +56,7 @@ namespace QLNhaHang
 
         private void btnSaoLuu_Click(object sender, EventArgs e)
         {
-            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(@"Data Source=.;Initial Catalog=QuanLyNhaHang;User ID=sa;Password=123");
+            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(@"Data Source=.;Initial Catalog=QuanLyNhaHang;User ID=sa;Password=0905213883");
             string server = builder.DataSource;
             string databaseName = builder.InitialCatalog;
             string userName = builder.UserID;

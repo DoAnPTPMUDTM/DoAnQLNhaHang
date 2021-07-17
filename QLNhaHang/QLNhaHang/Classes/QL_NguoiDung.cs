@@ -71,5 +71,6 @@ namespace QLNhaHang.Classes
             Properties.Settings.Default.ChuoiKetNoi = "Data source = " + serverName + ";Initial Catalog = " + databaseName + ";User ID = " + id + ";pwd = " + pass;
             Properties.Settings.Default.Save();
         }
+
     }
 }

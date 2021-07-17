@@ -19,17 +19,17 @@ namespace BLLDAL
         }
         public void insertNguoiDung(NguoiDung nd)
         {
-            if(nd != null)
+            if (nd != null)
             {
                 db.NguoiDungs.InsertOnSubmit(nd);
                 db.SubmitChanges();
             }
         }
-        public void updateNguoiDung(int maND, string hoTen, string gioiTinh, string SDT, string diaChi, string Email,string tenDN, string matKhau,bool hoatDong)
+        public void updateNguoiDung(int maND, string hoTen, string gioiTinh, string SDT, string diaChi, string Email, string tenDN, string matKhau, bool hoatDong)
         {
             //mã nd, họ tên, giới tính, sdt, địa chỉ, email, tên đn, mk, hoạt động
             NguoiDung nd = db.NguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
-            if(nd != null)
+            if (nd != null)
             {
                 nd.HoTen = hoTen;
                 nd.GioiTinh = gioiTinh;
@@ -45,7 +45,7 @@ namespace BLLDAL
         public void deleteNguoiDung(int maND)
         {
             NguoiDung nd = db.NguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
-            if(nd != null)
+            if (nd != null)
             {
                 db.NguoiDungs.DeleteOnSubmit(nd);
                 db.SubmitChanges();
@@ -68,6 +68,49 @@ namespace BLLDAL
                 return true;
             }
             return false;
+        }
+
+        public NguoiDung getNguoiDungByMaND(int maND)
+        {
+            return db.NguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
+        }
+        public void updateThongTinTK(int maND, string hoTen, string gioiTinh, string SDT, string diaChi, bool hoatDong)
+        {
+            NguoiDung nd = db.NguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
+            if (nd != null)
+            {
+                nd.HoTen = hoTen;
+                nd.GioiTinh = gioiTinh;
+                nd.SDT = SDT;
+                nd.DiaChi = diaChi;
+                nd.HoatDong = hoatDong;
+                db.SubmitChanges();
+            }
+        }
+        public void updateMatKhau(int maND, string matKhau)
+        {
+            NguoiDung nd = db.NguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
+            if (nd != null)
+            {
+                nd.MatKhau = matKhau;
+                db.SubmitChanges();
+            }
+        }
+        public bool kTraTrungMK(string matKhau)
+        {
+            bool matKhauMoi = db.NguoiDungs.Where(t => t.MatKhau == matKhau).Count() > 0;
+            if (matKhauMoi)
+            {
+                return true;
+            }
+            return false;
+        }
+        public NguoiDung isExistTenDN(string tenDN)
+        {
+            return db.NguoiDungs.Where(t => t.TenDN == tenDN).FirstOrDefault();
+            //if(nd != null)
+            //{
+            //}
         }
     }
 }

@@ -8,12 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLLDAL;
 
 namespace QLNhaHang
 {
     public partial class frmDangNhap : Form
     {
         QL_NguoiDung cauHinh = new QL_NguoiDung();
+        NguoiDungBLLDAL nguoiDungBLLDAL = new NguoiDungBLLDAL();
+        Mail mail = new Mail(); 
         public frmDangNhap()
         {
             InitializeComponent();
@@ -74,6 +77,43 @@ namespace QLNhaHang
         {
             frmCauHinh cauHinhForm = new frmCauHinh();
             cauHinhForm.Show();
+        }
+
+        private void btnQuenMK_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtQuenMK.Text))
+            {
+                MessageBox.Show("Tên đăng nhập không được bỏ trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (!nguoiDungBLLDAL.ktraTrungTenDN(txtQuenMK.Text))
+            {
+                MessageBox.Show("Tên đăng nhập không tồn tại trong hệ thống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            NguoiDung nd = nguoiDungBLLDAL.isExistTenDN(txtQuenMK.Text);
+            if (nd != null)
+            {
+                mail.sendMail(nd.Email, nd.MatKhau, nd.HoTen + " !");
+                MessageBox.Show("Hãy kiểm tra hộp thư Email. Mật khẩu đã được gửi đến địa chỉ Email của bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void chkHienThiMK_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkHienThiMK.Checked)
+            {
+                txtMatKhau.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtMatKhau.UseSystemPasswordChar = true;
+            }    
         }
     }
 }

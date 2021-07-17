@@ -457,12 +457,13 @@ INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (12,N'Bia 333',7,5); --
 INSERT INTO MatHang(MaMH, TenMH, MaDVT, MaLoaiMH) VALUES (13,N'Bò húc',7,5); --65k/lốc
 SET IDENTITY_INSERT MatHang OFF
 select * from MatHang
-/*
+
 ------------------------------------------------------------------------------------
 --BẢNG PHIẾU NHẬP(MaPN, MaNV, MaNCC, Ngay, TongTien)
 -- Ví dụ nhân viên Vy mã 2 nhập 2 kg xà lách, 3 kg Tôm và 10kg thịt gà
 SET IDENTITY_INSERT PhieuNhap  ON
 INSERT INTO PhieuNhap(MaPN, MaNV, MaNCC, Ngay, TongTien) VALUES(1,2,1,GETDATE(),810000);
+INSERT INTO PhieuNhap(MaPN, MaNV, MaNCC, Ngay, TongTien) VALUES(2,2,1,GETDATE(),400000);
 SET IDENTITY_INSERT PhieuNhap  OFF
 select * from PhieuNhap
 ------------------------------------------------------------------------------------
@@ -470,9 +471,11 @@ select * from PhieuNhap
 INSERT INTO CTPN(MaPN, MaMH, SoLuong, DonGia, ThanhTien) VALUES (1,1,2,40000,80000);
 INSERT INTO CTPN(MaPN, MaMH, SoLuong, DonGia, ThanhTien) VALUES (1,9,3,150000,450000);
 INSERT INTO CTPN(MaPN, MaMH, SoLuong, DonGia, ThanhTien) VALUES (1,11,10,28000,280000);
+INSERT INTO CTPN(MaPN, MaMH, SoLuong, DonGia, ThanhTien) VALUES (2,5,2,100000,200000);
+INSERT INTO CTPN(MaPN, MaMH, SoLuong, DonGia, ThanhTien) VALUES (2,6,10,20000,200000);
 select * from CTPN
 ------------------------------------------------------------------------------------
-*/
+
 --BẢNG MÀN HÌNH(MaMH, TenMH)
 SET IDENTITY_INSERT ManHinh  ON
 INSERT INTO ManHinh(MaMH, TenMH) VALUES(1,N'Gọi món tại quầy');

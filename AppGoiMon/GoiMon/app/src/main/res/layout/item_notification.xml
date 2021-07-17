@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    android:layout_margin="5dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgAnhmonNotify"
+            android:layout_width="98dp"
+            android:layout_height="96dp"
+            android:layout_margin="5dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/monmau" />
+
+        <TextView
+            android:id="@+id/txtTenMonNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đá bào mật ong"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginStart="8dp"
+            tools:layout_editor_absoluteX="119dp"
+            tools:layout_editor_absoluteY="16dp"
+            app:layout_constraintStart_toEndOf="@+id/imgAnhmonNotify"
+            app:layout_constraintTop_toTopOf="@+id/imgAnhmonNotify"/>
+
+        <TextView
+            android:id="@+id/txtGiaKMNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Giá khuyến mãi"
+            android:textColor="@color/background"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txtTenMonNotify"
+            app:layout_constraintTop_toBottomOf="@+id/txtTenMonNotify" />
+        <TextView
+            android:id="@+id/txtGiaGocNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:text="Giá KM"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/txtGiaKMNotify"
+            app:layout_constraintTop_toTopOf="@+id/txtGiaKMNotify" />
+
+        <TextView
+            android:id="@+id/titleSL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Số lượng"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/txtGiaKMNotify"
+            app:layout_constraintTop_toBottomOf="@+id/txtGiaKMNotify" />
+
+        <TextView
+            android:id="@+id/txtSoLuongNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:inputType="number"
+            android:text="x3"
+            app:layout_constraintStart_toEndOf="@+id/titleSL"
+            app:layout_constraintTop_toTopOf="@+id/titleSL" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

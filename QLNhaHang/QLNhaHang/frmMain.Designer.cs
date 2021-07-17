@@ -45,6 +45,8 @@ namespace QLNhaHang
             this.barBtnManHinh = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnThemNDNhom = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnPhanQuyen = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnSaoLuu = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnQLNhapKho = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -53,6 +55,7 @@ namespace QLNhaHang
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.RibbonPageGoup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -61,13 +64,12 @@ namespace QLNhaHang
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barBtnSaoLuu = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -92,9 +94,10 @@ namespace QLNhaHang
             this.barBtnManHinh,
             this.barBtnThemNDNhom,
             this.barBtnPhanQuyen,
-            this.barBtnSaoLuu});
+            this.barBtnSaoLuu,
+            this.barBtnQLNhapKho});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 17;
+            this.ribbonControl1.MaxItemId = 18;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -202,6 +205,7 @@ namespace QLNhaHang
             this.barBtnTaiKhoan.LargeWidth = 130;
             this.barBtnTaiKhoan.Name = "barBtnTaiKhoan";
             this.barBtnTaiKhoan.Tag = "14";
+            this.barBtnTaiKhoan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnTaiKhoan_ItemClick);
             // 
             // barBtnNguoiDung
             // 
@@ -267,6 +271,27 @@ namespace QLNhaHang
             this.barBtnPhanQuyen.Tag = "12";
             this.barBtnPhanQuyen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnPhanQuyen_ItemClick);
             // 
+            // barBtnSaoLuu
+            // 
+            this.barBtnSaoLuu.Caption = "Sao Lưu Dữ Liệu";
+            this.barBtnSaoLuu.Id = 16;
+            this.barBtnSaoLuu.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barBtnSaoLuu.ImageOptions.SvgImage")));
+            this.barBtnSaoLuu.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barBtnSaoLuu.ItemAppearance.Normal.Options.UseFont = true;
+            this.barBtnSaoLuu.LargeWidth = 120;
+            this.barBtnSaoLuu.Name = "barBtnSaoLuu";
+            this.barBtnSaoLuu.Tag = "13";
+            this.barBtnSaoLuu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnSaoLuu_ItemClick);
+            // 
+            // barBtnQLNhapKho
+            // 
+            this.barBtnQLNhapKho.Caption = "Nhập Kho";
+            this.barBtnQLNhapKho.Id = 17;
+            this.barBtnQLNhapKho.ImageOptions.LargeImage = global::QLNhaHang.Properties.Resources.box;
+            this.barBtnQLNhapKho.LargeWidth = 80;
+            this.barBtnQLNhapKho.Name = "barBtnQLNhapKho";
+            this.barBtnQLNhapKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnQLNhapKho_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -297,7 +322,8 @@ namespace QLNhaHang
             this.ribbonPageGroup2,
             this.ribbonPageGroup8,
             this.ribbonPageGroup9,
-            this.ribbonPageGroup10});
+            this.ribbonPageGroup10,
+            this.RibbonPageGoup9});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "Quản Lý";
             // 
@@ -324,6 +350,12 @@ namespace QLNhaHang
             this.ribbonPageGroup10.ItemLinks.Add(this.barBtnQLKhachHang);
             this.ribbonPageGroup10.Name = "ribbonPageGroup10";
             this.ribbonPageGroup10.Text = "ribbonPageGroup10";
+            // 
+            // RibbonPageGoup9
+            // 
+            this.RibbonPageGoup9.ItemLinks.Add(this.barBtnQLNhapKho);
+            this.RibbonPageGoup9.Name = "RibbonPageGoup9";
+            this.RibbonPageGoup9.Text = "Nhập Kho";
             // 
             // ribbonPage3
             // 
@@ -384,6 +416,12 @@ namespace QLNhaHang
             this.ribbonPageGroup14.Name = "ribbonPageGroup14";
             this.ribbonPageGroup14.Text = "ribbonPageGroup14";
             // 
+            // ribbonPageGroup15
+            // 
+            this.ribbonPageGroup15.ItemLinks.Add(this.barBtnSaoLuu);
+            this.ribbonPageGroup15.Name = "ribbonPageGroup15";
+            this.ribbonPageGroup15.Text = "ribbonPageGroup15";
+            // 
             // ribbonPage4
             // 
             this.ribbonPage4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -416,24 +454,6 @@ namespace QLNhaHang
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
-            // 
-            // ribbonPageGroup15
-            // 
-            this.ribbonPageGroup15.ItemLinks.Add(this.barBtnSaoLuu);
-            this.ribbonPageGroup15.Name = "ribbonPageGroup15";
-            this.ribbonPageGroup15.Text = "ribbonPageGroup15";
-            // 
-            // barBtnSaoLuu
-            // 
-            this.barBtnSaoLuu.Caption = "Sao Lưu Dữ Liệu";
-            this.barBtnSaoLuu.Id = 16;
-            this.barBtnSaoLuu.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barBtnSaoLuu.ImageOptions.SvgImage")));
-            this.barBtnSaoLuu.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.barBtnSaoLuu.ItemAppearance.Normal.Options.UseFont = true;
-            this.barBtnSaoLuu.LargeWidth = 120;
-            this.barBtnSaoLuu.Name = "barBtnSaoLuu";
-            this.barBtnSaoLuu.Tag = "13";
-            this.barBtnSaoLuu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnSaoLuu_ItemClick);
             // 
             // frmMain
             // 
@@ -492,5 +512,7 @@ namespace QLNhaHang
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private DevExpress.XtraBars.BarButtonItem barBtnSaoLuu;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup RibbonPageGoup9;
+        private DevExpress.XtraBars.BarButtonItem barBtnQLNhapKho;
     }
 }

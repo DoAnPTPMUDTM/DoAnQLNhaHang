@@ -48,7 +48,7 @@ namespace QLNhaHang
                                  //DiaChi = nd.DiaChi,
                                  HoatDong = nd.HoatDong
                              };
-            gridControl1.DataSource = NguoiDungs.ToList();
+            //gridControl1.DataSource = NguoiDungs.ToList();
 
         }
 

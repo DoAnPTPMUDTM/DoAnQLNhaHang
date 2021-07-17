@@ -50,7 +50,7 @@ namespace QLNhaHang
             //
             //Control.CheckForIllegalCrossThreadCalls = false;
             //
-            startListenner();
+            //startListenner();
         }
         public void loadBan()
         {
@@ -565,8 +565,6 @@ namespace QLNhaHang
             //{
             //MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
-
-
         }
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -1305,7 +1303,7 @@ namespace QLNhaHang
 
         private void frmGoiMonTaiQuay_FormClosing(object sender, FormClosingEventArgs e)
         {
-            dep.Stop();
+            //dep.Stop();
         }
     }
 }

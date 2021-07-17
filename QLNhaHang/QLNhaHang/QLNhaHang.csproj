@@ -119,6 +119,12 @@
     <Compile Include="frmDoiBan.Designer.cs">
       <DependentUpon>frmDoiBan.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDoiMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoiMatKhau.Designer.cs">
+      <DependentUpon>frmDoiMatKhau.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGoiMonTaiBan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,12 @@
     <Compile Include="frmPhanQuyen.Designer.cs">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmQLNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQLNhapHang.Designer.cs">
+      <DependentUpon>frmQLNhapHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSaoLuu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +245,18 @@
     <Compile Include="frmThemNhomMon.Designer.cs">
       <DependentUpon>frmThemNhomMon.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThemPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemPhieuNhap.Designer.cs">
+      <DependentUpon>frmThemPhieuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTTTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTTTaiKhoan.Designer.cs">
+      <DependentUpon>frmTTTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\CrystalReportInCheBien.cs">
@@ -260,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDoiBan.resx">
       <DependentUpon>frmDoiBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDoiMatKhau.resx">
+      <DependentUpon>frmDoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGoiMonTaiBan.resx">
       <DependentUpon>frmGoiMonTaiBan.cs</DependentUpon>
@@ -297,6 +324,9 @@
     <EmbeddedResource Include="frmPhanQuyen.resx">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmQLNhapHang.resx">
+      <DependentUpon>frmQLNhapHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSaoLuu.resx">
       <DependentUpon>frmSaoLuu.cs</DependentUpon>
     </EmbeddedResource>
@@ -317,6 +347,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemNhomMon.resx">
       <DependentUpon>frmThemNhomMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemPhieuNhap.resx">
+      <DependentUpon>frmThemPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTTTaiKhoan.resx">
+      <DependentUpon>frmTTTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -395,6 +431,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\box.png" />
+    <None Include="Resources\box1.png" />
     <Content Include="Resources\MonAn\1.jpg" />
   </ItemGroup>
   <ItemGroup>
