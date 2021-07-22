@@ -90,7 +90,7 @@ namespace BLLDAL
     #endregion
 		
 		public QuanLyNhaHangDataContext() : 
-				base(global::BLLDAL.Properties.Settings.Default.QuanLyNhaHangConnectionString3, mappingSource)
+				base(global::BLLDAL.Properties.Settings.Default.QuanLyNhaHangConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -450,8 +450,6 @@ namespace BLLDAL
 		
 		private System.Nullable<decimal> _ThanhTien;
 		
-		private string _GhiChu;
-		
 		private EntityRef<HoaDon> _HoaDon;
 		
 		private EntityRef<Mon> _Mon;
@@ -470,8 +468,6 @@ namespace BLLDAL
     partial void OnDonGiaChanged();
     partial void OnThanhTienChanging(System.Nullable<decimal> value);
     partial void OnThanhTienChanged();
-    partial void OnGhiChuChanging(string value);
-    partial void OnGhiChuChanged();
     #endregion
 		
 		public CTHD()
@@ -585,26 +581,6 @@ namespace BLLDAL
 					this._ThanhTien = value;
 					this.SendPropertyChanged("ThanhTien");
 					this.OnThanhTienChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(50)")]
-		public string GhiChu
-		{
-			get
-			{
-				return this._GhiChu;
-			}
-			set
-			{
-				if ((this._GhiChu != value))
-				{
-					this.OnGhiChuChanging(value);
-					this.SendPropertyChanging();
-					this._GhiChu = value;
-					this.SendPropertyChanged("GhiChu");
-					this.OnGhiChuChanged();
 				}
 			}
 		}
@@ -1120,6 +1096,8 @@ namespace BLLDAL
 		
 		private System.Nullable<int> _TinhTrang;
 		
+		private string _GhiChu;
+		
 		private EntityRef<HoaDon> _HoaDon;
 		
 		private EntityRef<Mon> _Mon;
@@ -1138,6 +1116,8 @@ namespace BLLDAL
     partial void OnSoLuongChanged();
     partial void OnTinhTrangChanging(System.Nullable<int> value);
     partial void OnTinhTrangChanged();
+    partial void OnGhiChuChanging(string value);
+    partial void OnGhiChuChanged();
     #endregion
 		
 		public GoiMonTaiBan()
@@ -1255,6 +1235,26 @@ namespace BLLDAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(255)")]
+		public string GhiChu
+		{
+			get
+			{
+				return this._GhiChu;
+			}
+			set
+			{
+				if ((this._GhiChu != value))
+				{
+					this.OnGhiChuChanging(value);
+					this.SendPropertyChanging();
+					this._GhiChu = value;
+					this.SendPropertyChanged("GhiChu");
+					this.OnGhiChuChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDon_GoiMonTaiBan", Storage="_HoaDon", ThisKey="MaHD", OtherKey="MaHD", IsForeignKey=true)]
 		public HoaDon HoaDon
 		{
@@ -1366,10 +1366,6 @@ namespace BLLDAL
 		
 		private System.Nullable<decimal> _ThanhTien;
 		
-		private System.Nullable<decimal> _TienNhan;
-		
-		private System.Nullable<decimal> _TienThua;
-		
 		private System.Nullable<int> _TinhTrang;
 		
 		private EntitySet<CTHD> _CTHDs;
@@ -1402,10 +1398,6 @@ namespace BLLDAL
     partial void OnTienGiamChanged();
     partial void OnThanhTienChanging(System.Nullable<decimal> value);
     partial void OnThanhTienChanged();
-    partial void OnTienNhanChanging(System.Nullable<decimal> value);
-    partial void OnTienNhanChanged();
-    partial void OnTienThuaChanging(System.Nullable<decimal> value);
-    partial void OnTienThuaChanged();
     partial void OnTinhTrangChanging(System.Nullable<int> value);
     partial void OnTinhTrangChanged();
     #endregion
@@ -1588,46 +1580,6 @@ namespace BLLDAL
 					this._ThanhTien = value;
 					this.SendPropertyChanged("ThanhTien");
 					this.OnThanhTienChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TienNhan", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> TienNhan
-		{
-			get
-			{
-				return this._TienNhan;
-			}
-			set
-			{
-				if ((this._TienNhan != value))
-				{
-					this.OnTienNhanChanging(value);
-					this.SendPropertyChanging();
-					this._TienNhan = value;
-					this.SendPropertyChanged("TienNhan");
-					this.OnTienNhanChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TienThua", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> TienThua
-		{
-			get
-			{
-				return this._TienThua;
-			}
-			set
-			{
-				if ((this._TienThua != value))
-				{
-					this.OnTienThuaChanging(value);
-					this.SendPropertyChanging();
-					this._TienThua = value;
-					this.SendPropertyChanged("TienThua");
-					this.OnTienThuaChanged();
 				}
 			}
 		}

@@ -16,9 +16,18 @@ namespace QLNhaHang
     {
         NguoiDungNhomNguoiDungBLLDAL nguoiDungNhomNguoiDungBLLDAL = new NguoiDungNhomNguoiDungBLLDAL();
         PhanQuyenBLLDAL phanQuyenBLLDAL = new PhanQuyenBLLDAL();
+        NguoiDungBLLDAL nguoiDungBLLDAL = new NguoiDungBLLDAL();
+        NguoiDung nd = new NguoiDung();
+        string tenDN;
         public frmMain()
         {
             InitializeComponent();
+        }
+        
+        public frmMain(string tenDN)
+        {
+            InitializeComponent();
+            this.tenDN = tenDN;
         }
         public void showForm(Form form)
         {
@@ -49,7 +58,7 @@ namespace QLNhaHang
         }
         private void barBtnGoiMonTaiQuay_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmGoiMonTaiQuay frm = new frmGoiMonTaiQuay();
+            frmGoiMonTaiQuay frm = new frmGoiMonTaiQuay(nd);
             frm.Name = "frmGoiMonTaiQuay";
             showForm(frm);
         }
@@ -58,7 +67,7 @@ namespace QLNhaHang
         {
             frmGoiMonTaiBan frmGoiMonTaiBan = new frmGoiMonTaiBan();
             frmGoiMonTaiBan.Name = "frmGoiMonTaiBan";
-            frmGoiMonTaiBan.ShowDialog(this);
+            showForm(frmGoiMonTaiBan);
         }
 
         private void barBtnNguoiDung_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -112,7 +121,8 @@ namespace QLNhaHang
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //phanQuyenMenu();
+            nd = nguoiDungBLLDAL.getNDByTenDN(tenDN);
+            phanQuyenMenu(nd.MaND);
         }
 
         private void barBtnQLBanAn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -155,9 +165,9 @@ namespace QLNhaHang
                 }
             }
         }
-        public void phanQuyenMenu()
+        public void phanQuyenMenu(int maND)
         {
-            List<int> lstMaNhomND = nguoiDungNhomNguoiDungBLLDAL.getMaNhomByMaND(1);//Thay sau khi login
+            List<int> lstMaNhomND = nguoiDungNhomNguoiDungBLLDAL.getMaNhomByMaND(maND);//Thay sau khi login
             foreach(int maNhom in lstMaNhomND)
             {
                 List<PhanQuyen> lstQuyen = phanQuyenBLLDAL.getQuyenByMaNhom(maNhom);
@@ -184,9 +194,16 @@ namespace QLNhaHang
 
         private void barBtnQLNhapKho_ItemClick(object sender, ItemClickEventArgs e)
         {
-            frmQLNhapHang frmQLNhapHang = new frmQLNhapHang();
+            frmQLNhapHang frmQLNhapHang = new frmQLNhapHang(nd);
             frmQLNhapHang.Name = "frmQLNhapHang";
             showForm(frmQLNhapHang);
+        }
+
+        private void barBtnTKDoanhThu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmDoanhThu frmDoanhThu = new frmDoanhThu();
+            frmDoanhThu.Name = "frmDoanhThu";
+            showForm(frmDoanhThu);
         }
         //private void xtraTabbedMdiManager1_SelectedPageChanged(object sender, EventArgs e)
         //{

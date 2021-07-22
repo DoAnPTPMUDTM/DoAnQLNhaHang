@@ -6,6 +6,7 @@ public class GoiMonTaiBan {
     private int maMon;
     private int soLuong;
     private int tinhTrang;
+    private String ghiChu;
 
     public GoiMonTaiBan() {
     }
@@ -23,6 +24,29 @@ public class GoiMonTaiBan {
         this.maMon = maMon;
         this.soLuong = soLuong;
         this.tinhTrang = tinhTrang;
+    }
+    public GoiMonTaiBan(int maHD, int maMon, int soLuong, int tinhTrang,String ghiChu) {
+        this.maHD = maHD;
+        this.maMon = maMon;
+        this.soLuong = soLuong;
+        this.tinhTrang = tinhTrang;
+        this.ghiChu = ghiChu;
+    }
+    public GoiMonTaiBan(int maGoiMon, int maHD, int maMon, int soLuong, int tinhTrang, String ghiChu) {
+        this.maGoiMon = maGoiMon;
+        this.maHD = maHD;
+        this.maMon = maMon;
+        this.soLuong = soLuong;
+        this.tinhTrang = tinhTrang;
+        this.ghiChu = ghiChu;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
     }
 
     public int getMaGoiMon() {

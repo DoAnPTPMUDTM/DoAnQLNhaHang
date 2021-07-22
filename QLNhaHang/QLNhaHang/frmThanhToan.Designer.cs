@@ -153,11 +153,11 @@ namespace QLNhaHang
             // btnThanhToanVaInHoaDon
             // 
             this.btnThanhToanVaInHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThanhToanVaInHoaDon.Location = new System.Drawing.Point(123, 331);
+            this.btnThanhToanVaInHoaDon.Location = new System.Drawing.Point(126, 389);
             this.btnThanhToanVaInHoaDon.Name = "btnThanhToanVaInHoaDon";
             this.btnThanhToanVaInHoaDon.Size = new System.Drawing.Size(376, 51);
             this.btnThanhToanVaInHoaDon.TabIndex = 2;
-            this.btnThanhToanVaInHoaDon.Text = "Thanh Toán và In Hoá Đơn";
+            this.btnThanhToanVaInHoaDon.Text = "ThanhToán";
             this.btnThanhToanVaInHoaDon.UseVisualStyleBackColor = true;
             this.btnThanhToanVaInHoaDon.Click += new System.EventHandler(this.btnThanhToanVaInHoaDon_Click);
             // 
@@ -175,12 +175,13 @@ namespace QLNhaHang
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(126, 388);
+            this.button3.Location = new System.Drawing.Point(126, 331);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(376, 52);
             this.button3.TabIndex = 4;
-            this.button3.Text = "Thanh Toán và Không In Hoá Đơn";
+            this.button3.Text = "In Hoá Đơn";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // lbTienNhan
             // 

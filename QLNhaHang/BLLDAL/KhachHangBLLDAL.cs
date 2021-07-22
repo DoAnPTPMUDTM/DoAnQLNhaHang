@@ -8,7 +8,7 @@ namespace BLLDAL
 {
    public class KhachHangBLLDAL
     {
-        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext();
+        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public KhachHangBLLDAL()
         {
 
@@ -76,6 +76,19 @@ namespace BLLDAL
                 db.KhachHangs.DeleteOnSubmit(kh);
                 db.SubmitChanges();
             }
+        }
+        public string getTenKHByMaKH(int? maKH)
+        {
+            if(maKH == null)
+            {
+                return "Khách vãng lai";
+            }
+            KhachHang kh = db.KhachHangs.Where(k => k.MaKH == maKH.Value).FirstOrDefault();
+            if(kh == null)
+            {
+                return "Khách vãng lai";
+            }
+            return kh.TenKH;
         }
     }
 }

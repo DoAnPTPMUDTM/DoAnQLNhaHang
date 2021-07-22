@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BanBLLDAL.cs" />
+    <Compile Include="BaoCao.cs" />
+    <Compile Include="Chart.cs" />
     <Compile Include="CTHDBLLDAL.cs" />
     <Compile Include="CTPNBLLDAL.cs" />
     <Compile Include="CTPNs.cs" />
     <Compile Include="DonViTinhBLLDAL.cs" />
+    <Compile Include="GoiMonTaiBanBLLDAL.cs" />
     <Compile Include="HoaDonBLLDAL.cs" />
     <Compile Include="InCheBien.cs" />
     <Compile Include="KhachHangBLLDAL.cs" />
@@ -80,6 +84,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyNhaHang.dbml</DependentUpon>
     </Compile>
+    <Compile Include="SaveFileDialog.cs" />
+    <Compile Include="StringConnection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -104,6 +110,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

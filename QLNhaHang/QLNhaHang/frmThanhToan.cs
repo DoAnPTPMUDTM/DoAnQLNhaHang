@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLLDAL;
+using QLNhaHang.Reports;
+
 namespace QLNhaHang
 {
     public partial class frmThanhToan : Form
@@ -36,7 +38,7 @@ namespace QLNhaHang
         }
 
 
-        public delegate void StatusUpdateHandler(object sender, EventArgs e, int maHD, double tongTien, double tienGiam, double thanhTien, int diemCong, int diemTru, double tienNhan, double tienThua);
+        public delegate void StatusUpdateHandler(object sender, EventArgs e, int maHD, double tongTien, double tienGiam, double thanhTien, int diemCong, int diemTru);
         public event StatusUpdateHandler OnUpdateStatus;
 
         private void frmThanhToan_Load(object sender, EventArgs e)
@@ -92,6 +94,12 @@ namespace QLNhaHang
             }
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmReportInHoaDon frmReportInHoaDon = new frmReportInHoaDon(maHD,tienGiam,thanhTien,tongTien);
+            frmReportInHoaDon.ShowDialog(this);
+        }
+
         private void btnHuyBo_Click(object sender, EventArgs e)
         {
            // UpdateStatus();
@@ -105,13 +113,13 @@ namespace QLNhaHang
         //}
 
 
-        private void UpdateStatus(int maHD, double tongTien, double tienGiam, double thanhTien, int diemCong, int diemTru, double tienNhan, double tienThua)
+        private void UpdateStatus(int maHD, double tongTien, double tienGiam, double thanhTien, int diemCong, int diemTru)
         {
             //Create arguments.  You should also have custom one, or else return EventArgs.Empty();
             EventArgs args = new EventArgs();
 
             //Call any listeners
-            OnUpdateStatus?.Invoke(this, args, maHD,  tongTien,  tienGiam,  thanhTien,  diemCong,  diemTru,  tienNhan,  tienThua);
+            OnUpdateStatus?.Invoke(this, args, maHD,  tongTien,  tienGiam,  thanhTien,  diemCong,  diemTru);
 
         }
 
@@ -131,7 +139,7 @@ namespace QLNhaHang
             }
             
             //banBLLDAL.capNhatTTDongBan(hd.MaBan.Value);                       
-            UpdateStatus(this.maHD, this.tongTien, this.tienGiam,this.thanhTien, this.diemCong,this.diemTru, tn,tt);
+            UpdateStatus(this.maHD, this.tongTien, this.tienGiam,this.thanhTien, this.diemCong,this.diemTru);
             this.Close();
         }
     }

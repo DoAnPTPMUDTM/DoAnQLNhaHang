@@ -8,7 +8,7 @@ namespace BLLDAL
 {
     public class BanBLLDAL
     {
-        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext();
+        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public BanBLLDAL()
         {
         }
@@ -74,5 +74,23 @@ namespace BLLDAL
                 db.SubmitChanges();
             }
         }
+        public List<Ban> getBanGoiMonTaiBan()
+        {
+            List<Ban> lstBan = new List<Ban>();
+            var getBan = (from g in db.GoiMonTaiBans
+                          from h in db.HoaDons
+                          from b in db.Bans
+                          where g.MaHD == h.MaHD && g.TinhTrang == 0 && h.MaBan == b.MaBan && b.TrangThai == 1
+                          select new
+                          {
+                              h.MaBan
+                          }).Distinct().ToList();
+            foreach(var item in getBan)
+            {
+                Ban ban = getBanByMaBan(item.MaBan.Value);
+                lstBan.Add(ban);
+            }
+            return lstBan;
+        }     
     }
 }

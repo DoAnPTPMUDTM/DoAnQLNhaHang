@@ -20,9 +20,15 @@ namespace QLNhaHang
         PhieuNhapBLLDAL phieuNhapBLLDAL = new PhieuNhapBLLDAL();
         CTPNBLLDAL cTPNBLLDAL = new CTPNBLLDAL();
         List<CTPNs> lstCTPN;
+        NguoiDung nd;
         public frmThemPhieuNhap()
         {
             InitializeComponent();
+        }
+        public frmThemPhieuNhap(NguoiDung nd)
+        {
+            InitializeComponent();
+            this.nd = nd;
         }
 
         private void frmThemPhieuNhap_Load(object sender, EventArgs e)
@@ -32,6 +38,7 @@ namespace QLNhaHang
             loadDataNhaCC();
             loadDataMatHang();
             loadDataNhanVien();
+            txtNhanVien.Text = nd.HoTen;
         }
 
         private void loadDataMatHang()
@@ -56,9 +63,9 @@ namespace QLNhaHang
 
         private void loadDataNhanVien()
         {
-            cbbNhanVien.DataSource = nguoiDungBLLDAL.getDataNguoiDung();
-            cbbNhanVien.DisplayMember = "HoTen";
-            cbbNhanVien.ValueMember = "MaND";
+            //cbbNhanVien.DataSource = nguoiDungBLLDAL.getDataNguoiDung();
+            //cbbNhanVien.DisplayMember = "HoTen";
+            //cbbNhanVien.ValueMember = "MaND";
         }
 
         private void loadDataLoaiMH()
@@ -122,7 +129,7 @@ namespace QLNhaHang
                 txtGiaNhap.Clear();
                 numericUpDownSL.Value = 1;
                 gridControlCTPN.DataSource = lstCTPN.ToList();
-            }    
+            }
         }
 
         private void cbbLoaiMH_EditValueChanged(object sender, EventArgs e)
@@ -140,7 +147,7 @@ namespace QLNhaHang
                 loadDataMatHangByMaLoai(int.Parse(cbbLoaiMH.EditValue.ToString()));
             }
         }
-        
+
         private void txtGiaNhap_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -248,18 +255,13 @@ namespace QLNhaHang
                 MessageBox.Show("Vui lòng chọn nhà cung cấp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            //Cái này cho chọn nhân viên nào mình gắn module đăng nhập zo thì fix cứng nhân viên ấy luôn.
-            if (cbbNhanVien.SelectedIndex < 0)
-            {
-                MessageBox.Show("Vui lòng chọn nhân viên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+            
 
             try
             {
-                
+
                 PhieuNhap pn = new PhieuNhap();
-                pn.MaNV = int.Parse(cbbNhanVien.SelectedValue.ToString());
+                pn.MaNV = nd.MaND;
                 pn.MaNCC = int.Parse(cbbNhaCC.EditValue.ToString());
                 pn.Ngay = DateTime.Now;
                 pn.TongTien = (decimal?)tinhTongTien();
@@ -300,6 +302,70 @@ namespace QLNhaHang
                 return false;
             }
             return true;
+        }
+
+        private void btnNhapExcel_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application xlApp;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            Microsoft.Office.Interop.Excel.Range xlRange;
+            string strFileName;
+            openFileDialog1.Filter = "Execel file | *.xls; *.xlsx";         
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                strFileName = openFileDialog1.FileName;
+                if (strFileName != string.Empty)
+                {
+                    xlApp = new Microsoft.Office.Interop.Excel.Application();
+                    xlWorkBook = xlApp.Workbooks.Open(strFileName);
+                    xlWorkSheet = xlWorkBook.Worksheets["Sheet1"];
+                    xlRange = xlWorkSheet.UsedRange;
+                    int xlRow;
+                    List<CTPNs> ctpnExcel = new List<CTPNs>();
+                    for (xlRow = 2; xlRow <= xlRange.Rows.Count; xlRow++)
+                    {
+                        if (xlRange.Cells[xlRow, 1].Text != "")
+                        {
+                            try
+                            {
+                                int maMH = int.Parse(xlRange.Cells[xlRow, 1].Text.ToString().Trim());
+                                MatHang mh = matHangBLLDAL.getMatHangByMaMH(maMH);
+                                if (mh == null)
+                                {
+                                    continue;
+                                }
+                                if (isExitedCTPN(mh.MaMH))
+                                {
+                                    continue;
+                                }
+                                int soLuong = int.Parse(xlRange.Cells[xlRow, 2].Text.ToString().Trim());
+                                double giaNhap = double.Parse(xlRange.Cells[xlRow, 3].Text.ToString().Trim());
+                                CTPNs ctpn = new CTPNs();
+                                ctpn.maMH = mh.MaMH;
+                                ctpn.soLuong = soLuong;
+                                ctpn.donGia = giaNhap;
+                                ctpn.tenMH = mh.TenMH;
+                                ctpnExcel.Add(ctpn);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Bỏ qua");
+                                continue;
+                            }
+                        }
+                    }
+                    xlWorkBook.Close();
+                    xlApp.Quit();
+                    if (ctpnExcel.Count > 0)
+                    {
+                        lstCTPN.AddRange(ctpnExcel);
+                        gridControlCTPN.DataSource = lstCTPN;
+                    }
+
+                }
+            }
+
         }
     }
 }

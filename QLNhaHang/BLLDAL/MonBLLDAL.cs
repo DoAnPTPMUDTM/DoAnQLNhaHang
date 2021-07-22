@@ -8,7 +8,7 @@ namespace BLLDAL
 {
     public class MonBLLDAL
     {
-        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext();
+        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public MonBLLDAL()
         {
 
@@ -94,6 +94,42 @@ namespace BLLDAL
             }
             return "Trống";
         }
-
+        public List<Chart> getTKMonTheo(DateTime ngayBD, DateTime ngayKT)
+        {
+            List<Chart> lstChart = new List<Chart>();
+            var data = from h in db.HoaDons
+                       from c in db.CTHDs
+                       where c.MaHD == h.MaHD && h.Ngay.Value.Date >= ngayBD.Date && h.Ngay.Value.Date <= ngayKT.Date && h.TinhTrang == 1
+                       group c by c.MaMon into g
+                       select new
+                       {
+                           Ma = g.Key,
+                           X = getTenByMa(g.Key),
+                           Y = g.Sum(s => s.DonGia*s.SoLuong),
+                           SL = g.Sum(s => s.SoLuong)
+                       };
+            foreach (var item in data)
+            {
+                Chart chart = new Chart((double)item.Y, item.X.ToString(), (int)item.SL,item.Ma);
+                lstChart.Add(chart);
+            }
+            return lstChart;
+        }
+        public string getTenByMa(int maMon)
+        {
+            Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
+            if(mon == null)
+            {
+                return "";
+            }
+            return mon.TenMon;
+        }
+        public decimal getDonGiaByMaMon(int maMon)
+        {
+            Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
+            if (mon == null)
+                return 0;
+            return mon.GiaKM.Value;
+        }
     }
 }

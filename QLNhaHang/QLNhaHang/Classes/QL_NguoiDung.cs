@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using BLLDAL;
 namespace QLNhaHang.Classes
 {
    public class QL_NguoiDung
@@ -68,8 +68,11 @@ namespace QLNhaHang.Classes
         }
         public void saveConfig(string serverName, string databaseName, string id, string pass)
         {
-            Properties.Settings.Default.ChuoiKetNoi = "Data source = " + serverName + ";Initial Catalog = " + databaseName + ";User ID = " + id + ";pwd = " + pass;
+            StringConnection strConn = new StringConnection();
+            string sConn = "Data source = " + serverName + ";Initial Catalog = " + databaseName + ";User ID = " + id + ";pwd = " + pass;
+            Properties.Settings.Default.ChuoiKetNoi = sConn;
             Properties.Settings.Default.Save();
+            strConn.saveStringConnection(sConn);
         }
 
     }

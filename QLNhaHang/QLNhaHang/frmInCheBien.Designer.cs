@@ -31,10 +31,10 @@ namespace QLNhaHang
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInCheBien));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
             this.btnIn = new DevExpress.XtraEditors.SimpleButton();
             this.dtgvCheBien = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,17 +55,31 @@ namespace QLNhaHang
             this.panel1.Size = new System.Drawing.Size(985, 613);
             this.panel1.TabIndex = 0;
             // 
+            // btnThoat
+            // 
+            this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoat.Appearance.Options.UseFont = true;
+            this.btnThoat.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnThoat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThoat.ImageOptions.SvgImage")));
+            this.btnThoat.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
+            this.btnThoat.Location = new System.Drawing.Point(834, 551);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(130, 50);
+            this.btnThoat.TabIndex = 1;
+            this.btnThoat.Text = "Thoát";
+            // 
             // btnIn
             // 
             this.btnIn.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIn.Appearance.Options.UseFont = true;
-            this.btnIn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnIn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnIn.ImageOptions.Image")));
             this.btnIn.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnIn.Location = new System.Drawing.Point(649, 551);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(170, 50);
             this.btnIn.TabIndex = 1;
             this.btnIn.Text = "Thực hiện in";
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // dtgvCheBien
             // 
@@ -84,24 +98,16 @@ namespace QLNhaHang
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.gridView1.GridControl = this.dtgvCheBien;
             this.gridView1.Name = "gridView1";
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.Appearance.Options.UseFont = true;
-            this.btnThoat.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnThoat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton2.ImageOptions.SvgImage")));
-            this.btnThoat.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
-            this.btnThoat.Location = new System.Drawing.Point(834, 551);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(130, 50);
-            this.btnThoat.TabIndex = 1;
-            this.btnThoat.Text = "Thoát";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
             this.gridColumn1.Caption = "Mã món";
             this.gridColumn1.FieldName = "MaMon";
             this.gridColumn1.MinWidth = 25;
@@ -112,6 +118,8 @@ namespace QLNhaHang
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
             this.gridColumn2.Caption = "Tên món";
             this.gridColumn2.FieldName = "TenMon";
             this.gridColumn2.MinWidth = 25;
@@ -122,6 +130,8 @@ namespace QLNhaHang
             // 
             // gridColumn3
             // 
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn3.AppearanceCell.Options.UseFont = true;
             this.gridColumn3.Caption = "Số lượng";
             this.gridColumn3.FieldName = "SoLuong";
             this.gridColumn3.MinWidth = 25;
@@ -132,6 +142,8 @@ namespace QLNhaHang
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn4.AppearanceCell.Options.UseFont = true;
             this.gridColumn4.Caption = "Ghi chú";
             this.gridColumn4.FieldName = "GhiChu";
             this.gridColumn4.MinWidth = 25;

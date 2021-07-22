@@ -32,11 +32,11 @@ namespace QLNhaHang
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLNhapHang));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barBtnThemPN = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnXuatExcelPN = new DevExpress.XtraBars.BarButtonItem();
-            this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -63,6 +63,7 @@ namespace QLNhaHang
             this.tabbedControlGroup2 = new DevExpress.XtraLayout.TabbedControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -93,6 +94,15 @@ namespace QLNhaHang
             this.layoutControl1.Size = new System.Drawing.Size(1482, 696);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // standaloneBarDockControl1
+            // 
+            this.standaloneBarDockControl1.CausesValidation = false;
+            this.standaloneBarDockControl1.Location = new System.Drawing.Point(24, 57);
+            this.standaloneBarDockControl1.Manager = this.barManager1;
+            this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(758, 30);
+            this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barManager1
             // 
@@ -141,15 +151,7 @@ namespace QLNhaHang
             this.barBtnXuatExcelPN.Id = 1;
             this.barBtnXuatExcelPN.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barBtnXuatExcelPN.ImageOptions.SvgImage")));
             this.barBtnXuatExcelPN.Name = "barBtnXuatExcelPN";
-            // 
-            // standaloneBarDockControl1
-            // 
-            this.standaloneBarDockControl1.CausesValidation = false;
-            this.standaloneBarDockControl1.Location = new System.Drawing.Point(24, 57);
-            this.standaloneBarDockControl1.Manager = this.barManager1;
-            this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(758, 30);
-            this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
+            this.barBtnXuatExcelPN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnXuatExcelPN_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -204,6 +206,7 @@ namespace QLNhaHang
             this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.Appearance.Row.Options.UseFont = true;
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn11,
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
@@ -222,14 +225,12 @@ namespace QLNhaHang
             this.gridColumn6.FieldName = "MaPN";
             this.gridColumn6.MinWidth = 25;
             this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 0;
             this.gridColumn6.Width = 94;
             // 
             // gridColumn7
             // 
-            this.gridColumn7.Caption = "Mặt hàng";
-            this.gridColumn7.FieldName = "MaMH";
+            this.gridColumn7.Caption = "Tên mặt hàng";
+            this.gridColumn7.FieldName = "TenMH";
             this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
@@ -443,6 +444,16 @@ namespace QLNhaHang
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Mã MH";
+            this.gridColumn11.FieldName = "MaMH";
+            this.gridColumn11.MinWidth = 25;
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 0;
+            this.gridColumn11.Width = 94;
+            // 
             // frmQLNhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -455,6 +466,7 @@ namespace QLNhaHang
             this.Controls.Add(this.barDockControlTop);
             this.Name = "frmQLNhapHang";
             this.Text = "frmQLNhapHang";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmQLNhapHang_FormClosing);
             this.Load += new System.EventHandler(this.frmQLNhapHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -510,5 +522,6 @@ namespace QLNhaHang
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraBars.BarButtonItem barBtnXuatExcelPN;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

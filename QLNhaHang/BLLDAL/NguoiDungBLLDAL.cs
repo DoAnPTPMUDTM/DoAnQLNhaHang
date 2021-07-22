@@ -8,7 +8,7 @@ namespace BLLDAL
 {
     public class NguoiDungBLLDAL
     {
-        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext();
+        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public NguoiDungBLLDAL()
         {
 
@@ -112,5 +112,10 @@ namespace BLLDAL
             //{
             //}
         }
+        public NguoiDung getNDByTenDN(string tenDN)
+        {
+            return db.NguoiDungs.Where(n => n.TenDN.Equals(tenDN)).FirstOrDefault();          
+        }
+        
     }
 }

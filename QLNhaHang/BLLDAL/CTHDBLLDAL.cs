@@ -8,7 +8,7 @@ namespace BLLDAL
 {
     public class CTHDBLLDAL
     {
-        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext();
+        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public CTHDBLLDAL()
         {
 
@@ -120,7 +120,6 @@ namespace BLLDAL
                         cthdMoi.SoLuong = cthdCu.SoLuong;
                         cthdMoi.DonGia = cthdCu.DonGia;
                         cthdMoi.ThanhTien = cthdCu.ThanhTien;
-                        cthdMoi.GhiChu = cthdCu.GhiChu;
                         db.CTHDs.InsertOnSubmit(cthdMoi);
                     }
                     else
@@ -132,6 +131,11 @@ namespace BLLDAL
                     db.SubmitChanges();
                 }    
             }
+        }
+
+        public List<CTHD> getCTHDByMaHD(int maHD)
+        {
+            return db.CTHDs.Where(c => c.MaHD == maHD).ToList();
         }
     }
 }

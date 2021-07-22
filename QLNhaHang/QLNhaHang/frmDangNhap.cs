@@ -67,7 +67,7 @@ namespace QLNhaHang
             }
             if (kq == 2)
             {
-                frmMain mainForm = new frmMain();
+                frmMain mainForm = new frmMain(txtTenDN.Text.Trim());
                 mainForm.Show();
                 this.Hide();
             }

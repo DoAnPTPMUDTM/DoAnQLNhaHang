@@ -12,6 +12,15 @@ namespace BLLDAL
         {
 
         }
+
+        public InCheBien(int maMon, string tenMon, int soLuong, string ghiChu)
+        {
+            MaMon = maMon;
+            TenMon = tenMon;
+            SoLuong = soLuong;
+            GhiChu = ghiChu;
+        }
+
         public InCheBien(int maBan, int maMon, string tenMon, int soLuong, string ghiChu)
         {
             this.MaBan = maBan;

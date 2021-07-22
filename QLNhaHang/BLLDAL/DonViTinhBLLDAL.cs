@@ -8,7 +8,7 @@ namespace BLLDAL
 {
     public class DonViTinhBLLDAL
     {
-        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext();
+        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public DonViTinhBLLDAL()
         {
 

@@ -68,8 +68,15 @@ namespace QLNhaHang
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+            this.skinRibbonGalleryBarItem2 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+            this.skinPaletteRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem();
+            this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
+            this.skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.skinPaletteRibbonGalleryBarItem2 = new DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem();
+            this.skinRibbonGalleryBarItem3 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -95,9 +102,16 @@ namespace QLNhaHang
             this.barBtnThemNDNhom,
             this.barBtnPhanQuyen,
             this.barBtnSaoLuu,
-            this.barBtnQLNhapKho});
+            this.barBtnQLNhapKho,
+            this.skinRibbonGalleryBarItem1,
+            this.skinRibbonGalleryBarItem2,
+            this.skinPaletteRibbonGalleryBarItem1,
+            this.skinDropDownButtonItem1,
+            this.skinPaletteDropDownButtonItem1,
+            this.skinPaletteRibbonGalleryBarItem2,
+            this.skinRibbonGalleryBarItem3});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 18;
+            this.ribbonControl1.MaxItemId = 25;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -184,7 +198,7 @@ namespace QLNhaHang
             // 
             // barBtnTKDoanhThu
             // 
-            this.barBtnTKDoanhThu.Caption = "Doanh Thu";
+            this.barBtnTKDoanhThu.Caption = "Thống Kê";
             this.barBtnTKDoanhThu.Id = 9;
             this.barBtnTKDoanhThu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnTKDoanhThu.ImageOptions.Image")));
             this.barBtnTKDoanhThu.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnTKDoanhThu.ImageOptions.LargeImage")));
@@ -193,6 +207,7 @@ namespace QLNhaHang
             this.barBtnTKDoanhThu.LargeWidth = 80;
             this.barBtnTKDoanhThu.Name = "barBtnTKDoanhThu";
             this.barBtnTKDoanhThu.Tag = "7";
+            this.barBtnTKDoanhThu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnTKDoanhThu_ItemClick);
             // 
             // barBtnTaiKhoan
             // 
@@ -446,14 +461,56 @@ namespace QLNhaHang
             this.ribbonPage5.Name = "ribbonPage5";
             this.ribbonPage5.Text = "Cài Đặt";
             // 
-            // ribbonPageGroup5
-            // 
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
-            // 
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // skinRibbonGalleryBarItem1
+            // 
+            this.skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
+            this.skinRibbonGalleryBarItem1.Id = 18;
+            this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
+            // 
+            // skinRibbonGalleryBarItem2
+            // 
+            this.skinRibbonGalleryBarItem2.Caption = "skinRibbonGalleryBarItem2";
+            this.skinRibbonGalleryBarItem2.Id = 19;
+            this.skinRibbonGalleryBarItem2.Name = "skinRibbonGalleryBarItem2";
+            // 
+            // skinPaletteRibbonGalleryBarItem1
+            // 
+            this.skinPaletteRibbonGalleryBarItem1.Caption = "skinPaletteRibbonGalleryBarItem1";
+            this.skinPaletteRibbonGalleryBarItem1.Id = 20;
+            this.skinPaletteRibbonGalleryBarItem1.Name = "skinPaletteRibbonGalleryBarItem1";
+            // 
+            // skinDropDownButtonItem1
+            // 
+            this.skinDropDownButtonItem1.Id = 21;
+            this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
+            // 
+            // skinPaletteDropDownButtonItem1
+            // 
+            this.skinPaletteDropDownButtonItem1.Id = 22;
+            this.skinPaletteDropDownButtonItem1.Name = "skinPaletteDropDownButtonItem1";
+            // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.skinPaletteRibbonGalleryBarItem2);
+            this.ribbonPageGroup5.ItemLinks.Add(this.skinRibbonGalleryBarItem3);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
+            // 
+            // skinPaletteRibbonGalleryBarItem2
+            // 
+            this.skinPaletteRibbonGalleryBarItem2.Caption = "skinPaletteRibbonGalleryBarItem2";
+            this.skinPaletteRibbonGalleryBarItem2.Id = 23;
+            this.skinPaletteRibbonGalleryBarItem2.Name = "skinPaletteRibbonGalleryBarItem2";
+            // 
+            // skinRibbonGalleryBarItem3
+            // 
+            this.skinRibbonGalleryBarItem3.Caption = "skinRibbonGalleryBarItem3";
+            this.skinRibbonGalleryBarItem3.Id = 24;
+            this.skinRibbonGalleryBarItem3.Name = "skinRibbonGalleryBarItem3";
             // 
             // frmMain
             // 
@@ -489,7 +546,6 @@ namespace QLNhaHang
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage4;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage5;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem barBtnGoiMonTaiBan;
         private DevExpress.XtraBars.BarButtonItem barButtonQLMonAn;
         private DevExpress.XtraBars.BarButtonItem barBtnQLBanAn;
@@ -514,5 +570,13 @@ namespace QLNhaHang
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup RibbonPageGoup9;
         private DevExpress.XtraBars.BarButtonItem barBtnQLNhapKho;
+        private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
+        private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem2;
+        private DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem skinPaletteRibbonGalleryBarItem1;
+        private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
+        private DevExpress.XtraBars.SkinPaletteDropDownButtonItem skinPaletteDropDownButtonItem1;
+        private DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem skinPaletteRibbonGalleryBarItem2;
+        private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem3;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
     }
 }

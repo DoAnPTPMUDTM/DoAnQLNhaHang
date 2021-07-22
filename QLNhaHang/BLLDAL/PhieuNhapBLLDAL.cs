@@ -8,7 +8,7 @@ namespace BLLDAL
 {
     public class PhieuNhapBLLDAL
     {
-        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext();
+        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public PhieuNhapBLLDAL()
         {
 
@@ -25,6 +25,10 @@ namespace BLLDAL
                 db.PhieuNhaps.InsertOnSubmit(pn);
                 db.SubmitChanges();
             }    
+        }
+        public PhieuNhap getPhieuNhapByMaPN(int maPN)
+        {
+            return db.PhieuNhaps.Where(p => p.MaPN == maPN).FirstOrDefault();
         }
     }
 }

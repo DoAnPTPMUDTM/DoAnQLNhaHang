@@ -57,7 +57,6 @@ namespace QLNhaHang
             this.MaMon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TenMon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DVT = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.GhiChu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SoLuong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DonGia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ThanhTien = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -106,7 +105,7 @@ namespace QLNhaHang
             this.label7 = new System.Windows.Forms.Label();
             this.lbTenBan = new System.Windows.Forms.Label();
             this.lbGioVao = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lbNhanVien = new System.Windows.Forms.Label();
             this.lbHoaDon = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -455,7 +454,6 @@ namespace QLNhaHang
             this.MaMon,
             this.TenMon,
             this.DVT,
-            this.GhiChu,
             this.SoLuong,
             this.DonGia,
             this.ThanhTien});
@@ -505,16 +503,6 @@ namespace QLNhaHang
             this.DVT.VisibleIndex = 1;
             this.DVT.Width = 94;
             // 
-            // GhiChu
-            // 
-            this.GhiChu.Caption = "Ghi Chú";
-            this.GhiChu.FieldName = "GhiChu";
-            this.GhiChu.MinWidth = 25;
-            this.GhiChu.Name = "GhiChu";
-            this.GhiChu.Visible = true;
-            this.GhiChu.VisibleIndex = 2;
-            this.GhiChu.Width = 94;
-            // 
             // SoLuong
             // 
             this.SoLuong.Caption = "Số Lượng";
@@ -522,7 +510,7 @@ namespace QLNhaHang
             this.SoLuong.MinWidth = 25;
             this.SoLuong.Name = "SoLuong";
             this.SoLuong.Visible = true;
-            this.SoLuong.VisibleIndex = 3;
+            this.SoLuong.VisibleIndex = 2;
             this.SoLuong.Width = 94;
             // 
             // DonGia
@@ -534,7 +522,7 @@ namespace QLNhaHang
             this.DonGia.MinWidth = 25;
             this.DonGia.Name = "DonGia";
             this.DonGia.Visible = true;
-            this.DonGia.VisibleIndex = 4;
+            this.DonGia.VisibleIndex = 3;
             this.DonGia.Width = 94;
             // 
             // ThanhTien
@@ -548,7 +536,7 @@ namespace QLNhaHang
             this.ThanhTien.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ThanhTien", "{0:N0}")});
             this.ThanhTien.Visible = true;
-            this.ThanhTien.VisibleIndex = 5;
+            this.ThanhTien.VisibleIndex = 4;
             this.ThanhTien.Width = 106;
             // 
             // panelBottom
@@ -828,7 +816,7 @@ namespace QLNhaHang
             this.panelTop.Controls.Add(this.label7);
             this.panelTop.Controls.Add(this.lbTenBan);
             this.panelTop.Controls.Add(this.lbGioVao);
-            this.panelTop.Controls.Add(this.label11);
+            this.panelTop.Controls.Add(this.lbNhanVien);
             this.panelTop.Controls.Add(this.lbHoaDon);
             this.panelTop.Controls.Add(this.label1);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1080,16 +1068,16 @@ namespace QLNhaHang
             this.lbGioVao.TabIndex = 0;
             this.lbGioVao.Text = "12:00:00 PM";
             // 
-            // label11
+            // lbNhanVien
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(105, 140);
-            this.label11.Margin = new System.Windows.Forms.Padding(0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(126, 21);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Phạm Hồng Sơn";
+            this.lbNhanVien.AutoSize = true;
+            this.lbNhanVien.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNhanVien.Location = new System.Drawing.Point(105, 140);
+            this.lbNhanVien.Margin = new System.Windows.Forms.Padding(0);
+            this.lbNhanVien.Name = "lbNhanVien";
+            this.lbNhanVien.Size = new System.Drawing.Size(126, 21);
+            this.lbNhanVien.TabIndex = 0;
+            this.lbNhanVien.Text = "Phạm Hồng Sơn";
             // 
             // lbHoaDon
             // 
@@ -1245,7 +1233,7 @@ namespace QLNhaHang
         private System.Windows.Forms.Button btnMoBan;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lbNhanVien;
         private System.Windows.Forms.Label lbHoaDon;
         private System.Windows.Forms.DateTimePicker dtNgayHienTai;
         private DevExpress.XtraEditors.SimpleButton btnXoaCTHD;
@@ -1284,7 +1272,6 @@ namespace QLNhaHang
         private DevExpress.XtraGrid.Columns.GridColumn MaMon;
         private DevExpress.XtraGrid.Columns.GridColumn TenMon;
         private DevExpress.XtraGrid.Columns.GridColumn DVT;
-        private DevExpress.XtraGrid.Columns.GridColumn GhiChu;
         private DevExpress.XtraGrid.Columns.GridColumn SoLuong;
         private DevExpress.XtraGrid.Columns.GridColumn DonGia;
         private DevExpress.XtraGrid.Columns.GridColumn ThanhTien;

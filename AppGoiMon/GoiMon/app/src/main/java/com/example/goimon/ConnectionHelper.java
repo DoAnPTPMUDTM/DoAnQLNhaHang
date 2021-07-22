@@ -9,12 +9,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionHelper {
-    private static String ip = "192.168.1.8";//"192.168.2.9";//Thay đổi ipV4 của máy
+    private static String ip = "192.168.1.139";//"";//Thay đổi ipV4 của máy : 192.168.1.8
     private static String port = "1433";//Thay đổi port
     private static String Classes = "net.sourceforge.jtds.jdbc.Driver";
     private static String database = "QuanLyNhaHang";//Tên database
     private static String username = "sa";//username
-    private static String password = "0905213883";//password
+    private static String password = "123";//password : 0905213883
     private static String url = "jdbc:jtds:sqlserver://"+ip+":"+port+"/"+database;
     private Connection connection = null;
 

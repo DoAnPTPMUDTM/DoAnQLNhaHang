@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLyNhaHang" Class="QuanLyNhaHangDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=QuanLyNhaHang;User ID=sa" SettingsObjectName="BLLDAL.Properties.Settings" SettingsPropertyName="QuanLyNhaHangConnectionString3" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=QuanLyNhaHang;User ID=sa" SettingsObjectName="BLLDAL.Properties.Settings" SettingsPropertyName="QuanLyNhaHangConnectionString5" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Ban" Member="Bans">
     <Type Name="Ban">
       <Column Name="MaBan" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -16,7 +16,6 @@
       <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DonGia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="ThanhTien" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="HoaDon_CTHD" Member="HoaDon" ThisKey="MaHD" OtherKey="MaHD" Type="HoaDon" IsForeignKey="true" />
       <Association Name="Mon_CTHD" Member="Mon" ThisKey="MaMon" OtherKey="MaMon" Type="Mon" IsForeignKey="true" />
     </Type>
@@ -48,6 +47,7 @@
       <Column Name="MaMon" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TinhTrang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="HoaDon_GoiMonTaiBan" Member="HoaDon" ThisKey="MaHD" OtherKey="MaHD" Type="HoaDon" IsForeignKey="true" />
       <Association Name="Mon_GoiMonTaiBan" Member="Mon" ThisKey="MaMon" OtherKey="MaMon" Type="Mon" IsForeignKey="true" />
     </Type>
@@ -62,8 +62,6 @@
       <Column Name="TongTien" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="TienGiam" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="ThanhTien" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TienNhan" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TienThua" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="TinhTrang" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="HoaDon_CTHD" Member="CTHDs" ThisKey="MaHD" OtherKey="MaHD" Type="CTHD" />
       <Association Name="HoaDon_GoiMonTaiBan" Member="GoiMonTaiBans" ThisKey="MaHD" OtherKey="MaHD" Type="GoiMonTaiBan" />

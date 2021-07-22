@@ -42,6 +42,7 @@ namespace QLNhaHang
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnLapPhieuNhap = new DevExpress.XtraEditors.SimpleButton();
+            this.btnNhapExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnXoaMH = new DevExpress.XtraEditors.SimpleButton();
             this.btnTangSL = new DevExpress.XtraEditors.SimpleButton();
             this.btnGiamSL = new DevExpress.XtraEditors.SimpleButton();
@@ -57,7 +58,6 @@ namespace QLNhaHang
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.cbbNhanVien = new System.Windows.Forms.ComboBox();
             this.cbbLoaiMH = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -76,6 +76,8 @@ namespace QLNhaHang
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.txtNhanVien = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -116,7 +118,7 @@ namespace QLNhaHang
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1382, 653);
+            this.layoutControl1.Size = new System.Drawing.Size(1382, 716);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -129,7 +131,7 @@ namespace QLNhaHang
             this.groupControl2.Controls.Add(this.layoutControl3);
             this.groupControl2.Location = new System.Drawing.Point(676, 12);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(694, 629);
+            this.groupControl2.Size = new System.Drawing.Size(694, 692);
             this.groupControl2.TabIndex = 5;
             this.groupControl2.Text = "Phiếu nhập";
             // 
@@ -141,16 +143,16 @@ namespace QLNhaHang
             this.layoutControl3.Location = new System.Drawing.Point(2, 28);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroupPN;
-            this.layoutControl3.Size = new System.Drawing.Size(690, 599);
+            this.layoutControl3.Size = new System.Drawing.Size(690, 662);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
             // gridControlCTPN
             // 
-            this.gridControlCTPN.Location = new System.Drawing.Point(12, 214);
+            this.gridControlCTPN.Location = new System.Drawing.Point(12, 212);
             this.gridControlCTPN.MainView = this.gridViewCTPN;
             this.gridControlCTPN.Name = "gridControlCTPN";
-            this.gridControlCTPN.Size = new System.Drawing.Size(666, 373);
+            this.gridControlCTPN.Size = new System.Drawing.Size(666, 438);
             this.gridControlCTPN.TabIndex = 5;
             this.gridControlCTPN.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewCTPN});
@@ -208,6 +210,8 @@ namespace QLNhaHang
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Đơn giá";
+            this.gridColumn4.DisplayFormat.FormatString = "N0";
+            this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn4.FieldName = "donGia";
             this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
@@ -218,6 +222,8 @@ namespace QLNhaHang
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Thành tiền";
+            this.gridColumn5.DisplayFormat.FormatString = "N0";
+            this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn5.FieldName = "thanhTien";
             this.gridColumn5.MinWidth = 25;
             this.gridColumn5.Name = "gridColumn5";
@@ -233,12 +239,13 @@ namespace QLNhaHang
             this.panelControl2.Appearance.Options.UseBackColor = true;
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl2.Controls.Add(this.btnLapPhieuNhap);
+            this.panelControl2.Controls.Add(this.btnNhapExcel);
             this.panelControl2.Controls.Add(this.btnXoaMH);
             this.panelControl2.Controls.Add(this.btnTangSL);
             this.panelControl2.Controls.Add(this.btnGiamSL);
             this.panelControl2.Location = new System.Drawing.Point(12, 12);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(666, 198);
+            this.panelControl2.Size = new System.Drawing.Size(666, 196);
             this.panelControl2.TabIndex = 4;
             // 
             // btnLapPhieuNhap
@@ -254,6 +261,20 @@ namespace QLNhaHang
             this.btnLapPhieuNhap.TabIndex = 3;
             this.btnLapPhieuNhap.Text = "Lập phiếu nhập";
             this.btnLapPhieuNhap.Click += new System.EventHandler(this.btnLapPhieuNhap_Click);
+            // 
+            // btnNhapExcel
+            // 
+            this.btnNhapExcel.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNhapExcel.Appearance.Options.UseFont = true;
+            this.btnNhapExcel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNhapExcel.ImageOptions.Image")));
+            this.btnNhapExcel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnNhapExcel.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
+            this.btnNhapExcel.Location = new System.Drawing.Point(19, 104);
+            this.btnNhapExcel.Name = "btnNhapExcel";
+            this.btnNhapExcel.Size = new System.Drawing.Size(171, 37);
+            this.btnNhapExcel.TabIndex = 2;
+            this.btnNhapExcel.Text = "Nhập excel";
+            this.btnNhapExcel.Click += new System.EventHandler(this.btnNhapExcel_Click);
             // 
             // btnXoaMH
             // 
@@ -300,7 +321,7 @@ namespace QLNhaHang
             this.layoutControlItem5,
             this.layoutControlItem6});
             this.layoutControlGroupPN.Name = "layoutControlGroupPN";
-            this.layoutControlGroupPN.Size = new System.Drawing.Size(690, 599);
+            this.layoutControlGroupPN.Size = new System.Drawing.Size(690, 662);
             this.layoutControlGroupPN.TextVisible = false;
             // 
             // layoutControlItem5
@@ -308,16 +329,16 @@ namespace QLNhaHang
             this.layoutControlItem5.Control = this.panelControl2;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(670, 202);
+            this.layoutControlItem5.Size = new System.Drawing.Size(670, 200);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.gridControlCTPN;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 202);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 200);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(670, 377);
+            this.layoutControlItem6.Size = new System.Drawing.Size(670, 442);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -330,7 +351,7 @@ namespace QLNhaHang
             this.groupControl1.Controls.Add(this.layoutControl2);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(660, 629);
+            this.groupControl1.Size = new System.Drawing.Size(660, 692);
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "Danh sách mặt hàng";
             // 
@@ -342,16 +363,16 @@ namespace QLNhaHang
             this.layoutControl2.Location = new System.Drawing.Point(2, 28);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(656, 599);
+            this.layoutControl2.Size = new System.Drawing.Size(656, 662);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
             // gridControlMH
             // 
-            this.gridControlMH.Location = new System.Drawing.Point(12, 212);
+            this.gridControlMH.Location = new System.Drawing.Point(12, 211);
             this.gridControlMH.MainView = this.gridViewMatHang;
             this.gridControlMH.Name = "gridControlMH";
-            this.gridControlMH.Size = new System.Drawing.Size(632, 375);
+            this.gridControlMH.Size = new System.Drawing.Size(632, 439);
             this.gridControlMH.TabIndex = 5;
             this.gridControlMH.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewMatHang});
@@ -419,7 +440,6 @@ namespace QLNhaHang
             this.panelControl1.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl1.Appearance.Options.UseBackColor = true;
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.cbbNhanVien);
             this.panelControl1.Controls.Add(this.cbbLoaiMH);
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.labelControl5);
@@ -428,23 +448,15 @@ namespace QLNhaHang
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.btnThem);
+            this.panelControl1.Controls.Add(this.txtNhanVien);
             this.panelControl1.Controls.Add(this.txtGiaNhap);
             this.panelControl1.Controls.Add(this.numericUpDownSL);
             this.panelControl1.Controls.Add(this.cbbNhaCC);
             this.panelControl1.Controls.Add(this.dtNgayNhap);
             this.panelControl1.Location = new System.Drawing.Point(12, 12);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(632, 196);
+            this.panelControl1.Size = new System.Drawing.Size(632, 195);
             this.panelControl1.TabIndex = 4;
-            // 
-            // cbbNhanVien
-            // 
-            this.cbbNhanVien.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbNhanVien.FormattingEnabled = true;
-            this.cbbNhanVien.Location = new System.Drawing.Point(207, 82);
-            this.cbbNhanVien.Name = "cbbNhanVien";
-            this.cbbNhanVien.Size = new System.Drawing.Size(200, 29);
-            this.cbbNhanVien.TabIndex = 12;
             // 
             // cbbLoaiMH
             // 
@@ -457,6 +469,7 @@ namespace QLNhaHang
             this.cbbLoaiMH.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaLoaiMH", "Mã loại", 7, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenLoaiMH", "Tên loại MH", 25, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cbbLoaiMH.Properties.NullText = "";
             this.cbbLoaiMH.Size = new System.Drawing.Size(200, 28);
             this.cbbLoaiMH.TabIndex = 11;
             this.cbbLoaiMH.EditValueChanged += new System.EventHandler(this.cbbLoaiMH_EditValueChanged);
@@ -573,6 +586,7 @@ namespace QLNhaHang
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaNCC", "Mã NCC", 7, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenNCC", "Tên NCC", 30, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SDT", "SĐT", 25, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cbbNhaCC.Properties.NullText = "Chọn nhà cung cấp";
             this.cbbNhaCC.Size = new System.Drawing.Size(200, 28);
             this.cbbNhaCC.TabIndex = 1;
             // 
@@ -595,7 +609,7 @@ namespace QLNhaHang
             this.layoutControlItem3,
             this.layoutControlItem4});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(656, 599);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(656, 662);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem3
@@ -603,16 +617,16 @@ namespace QLNhaHang
             this.layoutControlItem3.Control = this.panelControl1;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(636, 200);
+            this.layoutControlItem3.Size = new System.Drawing.Size(636, 199);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.gridControlMH;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 200);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 199);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(636, 379);
+            this.layoutControlItem4.Size = new System.Drawing.Size(636, 443);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -624,7 +638,7 @@ namespace QLNhaHang
             this.layoutControlItem1,
             this.layoutControlItem2});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1382, 653);
+            this.Root.Size = new System.Drawing.Size(1382, 716);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -632,7 +646,7 @@ namespace QLNhaHang
             this.layoutControlItem1.Control = this.groupControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(664, 633);
+            this.layoutControlItem1.Size = new System.Drawing.Size(664, 696);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -641,15 +655,29 @@ namespace QLNhaHang
             this.layoutControlItem2.Control = this.groupControl2;
             this.layoutControlItem2.Location = new System.Drawing.Point(664, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(698, 633);
+            this.layoutControlItem2.Size = new System.Drawing.Size(698, 696);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // txtNhanVien
+            // 
+            this.txtNhanVien.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNhanVien.Location = new System.Drawing.Point(207, 83);
+            this.txtNhanVien.Name = "txtNhanVien";
+            this.txtNhanVien.ReadOnly = true;
+            this.txtNhanVien.Size = new System.Drawing.Size(200, 28);
+            this.txtNhanVien.TabIndex = 4;
+            this.txtNhanVien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaNhap_KeyPress);
             // 
             // frmThemPhieuNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 653);
+            this.ClientSize = new System.Drawing.Size(1382, 716);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmThemPhieuNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -737,6 +765,8 @@ namespace QLNhaHang
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private System.Windows.Forms.ComboBox cbbNhanVien;
+        private DevExpress.XtraEditors.SimpleButton btnNhapExcel;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TextBox txtNhanVien;
     }
 }

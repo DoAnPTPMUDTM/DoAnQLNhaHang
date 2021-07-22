@@ -28,6 +28,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,6 +55,7 @@ public class FoodsFragment extends Fragment {
     NhomMonAdapter nhomMonAdapter;
     EditText searchView;
     TextView txtTenMonDialog,txtSoLuongMon,txtGiaGocDialog,txtGiaKMDialog;
+    TextInputEditText txtGhiChu;
     Button btnOK, btnHuy;
     Spinner snNhomMon;
     ImageView imgSub, imgAdd,imgAnhMonDialog;
@@ -130,6 +133,7 @@ public class FoodsFragment extends Fragment {
                         txtSoLuongMon = dialog.findViewById(R.id.txtSoLuongMon);
                         txtGiaGocDialog = dialog.findViewById(R.id.txtGiaGocDialog);
                         txtGiaKMDialog = dialog.findViewById(R.id.txtGiaKMDialog);
+                        txtGhiChu = dialog.findViewById(R.id.txtGhiChu);
                         imgAdd = dialog.findViewById(R.id.imgAdd);
                         imgSub = dialog.findViewById(R.id.imgSub);
                         imgAnhMonDialog = dialog.findViewById(R.id.imgAnhMonDialog);
@@ -162,7 +166,11 @@ public class FoodsFragment extends Fragment {
                         btnOK.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                cartItem = new CartItem(arrayList.get(position).getMaMon(),arrayList.get(position).getTenMon(),arrayList.get(position).getAnhMon(),arrayList.get(position).getGiaGoc(),arrayList.get(position).getGiaKM());
+                                String ghiChu = txtGhiChu.getText().toString().trim();
+                                if(ghiChu.isEmpty()){
+                                    ghiChu = "Không";
+                                }
+                                cartItem = new CartItem(arrayList.get(position).getMaMon(),arrayList.get(position).getTenMon(),arrayList.get(position).getAnhMon(),arrayList.get(position).getGiaGoc(),arrayList.get(position).getGiaKM(),ghiChu);
                                 int soLuong = Integer.parseInt(txtSoLuongMon.getText().toString());
                                 if(cart.getInstanceCart().size() > 0){
                                     boolean check = true;

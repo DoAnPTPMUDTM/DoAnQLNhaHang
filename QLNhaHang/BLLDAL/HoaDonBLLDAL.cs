@@ -1,17 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BLLDAL
 {
-   public class HoaDonBLLDAL
+    public class HoaDonBLLDAL
     {
-        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext();
+        QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public HoaDonBLLDAL()
         {
 
+        }
+      
+        public List<Chart> getTKTheoThang(DateTime ngayBD, DateTime ngayKT)
+        {
+            List<Chart> lstChart = new List<Chart>();
+            var data = db.HoaDons.Where(h => h.Ngay.Value.Date >= ngayBD.Date && h.Ngay.Value.Date <= ngayKT.Date && h.TinhTrang == 1).GroupBy(x => new { x.Ngay.Value.Month, x.Ngay.Value.Year }).Select(x => new
+            {
+                X = "Tháng " + x.Key.Month + "/" + x.Key.Year,
+                Y = x.Sum(s => s.ThanhTien),
+                SL = x.Count()
+            });
+            foreach (var item in data)
+            {
+                Chart chart = new Chart((double)item.Y, item.X.ToString(),item.SL);
+                lstChart.Add(chart);
+            }
+            return lstChart;
+        }
+        public List<Chart> getTKTheoNgay(DateTime ngayBD, DateTime ngayKT)
+        {
+            List<Chart> lstChart = new List<Chart>();
+            var data = db.HoaDons.Where(h => h.Ngay.Value.Date >= ngayBD.Date && h.Ngay.Value.Date <= ngayKT.Date && h.TinhTrang == 1).GroupBy(x => new {x.Ngay.Value.Day, x.Ngay.Value.Month, x.Ngay.Value.Year }).Select(x => new
+            {
+                X = x.Key.Day + "/" + x.Key.Month + "/" + x.Key.Year,
+                Y = x.Sum(s => s.ThanhTien),
+                SL = x.Count()
+            }).ToList();
+            foreach (var item in data)
+            {
+                Chart chart = new Chart((double)item.Y.Value, item.X.ToString(), item.SL);
+                lstChart.Add(chart);
+            }
+            return lstChart;
+        }
+        public DataTable getTKTheoThang2(DateTime ngayBD, DateTime ngayKT)
+        {
+            var data = db.HoaDons.Where(h => h.Ngay >= ngayBD.Date && h.Ngay <= ngayKT.Date).GroupBy(x => new { x.Ngay.Value.Month, x.Ngay.Value.Year }).Select(x => new
+            {
+                X = x.Key.Month + "/" + x.Key.Year,
+                Y = x.Sum(s => s.ThanhTien)
+            });
+            DataTable table = new DataTable("Table1");
+            table.Columns.Add("Argument", typeof(string));
+            table.Columns.Add("Value", typeof(double));
+            DataRow row = null;
+            //foreach (var item in data)
+            //{
+            //    row = table.NewRow();
+            //    row["Argument"] = item.X.ToString();
+            //    row["Value"] = item.Y;
+            //    table.Rows.Add(row);
+            //}
+            for (int i = 1; i <= 5; i++)
+            {
+                row = table.NewRow();
+                row["Argument"] = "a" + i;
+                row["Value"] = i;
+                table.Rows.Add(row);
+            }
+            return table;
         }
         public List<HoaDon> getDataHoaDon()
         {
@@ -30,7 +91,7 @@ namespace BLLDAL
         public void updateTTKH(int maHD, int? maKH)
         {
             HoaDon hd = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
-            if(hd != null)
+            if (hd != null)
             {
                 hd.MaKH = maKH;
                 db.SubmitChanges();
@@ -48,16 +109,14 @@ namespace BLLDAL
                 }
             }
         }
-        public void thanhToan(int maHD, double tongTien, double tienGiam, double thanhTien, double tienNhan, double tienThua)
+        public void thanhToan(int maHD, double tongTien, double tienGiam, double thanhTien)
         {
             HoaDon hd = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
-            if(hd != null && hd.TinhTrang == 0)
+            if (hd != null && hd.TinhTrang == 0)
             {
-                hd.TongTien = (decimal?)tongTien;
-                hd.TienGiam = (decimal?)tienGiam;
-                hd.ThanhTien = (decimal?)thanhTien;
-                hd.TienNhan = (decimal?)tienNhan;
-                hd.TienThua = (decimal?)tienThua;
+                hd.TongTien = (decimal)tongTien;
+                hd.TienGiam = (decimal)tienGiam;
+                hd.ThanhTien = (decimal)thanhTien;
                 hd.TinhTrang = 1;
                 db.SubmitChanges();
             }
@@ -72,32 +131,73 @@ namespace BLLDAL
             HoaDon hd = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
             if (hd != null)
             {
-                if(hd.MaKH != 0)
+                if (hd.MaKH != 0)
                 {
                     hd.MaKH = 0;
                     db.SubmitChanges();
-                }    
+                }
             }
         }
 
         public void deleteHDByMaHD(int maHD)
         {
             HoaDon hd = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
-            if(hd != null)
+            if (hd != null)
             {
                 db.HoaDons.DeleteOnSubmit(hd);
                 db.SubmitChanges();
             }
         }
-        
-        public void updateMaBanDoiBan(int maHD,int maBan)
+
+        public void updateMaBanDoiBan(int maHD, int maBan)
         {
             HoaDon hoaDon = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
-            if(hoaDon != null)
+            if (hoaDon != null)
             {
                 hoaDon.MaBan = maBan;
                 db.SubmitChanges();
             }
         }
+        public double tinhTongGiam(DateTime ngayBD, DateTime ngayKT)
+        {
+            decimal? tong = db.HoaDons.Where(h => h.Ngay.Value.Date >= ngayBD.Date && h.Ngay.Value.Date <= ngayKT.Date).Sum(s => s.TienGiam);
+            if (tong.HasValue)
+            {
+                return (double)tong;
+            }
+            return 0;
+        }
+        public bool ktTinhTrangHD(int maHD)
+        {
+            HoaDon hd = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
+            if (hd == null)
+                return false;
+            return true;
+        }
+        public int getMaBanByMaHD(int maHD)
+        {
+            HoaDon hd = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
+            if(hd == null)
+            {
+                return -1;
+            }
+            return hd.MaBan.Value;
+        }
+       
+        //public List<Chart> getTKTheoNgay(DateTime ngayBD, DateTime ngayKT)
+        //{
+        //    List<Chart> lstChart = new List<Chart>();
+        //    var data = db.HoaDons.Where(h => h.Ngay >= ngayBD.Date && h.Ngay <= ngayKT.Date).GroupBy(x => new {x.Ngay.Value.Day,  x.Ngay.Value.Month, x.Ngay.Value.Year }).Select(x => new
+        //    {
+        //        X = x.Key.Day + "/" + x.Key.Month + "/" + x.Key.Year,
+        //        Y = x.Sum(s => s.ThanhTien)
+        //    });
+        //    foreach (var item in data)
+        //    {
+        //        Chart chart = new Chart((double)item.Y, item.X);
+        //        lstChart.Add(chart);
+        //    }
+        //    return lstChart;
+        //}
     }
 }

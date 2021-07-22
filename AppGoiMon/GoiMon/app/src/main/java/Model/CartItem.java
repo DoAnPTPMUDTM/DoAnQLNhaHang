@@ -8,7 +8,7 @@ public class CartItem {
     private double giaGoc;
     private double giaKM;
     private double thanhTien;
-
+    private String ghiChu;
     public CartItem() {
     }
 
@@ -30,6 +30,25 @@ public class CartItem {
         this.giaKM = giaKM;
     }
 
+    public CartItem(int maMon, String tenMon, String anh, int soLuong, double giaGoc, double giaKM, String ghiChu) {
+        this.maMon = maMon;
+        this.tenMon = tenMon;
+        this.anh = anh;
+        this.soLuong = soLuong;
+        this.giaGoc = giaGoc;
+        this.giaKM = giaKM;
+        this.ghiChu = ghiChu;
+    }
+
+    public CartItem(int maMon, String tenMon, String anh, double giaGoc, double giaKM, String ghiChu) {
+        this.maMon = maMon;
+        this.tenMon = tenMon;
+        this.anh = anh;
+        this.giaGoc = giaGoc;
+        this.giaKM = giaKM;
+        this.ghiChu = ghiChu;
+    }
+
     public CartItem(int maMon, String tenMon, String anh, int soLuong, double giaGoc, double giaKM) {
         this.maMon = maMon;
         this.tenMon = tenMon;
@@ -37,6 +56,14 @@ public class CartItem {
         this.soLuong = soLuong;
         this.giaGoc = giaGoc;
         this.giaKM = giaKM;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
     }
 
     public int getMaMon() {
