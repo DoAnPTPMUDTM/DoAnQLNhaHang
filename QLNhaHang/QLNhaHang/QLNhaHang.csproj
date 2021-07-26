@@ -262,6 +262,12 @@
     <Compile Include="frmPhanQuyen.Designer.cs">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmQLHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQLHoaDon.Designer.cs">
+      <DependentUpon>frmQLHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmQLNguyenLieu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -430,6 +436,9 @@
     <EmbeddedResource Include="frmPhanQuyen.resx">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmQLHoaDon.resx">
+      <DependentUpon>frmQLHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmQLNguyenLieu.resx">
       <DependentUpon>frmQLNguyenLieu.cs</DependentUpon>
     </EmbeddedResource>
@@ -563,6 +572,7 @@
   <ItemGroup>
     <Content Include="Resources\box.png" />
     <None Include="Resources\box1.png" />
+    <None Include="Resources\clock.png" />
     <Content Include="Resources\MonAn\1.jpg" />
   </ItemGroup>
   <ItemGroup>

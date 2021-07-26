@@ -75,7 +75,16 @@ namespace QLNhaHang
         {
             frmGoiMonTaiQuay frm = new frmGoiMonTaiQuay(nd);
             frm.Name = "frmGoiMonTaiQuay";
+            frm.onUpdateStatus += Frm_onUpdateStatus;
             showForm(frm);
+        }
+        bool checkOpenFormGMTQ = false;
+        private void Frm_onUpdateStatus(object sender, EventArgs e, ChangeType changeType)
+        {
+            if (checkExitForm("frmQLHoaDon") && changeType == ChangeType.Insert)
+            {
+                checkOpenFormGMTQ = true;
+            }
         }
 
         private void barBtnGoiMonTaiBan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -326,8 +335,30 @@ namespace QLNhaHang
                             checkUpdateNhomMon = false;
                         }
                         break;
+                    case "frmQLHoaDon":
+                        frmQLHoaDon frmQLHoaDon = (frmQLHoaDon)form;
+                        if (checkOpenFormGMTQ == true)
+                        {
+                            frmQLHoaDon.loadDataHoaDon();
+                            checkOpenFormGMTQ = false;
+                        }
+                        break;
                 }
             }
+        }
+
+        private void barBtnQLNguyenLieu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmQLNguyenLieu frmQLNguyenLieu = new frmQLNguyenLieu();
+            frmQLNguyenLieu.Name = "frmQLNguyenLieu";
+            showForm(frmQLNguyenLieu);
+        }
+
+        private void barBtnQLHoaDon_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmQLHoaDon frmQLHoaDon = new frmQLHoaDon();
+            frmQLHoaDon.Name = "frmQLHoaDon";
+            showForm(frmQLHoaDon);
         }
 
         //private void xtraTabbedMdiManager1_SelectedPageChanged(object sender, EventArgs e)

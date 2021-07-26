@@ -99,16 +99,9 @@ namespace QLNhaHang
             this.gridViewMonAn = new DevExpress.XtraGrid.GridControl();
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.layoutViewColumn2 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.layoutViewField_gridColumn4 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.layoutViewField_gridColumn7 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-            this.layoutViewField_gridColumn10 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.item1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.item2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.item4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.btnGopBan = new System.Windows.Forms.Button();
             this.btnDoiBan = new System.Windows.Forms.Button();
             this.btnMoBan = new System.Windows.Forms.Button();
@@ -127,6 +120,12 @@ namespace QLNhaHang
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
+            this.layoutViewField_gridColumn4 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewField_gridColumn10 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewField_gridColumn7 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.item1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.item2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupDSMonAn)).BeginInit();
@@ -150,14 +149,7 @@ namespace QLNhaHang
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMonAn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.item1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.item2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.item4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLstBoxBan)).BeginInit();
@@ -165,6 +157,12 @@ namespace QLNhaHang
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.item1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.item2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -1017,20 +1015,17 @@ namespace QLNhaHang
             this.layoutView1.Appearance.FieldValue.Options.UseFont = true;
             this.layoutView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.layoutView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.layoutView1.CardMinSize = new System.Drawing.Size(294, 240);
+            this.layoutView1.CardMinSize = new System.Drawing.Size(387, 162);
             this.layoutView1.CardVertInterval = 4;
             this.layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
             this.layoutViewColumn2,
             this.gridColumn7,
             this.gridColumn10});
             this.layoutView1.GridControl = this.gridViewMonAn;
-            this.layoutView1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutViewField_gridColumn7});
             this.layoutView1.Name = "layoutView1";
             this.layoutView1.OptionsBehavior.Editable = false;
-            this.layoutView1.OptionsView.CardArrangeRule = DevExpress.XtraGrid.Views.Layout.LayoutCardArrangeRule.AllowPartialCards;
             this.layoutView1.OptionsView.ShowHeaderPanel = false;
-            this.layoutView1.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiColumn;
+            this.layoutView1.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.Carousel;
             this.layoutView1.TemplateCard = this.layoutViewCard1;
             // 
             // layoutViewColumn2
@@ -1042,15 +1037,6 @@ namespace QLNhaHang
             this.layoutViewColumn2.Name = "layoutViewColumn2";
             this.layoutViewColumn2.Width = 207;
             // 
-            // layoutViewField_gridColumn4
-            // 
-            this.layoutViewField_gridColumn4.EditorPreferredWidth = 182;
-            this.layoutViewField_gridColumn4.Location = new System.Drawing.Point(12, 0);
-            this.layoutViewField_gridColumn4.Name = "layoutViewField_gridColumn4";
-            this.layoutViewField_gridColumn4.Size = new System.Drawing.Size(250, 30);
-            this.layoutViewField_gridColumn4.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_gridColumn4.TextSize = new System.Drawing.Size(55, 16);
-            // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "Giá KM";
@@ -1061,15 +1047,6 @@ namespace QLNhaHang
             this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Width = 116;
-            // 
-            // layoutViewField_gridColumn7
-            // 
-            this.layoutViewField_gridColumn7.EditorPreferredWidth = 20;
-            this.layoutViewField_gridColumn7.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_gridColumn7.Name = "layoutViewField_gridColumn7";
-            this.layoutViewField_gridColumn7.Size = new System.Drawing.Size(285, 204);
-            this.layoutViewField_gridColumn7.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_gridColumn7.TextSize = new System.Drawing.Size(55, 16);
             // 
             // gridColumn10
             // 
@@ -1083,69 +1060,10 @@ namespace QLNhaHang
             // 
             // repositoryItemPictureEdit1
             // 
-            this.repositoryItemPictureEdit1.CustomHeight = 150;
+            this.repositoryItemPictureEdit1.CustomHeight = 100;
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             this.repositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-            this.repositoryItemPictureEdit1.ZoomPercent = 40D;
-            // 
-            // layoutViewField_gridColumn10
-            // 
-            this.layoutViewField_gridColumn10.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutViewField_gridColumn10.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.layoutViewField_gridColumn10.EditorPreferredWidth = 266;
-            this.layoutViewField_gridColumn10.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.layoutViewField_gridColumn10.Location = new System.Drawing.Point(0, 30);
-            this.layoutViewField_gridColumn10.Name = "layoutViewField_gridColumn10";
-            this.layoutViewField_gridColumn10.Size = new System.Drawing.Size(274, 164);
-            this.layoutViewField_gridColumn10.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_gridColumn10.StartNewLine = true;
-            this.layoutViewField_gridColumn10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutViewField_gridColumn10.TextVisible = false;
-            // 
-            // layoutViewCard1
-            // 
-            this.layoutViewCard1.CustomizationFormText = "TemplateCard";
-            this.layoutViewCard1.GroupStyle = DevExpress.Utils.GroupStyle.Card;
-            this.layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
-            this.layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutViewField_gridColumn4,
-            this.item1,
-            this.item2,
-            this.item4,
-            this.layoutViewField_gridColumn10});
-            this.layoutViewCard1.Name = "layoutViewTemplateCard";
-            this.layoutViewCard1.OptionsItemText.TextToControlDistance = 5;
-            this.layoutViewCard1.Text = "TemplateCard";
-            this.layoutViewCard1.TextLocation = DevExpress.Utils.Locations.Default;
-            // 
-            // item1
-            // 
-            this.item1.AllowHotTrack = false;
-            this.item1.CustomizationFormText = "item1";
-            this.item1.Location = new System.Drawing.Point(0, 20);
-            this.item1.Name = "item1";
-            this.item1.Size = new System.Drawing.Size(12, 10);
-            this.item1.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.item1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // item2
-            // 
-            this.item2.AllowHotTrack = false;
-            this.item2.CustomizationFormText = "item2";
-            this.item2.Location = new System.Drawing.Point(262, 0);
-            this.item2.Name = "item2";
-            this.item2.Size = new System.Drawing.Size(12, 30);
-            this.item2.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.item2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // item4
-            // 
-            this.item4.AllowHotTrack = false;
-            this.item4.CustomizationFormText = "item4";
-            this.item4.Location = new System.Drawing.Point(0, 0);
-            this.item4.Name = "item4";
-            this.item4.Size = new System.Drawing.Size(12, 20);
-            this.item4.TextSize = new System.Drawing.Size(0, 0);
+            this.repositoryItemPictureEdit1.ZoomPercent = 50D;
             // 
             // btnGopBan
             // 
@@ -1343,6 +1261,72 @@ namespace QLNhaHang
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // layoutViewCard1
+            // 
+            this.layoutViewCard1.CustomizationFormText = "TemplateCard";
+            this.layoutViewCard1.GroupStyle = DevExpress.Utils.GroupStyle.Card;
+            this.layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
+            this.layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutViewField_gridColumn4,
+            this.layoutViewField_gridColumn10,
+            this.layoutViewField_gridColumn7,
+            this.item1,
+            this.item2});
+            this.layoutViewCard1.Name = "layoutViewCard1";
+            this.layoutViewCard1.OptionsItemText.TextToControlDistance = 5;
+            this.layoutViewCard1.Text = "TemplateCard";
+            this.layoutViewCard1.TextLocation = DevExpress.Utils.Locations.Default;
+            // 
+            // layoutViewField_gridColumn4
+            // 
+            this.layoutViewField_gridColumn4.EditorPreferredWidth = 158;
+            this.layoutViewField_gridColumn4.Location = new System.Drawing.Point(142, 0);
+            this.layoutViewField_gridColumn4.Name = "layoutViewField_gridColumn4";
+            this.layoutViewField_gridColumn4.Size = new System.Drawing.Size(227, 30);
+            this.layoutViewField_gridColumn4.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
+            this.layoutViewField_gridColumn4.TextSize = new System.Drawing.Size(55, 16);
+            // 
+            // layoutViewField_gridColumn10
+            // 
+            this.layoutViewField_gridColumn10.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutViewField_gridColumn10.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.layoutViewField_gridColumn10.EditorPreferredWidth = 141;
+            this.layoutViewField_gridColumn10.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.layoutViewField_gridColumn10.Location = new System.Drawing.Point(0, 0);
+            this.layoutViewField_gridColumn10.Name = "layoutViewField_gridColumn10";
+            this.layoutViewField_gridColumn10.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.layoutViewField_gridColumn10.Size = new System.Drawing.Size(142, 106);
+            this.layoutViewField_gridColumn10.StartNewLine = true;
+            this.layoutViewField_gridColumn10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutViewField_gridColumn10.TextVisible = false;
+            // 
+            // layoutViewField_gridColumn7
+            // 
+            this.layoutViewField_gridColumn7.EditorPreferredWidth = 158;
+            this.layoutViewField_gridColumn7.Location = new System.Drawing.Point(142, 30);
+            this.layoutViewField_gridColumn7.Name = "layoutViewField_gridColumn7";
+            this.layoutViewField_gridColumn7.Size = new System.Drawing.Size(227, 30);
+            this.layoutViewField_gridColumn7.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
+            this.layoutViewField_gridColumn7.TextSize = new System.Drawing.Size(55, 16);
+            // 
+            // item1
+            // 
+            this.item1.AllowHotTrack = false;
+            this.item1.CustomizationFormText = "item1";
+            this.item1.Location = new System.Drawing.Point(142, 60);
+            this.item1.Name = "item1";
+            this.item1.Size = new System.Drawing.Size(227, 56);
+            this.item1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // item2
+            // 
+            this.item2.AllowHotTrack = false;
+            this.item2.CustomizationFormText = "item2";
+            this.item2.Location = new System.Drawing.Point(0, 106);
+            this.item2.Name = "item2";
+            this.item2.Size = new System.Drawing.Size(142, 10);
+            this.item2.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // frmGoiMonTaiQuay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1381,14 +1365,7 @@ namespace QLNhaHang
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMonAn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.item1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.item2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.item4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLstBoxBan)).EndInit();
@@ -1396,6 +1373,12 @@ namespace QLNhaHang
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumn7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.item1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.item2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1498,6 +1481,5 @@ namespace QLNhaHang
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private DevExpress.XtraLayout.EmptySpaceItem item1;
         private DevExpress.XtraLayout.EmptySpaceItem item2;
-        private DevExpress.XtraLayout.EmptySpaceItem item4;
     }
 }

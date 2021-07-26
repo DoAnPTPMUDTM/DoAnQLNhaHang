@@ -54,6 +54,8 @@ namespace QLNhaHang
             this.skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
             this.skinPaletteRibbonGalleryBarItem2 = new DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem();
             this.skinRibbonGalleryBarItem3 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+            this.barBtnQLNguyenLieu = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnQLHoaDon = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -63,6 +65,8 @@ namespace QLNhaHang
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RibbonPageGoup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup17 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -109,9 +113,11 @@ namespace QLNhaHang
             this.skinDropDownButtonItem1,
             this.skinPaletteDropDownButtonItem1,
             this.skinPaletteRibbonGalleryBarItem2,
-            this.skinRibbonGalleryBarItem3});
+            this.skinRibbonGalleryBarItem3,
+            this.barBtnQLNguyenLieu,
+            this.barBtnQLHoaDon});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 25;
+            this.ribbonControl1.MaxItemId = 27;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -347,6 +353,22 @@ namespace QLNhaHang
             this.skinRibbonGalleryBarItem3.Id = 24;
             this.skinRibbonGalleryBarItem3.Name = "skinRibbonGalleryBarItem3";
             // 
+            // barBtnQLNguyenLieu
+            // 
+            this.barBtnQLNguyenLieu.Caption = "Nguyên liệu";
+            this.barBtnQLNguyenLieu.Id = 25;
+            this.barBtnQLNguyenLieu.Name = "barBtnQLNguyenLieu";
+            this.barBtnQLNguyenLieu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnQLNguyenLieu_ItemClick);
+            // 
+            // barBtnQLHoaDon
+            // 
+            this.barBtnQLHoaDon.Caption = "Hóa đơn";
+            this.barBtnQLHoaDon.Id = 26;
+            this.barBtnQLHoaDon.ImageOptions.LargeImage = global::QLNhaHang.Properties.Resources.clock;
+            this.barBtnQLHoaDon.LargeWidth = 80;
+            this.barBtnQLHoaDon.Name = "barBtnQLHoaDon";
+            this.barBtnQLHoaDon.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnQLHoaDon_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -378,7 +400,9 @@ namespace QLNhaHang
             this.ribbonPageGroup8,
             this.ribbonPageGroup9,
             this.ribbonPageGroup10,
-            this.RibbonPageGoup9});
+            this.RibbonPageGoup9,
+            this.ribbonPageGroup16,
+            this.ribbonPageGroup17});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "Quản Lý";
             // 
@@ -411,6 +435,18 @@ namespace QLNhaHang
             this.RibbonPageGoup9.ItemLinks.Add(this.barBtnQLNhapKho);
             this.RibbonPageGoup9.Name = "RibbonPageGoup9";
             this.RibbonPageGoup9.Text = "Nhập Kho";
+            // 
+            // ribbonPageGroup16
+            // 
+            this.ribbonPageGroup16.ItemLinks.Add(this.barBtnQLNguyenLieu);
+            this.ribbonPageGroup16.Name = "ribbonPageGroup16";
+            this.ribbonPageGroup16.Text = "ribbonPageGroup16";
+            // 
+            // ribbonPageGroup17
+            // 
+            this.ribbonPageGroup17.ItemLinks.Add(this.barBtnQLHoaDon);
+            this.ribbonPageGroup17.Name = "ribbonPageGroup17";
+            this.ribbonPageGroup17.Text = "ribbonPageGroup17";
             // 
             // ribbonPage3
             // 
@@ -579,5 +615,9 @@ namespace QLNhaHang
         private DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem skinPaletteRibbonGalleryBarItem2;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.BarButtonItem barBtnQLNguyenLieu;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
+        private DevExpress.XtraBars.BarButtonItem barBtnQLHoaDon;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup17;
     }
 }

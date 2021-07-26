@@ -974,7 +974,15 @@ namespace QLNhaHang
             }
             return 0;
         }
-
+        //
+        public delegate void StatusUpdateHandler(object sender, EventArgs e, ChangeType changeType);
+        public event StatusUpdateHandler onUpdateStatus;
+        private void UpdateStatus(ChangeType c)
+        {
+            EventArgs eventArgs = new EventArgs();
+            onUpdateStatus?.Invoke(this, eventArgs, c);
+        }
+        //
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
             khachHangBLLDAL = new KhachHangBLLDAL();
@@ -1082,6 +1090,8 @@ namespace QLNhaHang
                 loadBan();
                 loadKhachHang();
                 imgLstBoxBan.SelectedIndex = soBamTemp;
+                //
+                UpdateStatus(ChangeType.Insert);
             }
             catch (Exception ex)
             {

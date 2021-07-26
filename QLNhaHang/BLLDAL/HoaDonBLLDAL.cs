@@ -82,6 +82,11 @@ namespace BLLDAL
         {
             return db.HoaDons.ToList<HoaDon>();
         }
+        //
+        public List<HoaDon> getDataHoaDonTT()
+        {
+            return db.HoaDons.Where(t => t.TinhTrang == 1).ToList();
+        }
         public void themHoaDon(HoaDon hoaDon)
         {
             db.HoaDons.InsertOnSubmit(hoaDon);
