@@ -39,26 +39,23 @@ namespace BLLDAL
         }
         public void updateNhomNguoiDung(int maNhom, string tenNhom, string ghiChu)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             NhomNguoiDung nhomNguoiDung = db.NhomNguoiDungs.Where(t => t.MaNhom == maNhom).FirstOrDefault();
-            if(nhomNguoiDung != null)
+            if (nhomNguoiDung != null)
             {
                 nhomNguoiDung.TenNhom = tenNhom;
                 nhomNguoiDung.GhiChu = ghiChu;
                 db.SubmitChanges();
             }
-
         }
         public void deleteNhomNguoiDung(int maNhom)
         {
             NhomNguoiDung nhomNguoiDung = db.NhomNguoiDungs.Where(t => t.MaNhom == maNhom).FirstOrDefault();
-            if(nhomNguoiDung != null)
+            if (nhomNguoiDung != null)
             {
                 db.NhomNguoiDungs.DeleteOnSubmit(nhomNguoiDung);
                 db.SubmitChanges();
             }
         }
-        //
-        
-       
     }
 }

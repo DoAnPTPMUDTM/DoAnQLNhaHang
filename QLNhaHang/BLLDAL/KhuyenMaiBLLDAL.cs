@@ -26,14 +26,15 @@ namespace BLLDAL
             }
             return 1;
         }
-       
+
         public KhuyenMai getKhuyeMaiByMaKM(int maKM)
         {
             return db.KhuyenMais.Where(t => t.MaKM == maKM).FirstOrDefault();
+
         }
         public void insertKhuyenMai(KhuyenMai khuyenMai)
         {
-            if(khuyenMai != null)
+            if (khuyenMai != null)
             {
                 db.KhuyenMais.InsertOnSubmit(khuyenMai);
                 db.SubmitChanges();
@@ -41,8 +42,9 @@ namespace BLLDAL
         }
         public void updateKhuyenMai(int maKM, KhuyenMai khuyenMai)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             KhuyenMai km = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
-            if(km != null)
+            if (km != null)
             {
                 km.TenKM = khuyenMai.TenKM;
                 km.TyLe = khuyenMai.TyLe;
@@ -56,7 +58,7 @@ namespace BLLDAL
         public void deleteKhuyenMai(int maKM)
         {
             KhuyenMai khuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
-            if(khuyenMai != null)
+            if (khuyenMai != null)
             {
                 db.KhuyenMais.DeleteOnSubmit(khuyenMai);
                 db.SubmitChanges();

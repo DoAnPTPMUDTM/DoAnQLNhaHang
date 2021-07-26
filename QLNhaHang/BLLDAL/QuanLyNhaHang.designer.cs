@@ -90,7 +90,7 @@ namespace BLLDAL
     #endregion
 		
 		public QuanLyNhaHangDataContext() : 
-				base(global::BLLDAL.Properties.Settings.Default.QuanLyNhaHangConnectionString, mappingSource)
+				base(global::BLLDAL.Properties.Settings.Default.QuanLyNhaHangConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}

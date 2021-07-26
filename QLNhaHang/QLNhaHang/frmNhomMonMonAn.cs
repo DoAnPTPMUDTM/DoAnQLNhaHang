@@ -158,6 +158,7 @@ namespace QLNhaHang
                 nhomMonBLLDAL.insertNhomMon(nhomMon);
                 MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNhomMon();
+                UpdateNhomMon();
             }
             catch (Exception ex)
             {
@@ -188,6 +189,7 @@ namespace QLNhaHang
                 nhomMonBLLDAL.deleteNhomMon(int.Parse(maNhom));
                 MessageBox.Show("Xóa nhóm món thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNhomMon();
+                UpdateNhomMon();
             }
             catch
             {
@@ -242,6 +244,7 @@ namespace QLNhaHang
                 nhomMonBLLDAL.updateNhomMon(maNhom, tenNhom);
                 MessageBox.Show("Sửa thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNhomMon();
+                UpdateNhomMon();
 
             }
             catch (Exception ex)
@@ -278,6 +281,7 @@ namespace QLNhaHang
                     monBLLDAL.insertMonAn(mon);
                     MessageBox.Show("Thêm món ăn thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadDataMonAn();
+                    UpdateMon();
                 }
                 catch (Exception ex)
                 {
@@ -381,6 +385,7 @@ namespace QLNhaHang
                     monBLLDAL.updateMonAn(maMon, int.Parse(nhomMon), tenMon, int.Parse(donViTinh), imgMonAn, giaGoc, giaKM, int.Parse(khuyenMai));
                     MessageBox.Show("Sửa thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadDataMonAn();
+                    UpdateMon();
                     //}
                     //catch (Exception ex)
                     //{
@@ -398,6 +403,7 @@ namespace QLNhaHang
                 monBLLDAL.updateMonAnNoImg(maMon, int.Parse(nhomMon), tenMon, int.Parse(donViTinh), giaGoc, giaKM, int.Parse(khuyenMai));
                 MessageBox.Show("Sửa thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataMonAn();
+                UpdateMon();
                 //}
                 //catch (Exception ex)
                 //{
@@ -416,13 +422,20 @@ namespace QLNhaHang
             }
             try
             {
-                monBLLDAL.deleteMonAn(int.Parse(maMon));
+                int iMaMon = int.Parse(maMon);
+                if (monBLLDAL.ktKhoaNgoaiMon(iMaMon))
+                {
+                    MessageBox.Show("Hiện tại bạn không thể xoá món này", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                monBLLDAL.deleteMonAn(iMaMon);
                 MessageBox.Show("Xóa món ăn thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataMonAn();
+                UpdateMon();
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Xóa món ăn thất bại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xóa món ăn thất bại " + ex.Message, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -435,7 +448,19 @@ namespace QLNhaHang
         {
             loadDataMonAn();
         }
+        public delegate void StatusUpdateHandler(object sender, EventArgs e);
+        public event StatusUpdateHandler OnUpdateMon, OnUpdateNhomMon;
 
+        private void UpdateMon()
+        {
+            EventArgs args = new EventArgs();
+            OnUpdateMon?.Invoke(this, args);
+        }
+        private void UpdateNhomMon()
+        {
+            EventArgs args = new EventArgs();
+            OnUpdateNhomMon?.Invoke(this, args);
+        }
         private void gridViewMonAn_Click(object sender, EventArgs e)
         {
 

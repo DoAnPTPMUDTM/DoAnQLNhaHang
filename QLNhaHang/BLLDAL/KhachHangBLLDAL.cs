@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLLDAL
 {
-   public class KhachHangBLLDAL
+    public class KhachHangBLLDAL
     {
         QuanLyNhaHangDataContext db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
         public KhachHangBLLDAL()
@@ -24,7 +24,7 @@ namespace BLLDAL
         public void addDiemTL(int maKH, int diemCong)
         {
             KhachHang kh = db.KhachHangs.Where(k => k.MaKH == maKH).FirstOrDefault();
-            if(kh != null)
+            if (kh != null)
             {
                 kh.DiemTichLuy += diemCong;
                 db.SubmitChanges();
@@ -47,7 +47,7 @@ namespace BLLDAL
         //insert
         public void insertKhachHang(KhachHang khachHang)
         {
-            if(khachHang != null)
+            if (khachHang != null)
             {
                 db.KhachHangs.InsertOnSubmit(khachHang);
                 db.SubmitChanges();
@@ -58,7 +58,7 @@ namespace BLLDAL
         public void updateKhachHang(int maKH, string tenKH, string diaChi, string SDT, int diemTL)
         {
             KhachHang kh = db.KhachHangs.Where(t => t.MaKH == maKH).FirstOrDefault();
-            if(kh != null)
+            if (kh != null)
             {
                 kh.TenKH = tenKH;
                 kh.DiaChi = diaChi;
@@ -66,12 +66,13 @@ namespace BLLDAL
                 kh.DiemTichLuy = diemTL;
                 db.SubmitChanges();
             }
+
         }
         //delete
         public void deleteKhachHang(int maKH)
         {
             KhachHang kh = db.KhachHangs.Where(t => t.MaKH == maKH).FirstOrDefault();
-            if(kh!= null)
+            if (kh != null)
             {
                 db.KhachHangs.DeleteOnSubmit(kh);
                 db.SubmitChanges();
@@ -79,12 +80,12 @@ namespace BLLDAL
         }
         public string getTenKHByMaKH(int? maKH)
         {
-            if(maKH == null)
+            if (maKH == null)
             {
                 return "Khách vãng lai";
             }
             KhachHang kh = db.KhachHangs.Where(k => k.MaKH == maKH.Value).FirstOrDefault();
-            if(kh == null)
+            if (kh == null)
             {
                 return "Khách vãng lai";
             }

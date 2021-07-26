@@ -82,7 +82,7 @@ public class NotificationFragment extends Fragment {
             Statement statement = null;
             try {
                 statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("Select Mon.MaMon, Mon.TenMon, Mon.GiaKM, Mon.GiaGoc, Mon.Anh, GoiMonTaiBan.SoLuong from Mon, GoiMonTaiBan where Mon.MaMon = GoiMonTaiBan.MaGoiMon and GoiMonTaiBan.MaHD='"+maHoaDon+"'");
+                ResultSet resultSet = statement.executeQuery("Select Mon.MaMon, Mon.TenMon, Mon.GiaKM, Mon.GiaGoc, Mon.Anh, GoiMonTaiBan.SoLuong from Mon, GoiMonTaiBan where Mon.MaMon = GoiMonTaiBan.MaMon and GoiMonTaiBan.MaHD='"+maHoaDon+"'");
                 if(resultSet != null){
                    while (resultSet.next()){
                        int maMon = resultSet.getInt(1);

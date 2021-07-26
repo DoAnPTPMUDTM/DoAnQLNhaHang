@@ -18,7 +18,7 @@ namespace QLNhaHang
     {
         PhieuNhapBLLDAL phieuNhapBLLDAL = new PhieuNhapBLLDAL();
         CTPNBLLDAL cTPNBLLDAL = new CTPNBLLDAL();
-        NguoiDung nd = new NguoiDung();
+        NguoiDung nd;
         public frmQLNhapHang()
         {
             InitializeComponent();
@@ -28,6 +28,7 @@ namespace QLNhaHang
             InitializeComponent();
             this.nd = nd;
         }
+
 
         private void frmQLNhapHang_Load(object sender, EventArgs e)
         {
@@ -65,7 +66,7 @@ namespace QLNhaHang
         private void gridViewPN_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             string maPN = gridViewPN.GetFocusedRowCellValue("MaPN").ToString();
-            if(maPN == null)
+            if (maPN == null)
             {
                 return;
             }
@@ -84,7 +85,7 @@ namespace QLNhaHang
             string stringConnection = Properties.Settings.Default.ChuoiKetNoi;
             var mapper = new ModelToTableMapper<PhieuNhap>();
             mapper.AddMapping(t => t.MaPN, "MaPN");
-            dep = new SqlTableDependency<PhieuNhap>(stringConnection,"PhieuNhap", mapper: mapper );
+            dep = new SqlTableDependency<PhieuNhap>(stringConnection, "PhieuNhap", mapper: mapper);
             dep.OnChanged += Dep_OnChanged;
             dep.Start();
         }

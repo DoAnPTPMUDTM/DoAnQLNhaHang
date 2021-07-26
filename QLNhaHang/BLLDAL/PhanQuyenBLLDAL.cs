@@ -19,7 +19,7 @@ namespace BLLDAL
         }
         public void insertPhanQuyen(PhanQuyen pq)
         {
-            if(pq != null)
+            if (pq != null)
             {
                 db.PhanQuyens.InsertOnSubmit(pq);
                 db.SubmitChanges();
@@ -39,7 +39,7 @@ namespace BLLDAL
         {
             bool countMaNhom = db.NhomNguoiDungs.Where(t => t.MaNhom == maNhom).Count() > 0;
             bool countMaMH = db.ManHinhs.Where(t => t.MaMH == maMH).Count() > 0;
-            if(countMaNhom || countMaMH)
+            if (countMaNhom || countMaMH)
             {
                 return true;
             }
@@ -63,7 +63,7 @@ namespace BLLDAL
                                  CoQuyen = convertIntToBool(nt.CoQuyen)
                              };
             List<PhanQuyens> lstPhanQuyen = new List<PhanQuyens>();
-            foreach(var p in phanQuyens)
+            foreach (var p in phanQuyens)
             {
                 PhanQuyens phanQuyen = new PhanQuyens(p.MaMH, p.TenMH, p.CoQuyen);
                 lstPhanQuyen.Add(phanQuyen);
@@ -80,10 +80,11 @@ namespace BLLDAL
         }
         public void updatePhanQuyen(int maNhom, int maMH, int quyen)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             PhanQuyen phanQuyen = db.PhanQuyens.Where(p => p.MaMH == maMH && p.MaNhom == maNhom).FirstOrDefault();
-            if(phanQuyen != null)
+            if (phanQuyen != null)
             {
-                if(phanQuyen.CoQuyen != quyen)
+                if (phanQuyen.CoQuyen != quyen)
                 {
                     phanQuyen.CoQuyen = quyen;
                     db.SubmitChanges();
@@ -98,6 +99,7 @@ namespace BLLDAL
                 db.PhanQuyens.InsertOnSubmit(pq);
                 db.SubmitChanges();
             }
+
         }
         public List<PhanQuyen> getQuyenByMaNhom(int maNhom)
         {

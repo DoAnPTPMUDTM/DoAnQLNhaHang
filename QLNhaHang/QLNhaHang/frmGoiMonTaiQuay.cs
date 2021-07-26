@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Accord.MachineLearning.Rules;
 using BLLDAL;
 using DevExpress.XtraGrid.Views.Grid;
+using QLNhaHang.Classes;
 using QLNhaHang.Reports;
 using TableDependency.SqlClient;
 using TableDependency.SqlClient.Base;
@@ -18,12 +20,13 @@ namespace QLNhaHang
 {
     public partial class frmGoiMonTaiQuay : Form
     {
-        BanBLLDAL banBLLDAL = new BanBLLDAL();
+        ConfigImage configImage = new ConfigImage();
         KhachHangBLLDAL khachHangBLLDAL = new KhachHangBLLDAL();
         NhomMonBLLDAL nhomMonBLLDAL = new NhomMonBLLDAL();
         HoaDonBLLDAL hoaDonBLLDAL = new HoaDonBLLDAL();
         MonBLLDAL monBLLDAL = new MonBLLDAL();
-        NguoiDungBLLDAL nguoiDungBLLDAL = new NguoiDungBLLDAL();
+        BanBLLDAL banBLLDAL = new BanBLLDAL();
+        CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
         int soBan = -1;
         List<Ban> lstBan;
         List<InCheBien> lstInCheBien;
@@ -35,7 +38,6 @@ namespace QLNhaHang
             //dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White;
             lstBan = new List<Ban>();
             lstInCheBien = new List<InCheBien>();
-            lstBan = banBLLDAL.getDataBan();
             loadNhomMon();
             //
             btnGiam1SL.Enabled = false;
@@ -50,7 +52,6 @@ namespace QLNhaHang
             this.nd = nd;
             lstBan = new List<Ban>();
             lstInCheBien = new List<InCheBien>();
-            lstBan = banBLLDAL.getDataBan();
             loadNhomMon();
             //
             btnGiam1SL.Enabled = false;
@@ -66,15 +67,12 @@ namespace QLNhaHang
             //
             lbQuyDinhTichDiem.Text = String.Format("{0:0,00}", Properties.Settings.Default.DiemTich) + "đ";
             lbQuyDinhDoiDiem.Text = Properties.Settings.Default.DiemDoi.ToString() + "%";
-            //
-            //Control.CheckForIllegalCrossThreadCalls = false;
-            //
-            startListenner();
-            //
+            lstBan = banBLLDAL.getDataBan();
             lbNhanVien.Text = nd.HoTen;
         }
         public void loadBan()
         {
+            banBLLDAL = new BanBLLDAL();
             lstBan = banBLLDAL.getDataBan();
             imgLstBoxBan.Items.Clear();
             ImageList imageList = new ImageList();
@@ -99,6 +97,8 @@ namespace QLNhaHang
 
         private void btnMoBan_Click(object sender, EventArgs e)
         {
+            banBLLDAL = new BanBLLDAL();
+            cTHDBLLDAL = new CTHDBLLDAL();
             if (btnMoBan.Tag.Equals("1"))//Tag = 1 Ban dang dong, Tag = 0 Ban dang mo
             {
                 if (soBan >= 0 && banBLLDAL.ktTinhTrangBan(lstBan[soBan].MaBan) == 0)//Mo ban
@@ -150,7 +150,6 @@ namespace QLNhaHang
                     {
                         return;
                     }
-                    CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
                     if (cTHDBLLDAL.getNumberCTHDByMaHD(hd.MaHD) == 0)//Hoa don chua co bat ki CTHD nao
                     {
                         DialogResult res = MessageBox.Show(lstBan[soBan].TenBan + " chưa gọi bất kỳ món nào!" + Environment.NewLine + "Bạn có muốn huỷ hoá đơn và đóng bàn này?", "Xác nhận!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -210,6 +209,7 @@ namespace QLNhaHang
 
         private void imgLstBoxBan_SelectedIndexChanged(object sender, EventArgs e)
         {
+            banBLLDAL = new BanBLLDAL();
             soBan = imgLstBoxBan.SelectedIndex;
             if (soBan >= 0)
             {
@@ -317,7 +317,7 @@ namespace QLNhaHang
         }
         public void loadCTHD(int maHD)
         {
-            CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
+            cTHDBLLDAL = new CTHDBLLDAL();
             gridControlCTHD.DataSource = (from cthd in cTHDBLLDAL.getCTDHByMaHD(maHD)
                                           select new
                                           {
@@ -335,6 +335,7 @@ namespace QLNhaHang
         }
         public void loadKhachHang()
         {
+            khachHangBLLDAL = new KhachHangBLLDAL();
             List<KhachHang> lstKhachHang = khachHangBLLDAL.getDataKhachHang();
             cbbKhachHang.Properties.DataSource = lstKhachHang;
             cbbKhachHang.Properties.DisplayMember = "TenKH";
@@ -438,6 +439,7 @@ namespace QLNhaHang
         }
         public void loadNhomMon()
         {
+            nhomMonBLLDAL = new NhomMonBLLDAL();
             NhomMon nhomTatCa = new NhomMon();
             nhomTatCa.MaNhom = 0;
             nhomTatCa.TenNhom = "Tất cả món";
@@ -455,6 +457,7 @@ namespace QLNhaHang
         }
         public void firstLoadDataGridDSMon()
         {
+            monBLLDAL = new MonBLLDAL();
             gridControlDSMon.DataSource = (from mon in monBLLDAL.getDataMon()
                                            select new
                                            {
@@ -468,7 +471,7 @@ namespace QLNhaHang
         }
         private void cbbNhomMon_EditValueChanged(object sender, EventArgs e)
         {
-
+            monBLLDAL = new MonBLLDAL();
             if (cbbNhomMon.EditValue == null)
             {
                 gridControlDSMon.DataSource = (from mon in monBLLDAL.getDataMon()
@@ -500,23 +503,23 @@ namespace QLNhaHang
                 }
                 else
                 {
-                    //try
-                    //{
-                    gridControlDSMon.DataSource = (from mon in monBLLDAL.getDataMonByNhomMon(int.Parse(maNhomMon))
-                                                   select new
-                                                   {
-                                                       MaMon = mon.MaMon,
-                                                       TenMon = mon.TenMon,
-                                                       DVT = mon.DonViTinh.TenDVT,
-                                                       GiaGoc = mon.GiaGoc,
-                                                       GiaKM = mon.GiaKM
-                                                   }).ToList();
-                    gridView2.ClearSelection();
-                    //}
-                    // catch (Exception ex)
-                    //{
-                    // MessageBox.Show(ex.Message);
-                    //}
+                    try
+                    {
+                        gridControlDSMon.DataSource = (from mon in monBLLDAL.getDataMonByNhomMon(int.Parse(maNhomMon))
+                                                       select new
+                                                       {
+                                                           MaMon = mon.MaMon,
+                                                           TenMon = mon.TenMon,
+                                                           DVT = mon.DonViTinh.TenDVT,
+                                                           GiaGoc = mon.GiaGoc,
+                                                           GiaKM = mon.GiaKM
+                                                       }).ToList();
+                        gridView2.ClearSelection();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
             gridView2.ClearSelection();
@@ -541,50 +544,99 @@ namespace QLNhaHang
                 MessageBox.Show("Không tìm thấy thông tin hoá đơn!", "Thông báo - Checked", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            //try
-            //{
-            CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
-            int soLuong = Convert.ToInt32(numericUpDownSL.Value);
-            string ghiChu = txtGhiChu.Text;
-            int maHD = hd.MaHD;
-            int maMon = int.Parse(gridView2.GetFocusedRowCellValue("MaMon").ToString());
-            Mon mon = monBLLDAL.getMonByMaMon(maMon);
-            if (mon == null)
+            try
             {
-                MessageBox.Show("Không tìm thấy thông tin món!", "Thông báo - Checked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cTHDBLLDAL = new CTHDBLLDAL();
+                int soLuong = Convert.ToInt32(numericUpDownSL.Value);
+                string ghiChu = txtGhiChu.Text;
+                int maHD = hd.MaHD;
+                int maMon = int.Parse(gridView2.GetFocusedRowCellValue("MaMon").ToString());
+                Mon mon = monBLLDAL.getMonByMaMon(maMon);
+                if (mon == null)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin món!", "Thông báo - Checked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                CTHD cthd = new CTHD();
+                cthd.MaHD = maHD;
+                cthd.MaMon = maMon;
+                cthd.SoLuong = soLuong;
+                cthd.DonGia = mon.GiaKM;
+                cthd.ThanhTien = soLuong * mon.GiaKM;
+                cTHDBLLDAL.insertCTHD(cthd);
+                loadCTHD(maHD);
+                txtGhiChu.Clear();
+                numericUpDownSL.Value = 1;
+
+                if (cTHDBLLDAL.isExitedCTHD(maHD, maMon))
+                {
+                    gridView1.FocusedRowHandle = getIndexRowUpdate(maMon.ToString());
+                }
+                else
+                {
+                    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                }
+                //Tinh lai tien
+                tinhLaiTien();
+                //Them in che bien
+                InCheBien inCheBien = new InCheBien(lstBan[soBan].MaBan, maMon, monBLLDAL.getTenMonByMaMon(maMon), soLuong, ghiChu);
+                lstInCheBien.Add(inCheBien);
+                int[] newData = cTHDBLLDAL.getDataNewByMaHD(hd.MaHD);
+                tuVanMon(newData);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void tuVanMon(int[] newData)
+        {
+
+            if (newData == null || (newData != null && newData.Length == 0))
+            {
                 return;
             }
+            HoaDonBLLDAL hoaDonBLLDAL = new HoaDonBLLDAL();
+            Apriori apriori = new Apriori(threshold: 2, confidence: 0.7);
+            AssociationRuleMatcher<int> classifier = apriori.Learn(hoaDonBLLDAL.getDataSet());
+            int[][] matches = classifier.Decide(newData);
+            List<Mon> lstMon = monBLLDAL.getMonByResult(matches);
+            if (lstMon == null || (lstMon != null && lstMon.Count == 0))
+            {
+                return;
+            }
+            var monAns = from mon in lstMon
+                         select new
+                         {
+                             TenMon = mon.TenMon,
+                             Anh = loadImageMon(mon.Anh),//
+                             GiaKM = mon.GiaKM,
+                         };
+            gridViewMonAn.DataSource = monAns.ToList();
 
-            CTHD cthd = new CTHD();
-            cthd.MaHD = maHD;
-            cthd.MaMon = maMon;
-            cthd.SoLuong = soLuong;
-            cthd.DonGia = mon.GiaKM;
-            cthd.ThanhTien = soLuong * mon.GiaKM;
-            cTHDBLLDAL.insertCTHD(cthd);
-            loadCTHD(maHD);
-            txtGhiChu.Clear();
-            numericUpDownSL.Value = 1;
-
-            //if (cTHDBLLDAL.isExitedCTHD(maHD, maMon))
-            //{
-            //    gridView1.FocusedRowHandle = getIndexRowUpdate(maMon.ToString());
-            //}
-            //else
-            //{
-            //    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
-            //}
-            //Tinh lai tien
-            tinhLaiTien();
-            //Them in che bien
-            InCheBien inCheBien = new InCheBien(lstBan[soBan].MaBan, maMon, monBLLDAL.getTenMonByMaMon(maMon), soLuong, ghiChu);
-            lstInCheBien.Add(inCheBien);
-            //}
-            //catch (Exception ex)
-            //{
-            //MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
+        public Image loadImageMon(string fileName)
+        {
+            try
+            {
+                if (Image.FromFile(configImage.GetProjectLinkDirectory() + configImage.imgAnhMon + fileName) == null)// Kiem tra file not found khong hoat dong?// 
+                {
+                    return QLNhaHang.Properties.Resources.monan;
+                }
+                else
+                {
+                    return Image.FromFile(configImage.GetProjectLinkDirectory() + configImage.imgAnhMon + fileName);
+                }
+            }
+            catch
+            {
+                return QLNhaHang.Properties.Resources.monan;
+            }
+        }
+
+
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
@@ -626,50 +678,50 @@ namespace QLNhaHang
                 {
                     return;
                 }
-                //try
-                //{
-                CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
-                int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
-                int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
-                if (cTHDBLLDAL.getNumberMonCurrent(maHd, maMon) == 1)
+                try
                 {
-                    MessageBox.Show("Không thể giảm vì số lượng hiện tại là 1!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                if (cTHDBLLDAL.getNumberMonCurrent(maHd, maMon) == 0)
-                {
-                    MessageBox.Show("Không tìm thấy thông tin về CTHD này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadCTHD(maHd);
-                    return;
-                }
-                HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
-                if (hd == null)
-                {
-                    return;
-                }
-                if (hd.MaHD == maHd)
-                {
-                    cTHDBLLDAL.deCreNumberMon(maHd, maMon);
-                    //loadCTHD(maHd);
-                    //gridView1.FocusedRowHandle = rowFocus;
-                }
-                //Tinh lai tien
-                tinhLaiTien();
-                //Cap nhat so luong in che bien
-                InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
-                if (inCheBien != null)
-                {
-                    if (inCheBien.SoLuong > 1)
+                    cTHDBLLDAL = new CTHDBLLDAL();
+                    int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
+                    int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
+                    if (cTHDBLLDAL.getNumberMonCurrent(maHd, maMon) == 1)
                     {
-                        int soLuong = inCheBien.SoLuong - 1;
-                        inCheBien.SoLuong = soLuong;
+                        MessageBox.Show("Không thể giảm vì số lượng hiện tại là 1!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    if (cTHDBLLDAL.getNumberMonCurrent(maHd, maMon) == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy thông tin về CTHD này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        loadCTHD(maHd);
+                        return;
+                    }
+                    HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
+                    if (hd == null)
+                    {
+                        return;
+                    }
+                    if (hd.MaHD == maHd)
+                    {
+                        cTHDBLLDAL.deCreNumberMon(maHd, maMon);
+                        loadCTHD(maHd);
+                        gridView1.FocusedRowHandle = rowFocus;
+                    }
+                    //Tinh lai tien
+                    tinhLaiTien();
+                    //Cap nhat so luong in che bien
+                    InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
+                    if (inCheBien != null)
+                    {
+                        if (inCheBien.SoLuong > 1)
+                        {
+                            int soLuong = inCheBien.SoLuong - 1;
+                            inCheBien.SoLuong = soLuong;
+                        }
                     }
                 }
-                //}
-                //catch (Exception ex)
-                //{
-                // MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -682,37 +734,37 @@ namespace QLNhaHang
                 {
                     return;
                 }
-                //try
-                //{
-                CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
-                int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
-                int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
-                HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
-                if (hd == null)
+                try
                 {
-                    return;
-                }
-                if (hd.MaHD == maHd)
-                {
-                    cTHDBLLDAL.inCreNumberMon(maHd, maMon);
-                    //loadCTHD(maHd);
-                    //gridView1.FocusedRowHandle = rowFocus;
-                }
-                //Tinh lai tien
-                tinhLaiTien();
-                //Cap nhat so luong in che bien
-                InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
-                if (inCheBien != null)
-                {
-                    int soLuong = inCheBien.SoLuong + 1;
-                    inCheBien.SoLuong = soLuong;
-                }
+                    cTHDBLLDAL = new CTHDBLLDAL();
+                    int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
+                    int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
+                    HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
+                    if (hd == null)
+                    {
+                        return;
+                    }
+                    if (hd.MaHD == maHd)
+                    {
+                        cTHDBLLDAL.inCreNumberMon(maHd, maMon);
+                        loadCTHD(maHd);
+                        gridView1.FocusedRowHandle = rowFocus;
+                    }
+                    //Tinh lai tien
+                    tinhLaiTien();
+                    //Cap nhat so luong in che bien
+                    InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
+                    if (inCheBien != null)
+                    {
+                        int soLuong = inCheBien.SoLuong + 1;
+                        inCheBien.SoLuong = soLuong;
+                    }
 
-                //}
-                //catch (Exception ex)
-                //{
-                // MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -737,34 +789,34 @@ namespace QLNhaHang
                 {
                     return;
                 }
-                //try
-                //{
-                CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
-                int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
-                int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
-                HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
-                if (hd == null)
+                try
                 {
-                    return;
+                    cTHDBLLDAL = new CTHDBLLDAL();
+                    int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
+                    int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
+                    HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
+                    if (hd == null)
+                    {
+                        return;
+                    }
+                    if (hd.MaHD == maHd)
+                    {
+                        cTHDBLLDAL.deleteCTHD(maHd, maMon);
+                        loadCTHD(maHd);
+                    }
+                    //Tinh lai tien
+                    tinhLaiTien();
+                    //Xoa in che bien
+                    InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
+                    if (inCheBien != null)
+                    {
+                        lstInCheBien.Remove(inCheBien);
+                    }
                 }
-                if (hd.MaHD == maHd)
+                catch (Exception ex)
                 {
-                    cTHDBLLDAL.deleteCTHD(maHd, maMon);
-                    loadCTHD(maHd);
+                    MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                //Tinh lai tien
-                tinhLaiTien();
-                //Xoa in che bien
-                InCheBien inCheBien = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon).FirstOrDefault();
-                if (inCheBien != null)
-                {
-                    lstInCheBien.Remove(inCheBien);
-                }
-                //}
-                //catch (Exception ex)
-                //{
-                // MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
             }
         }
         public void enabledControlCTGoiMonFalse()
@@ -807,6 +859,7 @@ namespace QLNhaHang
 
         public void loadThanhToanKHTV()
         {
+            khachHangBLLDAL = new KhachHangBLLDAL();
             HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
             if (hd == null)
             {
@@ -814,57 +867,57 @@ namespace QLNhaHang
             }
             if (cbbKhachHang.EditValue != null)
             {
-                //try
-                //{
-                string maKH = cbbKhachHang.EditValue.ToString();
-                if (!maKH.Equals("0"))
+                try
                 {
-                    CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
-                    double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
-                    KhachHang kh = khachHangBLLDAL.getDataKhachHangByMaKH(int.Parse(maKH));
-                    lbDiemTichLuy.Text = kh.DiemTichLuy.ToString();
-                    double ptGiamGia = kh.DiemTichLuy.Value * Properties.Settings.Default.DiemDoi;
-                    double tienGiam = 0;
-                    double thanhTien = 0;
-                    if (ptGiamGia <= 100)
+                    string maKH = cbbKhachHang.EditValue.ToString();
+                    if (!maKH.Equals("0"))
                     {
-                        lbGiamGia.Text = ptGiamGia.ToString() + "%";
-                        if (cbSDTichDiemGG.Checked)
+                        cTHDBLLDAL = new CTHDBLLDAL();
+                        double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
+                        KhachHang kh = khachHangBLLDAL.getDataKhachHangByMaKH(int.Parse(maKH));
+                        lbDiemTichLuy.Text = kh.DiemTichLuy.ToString();
+                        double ptGiamGia = kh.DiemTichLuy.Value * Properties.Settings.Default.DiemDoi;
+                        double tienGiam = 0;
+                        double thanhTien = 0;
+                        if (ptGiamGia <= 100)
                         {
-                            tienGiam = kh.DiemTichLuy.Value * Properties.Settings.Default.DiemDoi * 0.01 * tongTien;
-                            thanhTien = tongTien - tienGiam;
+                            lbGiamGia.Text = ptGiamGia.ToString() + "%";
+                            if (cbSDTichDiemGG.Checked)
+                            {
+                                tienGiam = kh.DiemTichLuy.Value * Properties.Settings.Default.DiemDoi * 0.01 * tongTien;
+                                thanhTien = tongTien - tienGiam;
+                            }
+                            else
+                            {
+                                tienGiam = 0;
+                                thanhTien = tongTien;
+                            }
                         }
-                        else
+                        else // > 100%
                         {
-                            tienGiam = 0;
-                            thanhTien = tongTien;
+                            lbGiamGia.Text = "100%";
+                            //
+                            if (cbSDTichDiemGG.Checked)
+                            {
+                                tienGiam = tongTien;
+                                thanhTien = 0;
+                            }
+                            else
+                            {
+                                tienGiam = 0;
+                                thanhTien = tongTien;
+                            }
                         }
+                        int diemCong = (int)(thanhTien / Properties.Settings.Default.DiemTich);
+                        lbTienGiam.Text = String.Format("{0:0,00}", tienGiam);
+                        lbThanhTien.Text = String.Format("{0:0,00}", thanhTien);
+                        lbDiemCong.Text = diemCong.ToString();
                     }
-                    else // > 100%
-                    {
-                        lbGiamGia.Text = "100%";
-                        //
-                        if (cbSDTichDiemGG.Checked)
-                        {
-                            tienGiam = tongTien;
-                            thanhTien = 0;
-                        }
-                        else
-                        {
-                            tienGiam = 0;
-                            thanhTien = tongTien;
-                        }
-                    }
-                    int diemCong = (int)(thanhTien / Properties.Settings.Default.DiemTich);
-                    lbTienGiam.Text = String.Format("{0:0,00}", tienGiam);
-                    lbThanhTien.Text = String.Format("{0:0,00}", thanhTien);
-                    lbDiemCong.Text = diemCong.ToString();
                 }
-                //}
-                //catch (Exception ex)
-                //{
-                // MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -878,10 +931,8 @@ namespace QLNhaHang
             //Load MaHD
             lbHoaDon.Text = hd.MaHD.ToString();
             //Load CTHD
-            CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
-            CTHDBLLDAL c = new CTHDBLLDAL();
-            MessageBox.Show(cTHDBLLDAL.getCTDHByMaHD(hd.MaHD).Count.ToString() + " - " + c.getCTDHByMaHD(hd.MaHD)[0].SoLuong);
-            gridControlCTHD.DataSource = (from cthd in c.getCTDHByMaHD(hd.MaHD)
+            cTHDBLLDAL = new CTHDBLLDAL();
+            gridControlCTHD.DataSource = (from cthd in cTHDBLLDAL.getCTDHByMaHD(hd.MaHD)
                                           select new
                                           {
                                               MaHD = cthd.MaHD,
@@ -926,12 +977,13 @@ namespace QLNhaHang
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            khachHangBLLDAL = new KhachHangBLLDAL();
+            cTHDBLLDAL = new CTHDBLLDAL();
             HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
             if (hd == null)
             {
                 return;
             }
-            CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
             double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
             if (tongTien == 0)
             {
@@ -1005,6 +1057,7 @@ namespace QLNhaHang
         {
             try
             {
+                khachHangBLLDAL = new KhachHangBLLDAL();
                 HoaDon hd = hoaDonBLLDAL.getHoaDonByMaHD(maHD);
                 if (hd == null)
                 {
@@ -1064,6 +1117,7 @@ namespace QLNhaHang
         //}
         public void loadAfterThanhToan()
         {
+            banBLLDAL = new BanBLLDAL();
             banBLLDAL.capNhatTTDongBan(lstBan[soBan].MaBan);
             int soBamTemp = soBan;
             loadBan();
@@ -1098,6 +1152,7 @@ namespace QLNhaHang
         {
             try
             {
+                banBLLDAL = new BanBLLDAL();
                 HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(maBanCu);
                 if (hd == null)
                 {
@@ -1126,13 +1181,14 @@ namespace QLNhaHang
         {
             try
             {
+                banBLLDAL = new BanBLLDAL();
+                cTHDBLLDAL = new CTHDBLLDAL();
                 HoaDon hdBanCu = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(maBanCu);
                 HoaDon hdBanMoi = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(maBanMoi);
                 if (hdBanCu == null || hdBanMoi == null)
                 {
                     return;
                 }
-                CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
                 cTHDBLLDAL.updateMaHDDoiBan(hdBanCu.MaHD, hdBanMoi.MaHD);//Cap nhat CTHD ban cu sang  ban moi
                 hoaDonBLLDAL.deleteHDByMaHD(hdBanCu.MaHD);//Xoa hoa don ban cu
                 banBLLDAL.capNhatTTDongBan(maBanCu);
@@ -1151,7 +1207,7 @@ namespace QLNhaHang
             {
                 return;
             }
-            CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
+            cTHDBLLDAL = new CTHDBLLDAL();
             double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
             lbThanhTien.Text = String.Format("{0:0,00}", tongTien);
             lbTienGiam.Text = "0";
@@ -1161,12 +1217,13 @@ namespace QLNhaHang
         }
         public void loadUnCheckSDGG()
         {
+            khachHangBLLDAL = new KhachHangBLLDAL();
+            cTHDBLLDAL = new CTHDBLLDAL();
             HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
             if (hd == null)
             {
                 return;
             }
-            CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
             double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
             if (cbbKhachHang.EditValue == null)
             {
@@ -1216,7 +1273,7 @@ namespace QLNhaHang
             {
                 return;
             }
-            CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
+            cTHDBLLDAL = new CTHDBLLDAL();
             double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
             if (cbbKhachHang.EditValue == null)
             {
@@ -1277,51 +1334,23 @@ namespace QLNhaHang
             frm.ShowDialog(this);
             lstInCheBien.RemoveAll(r => r.MaBan == lstBan[soBan].MaBan);
         }
-        SqlTableDependency<Ban> dep;
-        SqlTableDependency<CTHD> depCTHD;
-        public void startListenner()
+        
+
+        private void reloadMon()
         {
-            string stringConnection = Properties.Settings.Default.ChuoiKetNoi;
-            var mapper = new ModelToTableMapper<Ban>();
-            mapper.AddMapping(c => c.MaBan, "MaBan");
-
-            dep = new SqlTableDependency<Ban>(stringConnection, "Ban", mapper: mapper);
-            dep.OnChanged += Dep_OnChanged;
-            //
-            var mapperCTHD = new ModelToTableMapper<CTHD>();
-            mapperCTHD.AddMapping(c => c.MaHD, "MaHD");
-            depCTHD = new SqlTableDependency<CTHD>(stringConnection, "CTHD", mapper: mapperCTHD);
-            depCTHD.OnChanged += DepCTHD_OnChanged;
-
-            depCTHD.Start();
-            dep.Start();
-        }
-
-        private void DepCTHD_OnChanged(object sender, TableDependency.SqlClient.Base.EventArgs.RecordChangedEventArgs<CTHD> e)
-        {
-
-            if (e.ChangeType == ChangeType.Insert || e.ChangeType == ChangeType.Update)
+            this.Invoke(new MethodInvoker(delegate ()
             {
-                CTHD cthd = e.Entity;
-                int maBanHT = hoaDonBLLDAL.getMaBanByMaHD(cthd.MaHD);
-                if (maBanHT == lstBan[soBan].MaBan)
-                {
-                    reloadCTHD(cthd.MaHD, cthd.MaMon, e.ChangeType);
-                }
-            }
-        }
-
-        private void Dep_OnChanged(object sender, TableDependency.SqlClient.Base.EventArgs.RecordChangedEventArgs<Ban> e)
-        {
-            var changedEntity = e.Entity;
-            //var str = new StringBuilder();
-            //str.Append("====================================================" + Environment.NewLine);
-            //str.Append("DML operation: " + e.ChangeType + Environment.NewLine);
-            //str.Append("MaBan: " + changedEntity.MaBan + Environment.NewLine);
-            //str.Append("====================================================");
-            //MessageBox.Show(str.ToString());
-            someMethod();
-            //reloadBan();
+                gridControlDSMon.DataSource = (from mon in monBLLDAL.getDataMon()
+                                               select new
+                                               {
+                                                   MaMon = mon.MaMon,
+                                                   TenMon = mon.TenMon,
+                                                   DVT = mon.DonViTinh.TenDVT,
+                                                   GiaGoc = mon.GiaGoc,
+                                                   GiaKM = mon.GiaKM
+                                               }).ToList();
+                gridView2.ClearSelection();
+            }));
         }
         private void reloadCTHD(int maHD, int maMon, ChangeType t)
         {
@@ -1335,7 +1364,6 @@ namespace QLNhaHang
                 }
                 else if (t == ChangeType.Update)
                 {
-                    CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
                     if (cTHDBLLDAL.isExitedCTHD(maHD, maMon))
                     {
                         gridView1.FocusedRowHandle = getIndexRowUpdate(maMon.ToString());
@@ -1376,6 +1404,7 @@ namespace QLNhaHang
         }
         public void reloadBan()
         {
+            banBLLDAL = new BanBLLDAL();
             int banHienTai = imgLstBoxBan.SelectedIndex;
             lstBan = banBLLDAL.getDataBan();
             imgLstBoxBan.Items.Clear();
@@ -1405,8 +1434,7 @@ namespace QLNhaHang
 
         private void frmGoiMonTaiQuay_FormClosing(object sender, FormClosingEventArgs e)
         {
-            depCTHD.Stop();
-            dep.Stop();
+
         }
     }
 }

@@ -506,7 +506,6 @@ C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHan
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.csproj.CopyComplete
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.exe
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.pdb
-C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.csprojAssemblyReference.cache
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Syncfusion.Compression.Base.dll
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Syncfusion.DocIO.Base.dll
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Syncfusion.XlsIO.Base.dll
@@ -514,3 +513,16 @@ C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHan
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Syncfusion.DocIO.Base.xml
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Syncfusion.XlsIO.Base.xml
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.Reports.frmReportInHoaDon.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.dll.config
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.dll
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.MachineLearning.dll
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.Math.Core.dll
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.Math.dll
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.Statistics.dll
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.xml
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.MachineLearning.xml
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.Math.xml
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.Math.Core.xml
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\bin\Debug\Accord.Statistics.xml
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmApriori.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmQLNguyenLieu.resources

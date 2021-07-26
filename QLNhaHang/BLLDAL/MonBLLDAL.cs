@@ -28,7 +28,7 @@ namespace BLLDAL
         //insert
         public void insertMonAn(Mon mon)
         {
-            if(mon != null)
+            if (mon != null)
             {
                 db.Mons.InsertOnSubmit(mon);
                 db.SubmitChanges();
@@ -36,7 +36,7 @@ namespace BLLDAL
         }
         //update
         //mã món, tên món,nhóm món, đvt, anh mon, giá gốc,giá km,maKm
-        public void updateMonAn(int maMon, int maNhom, string tenMon, int donViTinh,string anh, double giaGoc, double giaKM, int maKM)
+        public void updateMonAn(int maMon, int maNhom, string tenMon, int donViTinh, string anh, double giaGoc, double giaKM, int maKM)
         {
             Mon mon = db.Mons.Where(t => t.MaMon == maMon).FirstOrDefault();
             //KhuyenMai km = db.KhuyenMais.Where(t => t.MaKM == maKM).FirstOrDefault();
@@ -48,9 +48,10 @@ namespace BLLDAL
                 mon.Anh = anh;
                 mon.GiaGoc = (decimal?)giaGoc;
                 mon.GiaKM = (decimal?)giaKM;
-                mon.KhuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault(); 
+                mon.KhuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
                 db.SubmitChanges();
             }
+
         }
         public void updateMonAnNoImg(int maMon, int maNhom, string tenMon, int donViTinh, double giaGoc, double giaKM, int maKM)
         {
@@ -65,12 +66,25 @@ namespace BLLDAL
                 mon.KhuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
                 db.SubmitChanges();
             }
+
         }
+        //check befor delete
+        public bool ktKhoaNgoaiMon(int maMon)
+        {
+            bool checkCTHD = db.CTHDs.Where(c => c.MaMon == maMon).Count() > 0;
+            bool checkGMTB = db.GoiMonTaiBans.Where(g => g.MaMon == maMon).Count() > 0;
+            if(checkCTHD || checkGMTB)
+            {
+                return true;
+            }
+            return false;
+        }
+
         //delete
         public void deleteMonAn(int maMon)
         {
             Mon mon = db.Mons.Where(t => t.MaMon == maMon).FirstOrDefault();
-            if(mon != null)
+            if (mon != null)
             {
                 db.Mons.DeleteOnSubmit(mon);
                 db.SubmitChanges();
@@ -88,7 +102,7 @@ namespace BLLDAL
         public string getTenMonByMaMon(int maMon)
         {
             Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
-            if(mon != null)
+            if (mon != null)
             {
                 return mon.TenMon;
             }
@@ -105,12 +119,12 @@ namespace BLLDAL
                        {
                            Ma = g.Key,
                            X = getTenByMa(g.Key),
-                           Y = g.Sum(s => s.DonGia*s.SoLuong),
+                           Y = g.Sum(s => s.DonGia * s.SoLuong),
                            SL = g.Sum(s => s.SoLuong)
                        };
             foreach (var item in data)
             {
-                Chart chart = new Chart((double)item.Y, item.X.ToString(), (int)item.SL,item.Ma);
+                Chart chart = new Chart((double)item.Y, item.X.ToString(), (int)item.SL, item.Ma);
                 lstChart.Add(chart);
             }
             return lstChart;
@@ -118,7 +132,7 @@ namespace BLLDAL
         public string getTenByMa(int maMon)
         {
             Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
-            if(mon == null)
+            if (mon == null)
             {
                 return "";
             }
@@ -130,6 +144,23 @@ namespace BLLDAL
             if (mon == null)
                 return 0;
             return mon.GiaKM.Value;
+        }
+        public List<Mon> getMonByResult(int[][] matches)
+        {
+            List<Mon> lstMon = new List<Mon>();
+            for (int i = 0; i < matches.Length; i++)
+            {
+
+                for (int j = 0; j < matches[i].Length; j++)
+                {
+                    Mon mon = db.Mons.Where(m => m.MaMon == matches[i][j]).FirstOrDefault();
+                    if (mon != null)
+                    {
+                        lstMon.Add(mon);
+                    }
+                }
+            }
+            return lstMon;
         }
     }
 }

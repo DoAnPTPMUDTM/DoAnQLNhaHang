@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLLDAL;
+using TableDependency.SqlClient.Base.Enums;
 
 namespace QLNhaHang
 {
@@ -23,7 +24,7 @@ namespace QLNhaHang
 
         private void frmKhachHang_Load(object sender, EventArgs e)
         {
-            
+
             loadDataKhachHang();
         }
         private void loadDataKhachHang()
@@ -35,7 +36,7 @@ namespace QLNhaHang
                                  MaKH = kh.MaKH,
                                  TenKH = kh.TenKH == null ? "" : kh.TenKH,
                                  DiaChi = kh.DiaChi == null ? "" : kh.DiaChi,
-                                 SDT = kh.SDT == null ? "" :  kh.SDT,
+                                 SDT = kh.SDT == null ? "" : kh.SDT,
                                  MaHD = khachHangBLLDAL.soHoaDon(kh.MaKH),
                                  DiemTichLuy = kh.DiemTichLuy == null ? 0 : kh.DiemTichLuy.Value
                              };
@@ -57,7 +58,7 @@ namespace QLNhaHang
             {
                 if (e.RowHandle % 2 == 0)
                 {
-                    e.Appearance.BackColor = Color.FromArgb(150, 0,192,192);
+                    e.Appearance.BackColor = Color.FromArgb(150, 0, 192, 192);
                     e.Appearance.BackColor2 = Color.White;
                 }
                 else
@@ -114,6 +115,7 @@ namespace QLNhaHang
             MessageBox.Show("Thêm khách hàng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             loadDataKhachHang();
             clearControls();
+            UpdateStatus(ChangeType.Insert);
             //}
             //catch
             //{
@@ -124,9 +126,9 @@ namespace QLNhaHang
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-          
 
-            if(gridView1.FocusedRowHandle >= 0)
+
+            if (gridView1.FocusedRowHandle >= 0)
             {
                 if (gridView1.GetFocusedRowCellValue("MaKH").ToString().Equals("0"))
                 {
@@ -146,7 +148,7 @@ namespace QLNhaHang
                 mmeDiaChi.Text = gridView1.GetFocusedRowCellValue("DiaChi").ToString();
                 txtSDT.Text = gridView1.GetFocusedRowCellValue("SDT").ToString();
                 txtDiemTL.Text = gridView1.GetFocusedRowCellValue("DiemTichLuy").ToString();
-            }   
+            }
             //try
             //{
 
@@ -162,7 +164,7 @@ namespace QLNhaHang
         private void btnXoa_Click(object sender, EventArgs e)
         {
             string maKH = gridView1.GetFocusedRowCellValue("MaKH").ToString();
-            if(maKH == null)
+            if (maKH == null)
             {
                 return;
             }
@@ -172,6 +174,7 @@ namespace QLNhaHang
                 MessageBox.Show("Xóa khách hàng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataKhachHang();
                 clearControls();
+                UpdateStatus(ChangeType.Delete);
             }
             catch
             {
@@ -190,11 +193,11 @@ namespace QLNhaHang
             //    MessageBox.Show("Sửa khách hàng thất bại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //}
             string maKH = gridView1.GetFocusedRowCellValue("MaKH").ToString();
-            if(maKH.Equals("0"))
+            if (maKH.Equals("0"))
             {
                 return;
-            }    
-            if(maKH == null)
+            }
+            if (maKH == null)
             {
                 return;
             }
@@ -202,11 +205,12 @@ namespace QLNhaHang
             MessageBox.Show("Sửa khách hàng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             loadDataKhachHang();
             clearControls();
+            UpdateStatus(ChangeType.Update);
         }
 
         private void txtDiemTL_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -214,7 +218,7 @@ namespace QLNhaHang
 
         private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -224,6 +228,14 @@ namespace QLNhaHang
         {
             loadDataKhachHang();
             clearControls();
+        }
+        public delegate void StatusUpdateHandler(object sender, EventArgs e, ChangeType c);
+        public event StatusUpdateHandler OnUpdateStatus;
+
+        private void UpdateStatus(ChangeType c)
+        {
+            EventArgs args = new EventArgs();
+            OnUpdateStatus?.Invoke(this, args, c);
         }
     }
 }

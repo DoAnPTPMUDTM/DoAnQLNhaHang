@@ -163,7 +163,6 @@ namespace QLNhaHang
                     if (changedEntity.TinhTrang == 0)
                     {
                         refesh();
-                        MessageBox.Show(" Tinh trang = 0; MaHD insert: " + changedEntity.MaHD.Value.ToString());
                     }
                 }
             }

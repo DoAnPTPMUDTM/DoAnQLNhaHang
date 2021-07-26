@@ -19,7 +19,7 @@ namespace BLLDAL
         public void capNhatTTMoBan(int maBan)
         {
             Ban ban = db.Bans.Where(b => b.MaBan == maBan).FirstOrDefault();
-            if(ban.TrangThai == 0)
+            if (ban.TrangThai == 0)
             {
                 ban.TrangThai = 1;
                 db.SubmitChanges();
@@ -34,18 +34,21 @@ namespace BLLDAL
                 db.SubmitChanges();
             }
         }
+
         public int ktTinhTrangBan(int maBan)
         {
             Ban ban = db.Bans.Where(b => b.MaBan == maBan).FirstOrDefault();
             return (int)ban.TrangThai;
+
         }
         public Ban getBanByMaBan(int maBan)
         {
             return db.Bans.Where(b => b.MaBan == maBan).FirstOrDefault();
+
         }
         public void insertBan(Ban ban)
         {
-            if(ban != null)
+            if (ban != null)
             {
                 db.Bans.InsertOnSubmit(ban);
                 db.SubmitChanges();
@@ -54,6 +57,7 @@ namespace BLLDAL
         public bool ktKhoaNgoai(int maBan)
         {
             return db.HoaDons.Where(h => h.MaBan == maBan).Count() > 0;
+
         }
         public void updateBan(int maBan, Ban ban)
         {
@@ -85,12 +89,12 @@ namespace BLLDAL
                           {
                               h.MaBan
                           }).Distinct().ToList();
-            foreach(var item in getBan)
+            foreach (var item in getBan)
             {
                 Ban ban = getBanByMaBan(item.MaBan.Value);
                 lstBan.Add(ban);
             }
             return lstBan;
-        }     
+        }
     }
 }

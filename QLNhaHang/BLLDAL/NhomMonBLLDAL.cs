@@ -25,7 +25,7 @@ namespace BLLDAL
         //insert
         public void insertNhomMon(NhomMon nhomMon)
         {
-            if(nhomMon != null)
+            if (nhomMon != null)
             {
                 db.NhomMons.InsertOnSubmit(nhomMon);
                 db.SubmitChanges();
@@ -35,7 +35,7 @@ namespace BLLDAL
         public void updateNhomMon(int maNhom, string tenNhom)
         {
             NhomMon nhomMon = db.NhomMons.Where(t => t.MaNhom == maNhom).FirstOrDefault();
-            if(nhomMon != null)
+            if (nhomMon != null)
             {
                 nhomMon.TenNhom = tenNhom;
                 db.SubmitChanges();
@@ -46,12 +46,11 @@ namespace BLLDAL
         {
             //Kiểm tra nếu có món ăn thuộc nhóm món ăn này thì không xoá được
             NhomMon nhomMon = db.NhomMons.Where(t => t.MaNhom == maNhom).FirstOrDefault();
-            if(nhomMon != null)
+            if (nhomMon != null)
             {
                 db.NhomMons.DeleteOnSubmit(nhomMon);
                 db.SubmitChanges();
             }
         }
-        //
     }
 }

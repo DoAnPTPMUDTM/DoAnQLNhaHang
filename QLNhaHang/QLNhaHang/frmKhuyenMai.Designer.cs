@@ -138,9 +138,9 @@ namespace QLNhaHang
             this.btnRefesh.Appearance.Options.UseFont = true;
             this.btnRefesh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRefesh.ImageOptions.Image")));
             this.btnRefesh.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnRefesh.Location = new System.Drawing.Point(311, 177);
+            this.btnRefesh.Location = new System.Drawing.Point(293, 177);
             this.btnRefesh.Name = "btnRefesh";
-            this.btnRefesh.Size = new System.Drawing.Size(102, 27);
+            this.btnRefesh.Size = new System.Drawing.Size(77, 27);
             this.btnRefesh.StyleController = this.layoutControl3;
             this.btnRefesh.TabIndex = 10;
             this.btnRefesh.Text = "Refesh";
@@ -149,9 +149,10 @@ namespace QLNhaHang
             // txtMaKM
             // 
             this.txtMaKM.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaKM.Location = new System.Drawing.Point(192, 32);
+            this.txtMaKM.Location = new System.Drawing.Point(239, 32);
             this.txtMaKM.Name = "txtMaKM";
-            this.txtMaKM.Size = new System.Drawing.Size(216, 26);
+            this.txtMaKM.ReadOnly = true;
+            this.txtMaKM.Size = new System.Drawing.Size(126, 26);
             this.txtMaKM.TabIndex = 1;
             // 
             // btnThem
@@ -160,9 +161,9 @@ namespace QLNhaHang
             this.btnThem.Appearance.Options.UseFont = true;
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnThem.Location = new System.Drawing.Point(28, 177);
+            this.btnThem.Location = new System.Drawing.Point(75, 177);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(91, 27);
+            this.btnThem.Size = new System.Drawing.Size(68, 27);
             this.btnThem.StyleController = this.layoutControl3;
             this.btnThem.TabIndex = 6;
             this.btnThem.Text = "Thêm";
@@ -174,9 +175,9 @@ namespace QLNhaHang
             this.btnXoa.Appearance.Options.UseFont = true;
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnXoa.Location = new System.Drawing.Point(222, 177);
+            this.btnXoa.Location = new System.Drawing.Point(225, 177);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(75, 27);
+            this.btnXoa.Size = new System.Drawing.Size(54, 27);
             this.btnXoa.StyleController = this.layoutControl3;
             this.btnXoa.TabIndex = 8;
             this.btnXoa.Text = "Xóa";
@@ -188,9 +189,9 @@ namespace QLNhaHang
             this.btnSua.Appearance.Options.UseFont = true;
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
             this.btnSua.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSua.Location = new System.Drawing.Point(133, 177);
+            this.btnSua.Location = new System.Drawing.Point(157, 177);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(75, 27);
+            this.btnSua.Size = new System.Drawing.Size(54, 27);
             this.btnSua.StyleController = this.layoutControl3;
             this.btnSua.TabIndex = 7;
             this.btnSua.Text = "Sửa";
@@ -199,17 +200,17 @@ namespace QLNhaHang
             // txtTyLe
             // 
             this.txtTyLe.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTyLe.Location = new System.Drawing.Point(192, 132);
+            this.txtTyLe.Location = new System.Drawing.Point(239, 132);
             this.txtTyLe.Name = "txtTyLe";
-            this.txtTyLe.Size = new System.Drawing.Size(216, 26);
+            this.txtTyLe.Size = new System.Drawing.Size(126, 26);
             this.txtTyLe.TabIndex = 4;
             // 
             // txtTenKM
             // 
             this.txtTenKM.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenKM.Location = new System.Drawing.Point(192, 82);
+            this.txtTenKM.Location = new System.Drawing.Point(239, 82);
             this.txtTenKM.Name = "txtTenKM";
-            this.txtTenKM.Size = new System.Drawing.Size(216, 26);
+            this.txtTenKM.Size = new System.Drawing.Size(126, 26);
             this.txtTenKM.TabIndex = 2;
             // 
             // layoutControlGroup2
@@ -235,9 +236,9 @@ namespace QLNhaHang
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSua;
-            this.layoutControlItem7.Location = new System.Drawing.Point(116, 160);
+            this.layoutControlItem7.Location = new System.Drawing.Point(140, 160);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(89, 41);
+            this.layoutControlItem7.Size = new System.Drawing.Size(68, 41);
             this.layoutControlItem7.Spacing = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
@@ -245,9 +246,9 @@ namespace QLNhaHang
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnXoa;
-            this.layoutControlItem8.Location = new System.Drawing.Point(205, 160);
+            this.layoutControlItem8.Location = new System.Drawing.Point(208, 160);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(89, 41);
+            this.layoutControlItem8.Size = new System.Drawing.Size(68, 41);
             this.layoutControlItem8.Spacing = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
@@ -255,9 +256,9 @@ namespace QLNhaHang
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnThem;
-            this.layoutControlItem9.Location = new System.Drawing.Point(11, 160);
+            this.layoutControlItem9.Location = new System.Drawing.Point(58, 160);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(105, 41);
+            this.layoutControlItem9.Size = new System.Drawing.Size(82, 41);
             this.layoutControlItem9.Spacing = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
@@ -268,11 +269,11 @@ namespace QLNhaHang
             this.layoutControlItemTenKH.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItemTenKH.Control = this.txtTenKM;
             this.layoutControlItemTenKH.CustomizationFormText = "layoutControlItem3";
-            this.layoutControlItemTenKH.Location = new System.Drawing.Point(11, 60);
+            this.layoutControlItemTenKH.Location = new System.Drawing.Point(58, 60);
             this.layoutControlItemTenKH.MaxSize = new System.Drawing.Size(0, 50);
             this.layoutControlItemTenKH.MinSize = new System.Drawing.Size(177, 50);
             this.layoutControlItemTenKH.Name = "layoutControlItemTenKH";
-            this.layoutControlItemTenKH.Size = new System.Drawing.Size(399, 50);
+            this.layoutControlItemTenKH.Size = new System.Drawing.Size(309, 50);
             this.layoutControlItemTenKH.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemTenKH.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItemTenKH.Text = "Tên khuyến mãi";
@@ -284,11 +285,11 @@ namespace QLNhaHang
             this.layoutControlItemSDT.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItemSDT.Control = this.txtTyLe;
             this.layoutControlItemSDT.CustomizationFormText = "Tỷ lệ khuyến mãi";
-            this.layoutControlItemSDT.Location = new System.Drawing.Point(11, 110);
+            this.layoutControlItemSDT.Location = new System.Drawing.Point(58, 110);
             this.layoutControlItemSDT.MaxSize = new System.Drawing.Size(0, 50);
             this.layoutControlItemSDT.MinSize = new System.Drawing.Size(177, 50);
             this.layoutControlItemSDT.Name = "layoutControlItemSDT";
-            this.layoutControlItemSDT.Size = new System.Drawing.Size(399, 50);
+            this.layoutControlItemSDT.Size = new System.Drawing.Size(309, 50);
             this.layoutControlItemSDT.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemSDT.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItemSDT.Text = "Tỷ lệ khuyến mãi(%)";
@@ -299,11 +300,11 @@ namespace QLNhaHang
             this.layoutControlItemMaKH.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItemMaKH.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItemMaKH.Control = this.txtMaKM;
-            this.layoutControlItemMaKH.Location = new System.Drawing.Point(11, 10);
+            this.layoutControlItemMaKH.Location = new System.Drawing.Point(58, 10);
             this.layoutControlItemMaKH.MaxSize = new System.Drawing.Size(0, 50);
             this.layoutControlItemMaKH.MinSize = new System.Drawing.Size(177, 50);
             this.layoutControlItemMaKH.Name = "layoutControlItemMaKH";
-            this.layoutControlItemMaKH.Size = new System.Drawing.Size(399, 50);
+            this.layoutControlItemMaKH.Size = new System.Drawing.Size(309, 50);
             this.layoutControlItemMaKH.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemMaKH.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlItemMaKH.Text = "Mã khuyến mãi";
@@ -312,9 +313,9 @@ namespace QLNhaHang
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(410, 0);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(367, 0);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(11, 201);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(54, 201);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem5
@@ -322,15 +323,15 @@ namespace QLNhaHang
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.Location = new System.Drawing.Point(0, 10);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(11, 191);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(58, 191);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnRefesh;
-            this.layoutControlItem3.Location = new System.Drawing.Point(294, 160);
+            this.layoutControlItem3.Location = new System.Drawing.Point(276, 160);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(116, 41);
+            this.layoutControlItem3.Size = new System.Drawing.Size(91, 41);
             this.layoutControlItem3.Spacing = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -348,7 +349,7 @@ namespace QLNhaHang
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(410, 10);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(367, 10);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // groupControl1

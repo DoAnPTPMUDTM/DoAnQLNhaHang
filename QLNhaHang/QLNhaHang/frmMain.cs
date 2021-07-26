@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLLDAL;
 using DevExpress.XtraBars;
+using TableDependency.SqlClient.Base.Enums;
 
 namespace QLNhaHang
 {
@@ -55,6 +56,20 @@ namespace QLNhaHang
                 }
             }
             return IsOpenend;
+        }
+        private bool checkExitForm(string name)
+        {
+            if (MdiChildren.Count() > 0)
+            {
+                foreach (var item in MdiChildren)
+                {
+                    if (name == item.Name)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
         private void barBtnGoiMonTaiQuay_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -109,14 +124,46 @@ namespace QLNhaHang
         {
             frmNhomMonMonAn frmNhomMonMonAn = new frmNhomMonMonAn();
             frmNhomMonMonAn.Name = "frmNhomMonMonAn";
+            frmNhomMonMonAn.OnUpdateMon += FrmNhomMonMonAn_OnUpdateMon;
+            frmNhomMonMonAn.OnUpdateNhomMon += FrmNhomMonMonAn_OnUpdateNhomMon;
             showForm(frmNhomMonMonAn);
+        }
+        bool checkUpdateNhomMon = false;
+        private void FrmNhomMonMonAn_OnUpdateNhomMon(object sender, EventArgs e)
+        {
+            if (checkExitForm("frmGoiMonTaiQuay"))
+            {
+                checkUpdateNhomMon = true;
+            }
+        }
+        bool checkUpdateMon = false;
+        private void FrmNhomMonMonAn_OnUpdateMon(object sender, EventArgs e)
+        {
+            if (checkExitForm("frmGoiMonTaiQuay"))
+            {
+                checkUpdateMon = true;
+            }
         }
 
         private void barBtnQLKhachHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmKhachHang frmKhachHang = new frmKhachHang();
             frmKhachHang.Name = "frmKhachHang";
+            frmKhachHang.OnUpdateStatus += FrmKhachHang_OnUpdateStatus;
             showForm(frmKhachHang);
+        }
+        bool checkInsertUpdateKH = false;
+        bool checkDeleteKH = false;
+        private void FrmKhachHang_OnUpdateStatus(object sender, EventArgs e, TableDependency.SqlClient.Base.Enums.ChangeType c)
+        {
+            if (checkExitForm("frmGoiMonTaiQuay") && (c == ChangeType.Insert || c == ChangeType.Update))
+            {
+                checkInsertUpdateKH = true;
+            }
+            if (checkExitForm("frmGoiMonTaiQuay") && c == ChangeType.Delete)
+            {
+                checkDeleteKH = true;
+            }
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -129,7 +176,49 @@ namespace QLNhaHang
         {
             frmBanAn frmBanAn = new frmBanAn();
             frmBanAn.Name = "frmBanAn";
+            frmBanAn.OnUpdateBan += FrmBanAn_OnUpdateBan;
             frmBanAn.ShowDialog(this);
+        }
+        bool checkInsertUpdateBan = false;
+        bool checkDeleteBan = false;
+        private void FrmBanAn_OnUpdateBan(object sender, EventArgs e, ChangeType c)
+        {
+            if (checkExitForm("frmGoiMonTaiQuay") && (c == ChangeType.Insert || c == ChangeType.Update))
+            {
+                checkInsertUpdateBan = true;
+            }
+            if (checkExitForm("frmGoiMonTaiQuay") && c == ChangeType.Delete)
+            {
+                checkDeleteBan = true;
+            }
+            try
+            {
+                DevExpress.XtraTabbedMdi.XtraMdiTabPage a = xtraTabbedMdiManager1.SelectedPage;
+                if (a != null)
+                {
+                    Form form = a.MdiChild.FindForm();
+                    if (form.Name.Equals("frmGoiMonTaiQuay"))
+                    {
+                        frmGoiMonTaiQuay frmGoiMonTaiQuay = (frmGoiMonTaiQuay)form;
+                        if (checkInsertUpdateBan == true)
+                        {
+                            frmGoiMonTaiQuay.reloadBan();
+                            MessageBox.Show("In - Up ban");
+                            checkInsertUpdateBan = false;
+                        }
+
+                        if (checkDeleteBan == true)
+                        {
+                            frmGoiMonTaiQuay.loadBan();
+                            checkDeleteBan = false;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void barBtnQLGiamGia_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -205,6 +294,42 @@ namespace QLNhaHang
             frmDoanhThu.Name = "frmDoanhThu";
             showForm(frmDoanhThu);
         }
+
+        private void xtraTabbedMdiManager1_SelectedPageChanged(object sender, EventArgs e)
+        {
+            DevExpress.XtraTabbedMdi.XtraMdiTabPage tabPage = xtraTabbedMdiManager1.SelectedPage;
+            if (tabPage != null)
+            {
+                Form form = tabPage.MdiChild.FindForm();
+                switch (form.Name)
+                {
+                    case "frmGoiMonTaiQuay":
+                        frmGoiMonTaiQuay frmGoiMonTaiQuay = (frmGoiMonTaiQuay)form;
+                        if (checkInsertUpdateKH == true)
+                        {
+                            frmGoiMonTaiQuay.loadKhachHang();
+                            checkInsertUpdateKH = false;
+                        }
+                        if (checkDeleteKH == true)
+                        {
+                            frmGoiMonTaiQuay.loadKhachHang();
+                            checkDeleteKH = false;
+                        }
+                        if (checkUpdateMon == true)
+                        {
+                            frmGoiMonTaiQuay.firstLoadDataGridDSMon();
+                            checkUpdateMon = false;
+                        }
+                        if (checkUpdateNhomMon == true)
+                        {
+                            frmGoiMonTaiQuay.loadNhomMon();
+                            checkUpdateNhomMon = false;
+                        }
+                        break;
+                }
+            }
+        }
+
         //private void xtraTabbedMdiManager1_SelectedPageChanged(object sender, EventArgs e)
         //{
         //    MessageBox.Show("Change");

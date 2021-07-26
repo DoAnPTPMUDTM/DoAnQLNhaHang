@@ -382,7 +382,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn3.EditorPreferredWidth = 158;
             this.layoutViewField_gridColumn3.Location = new System.Drawing.Point(10, 164);
             this.layoutViewField_gridColumn3.Name = "layoutViewField_gridColumn3";
-            this.layoutViewField_gridColumn3.Size = new System.Drawing.Size(276, 30);
+            this.layoutViewField_gridColumn3.Size = new System.Drawing.Size(274, 30);
             this.layoutViewField_gridColumn3.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutViewField_gridColumn3.TextSize = new System.Drawing.Size(103, 16);
             // 
@@ -400,7 +400,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn4.EditorPreferredWidth = 158;
             this.layoutViewField_gridColumn4.Location = new System.Drawing.Point(10, 194);
             this.layoutViewField_gridColumn4.Name = "layoutViewField_gridColumn4";
-            this.layoutViewField_gridColumn4.Size = new System.Drawing.Size(276, 30);
+            this.layoutViewField_gridColumn4.Size = new System.Drawing.Size(274, 30);
             this.layoutViewField_gridColumn4.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutViewField_gridColumn4.TextSize = new System.Drawing.Size(103, 16);
             // 
@@ -418,7 +418,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn9.EditorPreferredWidth = 158;
             this.layoutViewField_gridColumn9.Location = new System.Drawing.Point(10, 224);
             this.layoutViewField_gridColumn9.Name = "layoutViewField_gridColumn9";
-            this.layoutViewField_gridColumn9.Size = new System.Drawing.Size(276, 30);
+            this.layoutViewField_gridColumn9.Size = new System.Drawing.Size(274, 30);
             this.layoutViewField_gridColumn9.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutViewField_gridColumn9.TextSize = new System.Drawing.Size(103, 16);
             // 
@@ -436,7 +436,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn5.EditorPreferredWidth = 158;
             this.layoutViewField_gridColumn5.Location = new System.Drawing.Point(10, 254);
             this.layoutViewField_gridColumn5.Name = "layoutViewField_gridColumn5";
-            this.layoutViewField_gridColumn5.Size = new System.Drawing.Size(276, 30);
+            this.layoutViewField_gridColumn5.Size = new System.Drawing.Size(274, 30);
             this.layoutViewField_gridColumn5.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutViewField_gridColumn5.TextSize = new System.Drawing.Size(103, 17);
             // 
@@ -456,7 +456,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn6.EditorPreferredWidth = 158;
             this.layoutViewField_gridColumn6.Location = new System.Drawing.Point(10, 284);
             this.layoutViewField_gridColumn6.Name = "layoutViewField_gridColumn6";
-            this.layoutViewField_gridColumn6.Size = new System.Drawing.Size(276, 30);
+            this.layoutViewField_gridColumn6.Size = new System.Drawing.Size(274, 30);
             this.layoutViewField_gridColumn6.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutViewField_gridColumn6.TextSize = new System.Drawing.Size(103, 17);
             // 
@@ -476,7 +476,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn7.EditorPreferredWidth = 158;
             this.layoutViewField_gridColumn7.Location = new System.Drawing.Point(10, 314);
             this.layoutViewField_gridColumn7.Name = "layoutViewField_gridColumn7";
-            this.layoutViewField_gridColumn7.Size = new System.Drawing.Size(276, 30);
+            this.layoutViewField_gridColumn7.Size = new System.Drawing.Size(274, 30);
             this.layoutViewField_gridColumn7.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutViewField_gridColumn7.TextSize = new System.Drawing.Size(103, 16);
             // 
@@ -496,7 +496,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn8.EditorPreferredWidth = 158;
             this.layoutViewField_gridColumn8.Location = new System.Drawing.Point(10, 344);
             this.layoutViewField_gridColumn8.Name = "layoutViewField_gridColumn8";
-            this.layoutViewField_gridColumn8.Size = new System.Drawing.Size(276, 30);
+            this.layoutViewField_gridColumn8.Size = new System.Drawing.Size(274, 30);
             this.layoutViewField_gridColumn8.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutViewField_gridColumn8.TextSize = new System.Drawing.Size(103, 17);
             // 
@@ -525,7 +525,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn10.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.layoutViewField_gridColumn10.Location = new System.Drawing.Point(10, 0);
             this.layoutViewField_gridColumn10.Name = "layoutViewField_gridColumn10";
-            this.layoutViewField_gridColumn10.Size = new System.Drawing.Size(287, 164);
+            this.layoutViewField_gridColumn10.Size = new System.Drawing.Size(285, 164);
             this.layoutViewField_gridColumn10.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutViewField_gridColumn10.StartNewLine = true;
             this.layoutViewField_gridColumn10.TextSize = new System.Drawing.Size(0, 0);
@@ -549,7 +549,7 @@ namespace QLNhaHang
             this.layoutViewField_gridColumn8,
             this.layoutViewField_gridColumn10,
             this.item4});
-            this.layoutViewCard1.Name = "layoutViewCard1";
+            this.layoutViewCard1.Name = "layoutViewTemplateCard";
             this.layoutViewCard1.OptionsItemText.TextToControlDistance = 5;
             this.layoutViewCard1.Text = "TemplateCard";
             this.layoutViewCard1.TextLocation = DevExpress.Utils.Locations.Default;
@@ -568,7 +568,7 @@ namespace QLNhaHang
             // 
             this.item2.AllowHotTrack = false;
             this.item2.CustomizationFormText = "item2";
-            this.item2.Location = new System.Drawing.Point(286, 164);
+            this.item2.Location = new System.Drawing.Point(284, 164);
             this.item2.Name = "item2";
             this.item2.Size = new System.Drawing.Size(11, 220);
             this.item2.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
@@ -580,7 +580,7 @@ namespace QLNhaHang
             this.item3.CustomizationFormText = "item3";
             this.item3.Location = new System.Drawing.Point(10, 374);
             this.item3.Name = "item3";
-            this.item3.Size = new System.Drawing.Size(276, 10);
+            this.item3.Size = new System.Drawing.Size(274, 10);
             this.item3.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.item3.TextSize = new System.Drawing.Size(0, 0);
             // 

@@ -38,7 +38,7 @@ namespace BLLDAL
         }
         public class MailHelper
         {
-            public static string titleMail = "";
+            public static string titleMail = "Quản Lý Nhà Hàng";
             public static string createMessage(string pass, string name)
             {
                 string message = "Xin chào. ";

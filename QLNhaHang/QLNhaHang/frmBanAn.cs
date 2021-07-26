@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLLDAL;
+using TableDependency.SqlClient.Base.Enums;
+
 namespace QLNhaHang
 {
     public partial class frmBanAn : Form
@@ -63,6 +65,7 @@ namespace QLNhaHang
             {
                 banBLLDAL.insertBan(ban);
                 loadBan();
+                UpdateBan(ChangeType.Insert);
             }
             catch(Exception ex)
             {
@@ -108,6 +111,7 @@ namespace QLNhaHang
             {
                 banBLLDAL.updateBan(lstBan[index].MaBan, ban);
                 loadBan();
+                UpdateBan(ChangeType.Update);
             }
             catch(Exception ex)
             {
@@ -127,11 +131,21 @@ namespace QLNhaHang
             {
                 banBLLDAL.deleteBan(lstBan[index].MaBan);
                 loadBan();
+                UpdateBan(ChangeType.Delete);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        public delegate void StatusUpdateHandler(object sender, EventArgs e, ChangeType c);
+        public event StatusUpdateHandler OnUpdateBan;
+
+        private void UpdateBan(ChangeType c)
+        {
+            EventArgs args = new EventArgs();
+            OnUpdateBan?.Invoke(this, args, c);
         }
     }
 }

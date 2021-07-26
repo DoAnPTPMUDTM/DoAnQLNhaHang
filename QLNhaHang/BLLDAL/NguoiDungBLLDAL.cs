@@ -27,6 +27,7 @@ namespace BLLDAL
         }
         public void updateNguoiDung(int maND, string hoTen, string gioiTinh, string SDT, string diaChi, string Email, string tenDN, string matKhau, bool hoatDong)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             //mã nd, họ tên, giới tính, sdt, địa chỉ, email, tên đn, mk, hoạt động
             NguoiDung nd = db.NguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
             if (nd != null)
@@ -76,6 +77,7 @@ namespace BLLDAL
         }
         public void updateThongTinTK(int maND, string hoTen, string gioiTinh, string SDT, string diaChi, bool hoatDong)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             NguoiDung nd = db.NguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
             if (nd != null)
             {
@@ -89,6 +91,7 @@ namespace BLLDAL
         }
         public void updateMatKhau(int maND, string matKhau)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             NguoiDung nd = db.NguoiDungs.Where(t => t.MaND == maND).FirstOrDefault();
             if (nd != null)
             {
@@ -108,14 +111,10 @@ namespace BLLDAL
         public NguoiDung isExistTenDN(string tenDN)
         {
             return db.NguoiDungs.Where(t => t.TenDN == tenDN).FirstOrDefault();
-            //if(nd != null)
-            //{
-            //}
         }
         public NguoiDung getNDByTenDN(string tenDN)
         {
-            return db.NguoiDungs.Where(n => n.TenDN.Equals(tenDN)).FirstOrDefault();          
+            return db.NguoiDungs.Where(n => n.TenDN.Equals(tenDN)).FirstOrDefault();
         }
-        
     }
 }

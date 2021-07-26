@@ -326,6 +326,7 @@ INSERT INTO NhomMon(MaNhom, TenNhom, Anh) VALUES(3,N'GÀ - VỊT','3.png');
 INSERT INTO NhomMon(MaNhom, TenNhom, Anh) VALUES(4,N'MÓN LẨU','2.png');
 INSERT INTO NhomMon(MaNhom, TenNhom, Anh) VALUES(5,N'ĐỒ UỐNG','5.png');
 INSERT INTO NhomMon(MaNhom, TenNhom, Anh) VALUES(6,N'MÓN TRÁNG MIỆNG','6.png');
+INSERT INTO NhomMon(MaNhom, TenNhom, Anh) VALUES(7,N'MÓN BÒ','6.png');
 SET IDENTITY_INSERT NhomMon OFF
 select * from NhomMon
 ------------------------------------------------------------------------------------
@@ -334,20 +335,41 @@ SET IDENTITY_INSERT Mon ON
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (1,1,1,N'Súp măng Tây cua','1.jpg',45000,45000,1);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (2,1,1,N'Súp hải sản Ngọc Bích','2.jpg',60000,60000,2);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (3,1,3,N'Gỏi tôm kiểu Thái','3.jpg',70000,70000,3);
+----------
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (4,3,2,N'Gà hầm ngũ quả','4.jpg',120000,120000,3);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (5,3,3,N'Gà quay Hương Liễu và bánh bao','5.jpg',150000,150000,3);
-------5 món ăn bên trên là Vy lấy từ hình ở website nhà hàng cưới. còn dưới này là nhà hàng 241 test thử ảnh coi zo form oke hok hé.
 --- thêm 3 món gà, 3 món lẩu, 3 đồ uống, 2 món tráng miệng 
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (6,3,2,N'Gà tiềm thuốc Bắc','6.jpg',600000,600000,3);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (7,3,3,N'Gà nấu Lagu','7.jpg',600000,600000,2);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (8,3,3,N'Gà hấp lá chanh','8.png',250000,250000,1);
+----------
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (9,4,2,N'Lẩu cá kèo','9.png',650000,650000,3);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (10,4,2,N'Lẩu cá chép','10.png',450000,450000,2);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (11,4,2,N'Lẩu Lươn','11.png',450000,450000,2);
+----------
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (12,5,6,N'Bò Húc','12.jpg',14000,14000,1);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (13,5,6,N'Bia 333','13.jpg',13000,13000,1);
+----------
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (14,6,5,N'Panna Cotta','14.jpg',25000,25000,1);
 INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (15,6,8,N'Đá bào mật trái cây','15.png',20000,20000,1);
+----Hải sản nhóm 2
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (16,2,3,N'Cá đuối 2 món','16.png',1200000,1200000,3);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (17,2,3,N'Cá điêu hồng hấp Hồng Kông','17.png',500000,500000,2);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (18,2,3,N'Cà ri cua','18.jpg',1200000,1200000,4);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (19,2,3,N'Tôm càng xanh','19.png',600000,600000,5);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (20,2,3,N'Mực ống','20.png',500000,500000,2);
+---Mỗi loại 1 món
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (21,1,3,N'Chả cá hấp Đông Cô cải thìa','21.jpg',450000,450000,4);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (22,4,2,N'Lẩu hải sản','22.png',550000,550000,5);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (23,4,2,N'Lẩu thác lác','23.png',600000,600000,5);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (24,5,8,N'Bia Heineken','24.jpg',20000,20000,0);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (25,5,8,N'Rượu Vodka Smirnoff Red','25.jpg',230000,230000,0);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (26,6,1,N'Bingsu trái cây','26.jpg',45000,45000,1);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (27,6,3,N'Bánh Flan','27.jpg',20000,20000,1);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (28,7,3,N'Bắp bò nước mắm','28.jpg',500000,500000,2);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (29,7,3,N'Bò cuộn nướng phô mai','29.jpg',500000,500000,3);
+INSERT INTO Mon(MaMon, MaNhom, MaDVT, TenMon, Anh, GiaGoc, GiaKM, MaKM) VALUES  (30,7,3,N'Bò nấu Lagu','30.jpg',500000,500000,1);
+----------
 SET IDENTITY_INSERT Mon OFF
 select * from Mon
 ------------------------------------------------------------------------------------
@@ -401,6 +423,269 @@ INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(2,4,1,120000,960
 select * from CTHD
 ------------------------------------------------------------------------------------
 */
+-----------------------------------------------------------------
+--HÓA ĐƠN(MaHD, MaBan, MaNV, MaKH, HoTen, Ngay, TongTien, TienNhan, TienThua, TinhTrang)
+select * from HoaDon
+select * from Ban
+select * from CTHD
+select * from Mon
+SET DATEFORMAT DMY;
+SET IDENTITY_INSERT HoaDon ON
+--tháng 01/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(1,1,2,1,'10/01/2020',136500,0,136500,1); 
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(2,3,2,3,'14/01/2020',147000,0,147000,1); 
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(3,3,2,3,'22/01/2020',920000,0,920000,1);
+--tháng 02/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(4,4,2,3,'11/02/2020',675000,0,675000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(5,5,2,3,'14/02/2020',2778000,0,2778000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(6,3,2,3,'22/02/2020',5410500,0,5410500,1);
+--tháng 03/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(7,6,2,3,'02/03/2020',12130000,0,12130000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(8,3,2,3,'16/03/2020',855000,0,855000,1);
+--tháng 04/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(9,8,2,3,'10/04/2020',277500,0,277500,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(10,7,2,3,'23/04/2020',4230000,0,4230000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(11,8,2,3,'30/04/2020',135000,0,135000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(12,4,2,3,'15/04/2020',6160000,0,6160000,1);
+--tháng 05/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(13,3,2,3,'11/05/2020',440000,0,440000,1);
+--tháng 06/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(14,3,2,3,'27/06/2020',12525000,0,12525000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(15,4,2,3,'08/06/2020',692100,0,692100,1);
+--tháng 07/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(16,3,2,3,'21/07/2020',19500000,0,19500000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(17,10,2,3,'04/07/2020',13350000,0,13350000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(18,2,2,3,'22/07/2020',12130000,0,12130000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(19,5,2,3,'27/07/2020',6160000,0,6160000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(20,3,2,3,'31/07/2020',4140000,0,4140000,1);
+--tháng 08/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(21,3,2,3,'17/08/2020',13445000,0,13445000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(22,3,2,3,'09/08/2020',63000,0,63000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(23,7,2,3,'13/08/2020',2778000,0,2778000,1);
+--tháng 09/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(24,8,2,3,'22/09/2020',12130000,0,12130000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(25,4,2,3,'14/09/2020',675000,0,675000,1);
+--tháng 10/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(26,5,2,3,'20/10/2020',4230000,0,4230000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(27,3,2,3,'27/10/2020',675000,0,675000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(28,3,2,3,'30/10/2020',4417500,0,4417500,1);
+--tháng 11/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(29,2,2,3,'03/11/2020',692100,0,692100,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(30,3,2,3,'05/11/2020',19500000,0,19500000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(31,6,2,3,'17/11/2020',5410500,0,5410500,1);
+--tháng 12/2020
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(32,3,2,3,'30/12/2020',3850000,0,3850000,1);
+---------------
+--tháng 01/2021
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(33,4,2,3,'04/01/2021',5300000,0,5300000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(34,5,2,3,'09/01/2021',4230000,0,4230000,1);
+--tháng 02/2021
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(35,3,2,3,'11/02/2021',12130000,0,12130000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(36,3,2,3,'15/02/2021',2778000,0,2778000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(37,3,2,3,'07/02/2021',3023400,0,3023400,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(38,2,2,3,'25/02/2021',3850000,0,3850000,1);
+--tháng 03/2021
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(39,3,2,3,'14/03/2021',13350000,0,13350000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(40,3,2,3,'31/03/2021',10150000,0,10150000,1);
+--tháng 04/2021
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(41,3,2,3,'14/04/2021',5300000,0,5300000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(42,4,2,3,'18/04/2021',440000,0,440000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(43,8,2,3,'28/04/2021',6930000,0,6930000,1);
+
+--tháng 05/2021
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(44,3,2,3,'19/05/2021',19500000,0,19500000,1);
+--tháng 06/2021
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(45,3,2,3,'20/06/2021',16650000,0,16650000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(46,3,2,3,'21/06/2021',4140000,0,4140000,1);
+--tháng 07/2021
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(47,3,2,3,'24/07/2021',2778000,0,2778000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(48,3,2,3,'14/07/2021',10650000,0,10650000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(49,3,2,3,'10/07/2021',6160000,0,6160000,1);
+INSERT INTO HoaDon(MaHD, MaBan, MaNV, MaKH, Ngay, TongTien,TienGiam,ThanhTien,TinhTrang) 
+VALUES(50,3,2,3,'18/05/2020',4230000,0,4230000,1); --bosung
+--------
+SET IDENTITY_INSERT HoaDon OFF
+SELECT * FROM HoaDon
+----------------------------------------------------------------
+--CHI TIẾT HÓA ĐƠN(MaHD,MaMon, SoLuong, DonGia, ThanhTien, GhiChu)
+---
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(1,1,1,45000,40500);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(1,4,1,120000,120000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(2,2,1,60000,60000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(2,4,1,120000,120000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(3,19,1,480000,480000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(3,20,1,475000,475000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(4,5,1,135000,135000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(4,6,1,540000,540000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(5,7,3,570000,1710000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(5,16,1,1080000,1080000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(5,19,2,480000,960000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(6,7,5,44100,220500);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(6,19,5,480000,2400000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(6,27,10,20000,200000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(7,18,10,44100,441000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(7,24,10,20000,200000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(7,9,4,585000,2340000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(8,11,2,427500,855000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(9,1,5,44100,220500);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(9,2,1,57000,57000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(10,3,5,63000,315000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(10,4,1,108000,108000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(10,5,5,135000,675000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(10,6,5,540000,2700000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(11,5,1,135000,135000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(12,9,5,585000,2925000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(12,7,5,570000,2850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(12,24,5,20000,100000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(12,2,5,570000,2850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(13,22,1,440000,440000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(14,16,5,1080000,5400000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(14,17,15,475000,7125000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(15,3,1,63000,63000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(15,9,1,585000,585000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(15,26,1,44100,44100);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(16,2,1,57000,57000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(16,9,1,585000,585000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(16,16,1,1080000,1080000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(17,10,20,427500,8550000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(17,19,10,480000,4800000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(18,18,10,44100,441000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(18,24,10,20000,200000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(18,9,4,585000,2340000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(19,9,5,585000,2925000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(19,7,5,570000,2850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(19,24,5,20000,100000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(19,2,5,570000,2850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(20,3,5,63000,315000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(20,21,10,382500,3825000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(21,14,10,24500,245000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(21,16,10,1080000,10800000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(21,23,5,480000,2400000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(22,3,1,63000,63000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(23,7,3,570000,1710000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(23,16,1,1080000,1080000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(23,19,2,480000,960000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(24,18,10,44100,441000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(24,24,10,20000,200000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(24,9,4,585000,2340000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(25,5,1,135000,135000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(25,6,1,540000,540000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(26,3,5,63000,315000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(26,4,1,108000,108000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(26,5,5,135000,675000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(26,6,5,540000,2700000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(27,5,1,135000,135000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(27,6,1,540000,540000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(28,7,4,570000,2280000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(28,10,5,427500,2137500);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(29,3,1,63000,63000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(29,9,1,585000,585000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(29,26,1,44100,44100);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(30,2,1,57000,57000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(30,9,1,585000,585000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(30,16,1,1080000,1080000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(31,7,5,44100,220500);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(31,19,5,480000,2400000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(31,27,10,20000,200000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(32,6,5,540000,2700000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(32,25,5,230000,1150000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(33,8,10,245000,2450000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(33,7,5,570000,2850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(34,3,5,63000,315000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(34,4,1,108000,108000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(34,5,5,135000,675000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(34,6,5,540000,2700000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(35,18,10,44100,441000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(35,24,10,20000,200000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(35,9,4,585000,2340000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(36,7,3,570000,1710000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(36,16,1,1080000,1080000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(36,19,2,480000,960000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(37,13,10,12740,127400);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(37,27,10,19600,196000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(37,6,5,540000,2700000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(38,6,5,540000,2700000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(38,25,5,230000,1150000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(39,10,20,427500,8550000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(39,19,10,480000,4800000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(40,20,10,475000,4750000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(40,6,10,540000,5400000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(41,8,10,245000,2450000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(41,7,5,570000,2850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(42,22,1,440000,440000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(43,4,10,108000,1080000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(43,9,10,585000,5850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(44,2,1,57000,57000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(44,9,1,585000,585000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(44,16,1,1080000,1080000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(45,16,5,1080000,5400000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(45,9,10,585000,5850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(45,6,10,540000,5400000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(46,3,5,63000,315000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(46,21,10,382500,3825000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(47,7,3,570000,1710000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(47,16,1,1080000,1080000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(48,25,5,230000,1150000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(48,18,5,1020000,5100000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(48,22,10,440000,4400000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(49,9,5,585000,2925000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(49,7,5,570000,2850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(49,24,5,20000,100000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(49,2,5,570000,2850000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(50,3,5,63000,315000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(50,4,1,108000,108000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(50,5,5,135000,675000);
+INSERT INTO CTHD(MaHD,MaMon, SoLuong, DonGia, ThanhTien) VALUES(50,6,5,540000,2700000);
+SELECT * FROM CTHD
 --NHÀ CUNG CẤP(MaNCC, TenNCC, DiaChi, SDT)
 SET IDENTITY_INSERT NhaCungCap ON
 INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SDT) VALUES (1,N'Phạm Hồng Nhung',N'TPHCM','0367695027');
@@ -458,7 +743,6 @@ select * from MatHang
 
 ------------------------------------------------------------------------------------
 --BẢNG PHIẾU NHẬP(MaPN, MaNV, MaNCC, Ngay, TongTien)
--- Ví dụ nhân viên Vy mã 2 nhập 2 kg xà lách, 3 kg Tôm và 10kg thịt gà
 SET IDENTITY_INSERT PhieuNhap  ON
 INSERT INTO PhieuNhap(MaPN, MaNV, MaNCC, Ngay, TongTien) VALUES(1,2,1,GETDATE(),810000);
 INSERT INTO PhieuNhap(MaPN, MaNV, MaNCC, Ngay, TongTien) VALUES(2,2,1,GETDATE(),400000);
@@ -545,7 +829,8 @@ SELECT * FROM CTHD
 SELECT * FROM GoiMonTaiBan
 SELECT * FROM CTPN
 SELECT * FROM PhieuNhap
-SELECT * FROM PhanQuyen
+SELECT * FROM NhomNguoiDung
+SELECT * FROM MatHang
 -------------------------------
 INSERT INTO CTHD VALUES (3,1,1,45000,45000,NULL)
 INSERT INTO CTHD VALUES (3,4,1,120000,120000,NULL)
@@ -559,11 +844,12 @@ INSERT INTO CTHD VALUES (5,4,2,60000,120000,NULL)
 INSERT INTO CTHD VALUES (5,1,5,45000,225000,NULL)
 INSERT INTO CTHD VALUES (5,6,5,10000,225000,NULL)
 
-
-Delete from GoiMonTaiBan
+delete from PhanQuyen
+select * from PhanQuyen
 DELEte from CTHD
 DELEte from HoaDon
-
+SELECT CTHD.MaMon FROM CTHD
+GROUP BY CTHD.MaMon
 -------------
 SELECT ManHinh.TenMH, PhanQuyen.CoQuyen FROM ManHinh, PhanQuyen WHERE ManHinh.MaMH = PhanQuyen.MaMH AND MaNhom = 1
 SELECT ManHinh.TenMH, PhanQuyen.CoQuyen FROM ManHinh, PhanQuyen WHERE ManHinh.MaMH = PhanQuyen.MaMH AND MaNhom = 2

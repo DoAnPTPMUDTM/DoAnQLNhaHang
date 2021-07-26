@@ -23,12 +23,13 @@ namespace BLLDAL
         }
         public void ghiNhanGMTB(int maBan)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             List<GoiMonTaiBan> lstGMTB = getGMTBByMaBan(maBan);
-            if(lstGMTB == null ||(lstGMTB != null && lstGMTB.Count == 0))
+            if (lstGMTB == null || (lstGMTB != null && lstGMTB.Count == 0))
             {
                 return;
             }
-            foreach(GoiMonTaiBan g in lstGMTB)
+            foreach (GoiMonTaiBan g in lstGMTB)
             {
                 CTHD cthd = new CTHD();
                 cthd.MaHD = g.MaHD.Value;
@@ -42,8 +43,9 @@ namespace BLLDAL
         }
         public void capNhatTT(int maGoiMon)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             GoiMonTaiBan goiMonTaiBan = db.GoiMonTaiBans.Where(g => g.MaGoiMon == maGoiMon).FirstOrDefault();
-            if(goiMonTaiBan != null)
+            if (goiMonTaiBan != null)
             {
                 goiMonTaiBan.TinhTrang = 1;
                 db.SubmitChanges();
@@ -51,6 +53,7 @@ namespace BLLDAL
         }
         public decimal getDonGiaByMaMon(int maMon)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
             if (mon == null)
                 return 0;
@@ -58,6 +61,7 @@ namespace BLLDAL
         }
         public void insertCTHD(CTHD cthd)
         {
+            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             CTHD ct = db.CTHDs.Where(c => c.MaHD == cthd.MaHD && c.MaMon == cthd.MaMon).FirstOrDefault();
             if (ct == null)
             {
@@ -74,7 +78,7 @@ namespace BLLDAL
         public void delete(int maGoiMon)
         {
             GoiMonTaiBan goiMonTaiBan = db.GoiMonTaiBans.Where(g => g.MaGoiMon == maGoiMon).FirstOrDefault();
-            if(goiMonTaiBan != null)
+            if (goiMonTaiBan != null)
             {
                 db.GoiMonTaiBans.DeleteOnSubmit(goiMonTaiBan);
                 db.SubmitChanges();
