@@ -112,6 +112,7 @@ namespace QLNhaHang
             int soLuong = Convert.ToInt32(numericUpDownSL.Value);
             string maMH = gridViewMatHang.GetFocusedRowCellValue("MaMH").ToString();
             string tenMH = gridViewMatHang.GetFocusedRowCellValue("TenMH").ToString();
+            string dvt = gridViewMatHang.GetFocusedRowCellValue("MaDVT").ToString();
             string donGia = txtGiaNhap.Text;
             if (isExitedCTPN(int.Parse(maMH)))
             {
@@ -125,10 +126,12 @@ namespace QLNhaHang
                 cTPNs.tenMH = tenMH;
                 cTPNs.soLuong = soLuong;
                 cTPNs.donGia = double.Parse(donGia);
+                cTPNs.dvt = dvt;
                 lstCTPN.Add(cTPNs);
                 txtGiaNhap.Clear();
                 numericUpDownSL.Value = 1;
                 gridControlCTPN.DataSource = lstCTPN.ToList();
+                gridViewCTPN.FocusedRowHandle = gridViewCTPN.RowCount - 1;
             }
         }
 
@@ -204,6 +207,7 @@ namespace QLNhaHang
                     }
                 }
                 gridControlCTPN.DataSource = lstCTPN.ToList();
+                gridViewCTPN.FocusedRowHandle = rowFocus;
             }
         }
         public int getCurrentNumber(int maMH)
@@ -239,9 +243,17 @@ namespace QLNhaHang
                     cTPNs.soLuong = soLuong;
                 }
                 gridControlCTPN.DataSource = lstCTPN.ToList();
+                gridViewCTPN.FocusedRowHandle = rowFocus;
             }
         }
+        public delegate void StatusUpdateHandler(object sender, EventArgs e, PhieuNhap pn, List<CTPNs> lstCTPN);
+        public event StatusUpdateHandler OnInsertNhapHang;
 
+        private void InsertNhapHang(PhieuNhap pn, List<CTPNs> lstCTPN)
+        {
+            EventArgs args = new EventArgs();
+            OnInsertNhapHang?.Invoke(this, args, pn, lstCTPN);
+        }
         private void btnLapPhieuNhap_Click(object sender, EventArgs e)
         {
             if (lstCTPN.Count == 0)
@@ -264,20 +276,8 @@ namespace QLNhaHang
                 pn.MaNV = nd.MaND;
                 pn.MaNCC = int.Parse(cbbNhaCC.EditValue.ToString());
                 pn.Ngay = DateTime.Now;
-                pn.TongTien = (decimal?)tinhTongTien();
-                phieuNhapBLLDAL.insertPhieuNhapHang(pn);
-                foreach (var item in lstCTPN)
-                {
-                    CTPN cTPN = new CTPN();
-                    cTPN.MaPN = pn.MaPN;
-                    cTPN.MaMH = item.maMH;
-                    cTPN.SoLuong = item.soLuong;
-                    cTPN.DonGia = (decimal?)item.donGia;
-                    cTPN.ThanhTien = (decimal?)item.thanhTien;
-                    cTPNBLLDAL.insertCTPN(cTPN);
-                }
-                MessageBox.Show("Thêm phiếu nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                gridControlCTPN.DataSource = null;
+                pn.TongTien = (decimal)tinhTongTien();              
+                InsertNhapHang(pn, lstCTPN);
                 this.Close();
             }
             catch (Exception ex)

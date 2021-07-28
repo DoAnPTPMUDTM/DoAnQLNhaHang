@@ -23,7 +23,6 @@ namespace BLLDAL
         }
         public void ghiNhanGMTB(int maBan)
         {
-            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             List<GoiMonTaiBan> lstGMTB = getGMTBByMaBan(maBan);
             if (lstGMTB == null || (lstGMTB != null && lstGMTB.Count == 0))
             {
@@ -41,9 +40,44 @@ namespace BLLDAL
                 capNhatTT(g.MaGoiMon);
             }
         }
+        public bool ktGhiNhanGMTB(int maBan,ref string messeage)
+        {
+            bool check = false;
+            List<GoiMonTaiBan> lstGMTB = getGMTBByMaBan(maBan);
+            if (lstGMTB == null || (lstGMTB != null && lstGMTB.Count == 0))
+            {
+                return false;
+            }
+            foreach (GoiMonTaiBan g in lstGMTB)
+            {
+                List<DinhLuong> lstDL = db.DinhLuongs.Where(d => d.MaMon == g.MaMon).ToList();
+                if(lstDL == null || (lstDL != null && lstDL.Count == 0))
+                {
+                    continue;
+                }
+                foreach(DinhLuong dl in lstDL)
+                {
+                    MatHang mh = db.MatHangs.Where(m => m.MaMH == dl.MaMH).FirstOrDefault();
+                    if(mh == null)
+                    {
+                        continue;
+                    }
+
+                    if(mh.SoLuongTon == 0 || mh.SoLuongTon < (dl.QuyDoi*g.SoLuong))
+                    {
+                        messeage += dl.Mon.TenMon + " ,";
+                        check = true;
+                    }
+                }
+            }
+            if (check)
+            {
+                messeage += "không đủ số lượng bán";
+            }
+            return check;
+        }
         public void capNhatTT(int maGoiMon)
         {
-            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             GoiMonTaiBan goiMonTaiBan = db.GoiMonTaiBans.Where(g => g.MaGoiMon == maGoiMon).FirstOrDefault();
             if (goiMonTaiBan != null)
             {
@@ -53,15 +87,13 @@ namespace BLLDAL
         }
         public decimal getDonGiaByMaMon(int maMon)
         {
-            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
             if (mon == null)
                 return 0;
-            return mon.GiaKM.Value;
+            return mon.GiaKM;
         }
         public void insertCTHD(CTHD cthd)
         {
-            db = new QuanLyNhaHangDataContext(StringConnection.getStringConnection());
             CTHD ct = db.CTHDs.Where(c => c.MaHD == cthd.MaHD && c.MaMon == cthd.MaMon).FirstOrDefault();
             if (ct == null)
             {

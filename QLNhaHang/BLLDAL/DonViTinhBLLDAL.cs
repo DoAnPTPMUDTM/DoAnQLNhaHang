@@ -15,6 +15,6 @@ namespace BLLDAL
         public List<DonViTinh> getDataDVT()
         {
             return db.DonViTinhs.ToList();
-        }
+        }      
     }
 }

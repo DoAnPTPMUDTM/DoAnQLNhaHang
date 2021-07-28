@@ -85,7 +85,7 @@ namespace BLLDAL
         //
         public List<HoaDon> getDataHoaDonTT()
         {
-            return db.HoaDons.Where(t => t.TinhTrang == 1).ToList();
+            return db.HoaDons.Where(t => t.TinhTrang == 1).OrderByDescending(h => h.MaHD).ToList();
         }
         public void themHoaDon(HoaDon hoaDon)
         {

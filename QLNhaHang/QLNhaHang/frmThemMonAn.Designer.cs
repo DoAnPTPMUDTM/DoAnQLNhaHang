@@ -33,12 +33,9 @@ namespace QLNhaHang
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.picImgAnhMon = new System.Windows.Forms.PictureBox();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.cbbDVT = new DevExpress.XtraEditors.LookUpEdit();
-            this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
-            this.btnThemMon = new DevExpress.XtraEditors.SimpleButton();
             this.txtGiaKM = new System.Windows.Forms.TextBox();
             this.txtGiaGoc = new System.Windows.Forms.TextBox();
             this.cbbKhuyenMai = new DevExpress.XtraEditors.LookUpEdit();
@@ -50,22 +47,24 @@ namespace QLNhaHang
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlDVT = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.picImgAnhMon = new System.Windows.Forms.PictureBox();
+            this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
+            this.btnThemMon = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picImgAnhMon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -79,15 +78,16 @@ namespace QLNhaHang
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlDVT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImgAnhMon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -124,19 +124,6 @@ namespace QLNhaHang
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(326, 386);
             this.panelControl1.TabIndex = 0;
-            // 
-            // picImgAnhMon
-            // 
-            this.picImgAnhMon.BackColor = System.Drawing.Color.White;
-            this.picImgAnhMon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picImgAnhMon.Location = new System.Drawing.Point(0, 0);
-            this.picImgAnhMon.Name = "picImgAnhMon";
-            this.picImgAnhMon.Size = new System.Drawing.Size(326, 386);
-            this.picImgAnhMon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImgAnhMon.TabIndex = 0;
-            this.picImgAnhMon.TabStop = false;
-            this.picImgAnhMon.Click += new System.EventHandler(this.picImgAnhMon_Click);
-            this.picImgAnhMon.DoubleClick += new System.EventHandler(this.picImgAnhMon_DoubleClick);
             // 
             // groupControl1
             // 
@@ -187,34 +174,6 @@ namespace QLNhaHang
             this.cbbDVT.Size = new System.Drawing.Size(241, 28);
             this.cbbDVT.StyleController = this.layoutControl2;
             this.cbbDVT.TabIndex = 13;
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.Appearance.Options.UseFont = true;
-            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
-            this.btnThoat.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnThoat.Location = new System.Drawing.Point(290, 325);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(109, 27);
-            this.btnThoat.StyleController = this.layoutControl2;
-            this.btnThoat.TabIndex = 11;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
-            // 
-            // btnThemMon
-            // 
-            this.btnThemMon.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemMon.Appearance.Options.UseFont = true;
-            this.btnThemMon.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThemMon.ImageOptions.Image")));
-            this.btnThemMon.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnThemMon.Location = new System.Drawing.Point(158, 325);
-            this.btnThemMon.Name = "btnThemMon";
-            this.btnThemMon.Size = new System.Drawing.Size(108, 27);
-            this.btnThemMon.StyleController = this.layoutControl2;
-            this.btnThemMon.TabIndex = 10;
-            this.btnThemMon.Text = "Thêm món";
-            this.btnThemMon.Click += new System.EventHandler(this.btnThemMon_Click);
             // 
             // txtGiaKM
             // 
@@ -358,26 +317,6 @@ namespace QLNhaHang
             this.layoutControlItem7.Text = "Giá KM";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(86, 21);
             // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.btnThemMon;
-            this.layoutControlItem9.Location = new System.Drawing.Point(136, 303);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(132, 63);
-            this.layoutControlItem9.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.btnThoat;
-            this.layoutControlItem10.Location = new System.Drawing.Point(268, 303);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(133, 63);
-            this.layoutControlItem10.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
-            // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
@@ -405,6 +344,14 @@ namespace QLNhaHang
             this.layoutControlDVT.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.layoutControlDVT.Text = "Đơn vị tính";
             this.layoutControlDVT.TextSize = new System.Drawing.Size(86, 21);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(47, 303);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(89, 63);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // Root
             // 
@@ -435,13 +382,66 @@ namespace QLNhaHang
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // emptySpaceItem1
+            // picImgAnhMon
             // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(47, 303);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(89, 63);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.picImgAnhMon.BackColor = System.Drawing.Color.White;
+            this.picImgAnhMon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picImgAnhMon.Location = new System.Drawing.Point(0, 0);
+            this.picImgAnhMon.Name = "picImgAnhMon";
+            this.picImgAnhMon.Size = new System.Drawing.Size(326, 386);
+            this.picImgAnhMon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImgAnhMon.TabIndex = 0;
+            this.picImgAnhMon.TabStop = false;
+            this.picImgAnhMon.Click += new System.EventHandler(this.picImgAnhMon_Click);
+            this.picImgAnhMon.DoubleClick += new System.EventHandler(this.picImgAnhMon_DoubleClick);
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoat.Appearance.Options.UseFont = true;
+            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
+            this.btnThoat.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnThoat.Location = new System.Drawing.Point(290, 325);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(109, 27);
+            this.btnThoat.StyleController = this.layoutControl2;
+            this.btnThoat.TabIndex = 11;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
+            // btnThemMon
+            // 
+            this.btnThemMon.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemMon.Appearance.Options.UseFont = true;
+            this.btnThemMon.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThemMon.ImageOptions.Image")));
+            this.btnThemMon.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnThemMon.Location = new System.Drawing.Point(158, 325);
+            this.btnThemMon.Name = "btnThemMon";
+            this.btnThemMon.Size = new System.Drawing.Size(108, 27);
+            this.btnThemMon.StyleController = this.layoutControl2;
+            this.btnThemMon.TabIndex = 10;
+            this.btnThemMon.Text = "Thêm món";
+            this.btnThemMon.Click += new System.EventHandler(this.btnThemMon_Click);
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.btnThemMon;
+            this.layoutControlItem9.Location = new System.Drawing.Point(136, 303);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(132, 63);
+            this.layoutControlItem9.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.btnThoat;
+            this.layoutControlItem10.Location = new System.Drawing.Point(268, 303);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(133, 63);
+            this.layoutControlItem10.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
             // 
             // frmThemMonAn
             // 
@@ -459,7 +459,6 @@ namespace QLNhaHang
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picImgAnhMon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
@@ -473,15 +472,16 @@ namespace QLNhaHang
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlDVT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImgAnhMon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
 
         }

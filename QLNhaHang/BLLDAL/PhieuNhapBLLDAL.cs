@@ -15,7 +15,7 @@ namespace BLLDAL
         }
         public List<PhieuNhap> getAllPhieuNhap()
         {
-            return db.PhieuNhaps.ToList();
+            return db.PhieuNhaps.OrderBy(p => p.MaPN).ToList();
         }
         //insert PhieuNhap
         public void insertPhieuNhapHang(PhieuNhap pn)

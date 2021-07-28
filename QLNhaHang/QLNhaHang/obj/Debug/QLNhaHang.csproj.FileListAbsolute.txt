@@ -597,3 +597,6 @@ D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmQLNguyenL
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.Reports.frmReportInCheBien.resources
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.Reports.frmReportInHoaDon.resources
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmQLHoaDon.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.csprojAssemblyReference.cache
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmDinhLuongCT.resources
+C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\QLNhaHang\obj\Debug\QLNhaHang.frmQLHoaDon.resources

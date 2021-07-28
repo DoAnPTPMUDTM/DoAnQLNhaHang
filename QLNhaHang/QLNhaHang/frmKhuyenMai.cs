@@ -13,6 +13,7 @@ namespace QLNhaHang
     public partial class frmKhuyenMai : Form
     {
         KhuyenMaiBLLDAL khuyenMaiBLLDAL = new KhuyenMaiBLLDAL();
+        MonBLLDAL mon = new MonBLLDAL();
         public frmKhuyenMai()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace QLNhaHang
         }
         public void loadKhuyenMai()
         {
+            khuyenMaiBLLDAL = new KhuyenMaiBLLDAL();
             gridControlKM.DataSource = (from k in khuyenMaiBLLDAL.getDataKhuyenMai()
                                         select new
                                         {
@@ -68,6 +70,7 @@ namespace QLNhaHang
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            khuyenMaiBLLDAL = new KhuyenMaiBLLDAL();
             string maKM = gridView1.GetFocusedRowCellValue("MaKM").ToString();
             if (string.IsNullOrEmpty(maKM))
             {
@@ -87,12 +90,17 @@ namespace QLNhaHang
             }
             try
             {
+                int index = gridView1.FocusedRowHandle;
                 double tyLeKM = double.Parse(txtTyLe.Text) / 100;
                 KhuyenMai km = new KhuyenMai();
                 km.TenKM = tenKM;
                 km.TyLe = tyLeKM;
                 khuyenMaiBLLDAL.updateKhuyenMai(int.Parse(maKM),km);
                 loadKhuyenMai();
+                mon = new MonBLLDAL();
+                mon.updateMaKMChange(int.Parse(maKM));
+                gridView1.FocusedRowHandle = index;
+                UpdateKhuyenMai();
             }
             catch (Exception ex)
             {
@@ -136,12 +144,27 @@ namespace QLNhaHang
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            if(e.FocusedRowHandle >= 0)
+            
+        }
+
+        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            if (gridView1.FocusedRowHandle >= 0)
             {
                 txtMaKM.Text = gridView1.GetFocusedRowCellValue("MaKM").ToString();
                 txtTenKM.Text = gridView1.GetFocusedRowCellValue("TenKM").ToString();
                 txtTyLe.Text = gridView1.GetFocusedRowCellValue("TyLe").ToString();
             }
         }
+        public delegate void StatusUpdateHandler(object sender, EventArgs e);
+        public event StatusUpdateHandler OnUpdateKM;
+
+        private void UpdateKhuyenMai()
+        {
+            EventArgs args = new EventArgs();
+            OnUpdateKM?.Invoke(this, args);
+        }
+
+
     }
 }

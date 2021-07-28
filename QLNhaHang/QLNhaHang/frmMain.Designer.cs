@@ -30,6 +30,7 @@ namespace QLNhaHang
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barBtnGoiMonTaiQuay = new DevExpress.XtraBars.BarButtonItem();
@@ -56,6 +57,7 @@ namespace QLNhaHang
             this.skinRibbonGalleryBarItem3 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barBtnQLNguyenLieu = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnQLHoaDon = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnDangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -78,6 +80,7 @@ namespace QLNhaHang
             this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup18 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
@@ -115,9 +118,10 @@ namespace QLNhaHang
             this.skinPaletteRibbonGalleryBarItem2,
             this.skinRibbonGalleryBarItem3,
             this.barBtnQLNguyenLieu,
-            this.barBtnQLHoaDon});
+            this.barBtnQLHoaDon,
+            this.barBtnDangXuat});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 27;
+            this.ribbonControl1.MaxItemId = 28;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -357,6 +361,11 @@ namespace QLNhaHang
             // 
             this.barBtnQLNguyenLieu.Caption = "Nguyên liệu";
             this.barBtnQLNguyenLieu.Id = 25;
+            this.barBtnQLNguyenLieu.ImageOptions.Image = global::QLNhaHang.Properties.Resources.recipe;
+            this.barBtnQLNguyenLieu.ImageOptions.LargeImage = global::QLNhaHang.Properties.Resources.recipe;
+            this.barBtnQLNguyenLieu.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barBtnQLNguyenLieu.ItemAppearance.Normal.Options.UseFont = true;
+            this.barBtnQLNguyenLieu.LargeWidth = 80;
             this.barBtnQLNguyenLieu.Name = "barBtnQLNguyenLieu";
             this.barBtnQLNguyenLieu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnQLNguyenLieu_ItemClick);
             // 
@@ -365,9 +374,22 @@ namespace QLNhaHang
             this.barBtnQLHoaDon.Caption = "Hóa đơn";
             this.barBtnQLHoaDon.Id = 26;
             this.barBtnQLHoaDon.ImageOptions.LargeImage = global::QLNhaHang.Properties.Resources.clock;
+            this.barBtnQLHoaDon.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barBtnQLHoaDon.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnQLHoaDon.LargeWidth = 80;
             this.barBtnQLHoaDon.Name = "barBtnQLHoaDon";
             this.barBtnQLHoaDon.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnQLHoaDon_ItemClick);
+            // 
+            // barBtnDangXuat
+            // 
+            this.barBtnDangXuat.Caption = "Đăng Xuất";
+            this.barBtnDangXuat.Id = 27;
+            this.barBtnDangXuat.ImageOptions.Image = global::QLNhaHang.Properties.Resources.exit;
+            this.barBtnDangXuat.ImageOptions.SvgImageSize = new System.Drawing.Size(28, 28);
+            this.barBtnDangXuat.LargeWidth = 80;
+            this.barBtnDangXuat.Name = "barBtnDangXuat";
+            this.barBtnDangXuat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barBtnDangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnDangXuat_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -518,7 +540,8 @@ namespace QLNhaHang
             this.ribbonPage4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ribbonPage4.Appearance.Options.UseFont = true;
             this.ribbonPage4.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup4});
+            this.ribbonPageGroup4,
+            this.ribbonPageGroup18});
             this.ribbonPage4.Name = "ribbonPage4";
             this.ribbonPage4.Text = "Tài Khoản";
             // 
@@ -527,6 +550,12 @@ namespace QLNhaHang
             this.ribbonPageGroup4.ItemLinks.Add(this.barBtnTaiKhoan);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "ribbonPageGroup4";
+            // 
+            // ribbonPageGroup18
+            // 
+            this.ribbonPageGroup18.ItemLinks.Add(this.barBtnDangXuat);
+            this.ribbonPageGroup18.Name = "ribbonPageGroup18";
+            this.ribbonPageGroup18.Text = "ribbonPageGroup18";
             // 
             // ribbonPage5
             // 
@@ -559,6 +588,7 @@ namespace QLNhaHang
             this.Name = "frmMain";
             this.Text = "frmMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
@@ -619,5 +649,7 @@ namespace QLNhaHang
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
         private DevExpress.XtraBars.BarButtonItem barBtnQLHoaDon;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup17;
+        private DevExpress.XtraBars.BarButtonItem barBtnDangXuat;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup18;
     }
 }

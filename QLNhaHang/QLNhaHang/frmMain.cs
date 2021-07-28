@@ -24,7 +24,7 @@ namespace QLNhaHang
         {
             InitializeComponent();
         }
-        
+
         public frmMain(string tenDN)
         {
             InitializeComponent();
@@ -91,21 +91,53 @@ namespace QLNhaHang
         {
             frmGoiMonTaiBan frmGoiMonTaiBan = new frmGoiMonTaiBan();
             frmGoiMonTaiBan.Name = "frmGoiMonTaiBan";
+            frmGoiMonTaiBan.OnUpdateStatus += FrmGoiMonTaiBan_OnUpdateStatus;
             showForm(frmGoiMonTaiBan);
+        }
+        bool checkGNMTB = false;
+        private void FrmGoiMonTaiBan_OnUpdateStatus(object sender, EventArgs e, int maBan)
+        {
+            if (checkExitForm("frmGoiMonTaiQuay"))
+            {
+                checkGNMTB = true;
+            }
         }
 
         private void barBtnNguoiDung_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmNguoiDung frmNguoiDung = new frmNguoiDung();
             frmNguoiDung.Name = "frmNguoiDung";
+            frmNguoiDung.OnUpdateNguoiDung += FrmNguoiDung_OnUpdateNguoiDung;
             showForm(frmNguoiDung);
+        }
+        bool checkNDChange = false;
+        private void FrmNguoiDung_OnUpdateNguoiDung(object sender, EventArgs e)
+        {
+            if (checkExitForm("frmThemNguoiDungVaoNhom"))
+            {
+                checkNDChange = true;
+            }
         }
 
         private void barBtnNhomNguoiDung_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmNhomNguoiDung frmNhomNguoiDung = new frmNhomNguoiDung();
             frmNhomNguoiDung.Name = "frmNhomNguoiDung";
+            frmNhomNguoiDung.OnUpdateNhomND += FrmNhomNguoiDung_OnUpdateNhomND;
             showForm(frmNhomNguoiDung);
+        }
+        bool checkNhomNDChangePQ = false;
+        bool checkNhomNDChangeTND = false;
+        private void FrmNhomNguoiDung_OnUpdateNhomND(object sender, EventArgs e)
+        {
+            if (checkExitForm("frmPhanQuyen"))
+            {
+                checkNhomNDChangePQ = true;
+            }
+            if (checkExitForm("frmThemNguoiDungVaoNhom"))
+            {
+                checkNhomNDChangeTND = true;
+            }
         }
 
         private void barBtnManHinh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -224,7 +256,7 @@ namespace QLNhaHang
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -234,8 +266,19 @@ namespace QLNhaHang
         {
             frmKhuyenMai frmKhuyenMai = new frmKhuyenMai();
             frmKhuyenMai.Name = "frmKhuyenMai";
+            frmKhuyenMai.OnUpdateKM += FrmKhuyenMai_OnUpdateKM;
             showForm(frmKhuyenMai);
         }
+
+        bool checkKhuyenMai = false;
+        private void FrmKhuyenMai_OnUpdateKM(object sender, EventArgs e)
+        {
+            if (checkExitForm("frmGoiMonTaiQuay"))
+            {
+                checkKhuyenMai = true;
+            }
+        }
+
         public void timKiemMenu(PhanQuyen phanQuyen)
         {
             foreach (var item in ribbonControl1.Items)
@@ -246,7 +289,7 @@ namespace QLNhaHang
                     {
                         if (((BarButtonItem)item).Tag.ToString().Equals(phanQuyen.MaMH.ToString()))
                         {
-                            if(phanQuyen.CoQuyen == 0)
+                            if (phanQuyen.CoQuyen == 0)
                             {
                                 ((BarButtonItem)item).Enabled = false;
                                 ((BarButtonItem)item).Visibility = BarItemVisibility.Never;
@@ -266,10 +309,10 @@ namespace QLNhaHang
         public void phanQuyenMenu(int maND)
         {
             List<int> lstMaNhomND = nguoiDungNhomNguoiDungBLLDAL.getMaNhomByMaND(maND);//Thay sau khi login
-            foreach(int maNhom in lstMaNhomND)
+            foreach (int maNhom in lstMaNhomND)
             {
                 List<PhanQuyen> lstQuyen = phanQuyenBLLDAL.getQuyenByMaNhom(maNhom);
-                foreach(PhanQuyen phanQuyen in lstQuyen)
+                foreach (PhanQuyen phanQuyen in lstQuyen)
                 {
                     timKiemMenu(phanQuyen);
                 }
@@ -285,7 +328,7 @@ namespace QLNhaHang
 
         private void barBtnTaiKhoan_ItemClick(object sender, ItemClickEventArgs e)
         {
-            frmTTTaiKhoan frmTTTaiKhoan = new frmTTTaiKhoan();
+            frmTTTaiKhoan frmTTTaiKhoan = new frmTTTaiKhoan(nd);
             frmTTTaiKhoan.Name = "frmTTTaiKhoan";
             showForm(frmTTTaiKhoan);
         }
@@ -294,7 +337,16 @@ namespace QLNhaHang
         {
             frmQLNhapHang frmQLNhapHang = new frmQLNhapHang(nd);
             frmQLNhapHang.Name = "frmQLNhapHang";
+            frmQLNhapHang.OnUpdateNhapHang += FrmQLNhapHang_OnUpdateNhapHang;
             showForm(frmQLNhapHang);
+        }
+        bool checkNhapHang = false;
+        private void FrmQLNhapHang_OnUpdateNhapHang(object sender, EventArgs e)
+        {
+            if (checkExitForm("frmQLNguyenLieu"))
+            {
+                checkNhapHang = true;
+            }
         }
 
         private void barBtnTKDoanhThu_ItemClick(object sender, ItemClickEventArgs e)
@@ -310,39 +362,78 @@ namespace QLNhaHang
             if (tabPage != null)
             {
                 Form form = tabPage.MdiChild.FindForm();
-                switch (form.Name)
+                if (form != null)
                 {
-                    case "frmGoiMonTaiQuay":
-                        frmGoiMonTaiQuay frmGoiMonTaiQuay = (frmGoiMonTaiQuay)form;
-                        if (checkInsertUpdateKH == true)
-                        {
-                            frmGoiMonTaiQuay.loadKhachHang();
-                            checkInsertUpdateKH = false;
-                        }
-                        if (checkDeleteKH == true)
-                        {
-                            frmGoiMonTaiQuay.loadKhachHang();
-                            checkDeleteKH = false;
-                        }
-                        if (checkUpdateMon == true)
-                        {
-                            frmGoiMonTaiQuay.firstLoadDataGridDSMon();
-                            checkUpdateMon = false;
-                        }
-                        if (checkUpdateNhomMon == true)
-                        {
-                            frmGoiMonTaiQuay.loadNhomMon();
-                            checkUpdateNhomMon = false;
-                        }
-                        break;
-                    case "frmQLHoaDon":
-                        frmQLHoaDon frmQLHoaDon = (frmQLHoaDon)form;
-                        if (checkOpenFormGMTQ == true)
-                        {
-                            frmQLHoaDon.loadDataHoaDon();
-                            checkOpenFormGMTQ = false;
-                        }
-                        break;
+                    switch (form.Name)
+                    {
+                        case "frmGoiMonTaiQuay":
+
+                            frmGoiMonTaiQuay frmGoiMonTaiQuay = (frmGoiMonTaiQuay)form;
+                            if (checkInsertUpdateKH)
+                            {
+                                frmGoiMonTaiQuay.loadKhachHang();
+                                checkInsertUpdateKH = false;
+                            }
+                            if (checkDeleteKH)
+                            {
+                                frmGoiMonTaiQuay.loadKhachHang();
+                                checkDeleteKH = false;
+                            }
+                            if (checkUpdateMon == true || checkKhuyenMai == true)
+                            {
+                                frmGoiMonTaiQuay.firstLoadDataGridDSMon();
+                                checkUpdateMon = false;
+                                checkKhuyenMai = false;
+                            }
+                            if (checkUpdateNhomMon)
+                            {
+                                frmGoiMonTaiQuay.loadNhomMon();
+                                checkUpdateNhomMon = false;
+                            }
+                            if (checkGNMTB)
+                            {
+                                frmGoiMonTaiQuay.reloadBan();
+                                checkGNMTB = false;
+                            }
+                            break;
+                        case "frmQLHoaDon":
+                            frmQLHoaDon frmQLHoaDon = (frmQLHoaDon)form;
+                            if (checkOpenFormGMTQ)
+                            {
+                                frmQLHoaDon.loadDataHoaDon();
+                                checkOpenFormGMTQ = false;
+                            }
+                            break;
+                        case "frmThemNguoiDungVaoNhom":
+                            frmThemNguoiDungVaoNhom frm = (frmThemNguoiDungVaoNhom)form;
+                            if (checkNDChange)
+                            {
+                                frm.loadDataNguoiDung();
+                                checkNDChange = false;
+                            }
+                            if (checkNhomNDChangeTND)
+                            {
+                                frm.loadCbbNhomNguoiDung();
+                                checkNhomNDChangeTND = false;
+                            }
+                            break;
+                        case "frmPhanQuyen":
+                            frmPhanQuyen frmPhanQuyen = (frmPhanQuyen)form;
+                            if (checkNhomNDChangePQ)
+                            {
+                                frmPhanQuyen.loadDataNhomNguoiDung();
+                                checkNhomNDChangePQ = false;
+                            }
+                            break;
+                        case "frmQLNguyenLieu":
+                            frmQLNguyenLieu frmQLNguyenLieu = (frmQLNguyenLieu)form;
+                            if (checkNhapHang)
+                            {
+                                frmQLNguyenLieu.loadGridViewMHNL();
+                                checkNhapHang = false;
+                            }
+                            break;
+                    }
                 }
             }
         }
@@ -359,6 +450,18 @@ namespace QLNhaHang
             frmQLHoaDon frmQLHoaDon = new frmQLHoaDon();
             frmQLHoaDon.Name = "frmQLHoaDon";
             showForm(frmQLHoaDon);
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void barBtnDangXuat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmDangNhap frmDangNhap = new frmDangNhap();
+            frmDangNhap.Show();
+            this.Hide();
         }
 
         //private void xtraTabbedMdiManager1_SelectedPageChanged(object sender, EventArgs e)

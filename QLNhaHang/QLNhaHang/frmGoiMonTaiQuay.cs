@@ -27,6 +27,7 @@ namespace QLNhaHang
         MonBLLDAL monBLLDAL = new MonBLLDAL();
         BanBLLDAL banBLLDAL = new BanBLLDAL();
         CTHDBLLDAL cTHDBLLDAL = new CTHDBLLDAL();
+        MatHangBLLDAL matHangBLLDAL = new MatHangBLLDAL();
         int soBan = -1;
         List<Ban> lstBan;
         List<InCheBien> lstInCheBien;
@@ -65,8 +66,8 @@ namespace QLNhaHang
             loadBan();
             firstLoadDataGridDSMon();
             //
-            lbQuyDinhTichDiem.Text = String.Format("{0:0,00}", Properties.Settings.Default.DiemTich) + "đ";
-            lbQuyDinhDoiDiem.Text = Properties.Settings.Default.DiemDoi.ToString() + "%";
+            //lbQuyDinhTichDiem.Text = String.Format("{0:0,00}", Properties.Settings.Default.DiemTich) + "đ";
+            //lbQuyDinhDoiDiem.Text = Properties.Settings.Default.DiemDoi.ToString() + "%";
             lstBan = banBLLDAL.getDataBan();
             lbNhanVien.Text = nd.HoTen;
         }
@@ -115,29 +116,29 @@ namespace QLNhaHang
                     btnMoBan.Text = "Đóng bàn";
                     groupDSMonAn.Enabled = true;
                     //Tao hoa don cho ban dc mo
-                    //try
-                    //{
-                    HoaDon hoaDon = new HoaDon();
-                    hoaDon.MaBan = lstBan[soBan].MaBan;
-                    hoaDon.Ngay = DateTime.Now;
-                    hoaDon.TinhTrang = 0;
-                    hoaDon.MaNV = nd.MaND;
-                    hoaDonBLLDAL.themHoaDon(hoaDon);
-                    lbHoaDon.Text = hoaDon.MaHD.ToString();
-                    lbGioVao.Text = hoaDon.Ngay.Value.ToString("hh: mm tt");
-                    //Enabled control CT goi mon = true
-                    enabledControlCTGoiMonTrue();
-                    cbbKhachHang.Enabled = true;
-                    //
-                    int soBamTemp = soBan;
-                    loadBan();
-                    imgLstBoxBan.SelectedIndex = soBamTemp;
-                    soBan = soBamTemp;
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    // MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
+                    try
+                    {
+                        HoaDon hoaDon = new HoaDon();
+                        hoaDon.MaBan = lstBan[soBan].MaBan;
+                        hoaDon.Ngay = DateTime.Now;
+                        hoaDon.TinhTrang = 0;
+                        hoaDon.MaNV = nd.MaND;
+                        hoaDonBLLDAL.themHoaDon(hoaDon);
+                        lbHoaDon.Text = hoaDon.MaHD.ToString();
+                        lbGioVao.Text = hoaDon.Ngay.Value.ToString("hh: mm tt");
+                        //Enabled control CT goi mon = true
+                        enabledControlCTGoiMonTrue();
+                        cbbKhachHang.Enabled = true;
+                        //
+                        int soBamTemp = soBan;
+                        loadBan();
+                        imgLstBoxBan.SelectedIndex = soBamTemp;
+                        soBan = soBamTemp;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else
@@ -210,6 +211,7 @@ namespace QLNhaHang
         private void imgLstBoxBan_SelectedIndexChanged(object sender, EventArgs e)
         {
             banBLLDAL = new BanBLLDAL();
+            cTHDBLLDAL = new CTHDBLLDAL();
             soBan = imgLstBoxBan.SelectedIndex;
             if (soBan >= 0)
             {
@@ -227,6 +229,7 @@ namespace QLNhaHang
                     //
                     cbbKhachHang.Enabled = false;
                     cbbKhachHang.EditValue = null;
+                    gridViewMonAn.DataSource = null;
                 }
                 else if (trangThai == 1)
                 {
@@ -275,43 +278,9 @@ namespace QLNhaHang
                     {
                         loadUnCheckSDGG();
                     }
-                    //if (hd.MaKH != null)
-                    //{
-                    //    cbbKhachHang.Enabled = true;
-                    //    cbbKhachHang.EditValue = hd.MaKH.Value;
-                    //    if (hd.MaKH.Value != 0)//KH thanh vien
-                    //    {
-                    //        //Load thanh tien
-                    //        double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
-                    //        lbTienGiam.Text = "0";
-                    //        lbThanhTien.Text = String.Format("{0:0,00}", tongTien);
-                    //        int diemCong = (int)(tongTien / Properties.Settings.Default.DiemTich);
-                    //        //Load TT KH 
-
-                    //        //cbbKhachHang.Text = hd.KhachHang.TenKH;
-
-                    //        //Load diem cong
-                    //        if (diemCong > 0)
-                    //        {
-                    //            lbDiemCong.Text = diemCong.ToString();
-                    //        }
-                    //    }
-                    //    else//Kh vãng lai
-                    //    {
-                    //        double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
-                    //        lbTienGiam.Text = "0";
-                    //        lbThanhTien.Text = String.Format("{0:0,00}", tongTien);
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    cbbKhachHang.Enabled = true;
-                    //    cbbKhachHang.EditValue = null;
-                    //    double tongTien = cTHDBLLDAL.totalMoney(hd.MaHD);
-                    //    lbTienGiam.Text = "0";
-                    //    lbThanhTien.Text = String.Format("{0:0,00}", tongTien);
-                    //}
-
+                  
+                    int[] newData = cTHDBLLDAL.getDataNewByMaHD(hd.MaHD);
+                    tuVanMon(newData);
                 }
             }
         }
@@ -350,58 +319,6 @@ namespace QLNhaHang
 
         private void cbbKhachHang_EditValueChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
-            //if (cbbKhachHang.EditValue != null)
-            //{
-            //    string maKH = cbbKhachHang.EditValue.ToString();
-            //    //Update MaKH
-            //    if (hd != null)
-            //    {
-            //        hoaDonBLLDAL.updateTTKH(hd.MaHD, int.Parse(maKH));
-            //    }
-            //    if (!maKH.Equals("0"))
-            //    {
-            //        if (cbSDTichDiemGG.Checked)
-            //        {
-            //            loadThanhToanKHTV();
-            //        }
-            //        else
-            //        {
-            //            KhachHang kh = khachHangBLLDAL.getDataKhachHangByMaKH(int.Parse(maKH));
-            //            if (kh == null || kh.MaKH == 0)
-            //            {
-            //                return;
-            //            }
-            //            lbDiemTichLuy.Text = kh.DiemTichLuy.ToString();
-            //            lbGiamGia.Text = (kh.DiemTichLuy.Value * Properties.Settings.Default.DiemDoi).ToString() + "%";
-
-            //        }
-            //        cbSDTichDiemGG.Checked = false;
-            //        cbSDTichDiemGG.Enabled = true;
-            //        groupControlTichDiemGG.Enabled = true;
-            //    }
-            //    else
-            //    {
-            //        loadThanhToanKVL();
-            //        lbDiemCong.Text = "0";
-            //        cbSDTichDiemGG.Enabled = false;
-            //        groupControlTichDiemGG.Enabled = false;
-            //        clearLabelDiemTLGiamGia();
-            //    }
-            //}
-            //else
-            //{
-            //    cbSDTichDiemGG.Enabled = false;
-            //    groupControlTichDiemGG.Enabled = false;
-            //    clearLabelDiemTLGiamGia();
-            //}
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
             HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
             if (hd == null)
             {
@@ -534,6 +451,7 @@ namespace QLNhaHang
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+
             if (gridView2.GetFocusedRowCellValue("MaMon") == null || gridView2.FocusedRowHandle < 0)
             {
                 return;
@@ -547,10 +465,17 @@ namespace QLNhaHang
             try
             {
                 cTHDBLLDAL = new CTHDBLLDAL();
+                matHangBLLDAL = new MatHangBLLDAL();
                 int soLuong = Convert.ToInt32(numericUpDownSL.Value);
+                int maMon = int.Parse(gridView2.GetFocusedRowCellValue("MaMon").ToString());
+                string tenMon = gridView2.GetFocusedRowCellValue("TenMon").ToString();
+                if (matHangBLLDAL.ktGoiMon(maMon, soLuong) == false)
+                {
+                    MessageBox.Show("Rất tiếc. " + tenMon + " không đủ số lượng bán", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 string ghiChu = txtGhiChu.Text;
                 int maHD = hd.MaHD;
-                int maMon = int.Parse(gridView2.GetFocusedRowCellValue("MaMon").ToString());
                 Mon mon = monBLLDAL.getMonByMaMon(maMon);
                 if (mon == null)
                 {
@@ -565,10 +490,11 @@ namespace QLNhaHang
                 cthd.DonGia = mon.GiaKM;
                 cthd.ThanhTien = soLuong * mon.GiaKM;
                 cTHDBLLDAL.insertCTHD(cthd);
+                matHangBLLDAL.truSLNguyenLieu(maMon, soLuong);
+                //
                 loadCTHD(maHD);
                 txtGhiChu.Clear();
                 numericUpDownSL.Value = 1;
-
                 if (cTHDBLLDAL.isExitedCTHD(maHD, maMon))
                 {
                     gridView1.FocusedRowHandle = getIndexRowUpdate(maMon.ToString());
@@ -580,8 +506,18 @@ namespace QLNhaHang
                 //Tinh lai tien
                 tinhLaiTien();
                 //Them in che bien
-                InCheBien inCheBien = new InCheBien(lstBan[soBan].MaBan, maMon, monBLLDAL.getTenMonByMaMon(maMon), soLuong, ghiChu);
-                lstInCheBien.Add(inCheBien);
+                InCheBien findICB = lstInCheBien.Where(i => i.MaBan == lstBan[soBan].MaBan && i.MaMon == maMon && i.GhiChu.Equals(ghiChu)).FirstOrDefault();
+                if (findICB == null)
+                {
+                    InCheBien inCheBien = new InCheBien(lstBan[soBan].MaBan, maMon, monBLLDAL.getTenMonByMaMon(maMon), soLuong, ghiChu);
+                    lstInCheBien.Add(inCheBien);
+                }
+                else
+                {
+                    int sl = findICB.SoLuong + soLuong;
+                    findICB.SoLuong = sl;
+                }
+
                 int[] newData = cTHDBLLDAL.getDataNewByMaHD(hd.MaHD);
                 tuVanMon(newData);
             }
@@ -681,6 +617,7 @@ namespace QLNhaHang
                 try
                 {
                     cTHDBLLDAL = new CTHDBLLDAL();
+                    matHangBLLDAL = new MatHangBLLDAL();
                     int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
                     int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
                     if (cTHDBLLDAL.getNumberMonCurrent(maHd, maMon) == 1)
@@ -702,6 +639,7 @@ namespace QLNhaHang
                     if (hd.MaHD == maHd)
                     {
                         cTHDBLLDAL.deCreNumberMon(maHd, maMon);
+                        matHangBLLDAL.congSLNguyenLieu(maMon, 1);
                         loadCTHD(maHd);
                         gridView1.FocusedRowHandle = rowFocus;
                     }
@@ -737,8 +675,15 @@ namespace QLNhaHang
                 try
                 {
                     cTHDBLLDAL = new CTHDBLLDAL();
+                    matHangBLLDAL = new MatHangBLLDAL();
+                    string tenMon = gridView1.GetFocusedRowCellValue("TenMon").ToString();
                     int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
                     int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
+                    if (matHangBLLDAL.ktGoiMon(maMon, 1) == false)
+                    {
+                        MessageBox.Show("Rất tiếc. " + tenMon + " không đủ số lượng bán", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                     HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
                     if (hd == null)
                     {
@@ -747,6 +692,7 @@ namespace QLNhaHang
                     if (hd.MaHD == maHd)
                     {
                         cTHDBLLDAL.inCreNumberMon(maHd, maMon);
+                        matHangBLLDAL.truSLNguyenLieu(maMon, 1);
                         loadCTHD(maHd);
                         gridView1.FocusedRowHandle = rowFocus;
                     }
@@ -792,8 +738,10 @@ namespace QLNhaHang
                 try
                 {
                     cTHDBLLDAL = new CTHDBLLDAL();
+                    matHangBLLDAL = new MatHangBLLDAL();
                     int maHd = int.Parse(gridView1.GetFocusedRowCellValue("MaHD").ToString());
                     int maMon = int.Parse(gridView1.GetFocusedRowCellValue("MaMon").ToString());
+                    int soLuong = int.Parse(gridView1.GetFocusedRowCellValue("SoLuong").ToString());
                     HoaDon hd = hoaDonBLLDAL.getHoaDonByMaBanCoKhach(lstBan[soBan].MaBan);
                     if (hd == null)
                     {
@@ -802,6 +750,11 @@ namespace QLNhaHang
                     if (hd.MaHD == maHd)
                     {
                         cTHDBLLDAL.deleteCTHD(maHd, maMon);
+                        DialogResult res = MessageBox.Show("Bạn có muốn cập nhật lại nguyên liệu của món này?", "Xác nhận!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (res == DialogResult.Yes)
+                        {
+                            matHangBLLDAL.congSLNguyenLieu(maMon, soLuong);
+                        }
                         loadCTHD(maHd);
                     }
                     //Tinh lai tien
@@ -1046,16 +999,17 @@ namespace QLNhaHang
                         tienGiam = tongTien;
                         thanhTien = 0;
                     }
+                    diemCong = 0;
                 }
                 else
                 {
                     tienGiam = 0;
                     thanhTien = tongTien;
                     diemTru = 0;
+                    diemCong = (int)(thanhTien / Properties.Settings.Default.DiemTich);
                 }
-                diemCong = (int)(thanhTien / Properties.Settings.Default.DiemTich);
             }
-            MessageBox.Show("Tong tien : " + tongTien + " - Giam " + tienGiam + " - Thanh tien " + thanhTien + " - Diem cong " + diemCong + " - Diem tru " + diemTru);
+            //MessageBox.Show("Tong tien : " + tongTien + " - Giam " + tienGiam + " - Thanh tien " + thanhTien + " - Diem cong " + diemCong + " - Diem tru " + diemTru);
             frmThanhToan frm = new frmThanhToan(hd.MaHD, tongTien, tienGiam, thanhTien, diemCong, diemTru);
             frm.OnUpdateStatus += Frm_OnUpdateStatus;
             frm.ShowDialog(this);
@@ -1315,8 +1269,9 @@ namespace QLNhaHang
                         double tt = tongTien - tienGiam;
                         lbTienGiam.Text = String.Format("{0:0,00}", tienGiam);
                         lbThanhTien.Text = String.Format("{0:0,00}", tt);
-                        int diemCong = (int)(tt / Properties.Settings.Default.DiemTich);
-                        lbDiemCong.Text = diemCong.ToString();
+                        //int diemCong = (int)(tt / Properties.Settings.Default.DiemTich);
+                        //lbDiemCong.Text = diemCong.ToString();
+                        lbDiemCong.Text = "0";
                     }
                     else
                     {
@@ -1344,7 +1299,7 @@ namespace QLNhaHang
             frm.ShowDialog(this);
             lstInCheBien.RemoveAll(r => r.MaBan == lstBan[soBan].MaBan);
         }
-        
+
 
         private void reloadMon()
         {

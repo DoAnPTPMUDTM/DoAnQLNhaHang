@@ -41,10 +41,18 @@ namespace QLNhaHang
                 //new SortedSet<int> {1, 2, 3 },
             };
             Apriori apriori = new Apriori(threshold: 2, confidence: 0.6);
-            MessageBox.Show(hoaDonBLLDAL.getDataSet().Length.ToString());
+           // MessageBox.Show(hoaDonBLLDAL.getDataSet().Length.ToString());
             AssociationRuleMatcher<int> classifier = apriori.Learn(hoaDonBLLDAL.getDataSet());
-            MessageBox.Show( "dataset: " + hoaDonBLLDAL.getDataSet().Count().ToString());
-            int[][] matches = classifier.Decide(new[] { 1,2 });
+           // MessageBox.Show( "dataset: " + hoaDonBLLDAL.getDataSet().Count().ToString());
+            int[][] matches = classifier.Decide(new[] { 9,4,6 });
+            MonBLLDAL monBLLDAL = new MonBLLDAL();
+            List<Mon> lstMon = monBLLDAL.getMonByResult(matches);
+            string r = "";
+            foreach(Mon m in lstMon)
+            {
+                r += m.MaMon + " , ";
+            }
+            MessageBox.Show(r);
             List<int> lstKetQua = new List<int>();
             List<Result> lstResult = new List<Result>();
 
@@ -53,7 +61,7 @@ namespace QLNhaHang
                 string rs = "{";
                 for(int j = 0; j < matches[i].Length; j++)
                 {
-                    MessageBox.Show(matches[i][j].ToString());
+                   // MessageBox.Show(matches[i][j].ToString());
                     rs += matches[i][j].ToString() + " ";
                     lstKetQua.Add(matches[i][j]);
                 }

@@ -19,7 +19,7 @@ namespace QLNhaHang
     {
         BanBLLDAL banBLLDAL = new BanBLLDAL();
         MonBLLDAL monBLLDAL = new MonBLLDAL();
-        HoaDonBLLDAL hoaDonBLLDAL = new HoaDonBLLDAL();
+        GoiMonTaiBanBLLDAL goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
         List<Ban> lstBan;
         public frmGoiMonTaiBan()
         {
@@ -33,13 +33,10 @@ namespace QLNhaHang
             this.Close();
         }
 
-        private void btnGhiNhan_Click(object sender, EventArgs e)
-        {
-            UpdateStatus();
-        }
+
         //
 
-        public delegate void StatusUpdateHandler(object sender, EventArgs e);
+        public delegate void StatusUpdateHandler(object sender, EventArgs e, int maBan);
         public event StatusUpdateHandler OnUpdateStatus;
 
         //When button is clicked, this is trigged
@@ -50,17 +47,18 @@ namespace QLNhaHang
         //}
 
 
-        private void UpdateStatus()
+        private void UpdateGMTB(int maBan)
         {
             //Create arguments.  You should also have custom one, or else return EventArgs.Empty();
             EventArgs args = new EventArgs();
 
             //Call any listeners
-            OnUpdateStatus?.Invoke(this, args);
+            OnUpdateStatus?.Invoke(this, args, maBan);
 
         }
         public void loadBan()
         {
+            banBLLDAL = new BanBLLDAL();
             lstBan = banBLLDAL.getBanGoiMonTaiBan();
             imgLstBoxBan.Items.Clear();
             if (lstBan == null || (lstBan != null && lstBan.Count == 0))
@@ -92,7 +90,8 @@ namespace QLNhaHang
                 int soBan = imgLstBoxBan.SelectedIndex;
                 if (soBan >= 0)
                 {
-                    GoiMonTaiBanBLLDAL goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
+                    goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
+                    monBLLDAL = new MonBLLDAL();
                     lbBan.Text = lstBan[soBan].TenBan;
                     List<GoiMonTaiBan> lst = goiMonTaiBanBLLDAL.getGMTBByMaBan(lstBan[soBan].MaBan);
                     //if (lst == null || (lst != null && lst.Count == 0))
@@ -125,7 +124,7 @@ namespace QLNhaHang
             int soBan = imgLstBoxBan.SelectedIndex;
             if (soBan >= 0)
             {
-                GoiMonTaiBanBLLDAL goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
+                goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
                 List<GoiMonTaiBan> lst = goiMonTaiBanBLLDAL.getGMTBByMaBan(lstBan[soBan].MaBan);
                 if (lst == null || (lst != null && lst.Count == 0))
                 {
@@ -159,7 +158,7 @@ namespace QLNhaHang
             {
                 if (e.ChangeType == ChangeType.Insert || e.ChangeType == ChangeType.Update)
                 {
-                   GoiMonTaiBan changedEntity = e.Entity;
+                    GoiMonTaiBan changedEntity = e.Entity;
                     if (changedEntity.TinhTrang == 0)
                     {
                         refesh();
@@ -189,22 +188,28 @@ namespace QLNhaHang
         }
         private void btnGhiNhan_Click_1(object sender, EventArgs e)
         {
-
             try
             {
+                goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
                 int soBan = imgLstBoxBan.SelectedIndex;
                 if (soBan >= 0)
                 {
-                    GoiMonTaiBanBLLDAL goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
+                    string messeage = "Rất tiếc" + Environment.NewLine;
+                    
+                    if (goiMonTaiBanBLLDAL.ktGhiNhanGMTB(lstBan[soBan].MaBan,ref messeage))
+                    {
+                        MessageBox.Show(messeage, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }    
                     goiMonTaiBanBLLDAL.ghiNhanGMTB(lstBan[soBan].MaBan);
                     loadBan();
+                    UpdateGMTB(lstBan[soBan].MaBan);
                 }
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ghi nhận - Exception: " + ex.Message, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
 
 
@@ -216,7 +221,7 @@ namespace QLNhaHang
             {
                 return;
             }
-            GoiMonTaiBanBLLDAL goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
+            goiMonTaiBanBLLDAL = new GoiMonTaiBanBLLDAL();
             goiMonTaiBanBLLDAL.delete(int.Parse(gridView1.GetFocusedRowCellValue("MaGoiMon").ToString()));
             loadBan();
         }
@@ -231,6 +236,11 @@ namespace QLNhaHang
             {
                 btnXoa.Enabled = true;
             }
+        }
+
+        private void frmGoiMonTaiBan_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
 
         //

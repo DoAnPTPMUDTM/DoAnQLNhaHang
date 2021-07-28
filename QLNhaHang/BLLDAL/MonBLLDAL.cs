@@ -46,8 +46,8 @@ namespace BLLDAL
                 mon.MaNhom = maNhom;
                 mon.DonViTinh = db.DonViTinhs.Where(t => t.MaDVT == donViTinh).FirstOrDefault();
                 mon.Anh = anh;
-                mon.GiaGoc = (decimal?)giaGoc;
-                mon.GiaKM = (decimal?)giaKM;
+                mon.GiaGoc = (decimal)giaGoc;
+                mon.GiaKM = (decimal)giaKM;
                 mon.KhuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
                 db.SubmitChanges();
             }
@@ -61,8 +61,8 @@ namespace BLLDAL
                 mon.TenMon = tenMon;
                 mon.MaNhom = maNhom;
                 mon.DonViTinh = db.DonViTinhs.Where(t => t.MaDVT == donViTinh).FirstOrDefault(); ;
-                mon.GiaGoc = (decimal?)giaGoc;
-                mon.GiaKM = (decimal?)giaKM;
+                mon.GiaGoc = (decimal)giaGoc;
+                mon.GiaKM = (decimal)giaKM;
                 mon.KhuyenMai = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
                 db.SubmitChanges();
             }
@@ -143,7 +143,7 @@ namespace BLLDAL
             Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
             if (mon == null)
                 return 0;
-            return mon.GiaKM.Value;
+            return mon.GiaKM;
         }
         public List<Mon> getMonByResult(int[][] matches)
         {
@@ -156,11 +156,47 @@ namespace BLLDAL
                     Mon mon = db.Mons.Where(m => m.MaMon == matches[i][j]).FirstOrDefault();
                     if (mon != null)
                     {
-                        lstMon.Add(mon);
+                        bool check = lstMon.Where(a => a.MaMon == mon.MaMon).Count() > 0;
+                        if(check == false)
+                        {
+                            lstMon.Add(mon);
+                        }
                     }
                 }
             }
             return lstMon;
+        }
+
+        public string getTenDVTByMaMon(int maMon)
+        {
+            Mon mon = db.Mons.Where(m => m.MaMon == maMon).FirstOrDefault();
+            if(mon == null)
+            {
+                return "";
+            }
+            return mon.DonViTinh.TenDVT;
+        }
+        public void updateMaKMChange(int maKM)
+        {
+            List<Mon> lst = db.Mons.Where(m => m.MaKM == maKM).ToList();
+            if(lst == null || (lst != null && lst.Count == 0))
+            {
+                return;
+            }
+            KhuyenMai km = db.KhuyenMais.Where(k => k.MaKM == maKM).FirstOrDefault();
+            if(km != null)
+            {
+                foreach(Mon m in lst)
+                {
+                    Mon monUpdate = db.Mons.Where(ma => ma.MaMon == m.MaMon).FirstOrDefault();
+                    if(monUpdate != null)
+                    {
+                        decimal giaKM = monUpdate.GiaGoc - (monUpdate.GiaGoc * (decimal)km.TyLe.Value);
+                        monUpdate.GiaKM = giaKM;
+                    }
+                }
+                db.SubmitChanges();
+            }           
         }
     }
 }

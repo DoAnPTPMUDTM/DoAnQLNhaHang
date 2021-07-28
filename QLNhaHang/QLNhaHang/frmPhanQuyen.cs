@@ -32,7 +32,7 @@ namespace QLNhaHang
             loadDataNhomNguoiDung();
             //loadDataPhanQuyen();
         }
-        private void loadDataNhomNguoiDung()
+        public void loadDataNhomNguoiDung()
         {
             var nguoiDungs = from nnd in nhomNguoiDungBLLDAL.getDataNhomNguoiDung()
                              select new

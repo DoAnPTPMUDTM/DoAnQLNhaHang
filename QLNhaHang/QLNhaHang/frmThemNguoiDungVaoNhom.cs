@@ -30,16 +30,18 @@ namespace QLNhaHang
             loadDataNguoiDung();
         }
 
-        private void loadCbbNhomNguoiDung()
+        public void loadCbbNhomNguoiDung()
         {
+            nhomNguoiDungBLLDAL = new NhomNguoiDungBLLDAL();
             cbbNhomNguoiDung.DataSource = nhomNguoiDungBLLDAL.getDataNhomNguoiDung();
             cbbNhomNguoiDung.ValueMember = "MaNhom";
             cbbNhomNguoiDung.DisplayMember = "TenNhom";
         }
 
-        private void loadDataNguoiDung()
+        public void loadDataNguoiDung()
         {
             //mã nd, họ tên, giới tính, sdt, địa chỉ, email, tên đn, mk, hoạt động
+            nguoiDungBLLDAL = new NguoiDungBLLDAL();
             var nguoiDungs = from nd in nguoiDungBLLDAL.getDataNguoiDung()
                              select new
                              {
@@ -54,10 +56,12 @@ namespace QLNhaHang
                                  HoatDong = nd.HoatDong
                              };
             dtgvNguoiDung.DataSource = nguoiDungs.ToList();
+            dtgvNguoiDung.ClearSelection();
         }
 
         private void loadDataNhomNguoiDung(int maNhom)
         {
+            nhomNguoiDungBLLDAL = new NhomNguoiDungBLLDAL();
             var nhomNguoiDungs = from ndnnd in nguoiDungNhomNguoiDungBLLDAL.getNhomNguoiDungByMaNhom(maNhom)
                                  select new
                                  {
@@ -102,7 +106,7 @@ namespace QLNhaHang
             string maND = row.MaND.ToString();
             if (!nguoiDungNhomNguoiDungBLLDAL.kTraTrungMaNhom(maNhom,int.Parse(maND)))
             {
-
+                nguoiDungNhomNguoiDungBLLDAL = new NguoiDungNhomNguoiDungBLLDAL();
                 NguoiDungNhomNguoiDung nguoiDungNhomNguoiDung = new NguoiDungNhomNguoiDung();
                 //nguoiDungNhomNguoiDung.TenDN = row.TenDN;
                 nguoiDungNhomNguoiDung.MaNhom = maNhom;

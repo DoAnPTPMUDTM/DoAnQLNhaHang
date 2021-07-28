@@ -16,7 +16,6 @@ namespace QLNhaHang
     public partial class frmKhachHang : Form
     {
         KhachHangBLLDAL khachHangBLLDAL = new KhachHangBLLDAL();
-        HoaDonBLLDAL hoaDonBLLDAL = new HoaDonBLLDAL();
         public frmKhachHang()
         {
             InitializeComponent();
@@ -30,6 +29,7 @@ namespace QLNhaHang
         private void loadDataKhachHang()
         {
             disableControls();
+            khachHangBLLDAL = new KhachHangBLLDAL();
             var khachHangs = from kh in khachHangBLLDAL.getDataKhachHang()
                              select new
                              {
@@ -82,6 +82,7 @@ namespace QLNhaHang
         private void btnThem_Click(object sender, EventArgs e)
         {
             //mã kh, tên kh, địa chỉ, sdt, diem tl.
+            khachHangBLLDAL = new KhachHangBLLDAL();
             if (string.IsNullOrEmpty(txtTenKH.Text))
             {
                 MessageBox.Show("Tên khách hàng không được để trống", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -170,6 +171,7 @@ namespace QLNhaHang
             }
             try
             {
+                khachHangBLLDAL = new KhachHangBLLDAL();
                 khachHangBLLDAL.deleteKhachHang(int.Parse(maKH));
                 MessageBox.Show("Xóa khách hàng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataKhachHang();
@@ -192,20 +194,29 @@ namespace QLNhaHang
             //{
             //    MessageBox.Show("Sửa khách hàng thất bại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //}
-            string maKH = gridView1.GetFocusedRowCellValue("MaKH").ToString();
-            if (maKH.Equals("0"))
+            try
             {
-                return;
+
+                khachHangBLLDAL = new KhachHangBLLDAL();
+                string maKH = gridView1.GetFocusedRowCellValue("MaKH").ToString();
+                if (maKH.Equals("0"))
+                {
+                    return;
+                }
+                if (maKH == null)
+                {
+                    return;
+                }
+                khachHangBLLDAL.updateKhachHang(int.Parse(maKH), txtTenKH.Text, mmeDiaChi.Text, txtSDT.Text, int.Parse(txtDiemTL.Text));
+                MessageBox.Show("Sửa khách hàng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadDataKhachHang();
+                clearControls();
+                UpdateStatus(ChangeType.Update);
             }
-            if (maKH == null)
+            catch
             {
-                return;
+                MessageBox.Show("Sửa khách hàng thất bại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            khachHangBLLDAL.updateKhachHang(int.Parse(maKH), txtTenKH.Text, mmeDiaChi.Text, txtSDT.Text, int.Parse(txtDiemTL.Text));
-            MessageBox.Show("Sửa khách hàng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            loadDataKhachHang();
-            clearControls();
-            UpdateStatus(ChangeType.Update);
         }
 
         private void txtDiemTL_KeyPress(object sender, KeyPressEventArgs e)

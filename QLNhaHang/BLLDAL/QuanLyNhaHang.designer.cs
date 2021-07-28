@@ -39,6 +39,9 @@ namespace BLLDAL
     partial void InsertCTPN(CTPN instance);
     partial void UpdateCTPN(CTPN instance);
     partial void DeleteCTPN(CTPN instance);
+    partial void InsertDinhLuong(DinhLuong instance);
+    partial void UpdateDinhLuong(DinhLuong instance);
+    partial void DeleteDinhLuong(DinhLuong instance);
     partial void InsertDonViTinh(DonViTinh instance);
     partial void UpdateDonViTinh(DonViTinh instance);
     partial void DeleteDonViTinh(DonViTinh instance);
@@ -140,6 +143,14 @@ namespace BLLDAL
 			get
 			{
 				return this.GetTable<CTPN>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DinhLuong> DinhLuongs
+		{
+			get
+			{
+				return this.GetTable<DinhLuong>();
 			}
 		}
 		
@@ -444,11 +455,11 @@ namespace BLLDAL
 		
 		private int _MaMon;
 		
-		private System.Nullable<int> _SoLuong;
+		private int _SoLuong;
 		
-		private System.Nullable<decimal> _DonGia;
+		private decimal _DonGia;
 		
-		private System.Nullable<decimal> _ThanhTien;
+		private decimal _ThanhTien;
 		
 		private EntityRef<HoaDon> _HoaDon;
 		
@@ -462,11 +473,11 @@ namespace BLLDAL
     partial void OnMaHDChanged();
     partial void OnMaMonChanging(int value);
     partial void OnMaMonChanged();
-    partial void OnSoLuongChanging(System.Nullable<int> value);
+    partial void OnSoLuongChanging(int value);
     partial void OnSoLuongChanged();
-    partial void OnDonGiaChanging(System.Nullable<decimal> value);
+    partial void OnDonGiaChanging(decimal value);
     partial void OnDonGiaChanged();
-    partial void OnThanhTienChanging(System.Nullable<decimal> value);
+    partial void OnThanhTienChanging(decimal value);
     partial void OnThanhTienChanged();
     #endregion
 		
@@ -525,8 +536,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuong", DbType="Int")]
-		public System.Nullable<int> SoLuong
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuong", DbType="Int NOT NULL")]
+		public int SoLuong
 		{
 			get
 			{
@@ -545,8 +556,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGia", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> DonGia
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGia", DbType="Decimal(18,0) NOT NULL")]
+		public decimal DonGia
 		{
 			get
 			{
@@ -565,8 +576,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> ThanhTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Decimal(18,0) NOT NULL")]
+		public decimal ThanhTien
 		{
 			get
 			{
@@ -684,9 +695,9 @@ namespace BLLDAL
 		
 		private int _MaMH;
 		
-		private System.Nullable<int> _SoLuong;
+		private int _SoLuong;
 		
-		private System.Nullable<decimal> _DonGia;
+		private decimal _DonGia;
 		
 		private System.Nullable<decimal> _ThanhTien;
 		
@@ -702,9 +713,9 @@ namespace BLLDAL
     partial void OnMaPNChanged();
     partial void OnMaMHChanging(int value);
     partial void OnMaMHChanged();
-    partial void OnSoLuongChanging(System.Nullable<int> value);
+    partial void OnSoLuongChanging(int value);
     partial void OnSoLuongChanged();
-    partial void OnDonGiaChanging(System.Nullable<decimal> value);
+    partial void OnDonGiaChanging(decimal value);
     partial void OnDonGiaChanged();
     partial void OnThanhTienChanging(System.Nullable<decimal> value);
     partial void OnThanhTienChanged();
@@ -765,8 +776,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuong", DbType="Int")]
-		public System.Nullable<int> SoLuong
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuong", DbType="Int NOT NULL")]
+		public int SoLuong
 		{
 			get
 			{
@@ -785,8 +796,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGia", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> DonGia
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGia", DbType="Decimal(18,0) NOT NULL")]
+		public decimal DonGia
 		{
 			get
 			{
@@ -889,6 +900,198 @@ namespace BLLDAL
 						this._MaPN = default(int);
 					}
 					this.SendPropertyChanged("PhieuNhap");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DinhLuong")]
+	public partial class DinhLuong : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaMon;
+		
+		private int _MaMH;
+		
+		private decimal _QuyDoi;
+		
+		private EntityRef<MatHang> _MatHang;
+		
+		private EntityRef<Mon> _Mon;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaMonChanging(int value);
+    partial void OnMaMonChanged();
+    partial void OnMaMHChanging(int value);
+    partial void OnMaMHChanged();
+    partial void OnQuyDoiChanging(decimal value);
+    partial void OnQuyDoiChanged();
+    #endregion
+		
+		public DinhLuong()
+		{
+			this._MatHang = default(EntityRef<MatHang>);
+			this._Mon = default(EntityRef<Mon>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaMon", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaMon
+		{
+			get
+			{
+				return this._MaMon;
+			}
+			set
+			{
+				if ((this._MaMon != value))
+				{
+					if (this._Mon.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaMonChanging(value);
+					this.SendPropertyChanging();
+					this._MaMon = value;
+					this.SendPropertyChanged("MaMon");
+					this.OnMaMonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaMH", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaMH
+		{
+			get
+			{
+				return this._MaMH;
+			}
+			set
+			{
+				if ((this._MaMH != value))
+				{
+					if (this._MatHang.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaMHChanging(value);
+					this.SendPropertyChanging();
+					this._MaMH = value;
+					this.SendPropertyChanged("MaMH");
+					this.OnMaMHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuyDoi", DbType="Decimal(18,0) NOT NULL")]
+		public decimal QuyDoi
+		{
+			get
+			{
+				return this._QuyDoi;
+			}
+			set
+			{
+				if ((this._QuyDoi != value))
+				{
+					this.OnQuyDoiChanging(value);
+					this.SendPropertyChanging();
+					this._QuyDoi = value;
+					this.SendPropertyChanged("QuyDoi");
+					this.OnQuyDoiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MatHang_DinhLuong", Storage="_MatHang", ThisKey="MaMH", OtherKey="MaMH", IsForeignKey=true)]
+		public MatHang MatHang
+		{
+			get
+			{
+				return this._MatHang.Entity;
+			}
+			set
+			{
+				MatHang previousValue = this._MatHang.Entity;
+				if (((previousValue != value) 
+							|| (this._MatHang.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MatHang.Entity = null;
+						previousValue.DinhLuongs.Remove(this);
+					}
+					this._MatHang.Entity = value;
+					if ((value != null))
+					{
+						value.DinhLuongs.Add(this);
+						this._MaMH = value.MaMH;
+					}
+					else
+					{
+						this._MaMH = default(int);
+					}
+					this.SendPropertyChanged("MatHang");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Mon_DinhLuong", Storage="_Mon", ThisKey="MaMon", OtherKey="MaMon", IsForeignKey=true)]
+		public Mon Mon
+		{
+			get
+			{
+				return this._Mon.Entity;
+			}
+			set
+			{
+				Mon previousValue = this._Mon.Entity;
+				if (((previousValue != value) 
+							|| (this._Mon.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Mon.Entity = null;
+						previousValue.DinhLuongs.Remove(this);
+					}
+					this._Mon.Entity = value;
+					if ((value != null))
+					{
+						value.DinhLuongs.Add(this);
+						this._MaMon = value.MaMon;
+					}
+					else
+					{
+						this._MaMon = default(int);
+					}
+					this.SendPropertyChanged("Mon");
 				}
 			}
 		}
@@ -2337,13 +2540,17 @@ namespace BLLDAL
 		
 		private int _MaMH;
 		
-		private System.Nullable<int> _MaDVT;
+		private int _MaDVT;
 		
 		private string _TenMH;
 		
 		private System.Nullable<int> _MaLoaiMH;
 		
+		private decimal _SoLuongTon;
+		
 		private EntitySet<CTPN> _CTPNs;
+		
+		private EntitySet<DinhLuong> _DinhLuongs;
 		
 		private EntityRef<DonViTinh> _DonViTinh;
 		
@@ -2355,17 +2562,20 @@ namespace BLLDAL
     partial void OnCreated();
     partial void OnMaMHChanging(int value);
     partial void OnMaMHChanged();
-    partial void OnMaDVTChanging(System.Nullable<int> value);
+    partial void OnMaDVTChanging(int value);
     partial void OnMaDVTChanged();
     partial void OnTenMHChanging(string value);
     partial void OnTenMHChanged();
     partial void OnMaLoaiMHChanging(System.Nullable<int> value);
     partial void OnMaLoaiMHChanged();
+    partial void OnSoLuongTonChanging(decimal value);
+    partial void OnSoLuongTonChanged();
     #endregion
 		
 		public MatHang()
 		{
 			this._CTPNs = new EntitySet<CTPN>(new Action<CTPN>(this.attach_CTPNs), new Action<CTPN>(this.detach_CTPNs));
+			this._DinhLuongs = new EntitySet<DinhLuong>(new Action<DinhLuong>(this.attach_DinhLuongs), new Action<DinhLuong>(this.detach_DinhLuongs));
 			this._DonViTinh = default(EntityRef<DonViTinh>);
 			this._LoaiMatHang = default(EntityRef<LoaiMatHang>);
 			OnCreated();
@@ -2391,8 +2601,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaDVT", DbType="Int")]
-		public System.Nullable<int> MaDVT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaDVT", DbType="Int NOT NULL")]
+		public int MaDVT
 		{
 			get
 			{
@@ -2459,6 +2669,26 @@ namespace BLLDAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuongTon", DbType="Decimal(18,0) NOT NULL")]
+		public decimal SoLuongTon
+		{
+			get
+			{
+				return this._SoLuongTon;
+			}
+			set
+			{
+				if ((this._SoLuongTon != value))
+				{
+					this.OnSoLuongTonChanging(value);
+					this.SendPropertyChanging();
+					this._SoLuongTon = value;
+					this.SendPropertyChanged("SoLuongTon");
+					this.OnSoLuongTonChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MatHang_CTPN", Storage="_CTPNs", ThisKey="MaMH", OtherKey="MaMH")]
 		public EntitySet<CTPN> CTPNs
 		{
@@ -2469,6 +2699,19 @@ namespace BLLDAL
 			set
 			{
 				this._CTPNs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MatHang_DinhLuong", Storage="_DinhLuongs", ThisKey="MaMH", OtherKey="MaMH")]
+		public EntitySet<DinhLuong> DinhLuongs
+		{
+			get
+			{
+				return this._DinhLuongs;
+			}
+			set
+			{
+				this._DinhLuongs.Assign(value);
 			}
 		}
 		
@@ -2499,7 +2742,7 @@ namespace BLLDAL
 					}
 					else
 					{
-						this._MaDVT = default(Nullable<int>);
+						this._MaDVT = default(int);
 					}
 					this.SendPropertyChanged("DonViTinh");
 				}
@@ -2571,6 +2814,18 @@ namespace BLLDAL
 			this.SendPropertyChanging();
 			entity.MatHang = null;
 		}
+		
+		private void attach_DinhLuongs(DinhLuong entity)
+		{
+			this.SendPropertyChanging();
+			entity.MatHang = this;
+		}
+		
+		private void detach_DinhLuongs(DinhLuong entity)
+		{
+			this.SendPropertyChanging();
+			entity.MatHang = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Mon")]
@@ -2581,21 +2836,23 @@ namespace BLLDAL
 		
 		private int _MaMon;
 		
-		private System.Nullable<int> _MaNhom;
+		private int _MaNhom;
 		
-		private System.Nullable<int> _MaDVT;
+		private int _MaDVT;
 		
 		private string _TenMon;
 		
 		private string _Anh;
 		
-		private System.Nullable<decimal> _GiaGoc;
+		private decimal _GiaGoc;
 		
-		private System.Nullable<decimal> _GiaKM;
+		private decimal _GiaKM;
 		
 		private System.Nullable<int> _MaKM;
 		
 		private EntitySet<CTHD> _CTHDs;
+		
+		private EntitySet<DinhLuong> _DinhLuongs;
 		
 		private EntitySet<GoiMonTaiBan> _GoiMonTaiBans;
 		
@@ -2611,17 +2868,17 @@ namespace BLLDAL
     partial void OnCreated();
     partial void OnMaMonChanging(int value);
     partial void OnMaMonChanged();
-    partial void OnMaNhomChanging(System.Nullable<int> value);
+    partial void OnMaNhomChanging(int value);
     partial void OnMaNhomChanged();
-    partial void OnMaDVTChanging(System.Nullable<int> value);
+    partial void OnMaDVTChanging(int value);
     partial void OnMaDVTChanged();
     partial void OnTenMonChanging(string value);
     partial void OnTenMonChanged();
     partial void OnAnhChanging(string value);
     partial void OnAnhChanged();
-    partial void OnGiaGocChanging(System.Nullable<decimal> value);
+    partial void OnGiaGocChanging(decimal value);
     partial void OnGiaGocChanged();
-    partial void OnGiaKMChanging(System.Nullable<decimal> value);
+    partial void OnGiaKMChanging(decimal value);
     partial void OnGiaKMChanged();
     partial void OnMaKMChanging(System.Nullable<int> value);
     partial void OnMaKMChanged();
@@ -2630,6 +2887,7 @@ namespace BLLDAL
 		public Mon()
 		{
 			this._CTHDs = new EntitySet<CTHD>(new Action<CTHD>(this.attach_CTHDs), new Action<CTHD>(this.detach_CTHDs));
+			this._DinhLuongs = new EntitySet<DinhLuong>(new Action<DinhLuong>(this.attach_DinhLuongs), new Action<DinhLuong>(this.detach_DinhLuongs));
 			this._GoiMonTaiBans = new EntitySet<GoiMonTaiBan>(new Action<GoiMonTaiBan>(this.attach_GoiMonTaiBans), new Action<GoiMonTaiBan>(this.detach_GoiMonTaiBans));
 			this._DonViTinh = default(EntityRef<DonViTinh>);
 			this._KhuyenMai = default(EntityRef<KhuyenMai>);
@@ -2657,8 +2915,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNhom", DbType="Int")]
-		public System.Nullable<int> MaNhom
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNhom", DbType="Int NOT NULL")]
+		public int MaNhom
 		{
 			get
 			{
@@ -2681,8 +2939,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaDVT", DbType="Int")]
-		public System.Nullable<int> MaDVT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaDVT", DbType="Int NOT NULL")]
+		public int MaDVT
 		{
 			get
 			{
@@ -2745,8 +3003,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaGoc", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> GiaGoc
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaGoc", DbType="Decimal(18,0) NOT NULL")]
+		public decimal GiaGoc
 		{
 			get
 			{
@@ -2765,8 +3023,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaKM", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> GiaKM
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaKM", DbType="Decimal(18,0) NOT NULL")]
+		public decimal GiaKM
 		{
 			get
 			{
@@ -2822,6 +3080,19 @@ namespace BLLDAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Mon_DinhLuong", Storage="_DinhLuongs", ThisKey="MaMon", OtherKey="MaMon")]
+		public EntitySet<DinhLuong> DinhLuongs
+		{
+			get
+			{
+				return this._DinhLuongs;
+			}
+			set
+			{
+				this._DinhLuongs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Mon_GoiMonTaiBan", Storage="_GoiMonTaiBans", ThisKey="MaMon", OtherKey="MaMon")]
 		public EntitySet<GoiMonTaiBan> GoiMonTaiBans
 		{
@@ -2862,7 +3133,7 @@ namespace BLLDAL
 					}
 					else
 					{
-						this._MaDVT = default(Nullable<int>);
+						this._MaDVT = default(int);
 					}
 					this.SendPropertyChanged("DonViTinh");
 				}
@@ -2930,7 +3201,7 @@ namespace BLLDAL
 					}
 					else
 					{
-						this._MaNhom = default(Nullable<int>);
+						this._MaNhom = default(int);
 					}
 					this.SendPropertyChanged("NhomMon");
 				}
@@ -2964,6 +3235,18 @@ namespace BLLDAL
 		}
 		
 		private void detach_CTHDs(CTHD entity)
+		{
+			this.SendPropertyChanging();
+			entity.Mon = null;
+		}
+		
+		private void attach_DinhLuongs(DinhLuong entity)
+		{
+			this.SendPropertyChanging();
+			entity.Mon = this;
+		}
+		
+		private void detach_DinhLuongs(DinhLuong entity)
 		{
 			this.SendPropertyChanging();
 			entity.Mon = null;
@@ -4184,7 +4467,7 @@ namespace BLLDAL
 		
 		private System.Nullable<System.DateTime> _Ngay;
 		
-		private System.Nullable<decimal> _TongTien;
+		private decimal _TongTien;
 		
 		private EntitySet<CTPN> _CTPNs;
 		
@@ -4204,7 +4487,7 @@ namespace BLLDAL
     partial void OnMaNCCChanged();
     partial void OnNgayChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayChanged();
-    partial void OnTongTienChanging(System.Nullable<decimal> value);
+    partial void OnTongTienChanging(decimal value);
     partial void OnTongTienChanged();
     #endregion
 		
@@ -4304,8 +4587,8 @@ namespace BLLDAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> TongTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Decimal(18,0) NOT NULL")]
+		public decimal TongTien
 		{
 			get
 			{

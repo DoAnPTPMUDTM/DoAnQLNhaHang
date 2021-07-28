@@ -73,6 +73,7 @@ namespace QLNhaHang
                 nhomNguoiDungBLLDAL.insertNhomNguoiDung(nhomNguoiDung);
                 loadDataNhomNguoiDung();
                 clearControls();
+                UpdateNhomND();
             }
             catch (Exception ex)
             {
@@ -120,6 +121,7 @@ namespace QLNhaHang
                 MessageBox.Show("Sửa thông tin nhóm người dùng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNhomNguoiDung();
                 clearControls();
+                UpdateNhomND();
             }
             catch
             {
@@ -146,6 +148,7 @@ namespace QLNhaHang
                 MessageBox.Show("Xóa thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNhomNguoiDung();
                 clearControls();
+                UpdateNhomND();
             }
             catch
             {
@@ -158,6 +161,14 @@ namespace QLNhaHang
             loadDataNhomNguoiDung();
             disableControls();
             clearControls();
+        }
+        public delegate void StatusUpdateHandler(object sender, EventArgs e);
+        public event StatusUpdateHandler OnUpdateNhomND;
+
+        private void UpdateNhomND()
+        {
+            EventArgs args = new EventArgs();
+            OnUpdateNhomND?.Invoke(this, args);
         }
     }
 }

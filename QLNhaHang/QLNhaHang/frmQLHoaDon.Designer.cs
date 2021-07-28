@@ -144,6 +144,7 @@ namespace QLNhaHang
             this.gridViewCTHD.Name = "gridViewCTHD";
             this.gridViewCTHD.OptionsBehavior.Editable = false;
             this.gridViewCTHD.OptionsFind.AlwaysVisible = true;
+            this.gridViewCTHD.OptionsSelection.EnableAppearanceFocusedCell = false;
             // 
             // gridColumn9
             // 
@@ -270,6 +271,7 @@ namespace QLNhaHang
             this.gridViewHoaDon.Name = "gridViewHoaDon";
             this.gridViewHoaDon.OptionsBehavior.Editable = false;
             this.gridViewHoaDon.OptionsFind.AlwaysVisible = true;
+            this.gridViewHoaDon.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewHoaDon.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewHoaDon_FocusedRowChanged);
             // 
             // gridColumn1

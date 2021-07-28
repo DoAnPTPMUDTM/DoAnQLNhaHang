@@ -571,8 +571,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\box.png" />
+    <None Include="Resources\recipe.png" />
     <None Include="Resources\box1.png" />
     <None Include="Resources\clock.png" />
+    <None Include="Resources\exit.png" />
     <Content Include="Resources\MonAn\1.jpg" />
   </ItemGroup>
   <ItemGroup>

@@ -18,8 +18,6 @@ namespace QLNhaHang
     {
         NhomMonBLLDAL nhomMonBLLDAL = new NhomMonBLLDAL();
         MonBLLDAL monBLLDAL = new MonBLLDAL();
-        KhuyenMaiBLLDAL khuyenMaiBLLDAL = new KhuyenMaiBLLDAL();
-        DonViTinhBLLDAL donViTinhBLLDAL = new DonViTinhBLLDAL();
         ConfigImage configImage = new ConfigImage();
         public frmNhomMonMonAn()
         {
@@ -52,6 +50,7 @@ namespace QLNhaHang
         private void loadDataMonAn()
         {
             // Mã món, tên món, đvt, giá km, giá gốc, mã km
+            monBLLDAL = new MonBLLDAL();
             var monAns = from mon in monBLLDAL.getDataMon()
                          select new
                          {
@@ -107,6 +106,7 @@ namespace QLNhaHang
 
         private void loadDataMonAnByMaNhom(int maNhom)
         {
+            monBLLDAL = new MonBLLDAL();
             var monAns = from mon in monBLLDAL.getDataMonByNhomMon(maNhom)
                          from nhom in nhomMonBLLDAL.getDataNhomMon()
                          where mon.MaNhom == nhom.MaNhom
@@ -241,6 +241,7 @@ namespace QLNhaHang
         {
             try
             {
+                monBLLDAL = new MonBLLDAL();
                 nhomMonBLLDAL.updateNhomMon(maNhom, tenNhom);
                 MessageBox.Show("Sửa thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNhomMon();
@@ -263,6 +264,7 @@ namespace QLNhaHang
 
         private void FrmThemMonAn_OnUpdateMonAn(object sender, EventArgs eventArgs, Mon mon, string fileLocal, string fileApp)
         {
+            monBLLDAL = new MonBLLDAL();
             bool checkSaveImg = false;
             try
             {
@@ -362,6 +364,7 @@ namespace QLNhaHang
         private void FrmSuaMonAn_OnUpdateMonAn(object sender, EventArgs eventArgs, int maMon, string tenMon, string nhomMon, string khuyenMai, string donViTinh, double giaGoc, double giaKM, string imgMonAn, string fileLocal, string fileApp, bool check)
         {
             //MessageBox.Show(maMon + " - " + tenMon + " - " + nhomMon + " - " + khuyenMai + " - " + donViTinh + " - " + giaGoc + " - " + giaKM + " - " + imgMonAn + " - " + fileLocal + " - " + fileApp + " - " + check.ToString());
+            monBLLDAL = new MonBLLDAL();
             bool checkSaveImg = false;
             if (check)
             {

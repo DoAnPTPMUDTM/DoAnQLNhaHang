@@ -66,7 +66,7 @@ namespace BLLDAL
             CTHD cTHD = db.CTHDs.Where(c => c.MaHD == maHD && c.MaMon == maMon).FirstOrDefault();
             if (cTHD != null)
             {
-                return cTHD.SoLuong.Value;
+                return cTHD.SoLuong;
             }
             return 0;
 

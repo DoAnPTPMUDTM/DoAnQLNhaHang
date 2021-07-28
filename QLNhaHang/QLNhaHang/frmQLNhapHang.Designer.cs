@@ -30,7 +30,6 @@ namespace QLNhaHang
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLNhapHang));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -43,6 +42,7 @@ namespace QLNhaHang
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControlCTPN = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -63,7 +63,6 @@ namespace QLNhaHang
             this.tabbedControlGroup2 = new DevExpress.XtraLayout.TabbedControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -101,7 +100,7 @@ namespace QLNhaHang
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(24, 57);
             this.standaloneBarDockControl1.Manager = this.barManager1;
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(758, 30);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(758, 27);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barManager1
@@ -139,7 +138,6 @@ namespace QLNhaHang
             // 
             this.barBtnThemPN.Caption = "Thêm phiếu nhập";
             this.barBtnThemPN.Id = 0;
-            this.barBtnThemPN.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barBtnThemPN.ImageOptions.SvgImage")));
             this.barBtnThemPN.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barBtnThemPN.ItemAppearance.Normal.Options.UseFont = true;
             this.barBtnThemPN.Name = "barBtnThemPN";
@@ -149,7 +147,6 @@ namespace QLNhaHang
             // 
             this.barBtnXuatExcelPN.Caption = "Xuất excel";
             this.barBtnXuatExcelPN.Id = 1;
-            this.barBtnXuatExcelPN.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barBtnXuatExcelPN.ImageOptions.SvgImage")));
             this.barBtnXuatExcelPN.Name = "barBtnXuatExcelPN";
             this.barBtnXuatExcelPN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnXuatExcelPN_ItemClick);
             // 
@@ -212,12 +209,23 @@ namespace QLNhaHang
             this.gridColumn8,
             this.gridColumn9,
             this.gridColumn10});
-            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.gridView2.GridControl = this.gridControlCTPN;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.Editable = false;
             this.gridView2.OptionsFind.AlwaysVisible = true;
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView2.OptionsView.ShowFooter = true;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Mã MH";
+            this.gridColumn11.FieldName = "MaMH";
+            this.gridColumn11.MinWidth = 25;
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 0;
+            this.gridColumn11.Width = 94;
             // 
             // gridColumn6
             // 
@@ -275,10 +283,10 @@ namespace QLNhaHang
             // 
             // gridControlPN
             // 
-            this.gridControlPN.Location = new System.Drawing.Point(24, 91);
+            this.gridControlPN.Location = new System.Drawing.Point(24, 88);
             this.gridControlPN.MainView = this.gridViewPN;
             this.gridControlPN.Name = "gridControlPN";
-            this.gridControlPN.Size = new System.Drawing.Size(758, 581);
+            this.gridControlPN.Size = new System.Drawing.Size(758, 584);
             this.gridControlPN.TabIndex = 4;
             this.gridControlPN.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPN});
@@ -295,11 +303,12 @@ namespace QLNhaHang
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5});
-            this.gridViewPN.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
+            this.gridViewPN.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.gridViewPN.GridControl = this.gridControlPN;
             this.gridViewPN.Name = "gridViewPN";
             this.gridViewPN.OptionsBehavior.Editable = false;
             this.gridViewPN.OptionsFind.AlwaysVisible = true;
+            this.gridViewPN.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewPN.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewPN_FocusedRowChanged);
             // 
             // gridColumn1
@@ -398,9 +407,9 @@ namespace QLNhaHang
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gridControlPN;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 31);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(762, 585);
+            this.layoutControlItem1.Size = new System.Drawing.Size(762, 588);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -409,7 +418,7 @@ namespace QLNhaHang
             this.layoutControlItem3.Control = this.standaloneBarDockControl1;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(762, 34);
+            this.layoutControlItem3.Size = new System.Drawing.Size(762, 31);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -443,16 +452,6 @@ namespace QLNhaHang
             this.layoutControlItem2.Size = new System.Drawing.Size(652, 619);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "Mã MH";
-            this.gridColumn11.FieldName = "MaMH";
-            this.gridColumn11.MinWidth = 25;
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 0;
-            this.gridColumn11.Width = 94;
             // 
             // frmQLNhapHang
             // 

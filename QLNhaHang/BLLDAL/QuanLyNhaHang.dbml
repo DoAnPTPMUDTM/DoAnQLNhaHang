@@ -13,9 +13,9 @@
     <Type Name="CTHD">
       <Column Name="MaHD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaMon" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DonGia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="ThanhTien" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="ThanhTien" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Association Name="HoaDon_CTHD" Member="HoaDon" ThisKey="MaHD" OtherKey="MaHD" Type="HoaDon" IsForeignKey="true" />
       <Association Name="Mon_CTHD" Member="Mon" ThisKey="MaMon" OtherKey="MaMon" Type="Mon" IsForeignKey="true" />
     </Type>
@@ -24,11 +24,20 @@
     <Type Name="CTPN">
       <Column Name="MaPN" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaMH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DonGia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="ThanhTien" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Association Name="MatHang_CTPN" Member="MatHang" ThisKey="MaMH" OtherKey="MaMH" Type="MatHang" IsForeignKey="true" />
       <Association Name="PhieuNhap_CTPN" Member="PhieuNhap" ThisKey="MaPN" OtherKey="MaPN" Type="PhieuNhap" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DinhLuong" Member="DinhLuongs">
+    <Type Name="DinhLuong">
+      <Column Name="MaMon" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaMH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuyDoi" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="MatHang_DinhLuong" Member="MatHang" ThisKey="MaMH" OtherKey="MaMH" Type="MatHang" IsForeignKey="true" />
+      <Association Name="Mon_DinhLuong" Member="Mon" ThisKey="MaMon" OtherKey="MaMon" Type="Mon" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DonViTinh" Member="DonViTinhs">
@@ -105,10 +114,12 @@
   <Table Name="dbo.MatHang" Member="MatHangs">
     <Type Name="MatHang">
       <Column Name="MaMH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MaDVT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaDVT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TenMH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="MaLoaiMH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLuongTon" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Association Name="MatHang_CTPN" Member="CTPNs" ThisKey="MaMH" OtherKey="MaMH" Type="CTPN" />
+      <Association Name="MatHang_DinhLuong" Member="DinhLuongs" ThisKey="MaMH" OtherKey="MaMH" Type="DinhLuong" />
       <Association Name="DonViTinh_MatHang" Member="DonViTinh" ThisKey="MaDVT" OtherKey="MaDVT" Type="DonViTinh" IsForeignKey="true" />
       <Association Name="LoaiMatHang_MatHang" Member="LoaiMatHang" ThisKey="MaLoaiMH" OtherKey="MaLoaiMH" Type="LoaiMatHang" IsForeignKey="true" />
     </Type>
@@ -116,14 +127,15 @@
   <Table Name="dbo.Mon" Member="Mons">
     <Type Name="Mon">
       <Column Name="MaMon" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MaNhom" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MaDVT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaNhom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaDVT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TenMon" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Anh" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="GiaGoc" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="GiaKM" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="GiaGoc" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="GiaKM" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="MaKM" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Mon_CTHD" Member="CTHDs" ThisKey="MaMon" OtherKey="MaMon" Type="CTHD" />
+      <Association Name="Mon_DinhLuong" Member="DinhLuongs" ThisKey="MaMon" OtherKey="MaMon" Type="DinhLuong" />
       <Association Name="Mon_GoiMonTaiBan" Member="GoiMonTaiBans" ThisKey="MaMon" OtherKey="MaMon" Type="GoiMonTaiBan" />
       <Association Name="DonViTinh_Mon" Member="DonViTinh" ThisKey="MaDVT" OtherKey="MaDVT" Type="DonViTinh" IsForeignKey="true" />
       <Association Name="KhuyenMai_Mon" Member="KhuyenMai" ThisKey="MaKM" OtherKey="MaKM" Type="KhuyenMai" IsForeignKey="true" />
@@ -196,7 +208,7 @@
       <Column Name="MaNV" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaNCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Ngay" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="TongTien" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TongTien" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Association Name="PhieuNhap_CTPN" Member="CTPNs" ThisKey="MaPN" OtherKey="MaPN" Type="CTPN" />
       <Association Name="NhaCungCap_PhieuNhap" Member="NhaCungCap" ThisKey="MaNCC" OtherKey="MaNCC" Type="NhaCungCap" IsForeignKey="true" />
       <Association Name="NguoiDung_PhieuNhap" Member="NguoiDung" ThisKey="MaNV" OtherKey="MaND" Type="NguoiDung" IsForeignKey="true" />

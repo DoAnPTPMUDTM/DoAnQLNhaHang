@@ -211,6 +211,10 @@ namespace QLNhaHang
             // 
             // dtgvManHinh
             // 
+            this.dtgvManHinh.AllowUserToAddRows = false;
+            this.dtgvManHinh.AllowUserToDeleteRows = false;
+            this.dtgvManHinh.AllowUserToResizeColumns = false;
+            this.dtgvManHinh.AllowUserToResizeRows = false;
             this.dtgvManHinh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvManHinh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvManHinh.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -218,9 +222,12 @@ namespace QLNhaHang
             this.Column2});
             this.dtgvManHinh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvManHinh.Location = new System.Drawing.Point(2, 28);
+            this.dtgvManHinh.MultiSelect = false;
             this.dtgvManHinh.Name = "dtgvManHinh";
+            this.dtgvManHinh.RowHeadersVisible = false;
             this.dtgvManHinh.RowHeadersWidth = 51;
             this.dtgvManHinh.RowTemplate.Height = 24;
+            this.dtgvManHinh.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvManHinh.Size = new System.Drawing.Size(966, 599);
             this.dtgvManHinh.TabIndex = 0;
             this.dtgvManHinh.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvManHinh_CellClick);

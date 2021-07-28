@@ -116,5 +116,16 @@ namespace BLLDAL
         {
             return db.NguoiDungs.Where(n => n.TenDN.Equals(tenDN)).FirstOrDefault();
         }
+        public bool ktKhoaNgoai(int maND)
+        {
+            bool checkHD = db.HoaDons.Where(h => h.MaNV == maND).Count() > 0;
+            bool checkPN = db.PhieuNhaps.Where(p => p.MaNV == maND).Count() > 0;
+            bool checkNhomND = db.NguoiDungNhomNguoiDungs.Where(n => n.MaND == maND).Count() > 0;
+            if(checkHD || checkPN || checkNhomND)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

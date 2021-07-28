@@ -56,7 +56,7 @@ namespace BLLDAL
         }
         public bool ktKhoaNgoai(int maBan)
         {
-            return db.HoaDons.Where(h => h.MaBan == maBan).Count() > 0;
+            return db.HoaDons.Where(h => h.MaBan.Value == maBan).Count() > 0;
 
         }
         public void updateBan(int maBan, Ban ban)

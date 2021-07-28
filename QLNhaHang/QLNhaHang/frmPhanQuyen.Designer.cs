@@ -104,6 +104,10 @@ namespace QLNhaHang
             // 
             // dtgvPhanQuyen
             // 
+            this.dtgvPhanQuyen.AllowUserToAddRows = false;
+            this.dtgvPhanQuyen.AllowUserToDeleteRows = false;
+            this.dtgvPhanQuyen.AllowUserToResizeColumns = false;
+            this.dtgvPhanQuyen.AllowUserToResizeRows = false;
             this.dtgvPhanQuyen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvPhanQuyen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvPhanQuyen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -114,8 +118,11 @@ namespace QLNhaHang
             this.dtgvPhanQuyen.Location = new System.Drawing.Point(2, 28);
             this.dtgvPhanQuyen.MultiSelect = false;
             this.dtgvPhanQuyen.Name = "dtgvPhanQuyen";
+            this.dtgvPhanQuyen.ReadOnly = true;
+            this.dtgvPhanQuyen.RowHeadersVisible = false;
             this.dtgvPhanQuyen.RowHeadersWidth = 51;
             this.dtgvPhanQuyen.RowTemplate.Height = 24;
+            this.dtgvPhanQuyen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvPhanQuyen.Size = new System.Drawing.Size(697, 439);
             this.dtgvPhanQuyen.TabIndex = 0;
             this.dtgvPhanQuyen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvPhanQuyen_CellClick);
@@ -126,6 +133,7 @@ namespace QLNhaHang
             this.Column3.HeaderText = "Mã màn hình";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
@@ -133,6 +141,7 @@ namespace QLNhaHang
             this.Column4.HeaderText = "Tên màn hình";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
@@ -141,6 +150,7 @@ namespace QLNhaHang
             this.Column5.HeaderText = "Có quyền";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column5.TrueValue = "True";
@@ -160,6 +170,10 @@ namespace QLNhaHang
             // 
             // dtgvNhomNguoiDung
             // 
+            this.dtgvNhomNguoiDung.AllowUserToAddRows = false;
+            this.dtgvNhomNguoiDung.AllowUserToDeleteRows = false;
+            this.dtgvNhomNguoiDung.AllowUserToResizeColumns = false;
+            this.dtgvNhomNguoiDung.AllowUserToResizeRows = false;
             this.dtgvNhomNguoiDung.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvNhomNguoiDung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvNhomNguoiDung.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -168,9 +182,12 @@ namespace QLNhaHang
             this.Column6});
             this.dtgvNhomNguoiDung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvNhomNguoiDung.Location = new System.Drawing.Point(2, 28);
+            this.dtgvNhomNguoiDung.MultiSelect = false;
             this.dtgvNhomNguoiDung.Name = "dtgvNhomNguoiDung";
+            this.dtgvNhomNguoiDung.RowHeadersVisible = false;
             this.dtgvNhomNguoiDung.RowHeadersWidth = 51;
             this.dtgvNhomNguoiDung.RowTemplate.Height = 24;
+            this.dtgvNhomNguoiDung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvNhomNguoiDung.Size = new System.Drawing.Size(749, 312);
             this.dtgvNhomNguoiDung.TabIndex = 0;
             this.dtgvNhomNguoiDung.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvNhomNguoiDung_CellClick);

@@ -35,11 +35,20 @@ namespace QLNhaHang
             this.cbbNhomNguoiDung = new System.Windows.Forms.ComboBox();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.dtgvNhomNguoiDung = new System.Windows.Forms.DataGridView();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dtgvNguoiDung = new System.Windows.Forms.DataGridView();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,15 +58,6 @@ namespace QLNhaHang
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -126,6 +126,10 @@ namespace QLNhaHang
             // 
             // dtgvNhomNguoiDung
             // 
+            this.dtgvNhomNguoiDung.AllowUserToAddRows = false;
+            this.dtgvNhomNguoiDung.AllowUserToDeleteRows = false;
+            this.dtgvNhomNguoiDung.AllowUserToResizeColumns = false;
+            this.dtgvNhomNguoiDung.AllowUserToResizeRows = false;
             this.dtgvNhomNguoiDung.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvNhomNguoiDung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvNhomNguoiDung.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -135,11 +139,42 @@ namespace QLNhaHang
             this.Column6});
             this.dtgvNhomNguoiDung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvNhomNguoiDung.Location = new System.Drawing.Point(2, 28);
+            this.dtgvNhomNguoiDung.MultiSelect = false;
             this.dtgvNhomNguoiDung.Name = "dtgvNhomNguoiDung";
+            this.dtgvNhomNguoiDung.RowHeadersVisible = false;
             this.dtgvNhomNguoiDung.RowHeadersWidth = 51;
             this.dtgvNhomNguoiDung.RowTemplate.Height = 24;
+            this.dtgvNhomNguoiDung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvNhomNguoiDung.Size = new System.Drawing.Size(494, 556);
             this.dtgvNhomNguoiDung.TabIndex = 0;
+            // 
+            // Column13
+            // 
+            this.Column13.DataPropertyName = "MaND";
+            this.Column13.HeaderText = "Mã ND";
+            this.Column13.MinimumWidth = 6;
+            this.Column13.Name = "Column13";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "TenDN";
+            this.Column4.HeaderText = "Tên đăng nhập";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "MaNhom";
+            this.Column5.HeaderText = "Mã nhóm ND";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "GhiChu";
+            this.Column6.HeaderText = "Ghi chú";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
             // 
             // panelControl1
             // 
@@ -186,6 +221,10 @@ namespace QLNhaHang
             // 
             // dtgvNguoiDung
             // 
+            this.dtgvNguoiDung.AllowUserToAddRows = false;
+            this.dtgvNguoiDung.AllowUserToDeleteRows = false;
+            this.dtgvNguoiDung.AllowUserToResizeColumns = false;
+            this.dtgvNguoiDung.AllowUserToResizeRows = false;
             this.dtgvNguoiDung.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvNguoiDung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvNguoiDung.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -200,74 +239,14 @@ namespace QLNhaHang
             this.Column3});
             this.dtgvNguoiDung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvNguoiDung.Location = new System.Drawing.Point(2, 28);
+            this.dtgvNguoiDung.MultiSelect = false;
             this.dtgvNguoiDung.Name = "dtgvNguoiDung";
+            this.dtgvNguoiDung.RowHeadersVisible = false;
             this.dtgvNguoiDung.RowHeadersWidth = 51;
             this.dtgvNguoiDung.RowTemplate.Height = 24;
+            this.dtgvNguoiDung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvNguoiDung.Size = new System.Drawing.Size(1096, 556);
             this.dtgvNguoiDung.TabIndex = 0;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "MaND";
-            this.Column7.HeaderText = "Mã ND";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "HoTen";
-            this.Column8.HeaderText = "Họ tên";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "TenDN";
-            this.Column1.HeaderText = "Tên đăng nhập";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "MatKhau";
-            this.Column2.HeaderText = "Mật khẩu";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "GioiTinh";
-            this.Column9.HeaderText = "Giới tính";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "Email";
-            this.Column10.HeaderText = "Email";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "SDT";
-            this.Column11.HeaderText = "Điện thoại";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "DiaChi";
-            this.Column12.HeaderText = "Địa chỉ";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "HoatDong";
-            this.Column3.HeaderText = "Hoạt động";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
             // 
             // Root
             // 
@@ -318,33 +297,69 @@ namespace QLNhaHang
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // Column13
+            // Column7
             // 
-            this.Column13.DataPropertyName = "MaND";
-            this.Column13.HeaderText = "Mã ND";
-            this.Column13.MinimumWidth = 6;
-            this.Column13.Name = "Column13";
+            this.Column7.DataPropertyName = "MaND";
+            this.Column7.HeaderText = "Mã ND";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
             // 
-            // Column4
+            // Column8
             // 
-            this.Column4.DataPropertyName = "TenDN";
-            this.Column4.HeaderText = "Tên đăng nhập";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
+            this.Column8.DataPropertyName = "HoTen";
+            this.Column8.HeaderText = "Họ tên";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
             // 
-            // Column5
+            // Column1
             // 
-            this.Column5.DataPropertyName = "MaNhom";
-            this.Column5.HeaderText = "Mã nhóm ND";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
+            this.Column1.DataPropertyName = "TenDN";
+            this.Column1.HeaderText = "Tên đăng nhập";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
             // 
-            // Column6
+            // Column2
             // 
-            this.Column6.DataPropertyName = "GhiChu";
-            this.Column6.HeaderText = "Ghi chú";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
+            this.Column2.DataPropertyName = "MatKhau";
+            this.Column2.HeaderText = "Mật khẩu";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "GioiTinh";
+            this.Column9.HeaderText = "Giới tính";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "Email";
+            this.Column10.HeaderText = "Email";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "SDT";
+            this.Column11.HeaderText = "Điện thoại";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "DiaChi";
+            this.Column12.HeaderText = "Địa chỉ";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "HoatDong";
+            this.Column3.HeaderText = "Hoạt động";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
             // 
             // frmThemNguoiDungVaoNhom
             // 
@@ -392,6 +407,11 @@ namespace QLNhaHang
         private DevExpress.XtraEditors.SimpleButton btnXoa;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private System.Windows.Forms.ComboBox cbbNhomNguoiDung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -401,10 +421,5 @@ namespace QLNhaHang
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column3;
-        private System.Windows.Forms.ComboBox cbbNhomNguoiDung;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }

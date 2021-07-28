@@ -102,7 +102,8 @@ namespace QLNhaHang
 
         private void btnHuyBo_Click(object sender, EventArgs e)
         {
-           // UpdateStatus();
+            // UpdateStatus();
+            this.Close();
         }
 
         //When button is clicked, this is trigged

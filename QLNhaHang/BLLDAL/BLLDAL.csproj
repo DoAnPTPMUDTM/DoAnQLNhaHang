@@ -49,6 +49,7 @@
     <Compile Include="CTHDBLLDAL.cs" />
     <Compile Include="CTPNBLLDAL.cs" />
     <Compile Include="CTPNs.cs" />
+    <Compile Include="DinhLuongBLLDAL.cs" />
     <Compile Include="DonViTinhBLLDAL.cs" />
     <Compile Include="GoiMonTaiBanBLLDAL.cs" />
     <Compile Include="HoaDonBLLDAL.cs" />

@@ -61,7 +61,7 @@ namespace QLNhaHang
             // txtTongTien
             // 
             this.txtTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTongTien.Location = new System.Drawing.Point(257, 79);
+            this.txtTongTien.Location = new System.Drawing.Point(262, 79);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.ReadOnly = true;
             this.txtTongTien.Size = new System.Drawing.Size(242, 34);
@@ -81,7 +81,7 @@ namespace QLNhaHang
             // txtTienGiam
             // 
             this.txtTienGiam.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTienGiam.Location = new System.Drawing.Point(257, 119);
+            this.txtTienGiam.Location = new System.Drawing.Point(262, 119);
             this.txtTienGiam.Name = "txtTienGiam";
             this.txtTienGiam.ReadOnly = true;
             this.txtTienGiam.Size = new System.Drawing.Size(242, 34);
@@ -101,7 +101,7 @@ namespace QLNhaHang
             // txtThanhTien
             // 
             this.txtThanhTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtThanhTien.Location = new System.Drawing.Point(257, 159);
+            this.txtThanhTien.Location = new System.Drawing.Point(262, 159);
             this.txtThanhTien.Name = "txtThanhTien";
             this.txtThanhTien.ReadOnly = true;
             this.txtThanhTien.Size = new System.Drawing.Size(242, 34);
@@ -121,7 +121,7 @@ namespace QLNhaHang
             // txtTienNhan
             // 
             this.txtTienNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTienNhan.Location = new System.Drawing.Point(257, 199);
+            this.txtTienNhan.Location = new System.Drawing.Point(262, 199);
             this.txtTienNhan.Name = "txtTienNhan";
             this.txtTienNhan.Size = new System.Drawing.Size(242, 34);
             this.txtTienNhan.TabIndex = 0;
@@ -142,7 +142,7 @@ namespace QLNhaHang
             // txtTienThua
             // 
             this.txtTienThua.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTienThua.Location = new System.Drawing.Point(257, 272);
+            this.txtTienThua.Location = new System.Drawing.Point(262, 272);
             this.txtTienThua.Margin = new System.Windows.Forms.Padding(0);
             this.txtTienThua.Name = "txtTienThua";
             this.txtTienThua.ReadOnly = true;
@@ -153,18 +153,18 @@ namespace QLNhaHang
             // btnThanhToanVaInHoaDon
             // 
             this.btnThanhToanVaInHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThanhToanVaInHoaDon.Location = new System.Drawing.Point(126, 389);
+            this.btnThanhToanVaInHoaDon.Location = new System.Drawing.Point(128, 389);
             this.btnThanhToanVaInHoaDon.Name = "btnThanhToanVaInHoaDon";
             this.btnThanhToanVaInHoaDon.Size = new System.Drawing.Size(376, 51);
             this.btnThanhToanVaInHoaDon.TabIndex = 2;
             this.btnThanhToanVaInHoaDon.Text = "ThanhToán";
-            this.btnThanhToanVaInHoaDon.UseVisualStyleBackColor = true;
+            this.btnThanhToanVaInHoaDon.UseVisualStyleBackColor = false;
             this.btnThanhToanVaInHoaDon.Click += new System.EventHandler(this.btnThanhToanVaInHoaDon_Click);
             // 
             // btnHuyBo
             // 
             this.btnHuyBo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHuyBo.Location = new System.Drawing.Point(126, 446);
+            this.btnHuyBo.Location = new System.Drawing.Point(128, 446);
             this.btnHuyBo.Name = "btnHuyBo";
             this.btnHuyBo.Size = new System.Drawing.Size(376, 49);
             this.btnHuyBo.TabIndex = 3;
@@ -175,26 +175,27 @@ namespace QLNhaHang
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(126, 331);
+            this.button3.Location = new System.Drawing.Point(128, 331);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(376, 52);
             this.button3.TabIndex = 4;
             this.button3.Text = "In Hoá Đơn";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // lbTienNhan
             // 
             this.lbTienNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTienNhan.Location = new System.Drawing.Point(257, 236);
+            this.lbTienNhan.Location = new System.Drawing.Point(262, 236);
             this.lbTienNhan.Margin = new System.Windows.Forms.Padding(0);
             this.lbTienNhan.Name = "lbTienNhan";
-            this.lbTienNhan.Size = new System.Drawing.Size(242, 36);
+            this.lbTienNhan.Size = new System.Drawing.Size(237, 36);
             this.lbTienNhan.TabIndex = 5;
             this.lbTienNhan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.txtTongTien);
             this.panel1.Controls.Add(this.lbTienNhan);
             this.panel1.Controls.Add(this.lbTenBan);
@@ -213,16 +214,16 @@ namespace QLNhaHang
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(615, 507);
+            this.panel1.Size = new System.Drawing.Size(615, 524);
             this.panel1.TabIndex = 6;
             // 
             // lbTenBan
             // 
             this.lbTenBan.AutoSize = true;
-            this.lbTenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTenBan.Location = new System.Drawing.Point(12, 9);
             this.lbTenBan.Name = "lbTenBan";
-            this.lbTenBan.Size = new System.Drawing.Size(87, 29);
+            this.lbTenBan.Size = new System.Drawing.Size(93, 29);
             this.lbTenBan.TabIndex = 0;
             this.lbTenBan.Text = "Bàn 01";
             // 
@@ -230,7 +231,7 @@ namespace QLNhaHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 507);
+            this.ClientSize = new System.Drawing.Size(615, 524);
             this.Controls.Add(this.panel1);
             this.Name = "frmThanhToan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

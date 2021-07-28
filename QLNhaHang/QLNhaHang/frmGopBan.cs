@@ -94,7 +94,7 @@ namespace QLNhaHang
                     DialogResult res = MessageBox.Show("Bạn có muốn gộp " + ban.TenBan + " với " + lstBan[soBan].TenBan + Environment.NewLine + "Toàn bộ hoá đơn " + ban.TenBan + " sẽ được chuyển sang " + lstBan[soBan].TenBan, "Xác nhận!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (res == DialogResult.Yes)
                     {
-                        MessageBox.Show("ma ban cu " + this.maBan + " ma ban moi " + lstBan[soBan].MaBan + " vi tri " + soBan);
+                        //MessageBox.Show("ma ban cu " + this.maBan + " ma ban moi " + lstBan[soBan].MaBan + " vi tri " + soBan);
                         UpdateStatusGopBan(this.maBan, lstBan[soBan].MaBan, soBan);
                         this.Close();
                     }

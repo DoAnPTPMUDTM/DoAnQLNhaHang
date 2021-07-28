@@ -19,6 +19,7 @@ namespace QLNhaHang
         PhieuNhapBLLDAL phieuNhapBLLDAL = new PhieuNhapBLLDAL();
         CTPNBLLDAL cTPNBLLDAL = new CTPNBLLDAL();
         NguoiDung nd;
+        MatHangBLLDAL matHangBLLDAL = new MatHangBLLDAL();
         public frmQLNhapHang()
         {
             InitializeComponent();
@@ -33,7 +34,6 @@ namespace QLNhaHang
         private void frmQLNhapHang_Load(object sender, EventArgs e)
         {
             loadDataPhieuNhap();
-            startListenner();
         }
         private void loadDataPhieuNhap()
         {
@@ -77,30 +77,43 @@ namespace QLNhaHang
         {
             frmThemPhieuNhap frmThemPhieuNhap = new frmThemPhieuNhap(nd);
             frmThemPhieuNhap.Name = "frmThemPhieuNhap";
+            frmThemPhieuNhap.OnInsertNhapHang += FrmThemPhieuNhap_OnInsertNhapHang;
             frmThemPhieuNhap.ShowDialog(this);
         }
-        SqlTableDependency<PhieuNhap> dep;
-        public void startListenner()
+
+        private void FrmThemPhieuNhap_OnInsertNhapHang(object sender, EventArgs e, PhieuNhap pn, List<CTPNs> lstCTPN)
         {
-            string stringConnection = Properties.Settings.Default.ChuoiKetNoi;
-            var mapper = new ModelToTableMapper<PhieuNhap>();
-            mapper.AddMapping(t => t.MaPN, "MaPN");
-            dep = new SqlTableDependency<PhieuNhap>(stringConnection, "PhieuNhap", mapper: mapper);
-            dep.OnChanged += Dep_OnChanged;
-            dep.Start();
+            try
+            {
+                matHangBLLDAL = new MatHangBLLDAL();
+                phieuNhapBLLDAL.insertPhieuNhapHang(pn);
+                foreach (var item in lstCTPN)
+                {
+                    CTPN cTPN = new CTPN();
+                    cTPN.MaPN = pn.MaPN;
+                    cTPN.MaMH = item.maMH;
+                    cTPN.SoLuong = item.soLuong;
+                    cTPN.DonGia = (decimal)item.donGia;
+                    cTPN.ThanhTien = (decimal?)item.thanhTien;
+                    cTPNBLLDAL.insertCTPN(cTPN);                   
+                }
+                matHangBLLDAL.updateSLNhap(lstCTPN);
+                loadDataPhieuNhap();
+                UpdateNhapHang();
+                MessageBox.Show("Thêm phiếu nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thêm phiếu nhập không thành công " + ex.Message, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
+
         }
 
-        private void Dep_OnChanged(object sender, TableDependency.SqlClient.Base.EventArgs.RecordChangedEventArgs<PhieuNhap> e)
-        {
-            this.Invoke(new MethodInvoker(delegate ()
-            {
-                loadDataPhieuNhap();
-            }));
-        }
 
         private void frmQLNhapHang_FormClosing(object sender, FormClosingEventArgs e)
         {
-            dep.Stop();
         }
 
         private void barBtnXuatExcelPN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -137,7 +150,14 @@ namespace QLNhaHang
             {
                 System.Diagnostics.Process.Start(path);
             }
+        }
+        public delegate void StatusUpdateHandler(object sender, EventArgs e);
+        public event StatusUpdateHandler OnUpdateNhapHang;
 
+        private void UpdateNhapHang()
+        {
+            EventArgs args = new EventArgs();
+            OnUpdateNhapHang?.Invoke(this, args);
         }
     }
 }

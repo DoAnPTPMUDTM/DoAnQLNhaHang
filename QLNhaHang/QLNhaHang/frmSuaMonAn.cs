@@ -18,7 +18,6 @@ namespace QLNhaHang
         NhomMonBLLDAL nhomMonBLLDAL = new NhomMonBLLDAL();
         KhuyenMaiBLLDAL khuyenMaiBLLDAL = new KhuyenMaiBLLDAL();
         DonViTinhBLLDAL donViTinhBLLDAL = new DonViTinhBLLDAL();
-        MonBLLDAL monBLLDAL = new MonBLLDAL();
         ConfigImage configImage = new ConfigImage();
         
         private string imgMonAn = "";

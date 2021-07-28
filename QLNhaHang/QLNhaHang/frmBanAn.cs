@@ -28,6 +28,7 @@ namespace QLNhaHang
         }
         public void loadBan()
         {
+            banBLLDAL = new BanBLLDAL();
             lstBan = banBLLDAL.getDataBan();
             imgLstBoxBan.Items.Clear();
             ImageList imageList = new ImageList();
@@ -41,6 +42,7 @@ namespace QLNhaHang
                 i++;
             }
             this.imgLstBoxBan.ColumnWidth = 130;
+            clearText();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -65,6 +67,7 @@ namespace QLNhaHang
             {
                 banBLLDAL.insertBan(ban);
                 loadBan();
+                
                 UpdateBan(ChangeType.Insert);
             }
             catch(Exception ex)
@@ -129,6 +132,11 @@ namespace QLNhaHang
             }
             try
             {
+                if (banBLLDAL.ktKhoaNgoai(lstBan[index].MaBan))
+                {
+                    MessageBox.Show("Hiện tại bạn không thể xoá bàn này", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 banBLLDAL.deleteBan(lstBan[index].MaBan);
                 loadBan();
                 UpdateBan(ChangeType.Delete);
@@ -146,6 +154,17 @@ namespace QLNhaHang
         {
             EventArgs args = new EventArgs();
             OnUpdateBan?.Invoke(this, args, c);
+        }
+        public void clearText()
+        {
+            txtMaBan.Clear();
+            txtTenBan.Clear();
+            txtViTri.Clear();
+        }
+
+        private void imgLstBoxBan_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Click");
         }
     }
 }

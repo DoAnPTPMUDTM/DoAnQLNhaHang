@@ -140,6 +140,7 @@ namespace QLNhaHang
                 MessageBox.Show("Thêm người dùng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNguoiDung();
                 clearControls();
+                UpdateNguoiDung();
             }
             catch
             {
@@ -229,6 +230,7 @@ namespace QLNhaHang
                 MessageBox.Show("Sửa thông tin người dùng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNguoiDung();
                 clearControls();
+                UpdateNguoiDung();
             }
             catch
             {
@@ -246,16 +248,30 @@ namespace QLNhaHang
             try
             {
                 txtMaND.Text = row.MaND.ToString();
+                if(NguoiDungBLLDAL.ktKhoaNgoai(int.Parse(txtMaND.Text)))
+                {
+                    MessageBox.Show("Hiện tại bạn không thể xoá người dùng này", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 NguoiDungBLLDAL.deleteNguoiDung(int.Parse(txtMaND.Text));
                 MessageBox.Show("Xóa thông tin người dùng thành công", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadDataNguoiDung();
                 clearControls();
+                UpdateNguoiDung();
             }
             catch
             {
                 MessageBox.Show("Xóa thông tin người dùng thất bại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
 
+        public delegate void StatusUpdateHandler(object sender, EventArgs e);
+        public event StatusUpdateHandler OnUpdateNguoiDung;
+
+        private void UpdateNguoiDung()
+        {
+            EventArgs args = new EventArgs();
+            OnUpdateNguoiDung?.Invoke(this, args);
         }
     }
 }

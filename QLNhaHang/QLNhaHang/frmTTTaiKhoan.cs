@@ -14,11 +14,17 @@ namespace QLNhaHang
 {
     public partial class frmTTTaiKhoan : Form
     {
-        QL_NguoiDung QL_NguoiDung = new QL_NguoiDung();
+
         NguoiDungBLLDAL nguoiDungBLLDAL = new NguoiDungBLLDAL();
+        NguoiDung nd;
         public frmTTTaiKhoan()
         {
             InitializeComponent();
+        }
+        public frmTTTaiKhoan(NguoiDung nd)
+        {
+            InitializeComponent();
+            this.nd = nd;
         }
 
         private void frmTTTaiKhoan_Load(object sender, EventArgs e)
@@ -31,7 +37,7 @@ namespace QLNhaHang
             txtSDT.Enabled = false;
             chkHoatDong.Enabled = false;
             //
-            NguoiDung nd = nguoiDungBLLDAL.getNguoiDungByMaND(2);
+            NguoiDung nd = nguoiDungBLLDAL.getNguoiDungByMaND(this.nd.MaND);
             txtHoTen.Text = nd.HoTen;
             txtSDT.Text = nd.SDT;
             mmEDiaChi.Text = nd.DiaChi;

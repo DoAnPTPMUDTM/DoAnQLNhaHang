@@ -123,6 +123,16 @@ namespace QLNhaHang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap exit {
+            get {
+                object obj = ResourceManager.GetObject("exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap goimontaiban {
             get {
                 object obj = ResourceManager.GetObject("goimontaiban", resourceCulture);
@@ -176,6 +186,16 @@ namespace QLNhaHang.Properties {
         internal static System.Drawing.Bitmap monan {
             get {
                 object obj = ResourceManager.GetObject("monan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap recipe {
+            get {
+                object obj = ResourceManager.GetObject("recipe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
