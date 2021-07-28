@@ -38,7 +38,26 @@ namespace BLLDAL
                 cthd.ThanhTien = g.SoLuong.Value * getDonGiaByMaMon(g.MaMon.Value);
                 insertCTHD(cthd);
                 capNhatTT(g.MaGoiMon);
+                truSLNguyenLieu(g.MaMon.Value, g.SoLuong.Value);
             }
+        }
+        public void truSLNguyenLieu(int maMon, int sl)
+        {
+            List<DinhLuong> lstDinhLuong = db.DinhLuongs.Where(d => d.MaMon == maMon).ToList();
+            if (lstDinhLuong == null || (lstDinhLuong != null && lstDinhLuong.Count == 0))
+            {
+                return;
+            }
+            foreach (DinhLuong dl in lstDinhLuong)
+            {
+                MatHang mh = db.MatHangs.Where(m => m.MaMH == dl.MaMH).FirstOrDefault();
+                if (mh != null)
+                {
+                    decimal slTru = mh.SoLuongTon - (dl.QuyDoi * sl);
+                    mh.SoLuongTon = slTru;
+                }
+            }
+            db.SubmitChanges();
         }
         public bool ktGhiNhanGMTB(int maBan,ref string messeage)
         {

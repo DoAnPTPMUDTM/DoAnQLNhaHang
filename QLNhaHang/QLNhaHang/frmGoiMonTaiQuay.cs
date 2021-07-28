@@ -491,6 +491,7 @@ namespace QLNhaHang
                 cthd.ThanhTien = soLuong * mon.GiaKM;
                 cTHDBLLDAL.insertCTHD(cthd);
                 matHangBLLDAL.truSLNguyenLieu(maMon, soLuong);
+                UpdateGoiMon(ChangeType.Insert);
                 //
                 loadCTHD(maHD);
                 txtGhiChu.Clear();
@@ -640,6 +641,7 @@ namespace QLNhaHang
                     {
                         cTHDBLLDAL.deCreNumberMon(maHd, maMon);
                         matHangBLLDAL.congSLNguyenLieu(maMon, 1);
+                        UpdateGoiMon(ChangeType.Update);
                         loadCTHD(maHd);
                         gridView1.FocusedRowHandle = rowFocus;
                     }
@@ -693,6 +695,7 @@ namespace QLNhaHang
                     {
                         cTHDBLLDAL.inCreNumberMon(maHd, maMon);
                         matHangBLLDAL.truSLNguyenLieu(maMon, 1);
+                        UpdateGoiMon(ChangeType.Update);
                         loadCTHD(maHd);
                         gridView1.FocusedRowHandle = rowFocus;
                     }
@@ -754,6 +757,7 @@ namespace QLNhaHang
                         if (res == DialogResult.Yes)
                         {
                             matHangBLLDAL.congSLNguyenLieu(maMon, soLuong);
+                            UpdateGoiMon(ChangeType.Update);
                         }
                         loadCTHD(maHd);
                     }
@@ -929,13 +933,18 @@ namespace QLNhaHang
         }
         //
         public delegate void StatusUpdateHandler(object sender, EventArgs e, ChangeType changeType);
-        public event StatusUpdateHandler onUpdateStatus;
+        public event StatusUpdateHandler onUpdateStatus, onUpdateGoiMon;
         private void UpdateStatus(ChangeType c)
         {
             EventArgs eventArgs = new EventArgs();
             onUpdateStatus?.Invoke(this, eventArgs, c);
         }
         //
+        private void UpdateGoiMon(ChangeType c)
+        {
+            EventArgs eventArgs = new EventArgs();
+            onUpdateGoiMon?.Invoke(this, eventArgs, c);
+        }
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
             khachHangBLLDAL = new KhachHangBLLDAL();

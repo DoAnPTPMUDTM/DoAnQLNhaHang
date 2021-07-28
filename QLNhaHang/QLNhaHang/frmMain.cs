@@ -76,8 +76,18 @@ namespace QLNhaHang
             frmGoiMonTaiQuay frm = new frmGoiMonTaiQuay(nd);
             frm.Name = "frmGoiMonTaiQuay";
             frm.onUpdateStatus += Frm_onUpdateStatus;
+            frm.onUpdateGoiMon += Frm_onUpdateGoiMon;
             showForm(frm);
         }
+        bool checkGoiMon = false;
+        private void Frm_onUpdateGoiMon(object sender, EventArgs e, ChangeType changeType)
+        {
+            if (checkExitForm("frmQLNguyenLieu"))
+            {
+                checkGoiMon = true;
+            }
+        }
+
         bool checkOpenFormGMTQ = false;
         private void Frm_onUpdateStatus(object sender, EventArgs e, ChangeType changeType)
         {
@@ -95,11 +105,16 @@ namespace QLNhaHang
             showForm(frmGoiMonTaiBan);
         }
         bool checkGNMTB = false;
+        bool checkGMTBNL = false;
         private void FrmGoiMonTaiBan_OnUpdateStatus(object sender, EventArgs e, int maBan)
         {
             if (checkExitForm("frmGoiMonTaiQuay"))
             {
                 checkGNMTB = true;
+            }
+            if (checkExitForm("frmQLNguyenLieu"))
+            {
+                checkGMTBNL = true;
             }
         }
 
@@ -427,10 +442,27 @@ namespace QLNhaHang
                             break;
                         case "frmQLNguyenLieu":
                             frmQLNguyenLieu frmQLNguyenLieu = (frmQLNguyenLieu)form;
-                            if (checkNhapHang)
+                            //if (checkNhapHang)
+                            //{
+                            //    frmQLNguyenLieu.loadGridViewMHNL();
+                            //    checkNhapHang = false;
+                            //}
+                            //if (checkGoiMon)
+                            //{
+                            //    frmQLNguyenLieu.loadGridViewMHNL();
+                            //    checkGoiMon = false;
+                            //}
+                            //if (checkGMTBNL)
+                            //{
+                            //    frmQLNguyenLieu.loadGridViewMHNL();
+                            //    checkGMTBNL = false;
+                            //}
+                            if(checkNhapHang || checkGoiMon || checkGMTBNL)
                             {
                                 frmQLNguyenLieu.loadGridViewMHNL();
                                 checkNhapHang = false;
+                                checkGoiMon = false;
+                                checkGMTBNL = false;
                             }
                             break;
                     }

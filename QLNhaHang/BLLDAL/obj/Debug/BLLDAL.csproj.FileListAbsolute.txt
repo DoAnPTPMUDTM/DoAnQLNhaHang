@@ -15,4 +15,3 @@ C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHan
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.dll
 C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.pdb
 D:\DoAnGitHub\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.csprojAssemblyReference.cache
-C:\Users\PhamHongSon\Desktop\DoAnMonHoc\PTPMUDTM\DoAn_Off\DoAnQLNhaHang\QLNhaHang\BLLDAL\obj\Debug\BLLDAL.csprojAssemblyReference.cache
