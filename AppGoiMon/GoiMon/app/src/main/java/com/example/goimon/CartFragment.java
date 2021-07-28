@@ -34,6 +34,7 @@ import Model.Ban;
 import Model.Cart;
 import Model.CartItem;
 import Model.GoiMonTaiBan;
+import Model.History;
 import Model.HoaDon;
 import Model.OnCartCallBack;
 
@@ -47,7 +48,7 @@ public class CartFragment extends Fragment {
     Button btnGoiMon;
     TextView txtThanhTienCart;
     Ban ban;
-
+    History history;
     public CartFragment() {
         // Required empty public constructor
     }
@@ -142,6 +143,7 @@ public class CartFragment extends Fragment {
                         insert(new GoiMonTaiBan(maHD, cartItem.getMaMon(), cartItem.getSoLuong(), 0, cartItem.getGhiChu()), maHD);
                     }
                     Log.d("KRT", "Goi mon thanh cong");
+                    history.getInstanceHistory().addAll(cart.getInstanceCart());
                     cart.getInstanceCart().clear();
                     cartMonAdapter.notifyDataSetChanged();
                     Main2Activity.hideNumberCart();

@@ -203,7 +203,7 @@ namespace QLNhaHang
                     }    
                     goiMonTaiBanBLLDAL.ghiNhanGMTB(lstBan[soBan].MaBan);
                     loadBan();
-                    UpdateGMTB(lstBan[soBan].MaBan);
+                    UpdateGMTB(0);
                 }
 
             }

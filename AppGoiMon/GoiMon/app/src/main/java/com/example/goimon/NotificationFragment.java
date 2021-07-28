@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import Adapter.NotificationAdapter;
 import Model.Cart;
 import Model.CartItem;
+import Model.History;
 import Model.Mon;
 
 public class NotificationFragment extends Fragment {
@@ -34,6 +35,7 @@ public class NotificationFragment extends Fragment {
      ConnectionHelper connectionHelper = new ConnectionHelper();
      Connection connection;
      Cart cart;
+     History history;
      ArrayList<CartItem> monArrayList;
      RecyclerView recyclerNotification;
      NotificationAdapter notificationAdapter;
@@ -71,7 +73,8 @@ public class NotificationFragment extends Fragment {
 
         //Log.d("KRT","MaHD"+getMonAnByMaHD(getMaHDByMB(getPreferences("maBan"))));
         //monArrayList = getMonAnByMaHD(getMaHDByMB(getPreferences("maBan")));
-        notificationAdapter = new NotificationAdapter(getContext(),getMonAnByMaHD(maHD));
+        //notificationAdapter = new NotificationAdapter(getContext(),getMonAnByMaHD(maHD));
+        notificationAdapter = new NotificationAdapter(getContext(),history.getInstanceHistory());
         recyclerNotification.setAdapter(notificationAdapter);
         recyclerNotification.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));//Vy vieidti
     }
@@ -144,5 +147,9 @@ public class NotificationFragment extends Fragment {
             throwables.printStackTrace();
         }
         return -1;
+    }
+
+    public  void updateHistory(ArrayList<CartItem> arr){
+
     }
 }

@@ -43,6 +43,7 @@ import Adapter.MonAdapter;
 import Adapter.NhomMonAdapter;
 import Model.Cart;
 import Model.CartItem;
+import Model.History;
 import Model.Mon;
 import Model.NhomMon;
 import Model.OnCallBack;
@@ -61,6 +62,7 @@ public class FoodsFragment extends Fragment {
     ImageView imgSub, imgAdd,imgAnhMonDialog;
     int number = 1;
     Cart cart = new Cart();
+    History history = new History();
     CartItem cartItem;
     ConnectionHelper connectionHelper = new ConnectionHelper();
     Connection connection;
