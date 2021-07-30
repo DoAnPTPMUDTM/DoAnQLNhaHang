@@ -419,7 +419,7 @@ namespace QLNhaHang
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmGoiMonTaiBan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmGoiMonTaiBan";
+            this.Text = "GoiMonTaiBan";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmGoiMonTaiBan_FormClosed);
             this.Load += new System.EventHandler(this.frmGoiMonTaiBan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

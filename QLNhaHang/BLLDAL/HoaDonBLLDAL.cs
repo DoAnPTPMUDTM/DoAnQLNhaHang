@@ -151,12 +151,22 @@ namespace BLLDAL
 
         public void deleteHDByMaHD(int maHD)
         {
-            HoaDon hd = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
-            if (hd != null)
+            bool checkHDGMTB = db.GoiMonTaiBans.Where(g => g.MaHD == maHD).Count() > 0;
+            if (checkHDGMTB)
             {
-                db.HoaDons.DeleteOnSubmit(hd);
+                db.GoiMonTaiBans.Where(g => g.MaHD == maHD).ToList().ForEach(g => g.MaHD = maHD);
                 db.SubmitChanges();
             }
+            else
+            {
+                HoaDon hd = db.HoaDons.Where(h => h.MaHD == maHD).FirstOrDefault();
+                if (hd != null)
+                {
+                    db.HoaDons.DeleteOnSubmit(hd);
+                    db.SubmitChanges();
+                }
+            }
+            
         }
 
         public void updateMaBanDoiBan(int maHD, int maBan)

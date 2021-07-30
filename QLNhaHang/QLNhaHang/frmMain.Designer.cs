@@ -134,7 +134,7 @@ namespace QLNhaHang
             // 
             // barBtnGoiMonTaiQuay
             // 
-            this.barBtnGoiMonTaiQuay.Caption = "Gọi Món Tại Quầy";
+            this.barBtnGoiMonTaiQuay.Caption = "Gọi Món";
             this.barBtnGoiMonTaiQuay.Id = 1;
             this.barBtnGoiMonTaiQuay.ImageOptions.LargeImage = global::QLNhaHang.Properties.Resources.goimontaiquay;
             this.barBtnGoiMonTaiQuay.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -56,7 +56,7 @@ namespace QLNhaHang
 
         private void btnSaoLuu_Click(object sender, EventArgs e)
         {
-            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(@"Data Source=.;Initial Catalog=QuanLyNhaHang;User ID=sa;Password=0905213883");
+            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(Properties.Settings.Default.ChuoiKetNoi);
             string server = builder.DataSource;
             string databaseName = builder.InitialCatalog;
             string userName = builder.UserID;

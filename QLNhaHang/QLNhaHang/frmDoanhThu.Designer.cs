@@ -509,7 +509,7 @@ namespace QLNhaHang
             this.Controls.Add(this.layoutControl2);
             this.Controls.Add(this.groupControl1);
             this.Name = "frmDoanhThu";
-            this.Text = "frmDoanhThu";
+            this.Text = "ThongKe";
             this.Load += new System.EventHandler(this.frmDoanhThu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);

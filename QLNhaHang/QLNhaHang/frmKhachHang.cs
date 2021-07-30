@@ -54,18 +54,18 @@ namespace QLNhaHang
 
         private void gridView1_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
         {
-            if (e.RowHandle >= 0)
-            {
-                if (e.RowHandle % 2 == 0)
-                {
-                    e.Appearance.BackColor = Color.FromArgb(150, 0, 192, 192);
-                    e.Appearance.BackColor2 = Color.White;
-                }
-                else
-                {
-                    e.Appearance.BackColor = Color.White;
-                }
-            }
+            //if (e.RowHandle >= 0)
+            //{
+            //    if (e.RowHandle % 2 == 0)
+            //    {
+            //        e.Appearance.BackColor = Color.FromArgb(150, 0, 192, 192);
+            //        e.Appearance.BackColor2 = Color.White;
+            //    }
+            //    else
+            //    {
+            //        e.Appearance.BackColor = Color.White;
+            //    }
+            //}
         }
 
         private void clearControls()

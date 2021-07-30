@@ -920,7 +920,7 @@ namespace QLNhaHang
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "frmNhomMonMonAn";
-            this.Text = "frmNhomMonMonAn";
+            this.Text = "NhomMonMonAn";
             this.Load += new System.EventHandler(this.frmNhomMonMonAn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

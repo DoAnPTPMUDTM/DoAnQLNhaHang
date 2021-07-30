@@ -1300,7 +1300,7 @@ namespace QLNhaHang
             this.ClientSize = new System.Drawing.Size(1732, 810);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmGoiMonTaiQuay";
-            this.Text = "GoiMonTaiQuay";
+            this.Text = "GoiMon";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGoiMonTaiQuay_FormClosing);
             this.Load += new System.EventHandler(this.frmGoiMonTaiQuay_Load);

@@ -14,11 +14,16 @@ namespace QLNhaHang
     public partial class frmDoiMatKhau : Form
     {
         NguoiDungBLLDAL nguoiDungBLLDAL = new NguoiDungBLLDAL();
+        NguoiDung nd;
         public frmDoiMatKhau()
         {
             InitializeComponent();
         }
-
+        public frmDoiMatKhau(NguoiDung nd)
+        {
+            InitializeComponent();
+            this.nd = nd;
+        }
         private void btnSua_Click(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(txtMKCu.Text))
@@ -51,7 +56,7 @@ namespace QLNhaHang
 
             try
             {
-                nguoiDungBLLDAL.updateMatKhau(2, txtMKMoi.Text);
+                nguoiDungBLLDAL.updateMatKhau(nd.MaND, txtMKMoi.Text);
                 MessageBox.Show("Cập nhật mật khẩu thành công","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 this.Close();
             }

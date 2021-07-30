@@ -417,7 +417,7 @@ namespace QLNhaHang
             this.ClientSize = new System.Drawing.Size(1482, 621);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmQLHoaDon";
-            this.Text = "frmQLHoaDon";
+            this.Text = "QLHoaDon";
             this.Load += new System.EventHandler(this.frmQLHoaDon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

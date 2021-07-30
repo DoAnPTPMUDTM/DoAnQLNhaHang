@@ -271,7 +271,7 @@ namespace QLNhaHang
             this.MinimizeBox = false;
             this.Name = "frmBanAn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmBanAn";
+            this.Text = "BanAn";
             this.Load += new System.EventHandler(this.frmBanAn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

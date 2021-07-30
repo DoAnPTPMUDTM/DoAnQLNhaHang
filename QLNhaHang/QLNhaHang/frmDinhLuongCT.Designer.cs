@@ -37,7 +37,7 @@ namespace QLNhaHang
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 506);
             this.Name = "frmDinhLuongCT";
-            this.Text = "frmDinhLuongCT";
+            this.Text = "MatHang";
             this.ResumeLayout(false);
 
         }

@@ -113,7 +113,7 @@ namespace QLNhaHang
                 {
                     hoatDong = false;
                 }
-                nguoiDungBLLDAL.updateThongTinTK(2, txtHoTen.Text, gioiTinh, txtSDT.Text, mmEDiaChi.Text, hoatDong);
+                nguoiDungBLLDAL.updateThongTinTK(nd.MaND, txtHoTen.Text, gioiTinh, txtSDT.Text, mmEDiaChi.Text, hoatDong);
                 MessageBox.Show("Sửa thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //
                 btnSua.Tag = "1";
@@ -132,7 +132,7 @@ namespace QLNhaHang
 
         private void btnDoiMK_Click(object sender, EventArgs e)
         {
-            frmDoiMatKhau frmDoiMatKhau = new frmDoiMatKhau();
+            frmDoiMatKhau frmDoiMatKhau = new frmDoiMatKhau(nd);
             frmDoiMatKhau.Name = "frmDoiMatKhau";
             frmDoiMatKhau.ShowDialog(this);
         }
