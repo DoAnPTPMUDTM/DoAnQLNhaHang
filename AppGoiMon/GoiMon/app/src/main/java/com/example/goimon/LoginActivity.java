@@ -74,16 +74,11 @@ public class LoginActivity extends AppCompatActivity {
         if(connection != null){
             Statement statement = null;
             try{
-
                 statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) AS 'Count' FROM NguoiDung WHERE TenDN='"+tenDN+"' AND MatKhau='"+matKhau+"'");
                 while (resultSet.next()) {
-
                     return resultSet.getInt(1) > 0;
                 }
-
-
-
             }catch (Exception e){
                 Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             }

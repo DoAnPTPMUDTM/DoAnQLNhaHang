@@ -28,7 +28,7 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<QuanLyNhaHangContext>(options =>
-            options.UseSqlServer("Server=.;Database=QuanLyNhaHang;Trusted_Connection=True;"));
+            options.UseSqlServer("Server=MSI\\SQLEXPRESS;Database=QuanLyNhaHang;Trusted_Connection=True;"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

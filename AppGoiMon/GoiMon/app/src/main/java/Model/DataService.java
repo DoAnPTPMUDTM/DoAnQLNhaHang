@@ -10,4 +10,5 @@ public interface DataService {
 
     @POST("mon/test")
     Call<Void> test(@Body ArrayList<Integer> a);
+
 }

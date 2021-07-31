@@ -21,8 +21,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TestActivity extends AppCompatActivity {
-    ConnectionHelper connectionHelper = new ConnectionHelper();
-    Connection connection;
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
